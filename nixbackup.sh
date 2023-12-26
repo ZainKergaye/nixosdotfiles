@@ -1,4 +1,8 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 
-find . ! -name 'nixbackup.sh' -type f -exec rm -f {} +
-find . ! -name 'nixbackup.sh' -type d -exec rm -r {} +
+cp -r /home/$USER/.config/hypr/ .
+cp /etc/nixos/configuration.nix . 
+cp -r /home/$USER/.config/swaylock/ .
+cp -r /home/$USER/.config/waybar/ .
+cp -r /home/$USER/.config/wlogout/ .
+
