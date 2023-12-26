@@ -62,16 +62,6 @@ fonts.packages = with pkgs; [
 
 ];
 
-# --------------------------------
-# Sudo Override
-# --------------------------------
-# security.sudo.extraConfig = ''
-#	zain ALL=(ALL) NOPASSWD: /run/current-system/sw/bin/tee /sys/class/backlight/amdgpubl0/brightness
-# '';
-# USELESS!!! AAAAA
-
-
-
 
 # --------------------------------
 # Bluetooth
@@ -108,9 +98,6 @@ security.pam.services.swaylock = {};
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -149,26 +136,38 @@ security.pam.services.swaylock = {};
   };
 
   environment.systemPackages = with pkgs; [
-   neovim 
-   waybar
-   dunst
-   libnotify
-   swww
-   kitty
-   rofi-wayland
-   wget
-   ungoogled-chromium
-   neofetch
-   wlogout
+  # ------------------------------------------
+  # System esentials
+  # ------------------------------------------
+   waybar # Top bar
+   swww # Wallpaper 
+   dunst#
    swaylock
-   git
+   wl-clipboard
+   wlogout
    cliphist # Clip board mngr
+   libnotify # Notification Daemons
+   rofi-wayland
    brightnessctl
    networkmanagerapplet
-   blueman
    efibootmgr
    grub2_efi
-   vifm
+   blueman
+
+  # ------------------------------------------
+  # Dev tools
+  # ------------------------------------------
+   wget
+   git
+
+  # ------------------------------------------
+  # Applications
+  # ------------------------------------------
+   neovim 
+   kitty # Terminal
+   ungoogled-chromium
+   neofetch
+   vifm # File Manager
 
 
 (waybar.overrideAttrs (oldAttrs: {
