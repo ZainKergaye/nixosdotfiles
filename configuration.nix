@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  # ------------------------------------------
+  # Application Configs
+  # ------------------------------------------
+  
 programs.hyprland = {
 	enable = true;
 	xwayland.enable = true;
@@ -20,6 +24,12 @@ programs.zsh = {
 		theme = "gozilla";
 	};
 };
+
+
+
+
+
+
 xdg.portal.enable = true;
 xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk ];
 # --------------------------------
@@ -91,9 +101,20 @@ security.pam.services.swaylock = {};
       <home-manager/nixos>
     ];
 
-  # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+# --------------------------------
+# Bootloader.
+# --------------------------------
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      enable = true;
+      device = "nodev";
+      useOSProber = true;
+    };
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -163,14 +184,19 @@ security.pam.services.swaylock = {};
   # ------------------------------------------
   # Applications
   # ------------------------------------------
-   neovim 
+   neovim  
    kitty # Terminal
    ungoogled-chromium
    neofetch
    vifm # File Manager
+   btop
+   waypaper
 
+   # neovimPlugins.vim-prettier
 
-(waybar.overrideAttrs (oldAttrs: {
+  
+
+   (waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
    })
    )
@@ -202,11 +228,6 @@ security.pam.services.swaylock = {};
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-  
- # Grub config for the dual boot machine:
- boot.loader.grub.enable = true;
- boot.loader.grub.device = "nodev";
- boot.loader.grub.useOSProber = true;
 
  # Real time clock fixes for dual booting
  time.hardwareClockInLocalTime = true;

@@ -4,8 +4,8 @@
 # Wallpaper
 #-------------------------------
 swww init &
-swww img img /home/zain/config/wallpaper/VoltswagenGirl.png &
-
+# swww img img /home/zain/config/wallpaper/VoltswagenGirl.png &
+waypaper --restore
 
 waybar &
 
