@@ -180,6 +180,7 @@ security.pam.services.swaylock = {};
   # ------------------------------------------
    wget
    git
+   gh
 
   # ------------------------------------------
   # Applications
@@ -191,10 +192,9 @@ security.pam.services.swaylock = {};
    vifm # File Manager
    btop
    waypaper
+   vscodium
 
    # neovimPlugins.vim-prettier
-
-  
 
    (waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
