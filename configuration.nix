@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 {
-  # ------------------------------------------
-  # Application Configs
-  # ------------------------------------------
+# ------------------------------------------
+# Application Configs
+# ------------------------------------------
   
 programs.hyprland = {
 	enable = true;
@@ -16,6 +16,7 @@ programs.zsh = {
 		vi = "nvim";
 		nixupdate = "sudo nixos-rebuild switch";
 		hypredit = "nvim ~/.config/hypr/hyprland.conf";
+		
 	};
 	ohMyZsh = {
 
@@ -24,7 +25,6 @@ programs.zsh = {
 		theme = "gozilla";
 	};
 };
-
 
 
 
@@ -181,12 +181,14 @@ security.pam.services.swaylock = {};
    wget
    git
    gh
+   gcc
+   gnumake
 
   # ------------------------------------------
   # Applications
   # ------------------------------------------
-   neovim  
    kitty # Terminal
+   neovim
    ungoogled-chromium
    neofetch
    vifm # File Manager
@@ -194,14 +196,16 @@ security.pam.services.swaylock = {};
    waypaper
    vscodium
 
-   # neovimPlugins.vim-prettier
-
    (waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
    })
    )
   ];
 
+nix.settings.experimental-features = [
+ "nix-command"
+ "flakes"
+];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
