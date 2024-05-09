@@ -1,3 +1,5 @@
+# System module for Plasma 5 desktop. Imported in configuration.nix
+
 {config, system, self, pkgs, ...}:
 
 {
@@ -6,9 +8,11 @@ services.xserver = {
 	displayManager.sddm.enable = true;
 	desktopManager.plasma5.enable = true;
 
+	libinput.enable = true; # touchpad
+
     	layout = "us";
     	xkbVariant = "";
 };
 
-boot.loader.kernelParams = ["nomodeset"]; # Hyper-V support
+boot.kernelParams = ["nomodeset"]; # Hyper-V support
 }
