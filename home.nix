@@ -4,6 +4,7 @@
 
   imports = [
     ./user/shell/sh.nix
+    ./system/wm/plasma5.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -66,7 +67,7 @@
   #  /etc/profiles/per-user/zain/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
