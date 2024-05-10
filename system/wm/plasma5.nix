@@ -5,14 +5,16 @@
 {
 services.xserver = {
 	enable = true;
-	displayManager.sddm.enable = true;
 	desktopManager.plasma5.enable = true;
 
-	libinput.enable = true; # touchpad
 
-    	layout = "us";
-    	xkbVariant = "";
+    	xkb.layout = "us";
+    	xkb.variant = "";
 };
+
+services.displayManager.sddm.enable = true;
+
+services.libinput.enable = true; # touchpad
 
 boot.kernelParams = ["nomodeset"]; # Hyper-V support
 }
