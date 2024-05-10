@@ -2,8 +2,12 @@
 
 let 
   myAliases = {
-    lalala = "ls -la";
-    reee = "cd ..";
+    la = "ls -la";
+    update = "nix flake update /home/zain/.dotfiles/.";
+    upgrade = "sudo nixos-rebuild switch --flake /home/zain/.dotfiles/.";
+    homeupgrade = "home-manager switch --flake /home/zain/.dotfiles/.";
+    vim = "nvim";
+    vi = "nvim";
   };
 
 in
@@ -16,5 +20,13 @@ in
   programs.zsh = {
     enable = true;
     shellAliases = myAliases;
+
+    oh-my-zsh = {
+      enable = true;
+      theme = "jonathan";
+      plugins = [
+        "sudo"
+      ];
+    };
   };
 }
