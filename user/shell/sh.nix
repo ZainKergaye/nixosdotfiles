@@ -6,8 +6,6 @@ let
     update = "nix flake update /home/zain/.dotfiles/.";
     upgrade = "sudo nixos-rebuild switch --flake /home/zain/.dotfiles/.";
     homeupgrade = "home-manager switch --flake /home/zain/.dotfiles/.";
-    vim = "nvim";
-    vi = "nvim";
   };
 in
 {

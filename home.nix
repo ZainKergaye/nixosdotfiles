@@ -4,6 +4,7 @@
 
   imports = [
     ./user/shell/sh.nix
+    ./user/programs/nixvim.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

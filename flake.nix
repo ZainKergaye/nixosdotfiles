@@ -14,7 +14,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, nixvim, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -31,7 +31,11 @@
         zain = home-manager.lib.homeManagerConfiguration {
           
           inherit pkgs;
-          modules = [ ./home.nix ];
+          modules = [
+	  ./home.nix 
+	  nixvim.homeManagerModules.nixvim
+
+	  ];
         };
       };
     };

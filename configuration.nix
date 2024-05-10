@@ -65,7 +65,6 @@
     packages = with pkgs; [
       firefox
       neofetch # Stick this somewhere else
-      neovim
     #  thunderbird
     ];
   };
