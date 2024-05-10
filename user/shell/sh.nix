@@ -9,7 +9,6 @@ let
     vim = "nvim";
     vi = "nvim";
   };
-
 in
 {
   programs.bash = {

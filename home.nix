@@ -30,6 +30,8 @@
       };
     };
 
+    alacritty.enable = true;
+
   };
 
 
