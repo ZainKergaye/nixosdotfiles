@@ -1,6 +1,7 @@
 {...}: {
   programs.nixvim = {
-    keymaps = [ {
+    keymaps = [
+      {
         key = "<esc>";
         action = ":noh<CR>";
         mode = "n";
@@ -84,39 +85,39 @@
 
       # Window movement
       {
-	key = "<C-j>";
-	action = "<C-w>j";
-	mode = "n";
-	options.desc = "Move down";
+        key = "<C-j>";
+        action = "<C-w>j";
+        mode = "n";
+        options.desc = "Move down";
       }
-      
+
       {
-	key = "<C-k>";
-	action = "<C-w>k";
-	mode = "n";
-	options.desc = "Move up";
+        key = "<C-k>";
+        action = "<C-w>k";
+        mode = "n";
+        options.desc = "Move up";
       }
-      
+
       {
-	key = "<C-h>";
-	action = "<C-w>h";
-	mode = "n";
-	options.desc = "Move left";
+        key = "<C-h>";
+        action = "<C-w>h";
+        mode = "n";
+        options.desc = "Move left";
       }
-      
+
       {
-	key = "<C-l>";
-	action = "<C-w>l";
-	mode = "n";
-	options.desc = "Move right";
+        key = "<C-l>";
+        action = "<C-w>l";
+        mode = "n";
+        options.desc = "Move right";
       }
 
       # Terminal
       {
-	key = "<C-x>";
-	action = "<C-\\><C-N>";
-	mode = "t";
-	options.desc = "Exit terminal";
+        key = "<C-x>";
+        action = "<C-\\><C-N>";
+        mode = "t";
+        options.desc = "Exit terminal";
       }
 
       {
@@ -128,7 +129,7 @@
           desc = "Horizontal terminal";
         };
       }
-      
+
       {
         key = "<Leader>v";
         action = "<cmd>ToggleTerm direction=vertical size=60 <CR>";
@@ -147,6 +148,42 @@
           silent = true;
           desc = "Floating terminal";
         };
+      }
+
+      {
+        key = "<Leader>rh";
+        action = "<cmd> gs.reset_hunk <CR>";
+        mode = "n";
+        options.desc = "Reset hunk";
+      }
+
+      {
+        key = "<Leader>gh";
+        action = "<cmd> gs.preview_hunk <CR>";
+        mode = "n";
+        options.desc = "Preview hunk";
+      }
+
+      {
+        key = "<Leader>gb";
+        action = "<cmd> gs.blame_line<CR>";
+        mode = "n";
+        options.desc = "Git blame";
+      }
+
+      # Tree
+      {
+        key = "<Leader>e";
+        action = "<cmd> NvimTreeFocus <CR>";
+        mode = "n";
+        options.desc = "Focus tree";
+      }
+
+      {
+        key = "<C-n>";
+        action = "<cmd> NvimTreeToggle <CR>";
+        mode = "n";
+        options.desc = "Toggle tree";
       }
     ];
 

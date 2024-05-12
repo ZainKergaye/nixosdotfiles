@@ -46,8 +46,7 @@
           {name = "nvim_lsp";}
           #{ name = "nvim_lsp_signature_help"; }
 
-          # Filesystem paths
-          {name = "path";}
+          # Filesystem paths {name = "path";}
 
           # Buffer CMP
           {name = "buffer";}
@@ -73,13 +72,37 @@
         alwaysShowBufferline = false;
         separatorStyle = "slant";
         diagnostics = "nvim_lsp";
+        offsets = [
+          {filetype = "NvimTree";}
+          {text = "File Explorer";}
+          {highlight = "Directory";}
+          {separator = true;}
+        ];
       };
-      
+
       treesitter.enable = true;
 
       toggleterm = {
-	enable = true;
-	settings.float_opts.border = "curved";
+        enable = true;
+        settings.float_opts.border = "curved";
+      };
+
+      gitsigns = {
+        enable = true;
+        settings.signs = {
+          add.text = "│";
+          change.text = "│";
+          delete.text = "│";
+          topdelete.text = "󰍵";
+          changedelete.text = "~";
+          untracked.text = "│";
+        };
+      };
+
+      nvim-autopairs.enable = true;
+
+      nvim-tree = {
+        enable = true;
       };
     };
   };
