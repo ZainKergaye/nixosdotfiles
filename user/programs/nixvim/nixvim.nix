@@ -1,7 +1,7 @@
 {...}:
 {
 imports = [
-  #./mappings.nix
+  ./mappings.nix
 ];
 
 programs.nixvim = {
@@ -57,7 +57,13 @@ programs.nixvim = {
 	#{ name = "luasnip"; } Maybe not needed. Tryig Snippy
       ];
     };
+
+    conform-nvim = {
+      enable = true;
+      formattersByFt = {
+	nix = [ "alejandra" ];
+      };
+    };
   };
 };
-
 }

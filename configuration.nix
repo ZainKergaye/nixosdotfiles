@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./system/wm/plasma5.nix
       ./system/fonts.nix
+      ./system/packages.nix
     ];
 
   # Bootloader.
