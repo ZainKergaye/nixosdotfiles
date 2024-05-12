@@ -1,7 +1,7 @@
 {...}:
 {
 imports = [
-  ./mappings.nix
+  #./mappings.nix
 ];
 
 programs.nixvim = {
@@ -37,8 +37,25 @@ programs.nixvim = {
       };
     };
 
+    lspkind.enable = true; # Icons for CMP
+    cmp-nvim-lsp-signature-help.enable = true;
     cmp = {
       enable = true;
+      settings.sources = [
+	# LSP
+	{ name = "nvim_lsp"; }
+	#{ name = "nvim_lsp_signature_help"; }
+
+	# Filesystem paths
+	{ name = "path"; }
+
+	# Buffer CMP 
+	{ name = "buffer"; }
+
+	# Snippets
+	{ name = "snippy"; }
+	#{ name = "luasnip"; } Maybe not needed. Tryig Snippy
+      ];
     };
   };
 };
