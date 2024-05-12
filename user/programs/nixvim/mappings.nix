@@ -81,7 +81,75 @@
           desc = "Delete buffer";
         };
       }
+
+      # Window movement
+      {
+	key = "<C-j>";
+	action = "<C-w>j";
+	mode = "n";
+	options.desc = "Move down";
+      }
+      
+      {
+	key = "<C-k>";
+	action = "<C-w>k";
+	mode = "n";
+	options.desc = "Move up";
+      }
+      
+      {
+	key = "<C-h>";
+	action = "<C-w>h";
+	mode = "n";
+	options.desc = "Move left";
+      }
+      
+      {
+	key = "<C-l>";
+	action = "<C-w>l";
+	mode = "n";
+	options.desc = "Move right";
+      }
+
+      # Terminal
+      {
+	key = "<C-x>";
+	action = "<C-\\><C-N>";
+	mode = "t";
+	options.desc = "Exit terminal";
+      }
+
+      {
+        key = "<Leader>h";
+        action = "<cmd> ToggleTerm direction=horizontal <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Horizontal terminal";
+        };
+      }
+      
+      {
+        key = "<Leader>v";
+        action = "<cmd>ToggleTerm direction=vertical size=60 <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Vertical terminal";
+        };
+      }
+
+      {
+        key = "<Leader>fw";
+        action = "<cmd> ToggleTerm direction=float <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Floating terminal";
+        };
+      }
     ];
+
     plugins.cmp.settings.mapping = {
       "<Tab>" = "cmp.mapping.select_next_item()";
       "<S-Tab>" = "cmp.mapping.select_prev_item()";

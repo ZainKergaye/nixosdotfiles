@@ -75,11 +75,12 @@
         diagnostics = "nvim_lsp";
       };
       
-      treesitter = {
-	enable = true;
-      
-      };
+      treesitter.enable = true;
 
+      toggleterm = {
+	enable = true;
+	settings.float_opts.border = "curved";
+      };
     };
   };
 }
