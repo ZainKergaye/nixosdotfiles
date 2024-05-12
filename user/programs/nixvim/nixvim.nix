@@ -1,69 +1,85 @@
-{...}:
-{
-imports = [
-  ./mappings.nix
-];
+{...}: {
+  imports = [
+    ./mappings.nix
+  ];
 
-programs.nixvim = {
-  enable = true;
-  defaultEditor = true;
-  viAlias = true;
-  vimAlias = true;
-
-  globals.mapleader = " ";
-
-  opts = {
-    shiftwidth = 2;
-  };
-
-  colorschemes.catppuccin = {
+  programs.nixvim = {
     enable = true;
-    settings.flavour = "mocha";
-  };
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
 
-  plugins = {
-    lualine.enable = true;
-    lualine.theme = "horizon";
+    globals.mapleader = " ";
 
-    which-key = {
-      enable = true;
-      window.border = "double";
+    opts = {
+      shiftwidth = 2;
+      number = true;
     };
 
-    lsp = {
+    colorschemes.catppuccin = {
       enable = true;
-      servers = {
-	nil_ls.enable = true; # LS for Nix
+      settings.flavour = "mocha";
+    };
+
+    plugins = {
+      lualine.enable = true;
+      lualine.theme = "horizon";
+
+      which-key = {
+        enable = true;
+        window.border = "double";
       };
-    };
 
-    lspkind.enable = true; # Icons for CMP
-    cmp-nvim-lsp-signature-help.enable = true;
-    cmp = {
-      enable = true;
-      settings.sources = [
-	# LSP
-	{ name = "nvim_lsp"; }
-	#{ name = "nvim_lsp_signature_help"; }
-
-	# Filesystem paths
-	{ name = "path"; }
-
-	# Buffer CMP 
-	{ name = "buffer"; }
-
-	# Snippets
-	{ name = "snippy"; }
-	#{ name = "luasnip"; } Maybe not needed. Tryig Snippy
-      ];
-    };
-
-    conform-nvim = {
-      enable = true;
-      formattersByFt = {
-	nix = [ "alejandra" ];
+      lsp = {
+        enable = true;
+        servers = {
+          nil_ls.enable = true; # LS for Nix
+        };
       };
+
+      lspkind.enable = true; # Icons for CMP
+      cmp-nvim-lsp-signature-help.enable = true;
+      cmp = {
+        enable = true;
+        settings.sources = [
+          # LSP
+          {name = "nvim_lsp";}
+          #{ name = "nvim_lsp_signature_help"; }
+
+          # Filesystem paths
+          {name = "path";}
+
+          # Buffer CMP
+          {name = "buffer";}
+
+          # Snippets
+          {name = "snippy";}
+          #{ name = "luasnip"; } Maybe not needed. Tryig Snippy
+        ];
+      };
+
+      conform-nvim = {
+        enable = true;
+        formattersByFt = {
+          nix = ["alejandra"]; # Nix formatter
+          "_" = ["prettierd"]; # default formatter
+        };
+      };
+
+      bufferline = {
+        enable = true;
+        bufferCloseIcon = null;
+        closeIcon = null;
+        alwaysShowBufferline = false;
+        separatorStyle = "slant";
+        diagnostics = "nvim_lsp";
+      };
+      
+      treesitter = {
+	enable = true;
+      
+      };
+
     };
   };
-};
 }
