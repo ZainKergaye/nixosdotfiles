@@ -1,14 +1,16 @@
-{ config, lib, pkgs, ... }:
-
-let 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   myAliases = {
     la = "ls -la";
     update = "nix flake update /home/zain/.dotfiles/.";
     upgrade = "sudo nixos-rebuild switch --flake /home/zain/.dotfiles/.";
     homeupgrade = "home-manager switch --flake /home/zain/.dotfiles/.";
   };
-in
-{
+in {
   programs.bash = {
     enable = true;
     shellAliases = myAliases;

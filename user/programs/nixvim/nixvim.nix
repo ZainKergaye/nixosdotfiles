@@ -24,6 +24,9 @@
     plugins = {
       lualine.enable = true;
       lualine.theme = "horizon";
+      lualine.disabledFiletypes.statusline = [
+        "NvimTree"
+      ];
 
       which-key = {
         enable = true;
@@ -102,6 +105,15 @@
       nvim-autopairs.enable = true;
 
       nvim-tree = {
+        enable = true;
+        git = {
+          enable = true;
+          ignore = true;
+        };
+        renderer.highlightGit = true;
+      };
+
+      todo-comments = {
         enable = true;
       };
     };

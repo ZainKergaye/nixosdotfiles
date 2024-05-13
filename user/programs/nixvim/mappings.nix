@@ -75,7 +75,7 @@
 
       {
         key = "<leader>x";
-        action = "<cmd> bdelete <CR>";
+        action = "<cmd> bd <CR>";
         mode = "n";
         options = {
           silent = true;
