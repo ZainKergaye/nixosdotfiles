@@ -13,31 +13,38 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = {  nixpkgs, home-manager, nixvim, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      lib = nixpkgs.lib;
-    in {
-      nixosConfigurations = {
-        conduit = lib.nixosSystem {
-          inherit system;
-          modules = [ ./configuration.nix ];
-        };
-      };
-
-      homeConfigurations = {
-        aegis = home-manager.lib.homeManagerConfiguration {
-          
-          inherit pkgs;
-          modules = [
-	  ./home.nix 
-	  nixvim.homeManagerModules.nixvim
-
-	  ];
-        };
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixvim,
+    nixos-hardware,
+    ...
+  }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    lib = nixpkgs.lib;
+  in {
+    nixosConfigurations = {
+      conduit = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./configuration.nix
+	  nixos-hardware.nixosModules.lenovo-thinkpad-t480
+        ];
       };
     };
+
+    homeConfigurations = {
+      aegis = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home.nix
+          nixvim.homeManagerModules.nixvim
+        ];
+      };
+    };
+  };
 }

@@ -6,6 +6,7 @@
     ./user/shell/sh.nix
     ./user/programs/nixvim/nixvim.nix
     ./user/programs/kitty/kitty.nix
+    ./user/programs/programs.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

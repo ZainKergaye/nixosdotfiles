@@ -1,8 +1,9 @@
 { pkgs, ...}:
 
 {
-  environment.systemPackages = [
-    pkgs.alejandra
-    pkgs.prettierd
+  environment.systemPackages = with pkgs; [
+    alejandra
+    prettierd
+    ungoogled-chromium
   ];
 }
