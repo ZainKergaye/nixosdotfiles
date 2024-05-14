@@ -6,4 +6,8 @@ To implement:
 
 https://nixos.wiki/wiki/Full_Disk_Encryption
 
+secure boot
 
+hyprland
+
+java dev environment

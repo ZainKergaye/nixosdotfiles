@@ -22,7 +22,7 @@
       lib = nixpkgs.lib;
     in {
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
+        conduit = lib.nixosSystem {
           inherit system;
           modules = [ ./configuration.nix ];
         };

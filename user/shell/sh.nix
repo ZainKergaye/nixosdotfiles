@@ -6,9 +6,9 @@
 }: let
   myAliases = {
     la = "ls -la";
-    update = "nix flake update /home/$USER/.dotfiles/.";
-    upgrade = "sudo nixos-rebuild switch --flake /home/$USER/.dotfiles/.";
-    homeupgrade = "home-manager switch --flake /home/$USER/.dotfiles/.";
+    update = "nix flake update /home/aegis/.dotfiles/.";
+    upgrade = "sudo nixos-rebuild switch --flake /home/aegis/.dotfiles/.";
+    homeupgrade = "home-manager switch --flake /home/aegis/.dotfiles/.";
   };
 in {
   programs.bash = {
