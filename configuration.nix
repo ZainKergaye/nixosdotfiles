@@ -15,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -55,9 +55,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.zain = {
+  users.users.aegis = {
     isNormalUser = true;
-    description = "zain";
+    description = "aegis";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
@@ -71,6 +71,7 @@
 
   environment.systemPackages = with pkgs; [
     git
+    vim
   ];
 
   nix = {

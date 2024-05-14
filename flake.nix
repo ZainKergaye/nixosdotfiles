@@ -29,7 +29,7 @@
       };
 
       homeConfigurations = {
-        zain = home-manager.lib.homeManagerConfiguration {
+        aegis = home-manager.lib.homeManagerConfiguration {
           
           inherit pkgs;
           modules = [
