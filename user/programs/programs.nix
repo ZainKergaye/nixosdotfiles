@@ -1,5 +1,9 @@
 {...}: {
   programs = {
-    gradle.enable = true;
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
   };
 }

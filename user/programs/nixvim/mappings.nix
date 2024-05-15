@@ -159,14 +159,14 @@
 
       {
         key = "<Leader>gh";
-        action = "<cmd> gs.preview_hunk <CR>";
+        action = ":Gitsigns preview_hunk <CR>";
         mode = "n";
         options.desc = "Preview hunk";
       }
 
       {
         key = "<Leader>gb";
-        action = "<cmd> gs.blame_line<CR>";
+        action = ":Gitsigns blame_line<CR>";
         mode = "n";
         options.desc = "Git blame";
       }

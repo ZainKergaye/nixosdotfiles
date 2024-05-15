@@ -8,6 +8,8 @@
     git
     asciidoctor-with-extensions
 
+    brightnessctl
+
     ungoogled-chromium
     discord
     neofetch
