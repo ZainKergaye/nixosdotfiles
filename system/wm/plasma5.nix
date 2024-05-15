@@ -15,6 +15,9 @@ services.xserver = {
 services.displayManager.sddm.enable = true;
 
 services.libinput.enable = true; # touchpad
+services.libinput.naturalScrolling = true;
+
+programs.light.enable = true;
 
 boot.kernelParams = ["nomodeset"]; # Hyper-V support
 }

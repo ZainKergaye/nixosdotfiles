@@ -4,10 +4,14 @@
   environment.systemPackages = with pkgs; [
     alejandra
     prettierd
+    temurin-bin-20
+    git
+    asciidoctor-with-extensions
+
     ungoogled-chromium
     discord
-    git
     neofetch
     firefox
+    bitwarden-desktop
   ];
 }
