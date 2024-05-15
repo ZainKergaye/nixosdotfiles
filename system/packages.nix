@@ -5,5 +5,9 @@
     alejandra
     prettierd
     ungoogled-chromium
+    discord
+    git
+    neofetch
+    firefox
   ];
 }

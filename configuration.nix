@@ -61,20 +61,10 @@
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
-    packages = with pkgs; [
-      firefox
-      neofetch # Stick this somewhere else
-      #  thunderbird
-    ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-  ];
 
   nix = {
     package = pkgs.nixFlakes;
@@ -83,6 +73,8 @@
     '';
   };
 
+  hardware.opengl.enable = true;
+  programs.hyprland.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
