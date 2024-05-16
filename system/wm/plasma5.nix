@@ -10,6 +10,8 @@
     enable = true;
     desktopManager.plasma5.enable = true;
 
+    videoDrivers = ["xf86-video-intel"];
+
     xkb.layout = "us";
     xkb.variant = "";
   };

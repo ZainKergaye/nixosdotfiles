@@ -7,7 +7,7 @@
     ./user/programs/nixvim/nixvim.nix
     ./user/programs/kitty/kitty.nix
     ./user/programs/programs.nix
-    ./system/wm/hyprland.nix
+    ./system/wm/wayland/hyprland.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
