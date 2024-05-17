@@ -15,6 +15,12 @@
     discord
     neofetch
     firefox
-    bitwarden-desktop
+    telegram-desktop
+    whatsapp-for-linux
+    syncthing
+    syncthingtray
+    libreoffice
+    inkscape
+
   ];
 }
