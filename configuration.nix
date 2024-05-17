@@ -5,8 +5,9 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    #./system/wm/plasma5.nix
-    ./system/wm/gnome.nix
+    ./system/wm/plasma5.nix
+    #./system/wm/gnome.nix
+    ./system/wm/wayland/hypr.nix
     ./system/fonts.nix
     ./system/packages.nix
   ];

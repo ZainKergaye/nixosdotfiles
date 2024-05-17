@@ -9,7 +9,6 @@
     asciidoctor-with-extensions
 
     brightnessctl
-    hyprland
 
     ungoogled-chromium
     discord
