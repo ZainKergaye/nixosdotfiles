@@ -5,13 +5,11 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./system/wm/plasma5.nix
+    #./system/wm/plasma5.nix
     #./system/wm/gnome.nix
     ./system/wm/wayland/hypr.nix
     ./system/fonts.nix
-    ./system/packages.nix
-  ];
-
+    ./system/packages.nix ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -77,7 +75,6 @@
   };
 
   hardware.opengl.enable = true;
-  programs.hyprland.enable = true;
 
   system.stateVersion = "23.11";
 }

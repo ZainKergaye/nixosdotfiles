@@ -21,5 +21,6 @@
     libreoffice
     inkscape
 
+    rPackages.matlab
   ];
 }

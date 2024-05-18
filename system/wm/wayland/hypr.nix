@@ -1,5 +1,6 @@
 # Hyprland config imported into configuration
 {pkgs, ...}: {
+
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -22,6 +23,10 @@
 
     # App Launcher
     rofi-wayland
+
+    # Network 
+    networkmanagerapplet
+    networkmanager_dmenu
   ];
 
 
@@ -29,6 +34,9 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+
+  services.libinput.enable = true; # touchpad
+  services.libinput.touchpad.naturalScrolling = true;
 
   programs.hyprland = {
     enable = true;
