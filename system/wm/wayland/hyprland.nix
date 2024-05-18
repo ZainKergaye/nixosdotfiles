@@ -13,9 +13,10 @@
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
-	"col.active_border, rgba(33ccffee) rgba(00ff99ee) 45deg"
-	"col.inactive_border, rgba(595959aa)"
-	"col.shadow, rgba(1a1a1aee)"
+        "col.active_border, rgba(33ccffee) rgba(00ff99ee) 45deg"
+        "col.inactive_border, rgba(595959aa)"
+        "col.shadow, rgba(1a1a1aee)"
+        "exec-once = nm-applet"
       ];
 
       general = {
@@ -36,7 +37,33 @@
         drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
+
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+
+          vibrancy = 0.1696;
+        };
       };
+
+      #input = [
+        #"kb_layout = us"
+        #"touchpad.natural_scroll = false;"
+      #];
+
+      animations = {
+        enabled = true;
+        animation = [
+          "windowsOut, 1, 7, default, popin 80%"
+          "border, 1, 8, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
+        ];
+      };
+
+      dwindle.preserve_split = true;
 
       bind =
         [
@@ -47,8 +74,14 @@
 
           "$mod, F, exec, chromium"
           "$mod, Q, exec, kitty"
-          "$mod, X, exec, exit" # REDO THIS
-          "$mod CTRL, I, togglespecialworkspace, minimized" # Move to special workspace kbnd?
+          "$mod, C, killactive"
+          "$mod, V, togglefloating"
+
+          "$mod, SPACE, exec, rofi -show drun"
+
+          "$mod CTRL, I, togglespecialworkspace, magic"
+          "$mod CTRL SHIFT, I, movetoworkspace, special:magic"
+
           "$mod, M, exit"
         ]
         ++ (
@@ -67,6 +100,7 @@
             )
             10)
         );
+
     };
   };
 }
