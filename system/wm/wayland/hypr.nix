@@ -33,6 +33,13 @@
     xdg-desktop-portal-hyprland
     xwaylandvideobridge
     xwayland
+
+    # Audio
+    pwvucontrol
+
+    # Cursor
+    glib
+    gnome3.adwaita-icon-theme
   ];
 
 
