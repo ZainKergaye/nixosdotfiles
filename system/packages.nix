@@ -11,6 +11,7 @@
     brightnessctl
 
     ungoogled-chromium
+    webcord
     discord
     neofetch
     firefox

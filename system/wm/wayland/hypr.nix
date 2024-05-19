@@ -27,12 +27,18 @@
     # Network 
     networkmanagerapplet
     networkmanager_dmenu
+
+    # A/V helper
+    wireplumber
+    xdg-desktop-portal-hyprland
+    xwaylandvideobridge
+    xwayland
   ];
 
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 
   services.libinput.enable = true; # touchpad

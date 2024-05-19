@@ -19,6 +19,11 @@
         "exec-once = nm-applet"
       ];
 
+      exec-once = [
+	"nm-applet"
+	"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      ];
+
       general = {
         gaps_in = 5;
         gaps_out = 10;
