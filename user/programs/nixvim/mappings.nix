@@ -65,7 +65,7 @@
 
       {
         key = "<S-tab>";
-        action = "<cmd> BufferLineCycleNext <CR>";
+        action = "<cmd> BufferLineCyclePrev <CR>";
         mode = "n";
         options = {
           silent = true;

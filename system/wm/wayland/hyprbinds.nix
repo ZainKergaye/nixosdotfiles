@@ -5,9 +5,14 @@
       "$mod, mouse:272, movewindow"
     ];
 
+    bindl = [ # Laptop lid actions
+      #", switch:24ffa00, exec, swaylock"
+      #", switch:on:24ffa00, exec, swaylock"
+    ];
+
     bind =
       [
-        "$mod, H, movefocus, l"
+        "$mod, H, movefocus, l" # Not used
         "$mod, J, movefocus, d"
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
