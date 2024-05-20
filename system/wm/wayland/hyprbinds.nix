@@ -17,7 +17,7 @@
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
 
-        "$mod, F, exec, chromium"
+        "$mod, W, exec, chromium"
         "$mod, Q, exec, kitty"
 
         "$mod, C, killactive"
@@ -26,8 +26,11 @@
 
         "$mod, SPACE, exec, rofi -show drun"
 
-        "$mod CTRL, I, togglespecialworkspace, magic"
-        "$mod CTRL SHIFT, I, movetoworkspace, special:magic"
+	"$mod CTRL, I, togglespecialworkspace, magic"
+	"$mod CTRL SHIFT, I, movetoworkspace, special:magic"
+	
+        "$mod CTRL, O, togglespecialworkspace, hidden"
+        "$mod CTRL SHIFT, O, movetoworkspace, special:hidden"
 
         "$mod, M, exit"
       ]

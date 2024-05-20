@@ -1,19 +1,15 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    #./system/wm/plasma5.nix
-    #./system/wm/gnome.nix
     ./system/wm/wayland/hypr.nix
     ./system/fonts.nix
-    ./system/packages.nix ];
+    ./system/packages.nix
+    ./system/vm.nix
+  ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "i915.force_probe=5917" "acpi_backlight=none" ];
+  boot.kernelParams = ["i915.force_probe=5917" "acpi_backlight=none"];
 
   networking.hostName = "conduit"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

@@ -2,6 +2,8 @@
 {...}: {
 imports = [
   ./hyprbinds.nix
+  ./dunst.nix
+  ./waybar.nix
 ];
   wayland.windowManager.hyprland = {
     enable = true;

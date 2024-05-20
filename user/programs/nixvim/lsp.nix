@@ -14,7 +14,7 @@
 
     nvim-jdtls = {
       enable = true;
-      settings.java.gradle.enable = true;
+      settings.java.gradle.enabled = true;
       data = "./.jdt-data";
     };
 

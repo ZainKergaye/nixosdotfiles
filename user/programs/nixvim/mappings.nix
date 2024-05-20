@@ -12,70 +12,78 @@
       }
 
       {
-      key = "<leader>fm";
-      action = ":lua require('conform').format()<CR>";
-      mode = "n";
-      options = {
-	silent = true;
-	desc = "Format Files";
-      };
-    }
+        key = "<leader>fm";
+        action = ":lua require('conform').format()<CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Format Files";
+        };
+      }
 
-    # Line numbers
-    {
-      key = "<leader>n";
-      action = "<cmd> set nu! <CR>";
-      mode = "n";
-      options = {
-	silent = true;
-	desc = "Toggle line number";
-      };
-    }
+      # Line numbers
+      {
+        key = "<leader>n";
+        action = "<cmd> set nu! <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Toggle line number";
+        };
+      }
 
-    {
-      key = "<leader>rn";
-      action = "<cmd> set rnu! <CR>";
-      mode = "n";
-      options = {
-	silent = true;
-	desc = "Toggle relative line number";
-      };
-    }
+      {
+        key = "<leader>rn";
+        action = "<cmd> set rnu! <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Toggle relative line number";
+        };
+      }
 
-    # buffer tabs
-    {
-      key = "<leader>b";
-      action = "<cmd> enew <CR>";
-      mode = "n";
-      options = {
-	silent = true;
-	desc = "New buffer";
-      };
-    }
+      # buffer tabs
+      {
+        key = "<leader>b";
+        action = "<cmd> enew <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "New buffer";
+        };
+      }
 
-    {
-      key = "<tab>";
-      action = "<cmd> BufferLineCycleNext <CR>";
-      mode = "n";
-      options = {
-	silent = true;
-	desc = "Next buffer";
-      };
-    }
+      {
+        key = "<tab>";
+        action = "<cmd> BufferLineCycleNext <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Next buffer";
+        };
+      }
 
-    {
-      key = "<S-tab>";
-      action = "<cmd> BufferLineCyclePrev <CR>";
-      mode = "n";
-      options = {
-	silent = true;
-	desc = "Previous buffer";
-      };
-    }
-
+      {
+        key = "<S-tab>";
+        action = "<cmd> BufferLineCyclePrev <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Previous buffer";
+        };
+      }
     {
       key = "<leader>x";
-        action = "<cmd> bdelete <CR>";
+        action = ":bd <CR>";
+        mode = "n";
+        options = {
+          silent = true;
+          desc = "Delete buffer";
+        };
+      }
+      {
+        key = "<leader>tp";
+        action = "<cmd> BufferLineTogglePin <CR>";
         mode = "n";
         options = {
           silent = true;

@@ -15,6 +15,6 @@ https://nixos.wiki/wiki/Full_Disk_Encryption
 
 secure boot
 
-hyprland
+[x] hyprland
 
-java dev environment
+[x] java dev environment
