@@ -1,14 +1,11 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {
       effect-blur = "20x3";
       fade-in = 0.1;
+      color = "#000000";
 
       font = "JetBrainsMono Nerd Font Mono";
       font-size = 15;

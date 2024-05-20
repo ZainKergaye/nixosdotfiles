@@ -9,6 +9,7 @@
     asciidoctor-with-extensions
 
     brightnessctl
+    fprintd
 
     ungoogled-chromium
     webcord
@@ -21,7 +22,5 @@
     syncthingtray
     libreoffice
     inkscape
-
-    rPackages.matlab
   ];
 }

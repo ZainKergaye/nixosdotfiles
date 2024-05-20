@@ -40,6 +40,10 @@
     # Cursor
     glib
     gnome3.adwaita-icon-theme
+
+    # Locking / Sleeping
+    hyprlock
+    hypridle
   ];
 
 

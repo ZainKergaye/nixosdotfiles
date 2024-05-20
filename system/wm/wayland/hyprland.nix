@@ -17,8 +17,9 @@ imports = [
         "DP-2, 1920x1080@60, -1920x0, 1"
       ];
 
-      windowRule = [
+      windowrule = [
 	"float,^(Save File)$"
+	"float,^(Pipewire Volume Control)$"
       ];
 
       env = [

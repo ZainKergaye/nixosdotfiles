@@ -6,13 +6,18 @@
     ];
 
     bindl = [ # Laptop lid actions
-      #", switch:24ffa00, exec, swaylock"
-      #", switch:on:24ffa00, exec, swaylock"
+      ", switch:24ffa00, exec, swaylock"
+      ", switch:on:24ffa00, exec, swaylock"
+    ];
+
+    binde = [ # binde repeats command while being help
+	",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
+	",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
     ];
 
     bind =
       [
-        "$mod, H, movefocus, l" # Not used
+        "$mod, H, movefocus, l"
         "$mod, J, movefocus, d"
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
