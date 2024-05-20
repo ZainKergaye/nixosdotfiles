@@ -1,11 +1,21 @@
-{...}: {
+{pkgs, ...}: {
   programs.nixvim.plugins = {
     lsp = {
       enable = true;
       servers = {
         nil_ls.enable = true; # LS for Nix
-        java-language-server.enable = true; # Java
+        java-language-server = {
+          enable = true;
+          cmd = ["/home/aegis/.start-jdt-server"];
+          package = pkgs."jdt-language-server";
+        };
       };
+    };
+
+    nvim-jdtls = {
+      enable = true;
+      settings.java.gradle.enable = true;
+      data = "./.jdt-data";
     };
 
     lspkind.enable = true; # Icons for CMP
@@ -35,6 +45,13 @@
         nix = ["alejandra"]; # Nix formatter
         "_" = ["prettierd"]; # default formatter
       };
+    };
+  };
+
+  home.file = {
+    ".start-jdt-server" = {
+      text = "jdtls -data ./.jdt-data";
+      executable = true;
     };
   };
 }
