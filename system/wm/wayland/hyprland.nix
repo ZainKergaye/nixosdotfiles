@@ -4,6 +4,8 @@ imports = [
   ./hyprbinds.nix
   ./dunst.nix
   ./waybar.nix
+  ./swayidle.nix
+  ./swaylock.nix
 ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -15,13 +17,17 @@ imports = [
         "DP-2, 1920x1080@60, -1920x0, 1"
       ];
 
+      windowRule = [
+	"float,^(Save File)$"
+      ];
+
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
         "col.active_border, rgba(33ccffee) rgba(00ff99ee) 45deg"
         "col.inactive_border, rgba(595959aa)"
         "col.shadow, rgba(1a1a1aee)"
-        "exec-once = nm-applet"
+	"natural_scroll, true"
       ];
 
       exec-once = [
@@ -57,11 +63,6 @@ imports = [
           vibrancy = 0.1696;
         };
       };
-
-      #input = [
-        #"kb_layout = us"
-        #"touchpad.natural_scroll = false;"
-      #];
 
       animations = {
         enabled = true;
