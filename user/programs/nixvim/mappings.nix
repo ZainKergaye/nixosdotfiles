@@ -158,11 +158,26 @@
         };
       }
 
+      # Git
       {
-        key = "<Leader>rh";
-        action = "<cmd> gs.reset_hunk <CR>";
+        key = "<Leader>gsr";
+        action = ":Gitsigns reset_hunk <CR>";
         mode = "n";
         options.desc = "Reset hunk";
+      }
+
+      {
+        key = "<Leader>gsh";
+        action = ":Gitsigns stage_hunk <CR>";
+        mode = "n";
+        options.desc = "Stage hunk";
+      }
+
+      {
+        key = "<Leader>gsu";
+        action = ":Gitsigns undo_stage_hunk <CR>";
+        mode = "n";
+        options.desc = "Undo stage hunk";
       }
 
       {
