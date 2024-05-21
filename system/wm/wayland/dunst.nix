@@ -6,7 +6,7 @@
 	width = 300;
 	height = 300;
 	corner_radius = 10;
-	offset = "10x10";
+	offset = "15x15";
 	origin = "top-right";
 	transparancy = 10;
 	frame_color="#eceff1";

@@ -38,6 +38,7 @@ in {
         {
           timeout = lockTime;
           command = "${swaylock} --daemonize --grace 15";
+          #command = "${swaylock}";
         }
       ]
       ++

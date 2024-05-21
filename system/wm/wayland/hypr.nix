@@ -44,6 +44,10 @@
     # Locking / Sleeping
     hyprlock
     hypridle
+    swaylock
+
+    # Screenshots
+    hyprshot
   ];
 
 

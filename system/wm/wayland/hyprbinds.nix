@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   wayland.windowManager.hyprland.settings = {
     bindm = [
       "$mod, mouse:273, resizewindow"
@@ -36,6 +36,9 @@
 	
         "$mod CTRL, O, togglespecialworkspace, hidden"
         "$mod CTRL SHIFT, O, movetoworkspace, special:hidden"
+
+	",Print, exec, hyprshot -m output -o /home/aegis/Pictures/screenshots"
+	",XF86Launch2, exec, hyprshot -m region -o /home/aegis/Pictures/screenshots"
 
         "$mod, M, exit"
       ]

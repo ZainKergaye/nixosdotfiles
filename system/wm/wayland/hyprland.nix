@@ -4,8 +4,8 @@ imports = [
   ./hyprbinds.nix
   ./dunst.nix
   ./waybar.nix
-  ./swayidle.nix
-  ./swaylock.nix
+  #./swayidle.nix
+  #./swaylock.nix
 ];
   wayland.windowManager.hyprland = {
     enable = true;

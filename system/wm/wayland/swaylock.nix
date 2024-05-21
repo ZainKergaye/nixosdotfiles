@@ -18,4 +18,5 @@
       indicator-y-position = 1000;
     };
   };
+  programs.hyprlock.enable = true;
 }
