@@ -26,16 +26,17 @@
       settings.sources = [
         # LSP
         {name = "nvim_lsp";}
-        #{ name = "nvim_lsp_signature_help"; }
+        {name = "nvim_lsp_signature_help";}
 
-        # Filesystem paths {name = "path";}
+        # Filesystem paths
+        {name = "path";}
 
         # Buffer CMP
         {name = "buffer";}
 
         # Snippets
         {name = "snippy";}
-        #{ name = "luasnip"; } Maybe not needed. Tryig Snippy
+        {name = "luasnip";}
       ];
     };
 
@@ -44,6 +45,7 @@
       formattersByFt = {
         nix = ["alejandra"]; # Nix formatter
         "_" = ["prettierd"]; # default formatter
+        java = ["astyle" "google-java-format"]; # Java formatting
       };
     };
   };

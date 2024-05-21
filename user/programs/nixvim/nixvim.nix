@@ -14,6 +14,8 @@
     globals.mapleader = " ";
 
     opts = {
+      tabstop = 2;
+      softtabstop = 2;
       shiftwidth = 2;
       number = true;
     };
@@ -27,6 +29,7 @@
 
       todo-comments.enable = true;
       fugitive.enable = true;
+      neogen.enable = true;
     };
   };
 }

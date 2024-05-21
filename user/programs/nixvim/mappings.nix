@@ -219,5 +219,16 @@
       "<C-Esc>" = "cmp.mapping.close()";
       "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
     };
+
+    plugins.lsp.keymaps.lspBuf = {
+      "K" = "hover";
+      "<Leader>gD" = "references";
+      "<Leader>gd" = "definition";
+    };
+
+    plugins.which-key.registrations = {
+      "<Leader>gD" = "Goto reference";
+      "<Leader>gd" = "Goto definition";
+    };
   };
 }
