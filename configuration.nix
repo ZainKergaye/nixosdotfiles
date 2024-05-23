@@ -9,7 +9,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["i915.force_probe=5917" "acpi_backlight=none"];
+  boot.kernelParams = ["i915.force_probe=5917" "acpi_backlight=none" "amdgpu_backlight=0"];
 
   networking.hostName = "conduit"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

@@ -9,12 +9,15 @@ nix flake init --template github:the-nix-way/dev-templates#java
 
 Look at the-nix-way/dev-templates
 
-To implement: 
+## To implement
+[ ] https://nixos.wiki/wiki/Full_Disk_Encryption
+[ ] Secure boot
+[x] Hyprland
+[x] Java dev environment
+[ ] Virtualization for windows (KVM?)
 
-https://nixos.wiki/wiki/Full_Disk_Encryption
+## Bugs
 
-secure boot
-
-[x] hyprland
-
-[x] java dev environment
+[ ] Network manager not remembering networks
+[ ] study monitor not configured
+[ ] Rofi themes

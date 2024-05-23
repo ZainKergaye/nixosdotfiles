@@ -48,6 +48,9 @@
 
     # Screenshots
     hyprshot
+
+		# Desktop helper apps
+		libsForQt5.dolphin
   ];
 
 

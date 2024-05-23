@@ -2,18 +2,28 @@
 
 {
   environment.systemPackages = with pkgs; [
+    # Dev packages
     alejandra
     prettierd
-    temurin-bin-20
+    vimPlugins.luasnip
+    astyle
+    google-java-format
+		eclipses.eclipse-sdk
+		onefetch
+
+
+    # General devtools
     git
     asciidoctor-with-extensions
 
+    # System tools
     brightnessctl
     fprintd
+		linuxKernel.packages.linux_zen.ddcci-driver
 
+    # User packages
     ungoogled-chromium
     webcord
-    discord
     neofetch
     firefox
     telegram-desktop
@@ -22,5 +32,6 @@
     syncthingtray
     libreoffice
     inkscape
+		p3x-onenote
   ];
 }

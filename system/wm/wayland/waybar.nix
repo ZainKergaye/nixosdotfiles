@@ -6,7 +6,7 @@
 
     settings = {
       "bar" = {
-        output = ["eDP-1"];
+        output = ["eDP-1" "DP-2" "DP-3"];
         # mode = "dock";
         layer = "top";
         position = "top";

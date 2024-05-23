@@ -1,12 +1,12 @@
 # Hyprland config for home-manager
 {...}: {
-imports = [
-  ./hyprbinds.nix
-  ./dunst.nix
-  ./waybar.nix
-  #./swayidle.nix
-  #./swaylock.nix
-];
+  imports = [
+    ./hyprbinds.nix
+    ./dunst.nix
+    ./waybar.nix
+    #./swayidle.nix
+    #./swaylock.nix
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -14,12 +14,13 @@ imports = [
       "$mod" = "SUPER";
       monitor = [
         ", preferred, auto, 1"
-        "DP-2, 1920x1080@60, -1920x0, 1"
+				"desc:LG Display 0x0521, 1920x1080@60.02, 0x0, 1" # Built-in display
+        "desc:Acer Technologies VG270 TEGAA003851S, 1920x1080@74.97, -1920x0, 1" # Room Display
       ];
 
       windowrule = [
-	"float,^(Save File)$"
-	"float,^(Pipewire Volume Control)$"
+        "float,^(Save File)$" # BUG: Not implemented correctly
+        "float,^(Pipewire Volume Control)$"
       ];
 
       env = [
@@ -28,13 +29,13 @@ imports = [
         "col.active_border, rgba(33ccffee) rgba(00ff99ee) 45deg"
         "col.inactive_border, rgba(595959aa)"
         "col.shadow, rgba(1a1a1aee)"
-	"natural_scroll, true"
+        "natural_scroll, true"
       ];
 
       exec-once = [
-	"nm-applet"
-	"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-	"waybar"
+        "nm-applet"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # DEP I think
+        "waybar"
       ];
 
       general = {
@@ -77,7 +78,6 @@ imports = [
       };
 
       dwindle.preserve_split = true;
-
     };
   };
 }
