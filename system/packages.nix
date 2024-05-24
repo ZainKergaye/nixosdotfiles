@@ -33,5 +33,6 @@
     libreoffice
     inkscape
 		p3x-onenote
+		notepad-next
   ];
 }

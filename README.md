@@ -18,6 +18,12 @@ Look at the-nix-way/dev-templates
 
 ## Bugs
 
-[ ] Network manager not remembering networks
-[ ] study monitor not configured
-[ ] Rofi themes
+- [ ] Network manager not remembering networks
+- [ ] study monitor not configured
+- [ ] Waybar not configured properly for more than one monitor
+- [ ] Rofi themes
+- [ ] Dolphin file manager themes
+- [ ] Floating window rules Hyprland
+- - [ ] notepad next
+- - [ ] save file
+
