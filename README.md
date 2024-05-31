@@ -28,4 +28,4 @@ Look at the-nix-way/dev-templates
 - [ ] Floating window rules Hyprland
 - - [ ] notepad next
 - - [ ] save file
-- Hyprland hidden keybinds to add letter 'p' and 'u'
+- [ ] Hyprland hidden keybinds to add letter 'p' and 'u'

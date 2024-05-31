@@ -3,6 +3,7 @@
     ./mappings.nix
     ./lsp.nix
     ./ui.nix
+		./dap.nix
   ];
 
   programs.nixvim = {

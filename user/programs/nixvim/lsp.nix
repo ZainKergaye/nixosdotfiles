@@ -37,6 +37,8 @@
         # Snippets
         {name = "snippy";}
         {name = "luasnip";}
+
+        {name = "cmp-dap";}
       ];
     };
 
