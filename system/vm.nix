@@ -1,26 +1,32 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
+  # system management tool
   programs.dconf.enable = true;
 
-  users.users.aegis.extraGroups = [ "libvirtd" ];
+  # User to be added to libvirtd group
+  users.users.aegis.extraGroups = ["libvirtd"];
 
   environment.systemPackages = with pkgs; [
     virt-manager
     virt-viewer
-    spice spice-gtk
+    spice
+    spice-gtk
     spice-protocol
     win-virtio
     win-spice
-    gnome.adwaita-icon-theme
+    gnome.adwaita-icon-theme # Needed for wayland compositer
   ];
+
+	programs.virt-manager.enable = true;
 
   virtualisation = {
     libvirtd = {
       enable = true;
       qemu = {
-	swtpm.enable = true;
-	ovmf.enable = true;
-	ovmf.packages = [ pkgs.OVMFFull.fd ];
+        # TMP for windows
+        swtpm.enable = true;
+        # Secure boot
+        ovmf.enable = true;
+        ovmf.packages = [pkgs.OVMFFull.fd];
       };
     };
     spiceUSBRedirection.enable = true;

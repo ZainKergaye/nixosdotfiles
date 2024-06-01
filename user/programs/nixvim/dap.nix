@@ -1,6 +1,7 @@
+{ pkgs, ... }:
 {
   programs.nixvim = {
-		plugins.cmp-dap.enable = true;
+    plugins.cmp-dap.enable = true;
     plugins.dap = {
       enable = true;
       signs = {
@@ -16,6 +17,15 @@
           text = "◆";
           texthl = "DapLogPoint";
         };
+      };
+
+      adapters.servers.java = {
+        host = "127.0.0.1";
+        port = 5006;
+				id = "2";
+				executable = {
+					command = "${pkgs.jdt-language-server}/bin/jdtls";
+				};
       };
 
       extensions = {
