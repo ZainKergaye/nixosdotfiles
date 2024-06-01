@@ -19,7 +19,7 @@ Look at the-nix-way/dev-templates
 ## Bugs
 
 - [ ] Network manager not remembering networks
-- [ ] study monitor not configured
+- [x] study monitor not configured
 - [ ] Waybar not configured properly for more than one monitor
 - - [ ] Different font 
 - - [ ] Dual Battery support
