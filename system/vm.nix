@@ -13,7 +13,8 @@
     spice-protocol
     win-virtio
     win-spice
-    gnome.adwaita-icon-theme # Needed for wayland compositer
+    gnome3.adwaita-icon-theme # Needed for wayland compositer
+		glib
   ];
 
 	programs.virt-manager.enable = true;

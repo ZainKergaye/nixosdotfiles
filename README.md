@@ -13,7 +13,7 @@ Look at the-nix-way/dev-templates
 [ ] Secure boot
 [x] Hyprland
 [x] Java dev environment
-[ ] Virtualization for windows (KVM?)
+[x] Virtualization for windows (KVM?)
 [ ] smile emoji picker
 
 ## Bugs
@@ -28,4 +28,5 @@ Look at the-nix-way/dev-templates
 - [ ] Floating window rules Hyprland
 - - [ ] notepad next
 - - [ ] save file
+- - [ ] .blueman-manager-wrapped
 - [ ] Hyprland hidden keybinds to add letter 'p' and 'u'

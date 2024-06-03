@@ -35,5 +35,7 @@
 		p3x-onenote
 		notepad-next
 		cava
+		qbittorrent
+		mpv
   ];
 }
