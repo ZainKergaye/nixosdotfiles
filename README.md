@@ -24,7 +24,7 @@ Look at the-nix-way/dev-templates
 - - [ ] Different font 
 - - [ ] Dual Battery support
 - [ ] Rofi themes
-- [ ] Dolphin file manager themes
+- [x] Dolphin file manager themes
 - [ ] Floating window rules Hyprland
 - - [ ] notepad next
 - - [ ] save file

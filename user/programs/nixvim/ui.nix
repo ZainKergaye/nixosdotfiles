@@ -59,7 +59,9 @@
       renderer.highlightGit = true;
     };
 
-    navic.enable = true;
+    navic.enable = true; # Not setup
+
+		transparent.enable = false; # Not working
 
   };
 }

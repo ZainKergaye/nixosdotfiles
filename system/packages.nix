@@ -37,5 +37,8 @@
 		cava
 		qbittorrent
 		mpv
+		evince
+		loupe
+		gnome.nautilus
   ];
 }
