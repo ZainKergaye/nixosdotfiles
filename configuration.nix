@@ -5,6 +5,7 @@
     ./system/fonts.nix
     ./system/packages.nix
     ./system/vm.nix
+		./system/gaming.nix
   ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
