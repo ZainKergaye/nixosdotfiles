@@ -5,14 +5,16 @@
       "$mod, mouse:272, movewindow"
     ];
 
-    bindl = [ # Laptop lid actions
+    bindl = [
+      # Laptop lid actions
       ", switch:24ffa00, exec, swaylock"
       ", switch:on:24ffa00, exec, swaylock"
     ];
 
-    binde = [ # binde repeats command while being help
-	",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
-	",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+    binde = [
+      # binde repeats command while being help
+      ",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
+      ",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
     ];
 
     bind =
@@ -31,14 +33,20 @@
 
         "$mod, SPACE, exec, rofi -show drun"
 
-	"$mod CTRL, I, togglespecialworkspace, magic"
-	"$mod CTRL SHIFT, I, movetoworkspace, special:magic"
-	
+        "$mod CTRL, I, togglespecialworkspace, magic"
+        "$mod CTRL SHIFT, I, movetoworkspace, special:magic"
+
         "$mod CTRL, O, togglespecialworkspace, hidden"
         "$mod CTRL SHIFT, O, movetoworkspace, special:hidden"
 
-	",Print, exec, hyprshot -m output -o /home/aegis/Pictures/screenshots"
-	",XF86Launch2, exec, hyprshot -m region -o /home/aegis/Pictures/screenshots"
+        "$mod CTRL, U, togglespecialworkspace, hidden2"
+        "$mod CTRL, U, togglespecialworkspace, hidden2"
+
+        "$mod CTRL SHIFT, P, movetoworkspace, special:hidden3"
+        "$mod CTRL SHIFT, P, movetoworkspace, special:hidden3"
+
+        ",Print, exec, hyprshot -m output -o /home/aegis/Pictures/screenshots"
+        ",XF86Launch2, exec, hyprshot -m region -o /home/aegis/Pictures/screenshots"
 
         "$mod, M, exit"
       ]

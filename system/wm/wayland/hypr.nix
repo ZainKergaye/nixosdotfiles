@@ -48,6 +48,8 @@
 
     # Screenshots
     hyprshot
+		grim
+		slurp
   ];
 
 

@@ -18,10 +18,10 @@ Look at the-nix-way/dev-templates
 
 ## Bugs
 
-- [ ] Network manager not remembering networks
+- [x] Network manager not remembering networks
 - [x] study monitor not configured
-- [ ] Waybar not configured properly for more than one monitor
-- - [ ] Different font 
+- [x] Waybar not configured properly for more than one monitor
+- - [x] Different font 
 - - [ ] Dual Battery support
 - [ ] Rofi themes
 - [x] Dolphin file manager themes
@@ -29,4 +29,5 @@ Look at the-nix-way/dev-templates
 - - [ ] notepad next
 - - [ ] save file
 - - [ ] .blueman-manager-wrapped
-- [ ] Hyprland hidden keybinds to add letter 'p' and 'u'
+- [x] Hyprland hidden keybinds to add letter 'p' and 'u'
+- [ ] Hyprshot doesn't work on monitor with negative position

@@ -10,6 +10,7 @@
     google-java-format
 		eclipses.eclipse-sdk
 		onefetch
+		bottles
 
 
     # General devtools

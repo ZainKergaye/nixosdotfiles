@@ -32,7 +32,7 @@
           #"cpu"
           "memory"
           "pulseaudio"
-          "backlight"
+          #"backlight"
           "battery"
           "tray"
         ];
