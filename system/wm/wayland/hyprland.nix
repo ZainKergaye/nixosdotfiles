@@ -4,6 +4,7 @@
     ./hyprbinds.nix
     ./dunst.nix
     ./waybar.nix
+		./rofi.nix
     #./swayidle.nix
     #./swaylock.nix
   ];

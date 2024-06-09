@@ -3,7 +3,7 @@
     lsp = {
       enable = true;
       servers = {
-        nil_ls.enable = true; # LS for Nix
+        nil-ls.enable = true; # LS for Nix
         java-language-server = {
           enable = true;
           cmd = ["/home/aegis/.start-jdt-server"];

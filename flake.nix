@@ -19,10 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-		nix-colors = {
-			url = "github:misterio77/nix-colors";
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
       inputs.nixpkgs.follows = "nixpkgs";
-		};
+    };
   };
 
   outputs = {
@@ -30,7 +30,7 @@
     home-manager,
     nixvim,
     nixos-hardware,
-		nix-colors,
+    nix-colors,
     ...
   }: let
     system = "x86_64-linux";
@@ -40,11 +40,9 @@
     nixosConfigurations = {
       conduit = lib.nixosSystem {
         inherit system;
-				inherit nix-colors;
         modules = [
           ./configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480
-          #./system/wm/wayland/default.nix
         ];
       };
     };
@@ -52,6 +50,7 @@
     homeConfigurations = {
       aegis = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = {inherit nix-colors;};
         modules = [
           ./home.nix
           nixvim.homeManagerModules.nixvim
