@@ -23,11 +23,11 @@ Look at the-nix-way/dev-templates
 - [x] Waybar not configured properly for more than one monitor
 - - [x] Different font 
 - - [ ] Dual Battery support
-- [ ] Rofi themes
+- [x] Rofi themes
 - [x] Dolphin file manager themes
-- [ ] Floating window rules Hyprland
-- - [ ] notepad next
-- - [ ] save file
-- - [ ] .blueman-manager-wrapped
+- [x] Floating window rules Hyprland
+- - [x] notepad next
+- - [x] save file
+- - [x] .blueman-manager-wrapped
 - [x] Hyprland hidden keybinds to add letter 'p' and 'u'
 - [ ] Hyprshot doesn't work on monitor with negative position
