@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins.cmp-dap.enable = true;
     plugins.dap = {
@@ -22,10 +21,19 @@
       adapters.servers.java = {
         host = "127.0.0.1";
         port = 5006;
-				id = "2";
-				executable = {
-					command = "${pkgs.jdt-language-server}/bin/jdtls";
-				};
+        id = "2";
+        executable = {
+          command = ''
+            config = function()
+                 require("java").setup {}
+                 require("lspconfig").jdtls.setup {
+                   on_attach = require("plugins.configs.lspconfig").on_attach,
+                   capabilities = require("plugins.configs.lspconfig").capabilities,
+                   filetypes = { "java" },
+                 }
+               end,
+          '';
+        };
       };
 
       extensions = {
@@ -55,6 +63,7 @@
         ];
       };
     };
+
 
     keymaps = [
       {

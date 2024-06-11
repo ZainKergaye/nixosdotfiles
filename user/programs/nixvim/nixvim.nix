@@ -13,12 +13,14 @@
     vimAlias = true;
 
     globals.mapleader = " ";
+		globals.clipboard = "unnamedplus";
 
     opts = {
       tabstop = 2;
       softtabstop = 2;
       shiftwidth = 2;
       number = true;
+			#clipboard.register = "unnamedplus";
     };
 
     colorschemes.catppuccin = {
