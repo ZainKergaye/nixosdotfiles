@@ -5,8 +5,8 @@
     ./dunst.nix
     ./waybar.nix
     ./rofi.nix
-    #./swayidle.nix
-    #./swaylock.nix
+    ./swayidle.nix
+    ./swaylock.nix
   ];
   wayland.windowManager.hyprland = {
     enable = true;

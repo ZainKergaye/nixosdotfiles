@@ -24,6 +24,8 @@
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
 
+        "$mod CTRL, L, exec, swaylock"
+
         "$mod, W, exec, chromium"
         "$mod, Q, exec, kitty"
 

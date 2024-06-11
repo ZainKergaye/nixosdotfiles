@@ -9,8 +9,6 @@ nix flake init --template github:the-nix-way/dev-templates#java
 Look at the-nix-way/dev-templates
 
 ## To implement
-[ ] https://nixos.wiki/wiki/Full_Disk_Encryption
-[ ] Secure boot
 [x] Hyprland
 [x] Java dev environment
 [x] Virtualization for windows (KVM?)

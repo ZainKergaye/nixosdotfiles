@@ -59,9 +59,20 @@
       renderer.highlightGit = true;
     };
 
-    navic.enable = true; # Not setup
+    navic.enable = false; # Not setup
 
 		transparent.enable = false; # Not working
+
+		indent-blankline = {
+			enable = true;
+			settings = {
+				scope = {
+					show_end = false;
+					show_exact_scope = true;
+					show_start = false;
+				};
+			};
+		};
 
   };
 }
