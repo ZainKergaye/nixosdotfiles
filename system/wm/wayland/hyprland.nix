@@ -20,11 +20,6 @@
         "desc:Samsung Electric Company S34J55x H4LNB01778, 3440x1440@49.99, -760x-1620, 1" # Office display
       ];
 
-      windowrule = [
-        "float,^(Save File)$" # BUG: Not implemented correctly
-        "float,^(Pipewire Volume Control)$"
-      ];
-
       windowrulev2 = [
         "float, size 530 400,class:(.blueman-manager-wrapped),title:(.blueman-manager-wrapped)"
         "float, size 700 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)"

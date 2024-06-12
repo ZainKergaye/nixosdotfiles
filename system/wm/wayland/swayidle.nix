@@ -45,7 +45,8 @@ in {
       # Turn off displays (hyprland)
       (lib.optionals config.wayland.windowManager.hyprland.enable (afterLockTimeout {
         timeout = 40;
-        command = "${hyprctl} dispatch dpms off";
+        #command = "${hyprctl} dispatch dpms off";
+				command = "dunstify Off";
         resumeCommand = "${hyprctl} dispatch dpms on";
       }))
       ++
