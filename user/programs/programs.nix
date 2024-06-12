@@ -2,6 +2,7 @@
 {...}: {
   imports = [
     ./alacritty/alacritty.nix
+		./cava.nix
   ];
 
   programs = {

@@ -32,6 +32,7 @@
         "$mod, C, killactive"
         "$mod, V, togglefloating"
         "$mod, F, fullscreen"
+        "$mod, S, togglesplit"
 
         "$mod, SPACE, exec, rofi -show drun"
 
