@@ -40,6 +40,7 @@
 		mpv
 		evince
 		loupe
-		gnome.nautilus
+		gnome.nautilus 
+		youtube-music
   ];
 }

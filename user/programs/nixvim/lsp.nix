@@ -47,7 +47,7 @@
       formattersByFt = {
         nix = ["alejandra"]; # Nix formatter
         "_" = ["prettierd"]; # default formatter
-        java = ["astyle" "google-java-format"]; # Java formatting
+        java = ["astyle" ]; # Java formatting
       };
     };
   };
