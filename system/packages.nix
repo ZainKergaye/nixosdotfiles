@@ -42,5 +42,6 @@
 		loupe
 		gnome.nautilus 
 		youtube-music
+		vlc
   ];
 }

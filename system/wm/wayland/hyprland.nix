@@ -44,6 +44,7 @@
         "waybar"
         "blueman-applet"
         "syncthingtray"
+				"swww-daemon"
       ];
 
       general = {

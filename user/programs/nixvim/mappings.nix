@@ -208,6 +208,30 @@
         mode = "n";
         options.desc = "Toggle tree";
       }
+
+			# Telescope stuff
+			{
+				key = "<Leader>ff";
+				action = "<cmd> Telescope fd <CR>";
+				mode = "n";
+				options.desc = "Find files";
+			}
+
+			{
+				key = "<Leader>gsc";
+				action = "<cmd> Telescope git_commits <CR>";
+				mode = "n";
+				options.desc = "Git show commits";
+			}
+
+			## LSP
+
+			{
+				key = "<Leader>ra";
+				action = "vim.lsp.buf.rename()";
+				mode = "n";
+				options.desc = "LSP Rename";
+			}
     ];
 
     plugins.cmp.settings.mapping = {

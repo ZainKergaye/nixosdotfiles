@@ -57,6 +57,7 @@
         ignore = true;
       };
       renderer.highlightGit = true;
+			view.side = "right";
     };
 
     navic.enable = false; # Not setup
@@ -74,5 +75,8 @@
 			};
 		};
 
+		telescope.enable = true;
+
+		notify.enable = true;
   };
 }
