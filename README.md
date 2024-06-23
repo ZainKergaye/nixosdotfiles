@@ -29,3 +29,5 @@ Look at the-nix-way/dev-templates
 - - [x] .blueman-manager-wrapped
 - [x] Hyprland hidden keybinds to add letter 'p' and 'u'
 - [ ] Hyprshot doesn't work on monitor with negative position
+- [ ]  Nixvim 
+- - [ ] <Leader> ra -> needs to rename current highlighted variable, doesn't work yet.

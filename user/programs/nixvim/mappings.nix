@@ -224,6 +224,13 @@
 				options.desc = "Git show commits";
 			}
 
+			{
+				key = "<Leader>fr";
+				action = "<cmd> Telescope oldfiles <CR>";
+				mode = "n";
+				options.desc = "Find recents";
+			}
+
 			## LSP
 
 			{
