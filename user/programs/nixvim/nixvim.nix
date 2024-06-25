@@ -1,9 +1,9 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./mappings.nix
     ./lsp.nix
     ./ui.nix
-		./dap.nix
+    ./dap.nix
   ];
 
   programs.nixvim = {
@@ -13,15 +13,17 @@
     vimAlias = true;
 
     globals.mapleader = " ";
-		globals.clipboard = "unnamedplus";
 
     opts = {
-      tabstop = 2;
-      softtabstop = 2;
-      shiftwidth = 2;
-      number = true;
-			#clipboard.register = "unnamedplus";
+      tabstop = 4;
+      softtabstop = 4;
+      shiftwidth = 4;
+      clipboard.wl-copy.enable = true;
     };
+
+    extraPackages = [
+      pkgs.wl-clipboard
+    ];
 
     colorschemes.catppuccin = {
       enable = true;
@@ -29,7 +31,6 @@
     };
 
     plugins = {
-
       todo-comments.enable = true;
       fugitive.enable = true;
       neogen.enable = true;

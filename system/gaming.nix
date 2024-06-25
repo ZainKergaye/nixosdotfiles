@@ -1,10 +1,9 @@
 # Gaming declaritive configuration
 {pkgs, ...}: {
-  hardware.opengl = { # Basic hardware drivers
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+	hardware.graphics = { # Basic hardware drivers
+		enable = true;
+		enable32Bit = true;
+	}
 
   programs.steam.enable = true; 
   programs.steam.gamescopeSession.enable = true;

@@ -27,7 +27,6 @@
     webcord
     neofetch
     firefox
-    telegram-desktop
     whatsapp-for-linux
     syncthing
     syncthingtray
