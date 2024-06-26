@@ -14,7 +14,7 @@
           font:                        "JetBrains Mono Nerd Font 10";
           background:                  #${config.colorScheme.colors.base00};
           background-alt:              #${config.colorScheme.colors.base01};
-					text:												 #${config.colorScheme.colors.base05};
+		  text:						   #${config.colorScheme.colors.base05};
           foreground:                  #${config.colorScheme.colors.base05};
           selected:                    #${config.colorScheme.colors.base02};
           active:                      #${config.colorScheme.colors.base06};

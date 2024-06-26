@@ -33,6 +33,7 @@
         "$mod, V, togglefloating"
         "$mod, F, fullscreen"
         "$mod, S, togglesplit"
+        "$mod, G, toggleopaque"
 
         "$mod, SPACE, exec, rofi -show drun"
 
