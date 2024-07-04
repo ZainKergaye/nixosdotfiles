@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{...}: let
   myAliases = {
     la = "ls -la";
     update = "nix flake update /home/aegis/.dotfiles/.";
@@ -22,7 +17,7 @@ in {
 
     oh-my-zsh = {
       enable = true;
-      theme = "jonathan";
+      theme = "miloshadzic";
       plugins = [
         "sudo"
       ];

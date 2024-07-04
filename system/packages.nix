@@ -42,5 +42,11 @@
 		gnome.nautilus 
 		youtube-music
 		vlc
+		peaclock 
+		rpi-imager
+		tetrio-desktop
+		nextcloud-client
+		nmap 
+		wireshark
   ];
 }

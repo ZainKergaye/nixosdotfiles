@@ -87,7 +87,7 @@
         mode = "n";
         options = {
           silent = true;
-          desc = "Delete buffer";
+          desc = "Pin buffer";
         };
       }
 
@@ -234,7 +234,7 @@
 			## LSP
 
 			{
-				key = "<Leader>ra";
+				key = "<Leader>rr";
 				action = "vim.lsp.buf.rename()";
 				mode = "n";
 				options.desc = "LSP Rename";
@@ -260,6 +260,9 @@
     plugins.which-key.registrations = {
       "<Leader>gD" = "Goto reference";
       "<Leader>gd" = "Goto definition";
+	  "<Leader>d" = "DAP options";
+	  "<Leader>g" = "Git options";
+	  "<Leader>gs" = "Stage options";
     };
   };
 }

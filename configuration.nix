@@ -5,7 +5,7 @@
     ./system/fonts.nix
     ./system/packages.nix
     ./system/vm.nix
-		./system/gaming.nix
+    ./system/gaming.nix
   ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -17,9 +17,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-	hardware.bluetooth.enable = true;
-	hardware.bluetooth.powerOnBoot = true;
-	services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   time.timeZone = "America/Denver";
 
@@ -40,12 +40,12 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-	services.printing.drivers = [pkgs.brlaser];
-	services.avahi = {
-		enable = true;
-		nssmdns4 = true;
-		openFirewall = true;
-	};
+  services.printing.drivers = [pkgs.brlaser];
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -65,7 +65,7 @@
   users.users.aegis = {
     isNormalUser = true;
     description = "aegis";
-    extraGroups = ["networkmanager" "wheel" "video"];
+    extraGroups = ["networkmanager" "wheel" "video" "wireshark"];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
