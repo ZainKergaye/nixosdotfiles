@@ -1,6 +1,4 @@
-{ pkgs, ...}:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Dev packages
     alejandra
@@ -8,19 +6,23 @@
     vimPlugins.luasnip
     astyle
     google-java-format
-		eclipses.eclipse-sdk
-		onefetch
-		bottles
-
+    eclipses.eclipse-sdk
+    onefetch
+    bottles
 
     # General devtools
     git
     asciidoctor-with-extensions
+    ccrypt
+    unzip
+
+	# Networking ish things 
+	nmap
 
     # System tools
     brightnessctl
     fprintd
-		linuxKernel.packages.linux_zen.ddcci-driver
+    linuxKernel.packages.linux_zen.ddcci-driver
 
     # User packages
     ungoogled-chromium
@@ -32,21 +34,21 @@
     syncthingtray
     libreoffice
     inkscape
-		p3x-onenote
-		notepad-next
-		cava
-		qbittorrent
-		mpv
-		evince
-		loupe
-		gnome.nautilus 
-		youtube-music
-		vlc
-		peaclock 
-		rpi-imager
-		tetrio-desktop
-		nextcloud-client
-		nmap 
-		wireshark
+    p3x-onenote
+    notepad-next
+    cava
+    qbittorrent
+    mpv
+    evince
+    loupe
+    gnome.nautilus
+    youtube-music
+    vlc
+    peaclock
+    rpi-imager
+    tetrio-desktop
+    nextcloud-client
+    nmap
+    wireshark
   ];
 }
