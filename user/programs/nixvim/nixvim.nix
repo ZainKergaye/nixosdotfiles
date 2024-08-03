@@ -31,7 +31,22 @@
     };
 
     plugins = {
-      todo-comments.enable = true;
+      todo-comments = {
+        enable = true;
+        keywords = {
+          "HELP" = {
+            icon = "󰮥 ";
+            color = "warning";
+            alt = ["FUCK" "AAAA" "REEE"];
+          };
+          "LABEL" = {
+            icon = "󰌕 ";
+            color = "info";
+            alt = ["FILL IN"];
+          };
+        };
+      };
+
       fugitive.enable = true;
       neogen.enable = true;
     };

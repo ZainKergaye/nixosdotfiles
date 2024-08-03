@@ -13,6 +13,8 @@ Look at the-nix-way/dev-templates
 [x] Java dev environment
 [x] Virtualization for windows (KVM?)
 [ ] smile emoji picker
+[ ] Idle lock screen stopper waybar icon
+[ ] Better waybar config
 
 ## Bugs
 
@@ -25,9 +27,14 @@ Look at the-nix-way/dev-templates
 - [x] Dolphin file manager themes
 - [x] Floating window rules Hyprland
 - - [x] notepad next
-- - [x] save file
+- - [ ] save file
+- - [ ] open file
 - - [x] .blueman-manager-wrapped
+- [ ] Discord screen sharing 
+- [ ] Fingerprint enabled login 
 - [x] Hyprland hidden keybinds to add letter 'p' and 'u'
 - [ ] Hyprshot doesn't work on monitor with negative position
 - [ ]  Nixvim 
 - - [ ] <Leader> ra -> needs to rename current highlighted variable, doesn't work yet.
+- - [x] Add HELP and LABEL to todo comment highlighting 
+- [ ] See if an opened window class can stay there? Like opening steam and moving to another window

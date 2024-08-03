@@ -10,7 +10,8 @@
             cmd = ["/home/aegis/.start-jdt-server"];
             package = pkgs."jdt-language-server";
           };
-          rust-analyzer.enable = false;
+			cssls.enable = true;
+			html.enable = true;
         };
       };
 

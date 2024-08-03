@@ -41,7 +41,7 @@
     mpv
     evince
     loupe
-    gnome.nautilus
+    nautilus
     youtube-music
     vlc
     peaclock
@@ -50,5 +50,6 @@
     nextcloud-client
     nmap
     wireshark
+	ani-cli
   ];
 }

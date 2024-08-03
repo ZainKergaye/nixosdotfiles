@@ -38,7 +38,7 @@
 
     # Cursor
     glib
-    gnome3.adwaita-icon-theme
+    adwaita-icon-theme
 
     # Locking / Sleeping
     hyprlock
@@ -49,6 +49,8 @@
     hyprshot
     grim
     slurp
+
+	xwayland
   ];
 
   xdg.portal = {

@@ -8,7 +8,6 @@
 
     which-key = {
       enable = true;
-      window.border = "double";
     };
 
     bufferline = {
@@ -28,7 +27,7 @@
 
     treesitter = {
       enable = true;
-      indent = true;
+      settings.indent.enable = true;
     };
 
     toggleterm = {
@@ -57,26 +56,26 @@
         ignore = true;
       };
       renderer.highlightGit = true;
-			view.side = "right";
+      view.side = "right";
     };
 
     navic.enable = false; # Not setup
 
-		transparent.enable = false; # Not working
+    transparent.enable = false; # Not working
 
-		indent-blankline = {
-			enable = true;
-			settings = {
-				scope = {
-					show_end = false;
-					show_exact_scope = true;
-					show_start = false;
-				};
-			};
-		};
+    indent-blankline = {
+      enable = true;
+      settings = {
+        scope = {
+          show_end = false;
+          show_exact_scope = true;
+          show_start = false;
+        };
+      };
+    };
 
-		telescope.enable = true;
+    telescope.enable = true;
 
-		notify.enable = true;
+    notify.enable = true;
   };
 }

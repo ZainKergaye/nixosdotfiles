@@ -6,11 +6,12 @@
     ./system/packages.nix
     ./system/vm.nix
     ./system/gaming.nix
+	./system/keybinds.nix
   ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["i915.force_probe=5917" "acpi_backlight=none" "amdgpu_backlight=0"];
+  boot.kernelParams = ["i915.force_probe=5917" "acpi_backlight=native" "amdgpu_backlight=0"];
 
   networking.hostName = "conduit"; # Define your hostname.
 
@@ -48,7 +49,7 @@
   };
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {

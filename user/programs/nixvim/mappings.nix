@@ -72,8 +72,8 @@
           desc = "Previous buffer";
         };
       }
-    {
-      key = "<leader>x";
+      {
+        key = "<leader>x";
         action = ":bd <CR>";
         mode = "n";
         options = {
@@ -209,36 +209,36 @@
         options.desc = "Toggle tree";
       }
 
-			# Telescope stuff
-			{
-				key = "<Leader>ff";
-				action = "<cmd> Telescope fd <CR>";
-				mode = "n";
-				options.desc = "Find files";
-			}
+      # Telescope stuff
+      {
+        key = "<Leader>ff";
+        action = "<cmd> Telescope fd <CR>";
+        mode = "n";
+        options.desc = "Find files";
+      }
 
-			{
-				key = "<Leader>gsc";
-				action = "<cmd> Telescope git_commits <CR>";
-				mode = "n";
-				options.desc = "Git show commits";
-			}
+      {
+        key = "<Leader>gsc";
+        action = "<cmd> Telescope git_commits <CR>";
+        mode = "n";
+        options.desc = "Git show commits";
+      }
 
-			{
-				key = "<Leader>fr";
-				action = "<cmd> Telescope oldfiles <CR>";
-				mode = "n";
-				options.desc = "Find recents";
-			}
+      {
+        key = "<Leader>fr";
+        action = "<cmd> Telescope oldfiles <CR>";
+        mode = "n";
+        options.desc = "Find recents";
+      }
 
-			## LSP
+      ## LSP
 
-			{
-				key = "<Leader>rr";
-				action = "vim.lsp.buf.rename()";
-				mode = "n";
-				options.desc = "LSP Rename";
-			}
+      {
+        key = "<Leader>rr";
+        action = "vim.lsp.buf.rename()";
+        mode = "n";
+        options.desc = "LSP Rename";
+      }
     ];
 
     plugins.cmp.settings.mapping = {
@@ -257,12 +257,33 @@
       "<Leader>gd" = "definition";
     };
 
-    plugins.which-key.registrations = {
-      "<Leader>gD" = "Goto reference";
-      "<Leader>gd" = "Goto definition";
-	  "<Leader>d" = "DAP options";
-	  "<Leader>g" = "Git options";
-	  "<Leader>gs" = "Stage options";
+    plugins.which-key = {
+      settings.spec = [
+        {
+          __unkeyed-1 = "<Leader>gD";
+          desc = "Goto reference";
+        }
+		
+        {
+          __unkeyed-1 = "<Leader>gd";
+          desc = "Goto definition";
+        }
+
+        {
+          __unkeyed-1 = "<Leader>d";
+          desc = "DAP options";
+        }
+
+        {
+          __unkeyed-1 = "<Leader>g";
+          desc = "Git options";
+        }
+
+        {
+          __unkeyed-1 = "<Leader>gs";
+          desc = "Git stage options";
+        }
+      ];
     };
   };
 }
