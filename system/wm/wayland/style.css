@@ -66,6 +66,22 @@ window#waybar.hidden {
   background-color: #181825;
 }
 
+#battery { 
+  min-height: 0;
+  padding: 2px 10px;
+  border-radius: 8px;
+  margin: 4px 4px;
+  background-color: #181825;
+}
+
+#battery.warning {
+	background-color: yellow;
+}
+
+#battery.critical {
+	background-color: red;
+}
+
 #custom-sep {
   padding: 0px;
   color: #585b70;
