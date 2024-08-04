@@ -77,5 +77,7 @@
     telescope.enable = true;
 
     notify.enable = true;
+
+    nvim-colorizer.enable = true;
   };
 }

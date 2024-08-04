@@ -1,14 +1,282 @@
-{config, ...}: {
-  programs.waybar = {
-    enable = true;
-  };
-	home.file."${config.xdg.configHome}/waybar/style.css" = {
-		#source = ["./style.css" "./config.jsonc"];
-		#source = "./style.css";
-		text = builtins.readFile(./style.css);
-	};
+{config, ...}: let
+  palette = config.colorScheme.palette;
+in {
+  programs.waybar.enable = true;
 
-	home.file."${config.xdg.configHome}/waybar/config.jsonc" = {
-		text = builtins.readFile(./config.jsonc);
-	};
+  home.file."${config.xdg.configHome}/waybar/style.css".text = ''
+    * {
+      min-height: 0;
+      font-family: IBM Plex Mono;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    window#waybar {
+      transition-property: background-color;
+      transition-duration: 0.5s;
+      background-color: rgba(24, 24, 37, 0.6);
+    }
+
+    window#waybar.hidden {
+      opacity: 0.5;
+    }
+
+    #workspaces {
+      background-color: transparent;
+    }
+
+    #workspaces button {
+      all: initial;
+      min-width: 0;
+      box-shadow: inset 0 -3px transparent;
+      padding: 2px 10px;
+      min-height: 0;
+      margin: 4px 4px;
+      border-radius: 8px;
+      background-color: #181825;
+      color: #${palette.base0D};
+    }
+
+    #workspaces button:hover {
+      box-shadow: inherit;
+      text-shadow: inherit;
+      color: #1e1e2e;
+      background-color: #${palette.base0D};
+    }
+
+    #workspaces button.active {
+      color: #1e1e2e;
+      background-color: #${palette.base0E};
+    }
+
+    #workspaces button.urgent {
+      background-color: #${palette.base08};
+    }
+
+    #network,
+    #clock,
+    #pulseaudio,
+    #custom-logo,
+    #custom-power,
+    #custom-spotify,
+    #cpu,
+    #tray,
+    #memory,
+    #window {
+      min-height: 0;
+      padding: 2px 10px;
+      border-radius: 8px;
+      margin: 4px 4px;
+      background-color: #${palette.base01};
+    }
+
+    #battery {
+      min-height: 0;
+      padding: 2px 10px;
+      border-radius: 8px;
+      margin: 4px 4px;
+      background-color: #${palette.base01};
+    }
+
+    #battery.warning {
+    	background-color: yellow;
+		color: #${palette.base01};
+    }
+
+    #battery.critical {
+    	background-color: red;
+		color: #${palette.base01};
+    }
+
+    #custom-sep {
+      padding: 0px;
+      color: #${palette.base04};
+    }
+
+    window#waybar.empty #window {
+      background-color: transparent;
+    }
+
+    #cpu {
+      color: #94e2d5;
+    }
+
+    #memory {
+      color: #cba6f7;
+    }
+
+    #clock {
+      color: #${palette.base0C};
+    }
+
+    #clock.simpleclock {
+      color: #${palette.base07};
+    }
+
+    #window {
+      color: #${palette.base0B};
+    }
+
+    #pulseaudio {
+      color: #${palette.base05};
+    }
+
+    #pulseaudio.muted {
+      color: #${palette.base09};
+    }
+
+    #custom-logo {
+      color: #89b4fa;
+    }
+
+    #custom-power {
+      color: #${palette.base08};
+      padding-right: 5px;
+      font-size: 14px;
+    }
+
+    @keyframes blink {
+      to {
+        background-color: #${palette.base08};
+        color: #181825;
+      }
+    }
+
+    tooltip {
+      border-radius: 8px;
+    }
+
+  '';
+
+  home.file."${config.xdg.configHome}/waybar/config.jsonc".text = ''
+    {
+      "layer": "top",
+
+      "position": "top",
+
+      "height": 32,
+
+      "spacing": 4,
+
+      "exclusive": true,
+
+      "gtk-layer-shell": true,
+
+      "passthrough": false,
+
+      "fixed-center": true,
+
+      "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
+
+      "modules-center": ["custom/sep", "clock#simpleclock", "custom/sep"],
+
+      "modules-right": [
+        "pulseaudio",
+        "network",
+        "clock",
+        "group/batteries",
+        "tray",
+        "custom/power",
+      ],
+
+      "tray": {
+        "show-passive-items": true,
+        "spacing": 10,
+      },
+
+      "clock#simpleclock": {
+        "tooltip": false,
+        "format": "   {:%I:%M %p}",
+        "on-click": "kitty peaclock",
+      },
+
+      "clock": {
+        "format": "   {:L%a %d %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      },
+
+      "cpu": {
+        "format": "  {usage}%",
+        "on-click": "btop",
+        "tooltip": true,
+        "interval": 1,
+      },
+
+      "memory": {
+        "format": "  {used:0.2f}G",
+      },
+
+      "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "  muted",
+        "format-icons": {
+          "headphone": " ",
+          "hands-free": "󰂑",
+          "headset": "󰂑",
+          "phone": " ",
+          "portable": " ",
+          "car": " ",
+          "default": [" ", " ", " "],
+        },
+        "on-click": "pwvucontrol",
+      },
+
+      "custom/logo": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "chromium-browser --new-window 'https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query=+'",
+        "on-click-middle": "kitty --hold neofetch",
+      },
+
+      "custom/sep": {
+        "format": "|",
+        "tooltip": false,
+      },
+
+      "custom/power": {
+        "tooltip": false,
+        "on-click": "wlogout -p layer-shell &",
+        "format": "⏻ ",
+      },
+
+      "network": {
+        "format-wifi": "   {essid}",
+        "format-ethernet": "   {essid}",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "󰌙 ",
+        "tooltip": true,
+        "tooltip-format": "{ifname} {ipaddr}/{cidr} Up: {bandwidthUpBits} Down: {bandwidthDownBits}",
+      },
+
+      "battery#one": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+          "warning": 30,
+          "critical": 15,
+        },
+        "format": "Int: {capacity}%  {icon} ",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25,
+      },
+
+      "battery#two": {
+        "bat": "BAT1",
+        "interval": 60,
+        "states": {
+          "warning": 30,
+          "critical": 15,
+        },
+        "format": "Ext: {capacity}%  {icon} ",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25,
+      },
+
+      "group/batteries": {
+        "modules": ["battery#one", "battery#two"],
+        "orientation": "horizontal",
+      },
+    }
+
+  '';
 }

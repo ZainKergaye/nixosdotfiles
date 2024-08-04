@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let 
+palette = config.colorScheme.palette;
+in {
   home.file.".config/rofi/config.rasi" = {
     text = ''
              /*****----- Configuration -----*****/
@@ -12,14 +14,14 @@
       /*****----- Global Properties -----*****/
       *{
           font:                        "JetBrains Mono Nerd Font 10";
-          background:                  #${config.colorScheme.colors.base00};
-          background-alt:              #${config.colorScheme.colors.base01};
-		  text:						   #${config.colorScheme.colors.base05};
-          foreground:                  #${config.colorScheme.colors.base05};
-          selected:                    #${config.colorScheme.colors.base02};
-          active:                      #${config.colorScheme.colors.base06};
-          urgent:                      #${config.colorScheme.colors.base0E};
-					alternate-normal-background: #${config.colorScheme.colors.base00};
+          background:                  #${palette.base00};
+          background-alt:              #${palette.base01};
+		  text:						   #${palette.base05};
+          foreground:                  #${palette.base05};
+          selected:                    #${palette.base02};
+          active:                      #${palette.base06};
+          urgent:                      #${palette.base0E};
+		  alternate-normal-background: #${palette.base00};
       }
 
       /*****----- Main Window -----*****/

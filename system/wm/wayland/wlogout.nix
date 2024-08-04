@@ -1,5 +1,10 @@
-{ config, pkgs, ... }: {
-
+{
+  config,
+  pkgs,
+  ...
+}: let
+  palette = config.colorScheme.palette;
+in {
   programs.wlogout = {
     enable = true;
     layout = [
@@ -43,7 +48,7 @@
 
     style = ''
             * {
-              font-family: "${config.colorScheme.colors.base06}";
+				font-family: IBM Plex Mono;
               background-image: none;
               transition: 20ms;
             }
@@ -53,29 +58,29 @@
           }
 
           button {
-      color: #${config.colorScheme.colors.base00};
+      color: #${palette.base05};
              font-size:20px;
 
              background-repeat: no-repeat;
              background-position: center;
              background-size: 25%;
 
-              border: 3px solid #${config.colorscheme.colors.base01};
-             background-color: #${config.colorScheme.colors.base06};
+              border: 3px solid #${palette.base0D};
+             background-color: #${palette.base02};
               box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           }
 
       button:focus,
                button:active {
-      color: #${config.colorScheme.colors.base02};
-             background-color: #${config.colorScheme.colors.base00};
-      border: 3px solid #${config.colorScheme.colors.base01};
+      color: #${palette.base05};
+             background-color: #${palette.base00};
+      border: 3px solid #${palette.base0D};
                }
 
-             /* 
-                ----------------------------------------------------- 
+             /*
+                -----------------------------------------------------
                 Buttons
-                ----------------------------------------------------- 
+                -----------------------------------------------------
               */
 
       #lock,#logout,#suspend,#hibernate,#shutdown,#reboot {
@@ -113,5 +118,4 @@
     recursive = false;
     source = ../../../media/icons;
   };
-
 }
