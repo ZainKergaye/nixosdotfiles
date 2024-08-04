@@ -1,60 +1,24 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
-  swaylock = "${config.programs.swaylock.package}/bin/swaylock";
-  pgrep = "${pkgs.procps}/bin/pgrep";
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
-  hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
-  swaymsg = "${config.wayland.windowManager.dunst.package}/bin/dunstify";
-
-  isLocked = "${pgrep} -x ${swaylock}";
-  lockTime = 4 * 60; # TODO: configurable desktop (10 min)/laptop (4 min)
-
-  # Makes two timeouts: one for when the screen is not locked (lockTime+timeout) and one for when it is.
-  afterLockTimeout = {
-    timeout,
-    command,
-    resumeCommand ? null,
-  }: [
-    {
-      timeout = lockTime + timeout;
-      inherit command resumeCommand;
+{pkgs, ...}: {
+  home.file.".config/hypr/hypridle.conf".text = ''
+    general {
+      ignore_dbus_inhibit = false             # whether to ignore dbus-sent idle-inhibit requests (used by e.g. firefox or steam)
     }
-    {
-      command = "${isLocked} && ${command}";
-      inherit resumeCommand timeout;
+
+    listener {
+      timeout = 600                            # 10min
+      on-timeout = ${pkgs.swaylock-effects}/bin/swaylock
+      on-resume = ${pkgs.libnotify}/bin/notify-send "Hi aegis 🍃" "Welcome Back  ʕっ•ᴥ•ʔっ"
     }
-  ];
-in {
-  services.swayidle = {
-    enable = true;
-    systemdTarget = "graphical-session.target";
-    timeouts =
-      # Lock screen
-      [
-        {
-          timeout = lockTime;
-          command = "${swaylock} --daemonize --grace 15";
-          #command = "${swaylock}";
-        }
-      ]
-      ++
-      # Turn off displays (hyprland)
-      (lib.optionals config.wayland.windowManager.hyprland.enable (afterLockTimeout {
-        timeout = 40;
-        #command = "${hyprctl} dispatch dpms off";
-				command = "dunstify Off";
-        resumeCommand = "${hyprctl} dispatch dpms on";
-      }))
-      ++
-      # Turn off displays (sway)
-      (lib.optionals config.wayland.windowManager.sway.enable (afterLockTimeout {
-        timeout = 40;
-        command = "${swaymsg} 'output * dpms off'";
-        resumeCommand = "${swaymsg} 'output * dpms on'";
-      }));
-  };
+
+    listener {
+      timeout = 1800                           # 30min
+      on-timeout = ${pkgs.hyprland}/bin/hyprctl dispatch dpms off
+      on-resume = ${pkgs.hyprland}/bin/hyprctl dispatch dpms on
+    }
+
+    listener {
+      timeout = 3600
+      on-timeout = systemctl suspend
+    }
+  '';
 }
