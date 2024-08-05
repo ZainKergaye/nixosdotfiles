@@ -79,14 +79,33 @@ in {
     }
 
     #battery.warning {
-    	background-color: yellow;
+    	background-color: #${palette.base0A};
 		color: #${palette.base01};
     }
 
     #battery.critical {
-    	background-color: red;
+    	background-color: #${palette.base08};
 		color: #${palette.base01};
     }
+
+	#battery.charging {
+		background-color: #${palette.base0B};
+		color: #${palette.base01};
+	} 
+
+	#battery.critical:not(.charging) {
+    	background-color: #${palette.base08};
+		color: #${palette.base01};
+		animation-name: blink;
+		animation-duration: 0.5s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+
+	#battery.plugged {
+		background-color: #${palette.base00};
+	}
 
     #custom-sep {
       padding: 0px;
@@ -106,11 +125,11 @@ in {
     }
 
     #clock {
-      color: #${palette.base0C};
+      color: #${palette.base07};
     }
 
     #clock.simpleclock {
-      color: #${palette.base07};
+      color: #${palette.base09};
     }
 
     #window {
@@ -241,7 +260,7 @@ in {
 
       "network": {
         "format-wifi": "   {essid}",
-        "format-ethernet": "   {essid}",
+        "format-ethernet": " ",
         "format-linked": "{ifname} (No IP)  ",
         "format-disconnected": "󰌙 ",
         "tooltip": true,

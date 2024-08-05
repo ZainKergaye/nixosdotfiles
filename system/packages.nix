@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  users.users.aegis.extraGroups = ["wireshark" "video"];
+
   environment.systemPackages = with pkgs; [
     # Dev packages
     alejandra
@@ -6,7 +8,6 @@
     vimPlugins.luasnip
     astyle
     google-java-format
-    eclipses.eclipse-sdk
     onefetch
     bottles
 
@@ -15,14 +16,20 @@
     asciidoctor-with-extensions
     ccrypt
     unzip
+    vlc
+    mpv
+    evince # PDF viewer
+    nautilus # File manager
+    loupe # Image viewer
+    rpi-imager
 
 	# Networking ish things 
 	nmap
+    wireshark
 
     # System tools
     brightnessctl
     fprintd
-    linuxKernel.packages.linux_zen.ddcci-driver
 
     # User packages
     ungoogled-chromium
@@ -38,18 +45,10 @@
     notepad-next
     cava
     qbittorrent
-    mpv
-    evince
-    loupe
-    nautilus
     youtube-music
-    vlc
     peaclock
-    rpi-imager
     tetrio-desktop
     nextcloud-client
-    nmap
-    wireshark
 	ani-cli
   ];
 }

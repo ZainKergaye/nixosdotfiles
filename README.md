@@ -1,6 +1,11 @@
 # New NixOS config 
 
-This is my new NixOS config for dev, and everything else. Using flakes and home-manager
+This is my new NixOS config for dev, and everything else. Using flakes and home-manager.
+
+# Screenshots:
+
+![Screenshot](./media/screenshot.png)
+
 
 ## Dev environments
 To configure whatever environment, you can use this command: 

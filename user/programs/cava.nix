@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let 
+palette = config.colorScheme.palette;
+in {
   home.file.".config/cava/config" = {
     text = ''
       ## Configuration file for CAVA.
@@ -231,14 +233,14 @@
       # You can define as many as 8 different colors. They range from bottom to top of screen
        gradient = 1
       ; gradient_count = 8
-       gradient_color_1 = '#${config.colorScheme.palette.base0C}'
-       gradient_color_2 = '#${config.colorScheme.palette.base0B}'
-       gradient_color_3 = '#${config.colorScheme.palette.base07}'
-       gradient_color_4 = '#${config.colorScheme.palette.base0D}'
-       gradient_color_5 = '#${config.colorScheme.palette.base0E}'
-       gradient_color_6 = '#${config.colorScheme.palette.base0F}'
-       gradient_color_7 = '#${config.colorScheme.palette.base09}'
-       gradient_color_8 = '#${config.colorScheme.palette.base08}'
+       gradient_color_1 = '#${palette.base0C}'
+       gradient_color_2 = '#${palette.base0B}'
+       gradient_color_3 = '#${palette.base07}'
+       gradient_color_4 = '#${palette.base0D}'
+       gradient_color_5 = '#${palette.base0E}'
+       gradient_color_6 = '#${palette.base0F}'
+       gradient_color_7 = '#${palette.base09}'
+       gradient_color_8 = '#${palette.base08}'
 
 
 

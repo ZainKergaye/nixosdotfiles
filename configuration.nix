@@ -11,7 +11,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["i915.force_probe=5917" "acpi_backlight=native" "amdgpu_backlight=0"];
+  boot.kernelParams = ["acpi_backlight=native" ];
 
   networking.hostName = "conduit"; # Define your hostname.
 
@@ -49,7 +49,6 @@
   };
 
   # Enable sound with pipewire.
-  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -59,14 +58,11 @@
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.aegis = {
     isNormalUser = true;
     description = "aegis";
-    extraGroups = ["networkmanager" "wheel" "video" "wireshark"];
+    extraGroups = ["networkmanager" "wheel" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
