@@ -15,6 +15,8 @@
       # binde repeats command while being help
       ",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
       ",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+	  ",XF86MonBrightnessUp, exec, brightnessctl s 20+"
+	  ",XF86MonBrightnessDown, exec, brightnessctl s 20-"
     ];
 
     bind =

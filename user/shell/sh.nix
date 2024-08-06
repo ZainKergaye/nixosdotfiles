@@ -22,5 +22,6 @@ in {
         "sudo"
       ];
     };
+	syntaxHighlighting.enable = true;
   };
 }
