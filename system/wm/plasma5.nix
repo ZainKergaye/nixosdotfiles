@@ -1,11 +1,5 @@
 # System module for Plasma 5 desktop. Imported in configuration.nix
-{
-  config,
-  system,
-  self,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   services.xserver = {
     enable = true;
     desktopManager.plasma5.enable = true;

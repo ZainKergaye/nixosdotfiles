@@ -13,11 +13,14 @@
     spice-protocol
     win-virtio
     win-spice
-    gnome3.adwaita-icon-theme # Needed for wayland compositer
-		glib
+    adwaita-icon-theme # Needed for wayland compositer
+    glib
+
+    # For solidworks:
+		#virtualboxKvm
   ];
 
-	programs.virt-manager.enable = true;
+  programs.virt-manager.enable = true;
 
   virtualisation = {
     libvirtd = {
@@ -31,6 +34,13 @@
       };
     };
     spiceUSBRedirection.enable = true;
+
+    virtualbox = {
+      host = {
+        enable = true;
+				#enableKvm = true;
+      };
+    };
   };
   services.spice-vdagentd.enable = true;
 }

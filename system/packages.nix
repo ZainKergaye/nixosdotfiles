@@ -1,15 +1,16 @@
 {pkgs, ...}: {
-  users.users.aegis.extraGroups = ["wireshark" "video"];
+  users.users.aegis.extraGroups = ["wireshark" "video" "disk"]; # disk for rpi-imager
 
   environment.systemPackages = with pkgs; [
     # Dev packages
-    alejandra
-    prettierd
+    alejandra # File formatter
+    prettierd # File formatter
     vimPlugins.luasnip
     astyle
     google-java-format
     onefetch
     bottles
+	dotnet-sdk_8 # C sharp 
 
     # General devtools
     git

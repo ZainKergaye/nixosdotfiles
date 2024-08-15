@@ -44,6 +44,11 @@
             color = "info";
             alt = ["FILL IN"];
           };
+			"DEPRICATED" = {
+						icon = "󰁨 ";
+						color = "warning"; 
+						alt = ["DEP" "UNEEDED"];
+					};
         };
       };
 

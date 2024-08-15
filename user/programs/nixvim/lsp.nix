@@ -12,6 +12,7 @@
           };
 			cssls.enable = true;
 			html.enable = true;
+			csharp-ls.enable = true;
         };
       };
 
