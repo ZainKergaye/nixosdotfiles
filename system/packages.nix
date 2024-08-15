@@ -10,7 +10,9 @@
     google-java-format
     onefetch
     bottles
-	dotnet-sdk_8 # C sharp 
+    dotnet-sdk_8 # C sharp dotnet framework
+    csharpier # C sharp file formatter
+    dotnetCorePackages.sdk_8_0_1xx # Required by formatter
 
     # General devtools
     git
@@ -24,8 +26,8 @@
     loupe # Image viewer
     rpi-imager
 
-	# Networking ish things 
-	nmap
+    # Networking ish things
+    nmap
     wireshark
 
     # System tools
@@ -50,6 +52,6 @@
     peaclock
     tetrio-desktop
     nextcloud-client
-	ani-cli
+    ani-cli
   ];
 }

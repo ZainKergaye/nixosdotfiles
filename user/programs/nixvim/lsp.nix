@@ -10,9 +10,9 @@
             cmd = ["/home/aegis/.start-jdt-server"];
             package = pkgs."jdt-language-server";
           };
-			cssls.enable = true;
-			html.enable = true;
-			csharp-ls.enable = true;
+          cssls.enable = true;
+          html.enable = true;
+          csharp-ls.enable = true;
         };
       };
 
@@ -52,6 +52,8 @@
           nix = ["alejandra"]; # Nix formatter
           "_" = ["prettierd"]; # default formatter
           java = ["astyle"]; # Java formatting
+          csharp = ["csharpier"]; # C# formatting
+          cs = ["csharpier"];
         };
       };
     };

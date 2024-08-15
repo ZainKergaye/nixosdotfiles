@@ -12,17 +12,20 @@
 
     bufferline = {
       enable = true;
-      bufferCloseIcon = null;
-      closeIcon = null;
-      alwaysShowBufferline = false;
-      separatorStyle = "slant";
-      diagnostics = "nvim_lsp";
-      offsets = [
-        {filetype = "NvimTree";}
-        {text = "File Explorer";}
-        {highlight = "Directory";}
-        {separator = true;}
-      ];
+
+      settings.options = {
+        buffer_close_icon = null;
+        close_icon = null;
+        always_show_bufferline = false;
+        separator_style = "slant";
+        diagnostics = "nvim_lsp";
+        offsets = [
+          {filetype = "NvimTree";}
+          {text = "File Explorer";}
+          {highlight = "Directory";}
+          {separator = true;}
+        ];
+      };
     };
 
     treesitter = {
