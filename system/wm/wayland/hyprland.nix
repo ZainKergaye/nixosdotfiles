@@ -1,5 +1,5 @@
 # Hyprland config for home-manager
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./hyprbinds.nix
     ./dunst.nix
@@ -49,6 +49,7 @@
         "blueman-applet"
         "syncthingtray"
         "swww-daemon"
+		"${pkgs.pypr}/bin/pypr"
       ];
 
       general = {

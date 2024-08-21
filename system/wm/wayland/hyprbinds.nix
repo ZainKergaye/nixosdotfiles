@@ -35,7 +35,8 @@
         "$mod, V, togglefloating"
         "$mod, F, fullscreen"
         "$mod, S, togglesplit"
-        "$mod, G, toggleopaque"
+				#"$mod, G, toggleopaque" DEP: Find replacement
+		"$mod, T, pin"
 
         "$mod, SPACE, exec, rofi -show drun"
 

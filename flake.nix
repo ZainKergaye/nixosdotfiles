@@ -16,11 +16,14 @@
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-colors = {
       url = "github:misterio77/nix-colors";
+    };
+
+    pyprland = {
+      url = "github:hyprland-community/pyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -31,6 +34,7 @@
     nixvim,
     nixos-hardware,
     nix-colors,
+	pyprland,
     ...
   }: let
     system = "x86_64-linux";
@@ -44,6 +48,7 @@
           ./configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480
         ];
+		systemPackages = [ pyprland.packages.system.pyprland ];
       };
     };
 

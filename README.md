@@ -19,7 +19,8 @@ Look at the-nix-way/dev-templates
 [x] Virtualization for windows (KVM?)
 [ ] smile emoji picker
 [ ] Idle lock screen stopper waybar icon
-[ ] Better waybar config
+[x] Better waybar config
+[ ] Animation for hidden windows, have them pop from top
 
 ## Bugs
 
@@ -27,7 +28,7 @@ Look at the-nix-way/dev-templates
 - [x] study monitor not configured
 - [x] Waybar not configured properly for more than one monitor
 - - [x] Different font 
-- - [ ] Dual Battery support
+- - [x] Dual Battery support
 - [x] Rofi themes
 - [x] Dolphin file manager themes
 - [x] Floating window rules Hyprland
@@ -38,7 +39,7 @@ Look at the-nix-way/dev-templates
 - [ ] Discord screen sharing 
 - [ ] Fingerprint enabled login 
 - [x] Hyprland hidden keybinds to add letter 'p' and 'u'
-- [ ] Hyprshot doesn't work on monitor with negative position
+- [x] Hyprshot doesn't work on monitor with negative position
 - [ ]  Nixvim 
 - - [ ] <Leader> ra -> needs to rename current highlighted variable, doesn't work yet.
 - - [x] Add HELP and LABEL to todo comment highlighting 
