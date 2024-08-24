@@ -1,31 +1,33 @@
+# Python plugins for hyprland: 
+# Using pyprland for scratchpads 
 {
   pkgs,
-  config,
   ...
 }: {
-  home.file."${config.xdg.configHome}/hypr/pyprland.toml".text = ''
+
+  home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
     plugins = [
       "scratchpads",
     ]
 
     [scratchpads.btop]
-    animation = "fromBottom"
-    command = "${pkgs.kitty}/bin/kitty --class kitty-btop btop"
+    animation = "fromTop"
+    command = "${pkgs.kitty}/bin/kitty --class kitty-btop -o font_size=12 btop"
     class = "kitty-btop"
-    lazy = true
+    lazy = false
     size = "75% 45%"
 
     [scratchpads.chrome]
-    animation = "fromTop"
-    command = "${pkgs.kitty}/bin/kitty --class chrome chromium"
-    class = "kitty-chrome"
+    animation = "fromBottom"
+    command = "chromium"
+    class = "chrome"
     lazy = true
     size = "75% 40%"
 
     [scratchpads.term]
     animation = "fromTop"
-    command = "${pkgs.kitty}/bin/kitty --class kitty-dropterm"
+    command = "${pkgs.kitty}/bin/kitty --class kitty-dropterm --hold neofetch"
     class = "kitty-dropterm"
     size = "75% 60%"
 
@@ -39,9 +41,9 @@
   '';
 
   wayland.windowManager.hyprland.settings.bind = [
-    "$mod, ALT, I, exec, pypr toggle btop"
-    "$mod, ALT, U, exec, pypr toggle chrome"
-    "$mod, ALT, O, exec, pypr toggle term"
-    "$mod, ALT, P, exec, pypr toggle volume"
+    "$mod ALT, I, exec, pypr toggle btop"
+    "$mod ALT, U, exec, pypr toggle chrome"
+    "$mod ALT, O, exec, pypr toggle term"
+    "$mod ALT, P, exec, pypr toggle volume"
   ];
 }

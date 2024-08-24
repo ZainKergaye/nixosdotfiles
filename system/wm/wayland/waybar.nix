@@ -245,6 +245,7 @@ in {
         "tooltip": false,
         "on-click": "chromium-browser --new-window 'https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query=+'",
         "on-click-middle": "kitty --hold neofetch",
+		"on-click-right": "chromium-browser --new-window 'https://utah.instructure.com/'",
       },
 
       "custom/sep": {

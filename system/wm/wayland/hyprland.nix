@@ -8,6 +8,7 @@
     ./swayidle.nix
     ./swaylock.nix
     ./wlogout.nix
+    ./pyprland.nix
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -49,7 +50,8 @@
         "blueman-applet"
         "syncthingtray"
         "swww-daemon"
-		"${pkgs.pypr}/bin/pypr"
+				#"${pkgs.pypr}/bin/pypr"
+		"pypr"
       ];
 
       general = {

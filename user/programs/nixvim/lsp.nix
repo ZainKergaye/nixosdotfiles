@@ -10,8 +10,8 @@
             cmd = ["/home/aegis/.start-jdt-server"];
             package = pkgs."jdt-language-server";
           };
-          cssls.enable = true;
-          html.enable = true;
+					#cssls.enable = true; BUG: VsCode LS servers causing bugs
+					#html.enable = true;
           csharp-ls.enable = true;
         };
       };

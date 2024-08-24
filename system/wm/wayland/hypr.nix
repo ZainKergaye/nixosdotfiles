@@ -32,6 +32,7 @@
     xdg-desktop-portal-hyprland
     xwaylandvideobridge
     xwayland
+	pyprland
 
     # Audio
     pwvucontrol
@@ -50,7 +51,7 @@
     grim
     slurp
 
-	xwayland
+    xwayland
   ];
 
   xdg.portal = {

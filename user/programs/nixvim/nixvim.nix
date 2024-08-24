@@ -33,7 +33,7 @@
     plugins = {
       todo-comments = {
         enable = true;
-        keywords = {
+        settings.keywords = {
           "HELP" = {
             icon = "󰮥 ";
             color = "warning";
@@ -44,11 +44,11 @@
             color = "info";
             alt = ["FILL IN"];
           };
-			"DEPRICATED" = {
-						icon = "󰁨 ";
-						color = "warning"; 
-						alt = ["DEP" "UNEEDED"];
-					};
+          "DEPRICATED" = {
+            icon = "󰁨 ";
+            color = "warning";
+            alt = ["DEP" "UNEEDED"];
+          };
         };
       };
 

@@ -19,7 +19,7 @@
   environment.sessionVariables = { 
 	# Proton needs to be declared imperitively.
 	# This is just something to do with steam 
-	# Run the command 'protonup' after updating system
+	# Run the command 'protonup' after updating system NOTE: Run this every once in awhile	
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/aegis/.steam/root/compatibilitytools.d";
   };
 }
