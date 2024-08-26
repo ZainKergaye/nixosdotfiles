@@ -10,9 +10,6 @@
     google-java-format
     onefetch
     bottles
-    dotnet-sdk_8 # C sharp dotnet framework
-    csharpier # C sharp file formatter
-    dotnetCorePackages.sdk_8_0_1xx # Required by formatter
 	python3 # For calculator
 
     # General devtools

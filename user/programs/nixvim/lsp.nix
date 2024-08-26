@@ -12,7 +12,6 @@
           };
 					#cssls.enable = true; BUG: VsCode LS servers causing bugs
 					#html.enable = true;
-          csharp-ls.enable = true;
         };
       };
 
@@ -52,8 +51,6 @@
           nix = ["alejandra"]; # Nix formatter
           "_" = ["prettierd"]; # default formatter
           java = ["astyle"]; # Java formatting
-          csharp = ["csharpier"]; # C# formatting
-          cs = ["csharpier"];
         };
       };
     };
