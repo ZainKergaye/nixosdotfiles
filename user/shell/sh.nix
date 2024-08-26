@@ -4,6 +4,7 @@
     update = "nix flake update /home/aegis/.dotfiles/.";
     upgrade = "sudo nixos-rebuild switch --flake /home/aegis/.dotfiles/.";
     homeupgrade = "home-manager switch --flake /home/aegis/.dotfiles/.";
+    c = "python3 -Bqic 'from math import *'";
   };
 in {
   programs.bash = {
@@ -22,6 +23,6 @@ in {
         "sudo"
       ];
     };
-	syntaxHighlighting.enable = true;
+    syntaxHighlighting.enable = true;
   };
 }

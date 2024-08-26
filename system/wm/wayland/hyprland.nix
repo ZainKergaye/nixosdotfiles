@@ -1,5 +1,5 @@
 # Hyprland config for home-manager
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./hyprbinds.nix
     ./dunst.nix
