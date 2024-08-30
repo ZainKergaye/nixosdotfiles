@@ -1,8 +1,11 @@
 # Imported into home-manager
 {...}: {
   imports = [
-    ./alacritty/alacritty.nix
+    ./alacritty.nix
     ./cava.nix
+	./peaclock.nix
+	./nixvim/nixvim.nix
+	./kitty.nix
   ];
 
   programs = {

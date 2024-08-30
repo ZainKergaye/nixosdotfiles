@@ -1,6 +1,8 @@
 {config, ...}: let 
 palette = config.colorScheme.palette;
 in {
+  programs.cava.enable = true;
+
   home.file.".config/cava/config" = {
     text = ''
       ## Configuration file for CAVA.

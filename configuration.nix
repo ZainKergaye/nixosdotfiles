@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{pkgs, ...}: 
+
+let 
+	user = "aegis";
+in {
   imports = [
     ./hardware-configuration.nix
     ./system/wm/wayland/hypr.nix
@@ -6,12 +10,13 @@
     ./system/packages.nix
     ./system/vm.nix
     ./system/gaming.nix
-	./system/keybinds.nix
+    ./system/keybinds.nix
   ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["acpi_backlight=native" ];
+  boot.kernelParams = ["acpi_backlight=native"];
 
   networking.hostName = "conduit"; # Define your hostname.
 
@@ -59,10 +64,10 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.aegis = {
+  users.users.${user} = {
     isNormalUser = true;
-    description = "aegis";
-    extraGroups = ["networkmanager" "wheel" ];
+    description = "${user}";
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };

@@ -44,7 +44,6 @@
     inkscape
     p3x-onenote
     notepad-next
-    cava
     qbittorrent
     youtube-music
     peaclock

@@ -1,16 +1,13 @@
 {
-  config,
   pkgs,
-	nix-colors,
+  nix-colors,
   ...
 }: {
   imports = [
     ./user/shell/sh.nix
-    ./user/programs/nixvim/nixvim.nix
-    ./user/programs/kitty/kitty.nix
     ./user/programs/programs.nix
     ./system/wm/wayland/hyprland.nix
-		nix-colors.homeManagerModules.default
+    nix-colors.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -50,7 +47,7 @@
       userEmail = "zain4utah@gmail.com";
     };
   };
-	colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
+  colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. If you don't want to manage your shell through Home
@@ -67,11 +64,11 @@
     EDITOR = "nvim";
   };
 
-	home.pointerCursor = {
-		gtk.enable = true;
-		package = pkgs.vanilla-dmz;
-		name = "Vanilla-DMZ";
-	};
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

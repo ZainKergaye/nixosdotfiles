@@ -47,7 +47,7 @@
 
       conform-nvim = {
         enable = true;
-        formattersByFt = {
+        settings.formattersByFt = {
           nix = ["alejandra"]; # Nix formatter
           "_" = ["prettierd"]; # default formatter
           java = ["astyle"]; # Java formatting
