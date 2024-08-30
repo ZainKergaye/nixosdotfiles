@@ -1,7 +1,9 @@
 # This is imported into home manager, make sure peaclock is installed as a system package before 
 # Zain Kergaye 8/30/24
 
-{config, ...}: {
+{config, pkgs, ...}: {
+  home.packages = [pkgs.peaclock];
+
   home.file."${config.xdg.configHome}/peaclock/config".text = ''
     # peaclock
     # default config

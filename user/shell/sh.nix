@@ -1,4 +1,4 @@
-{...}: let
+{lib, ...}: let
   user = "aegis";
   myAliases = {
     la = "ls -la";
@@ -10,7 +10,7 @@
   };
 in {
   programs.bash = {
-    enable = true;
+    enable = lib.mkDefault false; # Forces bash to be disabled unless some other file enables it
     shellAliases = myAliases;
   };
 

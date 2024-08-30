@@ -36,7 +36,6 @@
     ungoogled-chromium
     webcord
     neofetch
-    firefox
     whatsapp-for-linux
     syncthing
     syncthingtray
@@ -46,7 +45,6 @@
     notepad-next
     qbittorrent
     youtube-music
-    peaclock
     tetrio-desktop
     nextcloud-client
     ani-cli
