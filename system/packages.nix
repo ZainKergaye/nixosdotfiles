@@ -11,6 +11,7 @@
     onefetch
     bottles
 	python3 # For calculator
+	mars-mips # MIPS for CS3810
 
     # General devtools
     git

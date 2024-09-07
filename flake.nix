@@ -3,23 +3,18 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nix-colors.url = "github:misterio77/nix-colors";
+	nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
+    nixvim = { # NOTE: This is currently locked to older version of the branch
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
-
-    nix-colors = {
-      url = "github:misterio77/nix-colors";
     };
   };
 
@@ -29,6 +24,7 @@
     nixvim,
     nixos-hardware,
     nix-colors,
+	nixos-unstable-small,
     ...
   }: let
     system = "x86_64-linux";
