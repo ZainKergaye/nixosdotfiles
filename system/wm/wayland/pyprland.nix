@@ -18,12 +18,12 @@
     lazy = false
     size = "75% 45%"
 
-    [scratchpads.chrome]
-    animation = "fromBottom"
-    command = "chromium"
-    class = "chrome"
-    lazy = true
-    size = "75% 40%"
+    [scratchpads.todo]
+    animation = "fromRight"
+    command = "${pkgs.kitty}/bin/kitty --class nvim nvim /home/aegis/Downloads/TODO.md"
+    class = "todo"
+    lazy = false
+    size = "45% 75%"
 
     [scratchpads.term]
     animation = "fromTop"
@@ -32,7 +32,7 @@
     size = "75% 60%"
 
     [scratchpads.volume]
-    animation = "fromRight"
+    animation = "fromLeft"
     command = "${pkgs.pwvucontrol}/bin/pwvucontrol"
     class = "org.pulseaudio.pwvucontrol"
     lazy = true
@@ -42,8 +42,8 @@
 
   wayland.windowManager.hyprland.settings.bind = [
     "$mod ALT, I, exec, pypr toggle btop"
-    "$mod ALT, U, exec, pypr toggle chrome"
+    "$mod ALT, U, exec, pypr toggle todo"
     "$mod ALT, O, exec, pypr toggle term"
-    "$mod ALT, P, exec, pypr toggle volume"
+		#"$mod ALT, P, exec, pypr toggle volume"
   ];
 }

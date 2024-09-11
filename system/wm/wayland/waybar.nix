@@ -175,7 +175,7 @@ in {
 
       "height": 32,
 
-      "spacing": 4,
+      "spacing": 2,
 
       "exclusive": true,
 
@@ -275,7 +275,7 @@ in {
           "warning": 30,
           "critical": 15,
         },
-        "format": "Int: {capacity}%  {icon} ",
+        "format": "I: {capacity}%  {icon} ",
         "format-icons": ["", "", "", "", ""],
         "max-length": 25,
       },
@@ -287,7 +287,7 @@ in {
           "warning": 30,
           "critical": 15,
         },
-        "format": "Ext: {capacity}%  {icon} ",
+        "format": "E: {capacity}%  {icon} ",
         "format-icons": ["", "", "", "", ""],
         "max-length": 25,
       },
