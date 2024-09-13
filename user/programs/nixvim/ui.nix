@@ -1,8 +1,8 @@
 {...}: {
   programs.nixvim.plugins = {
     lualine.enable = true;
-    lualine.theme = "horizon";
-    lualine.disabledFiletypes.statusline = [
+    lualine.settings.optionstheme = "horizon";
+    lualine.settings.options.disabledFiletypes.statusline = [
       "NvimTree"
     ];
 
@@ -56,9 +56,28 @@
       enable = true;
       git = {
         enable = true;
-        ignore = true;
+        ignore = false;
       };
-      renderer.highlightGit = true;
+      renderer = {
+		highlightGit = true;
+		rootFolderLabel = false;
+		indentMarkers.enable = true;
+		icons = {
+		  glyphs = {
+		    default = "󰈚 ";
+            folder = {
+              default = " ";
+              empty = " ";
+			  emptyOpen = " ";
+              open = " ";
+              symlink = " ";
+		    };
+		  git = {
+			unmerged = "";
+		  };
+	    };
+		};
+	  };
       view.side = "right";
     };
 
