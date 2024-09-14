@@ -1,4 +1,4 @@
-{...}: {
+{ pkgs, ... }: {
   programs.nixvim.plugins = {
     lualine.enable = true;
     lualine.settings.optionstheme = "horizon";
@@ -20,10 +20,10 @@
         separator_style = "slant";
         diagnostics = "nvim_lsp";
         offsets = [
-          {filetype = "NvimTree";}
-          {text = "File Explorer";}
-          {highlight = "Directory";}
-          {separator = true;}
+          { filetype = "NvimTree"; }
+          { text = "File Explorer"; }
+          { highlight = "Directory"; }
+          { separator = true; }
         ];
       };
     };
@@ -59,25 +59,25 @@
         ignore = false;
       };
       renderer = {
-		highlightGit = true;
-		rootFolderLabel = false;
-		indentMarkers.enable = true;
-		icons = {
-		  glyphs = {
-		    default = "󰈚 ";
+        highlightGit = true;
+        rootFolderLabel = false;
+        indentMarkers.enable = true;
+        icons = {
+          glyphs = {
+            default = "󰈚 ";
             folder = {
               default = " ";
               empty = " ";
-			  emptyOpen = " ";
+              emptyOpen = " ";
               open = " ";
               symlink = " ";
-		    };
-		  git = {
-			unmerged = "";
-		  };
-	    };
-		};
-	  };
+            };
+            git = {
+              unmerged = "";
+            };
+          };
+        };
+      };
       view.side = "right";
     };
 
@@ -102,4 +102,10 @@
 
     nvim-colorizer.enable = true;
   };
+  programs.nixvim.extraPlugins = [
+    {
+      plugin = pkgs.vimPlugins.wrapping-nvim;
+      config = ''lua require("wrapping").setup()'';
+    }
+  ];
 }
