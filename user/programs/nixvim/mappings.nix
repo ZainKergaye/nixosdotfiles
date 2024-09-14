@@ -13,7 +13,7 @@
 
       {
         key = "<leader>fm";
-        action = ":lua require('conform').format()<CR>";
+        action = "<cmd> Format <CR>";
         mode = "n";
         options = {
           silent = true;

@@ -7,7 +7,6 @@
     prettierd # File formatter
     vimPlugins.luasnip
     astyle
-    google-java-format
     onefetch
     bottles
 	python3 # For calculator
