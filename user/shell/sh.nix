@@ -1,4 +1,5 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   user = "aegis";
   myAliases = {
     la = "ls -la";
@@ -6,9 +7,10 @@
     upgrade = "sudo nixos-rebuild switch --flake /home/${user}/.dotfiles/.";
     homeupgrade = "home-manager switch --flake /home/${user}/.dotfiles/.";
     c = "python3 -Bqic 'from math import *'";
-	peaclock = "peaclock --config-dir=/home/${user}/.config/peaclock/";
+    peaclock = "peaclock --config-dir=/home/${user}/.config/peaclock/";
   };
-in {
+in
+{
   programs.bash = {
     enable = lib.mkDefault false; # Forces bash to be disabled unless some other file enables it
     shellAliases = myAliases;

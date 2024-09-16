@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./mappings.nix
     ./lsp.nix
@@ -37,17 +37,17 @@
           "HELP" = {
             icon = "󰮥 ";
             color = "warning";
-            alt = ["FUCK" "AAAA" "REEE"];
+            alt = [ "FUCK" "AAAA" "REEE" ];
           };
           "LABEL" = {
             icon = "󰌕 ";
             color = "info";
-            alt = ["FILL IN"];
+            alt = [ "FILL IN" ];
           };
           "DEPRICATED" = {
             icon = "󰁨 ";
             color = "warning";
-            alt = ["DEP" "UNEEDED"];
+            alt = [ "DEP" "UNEEDED" ];
           };
         };
       };

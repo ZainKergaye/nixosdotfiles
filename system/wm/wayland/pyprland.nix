@@ -1,8 +1,7 @@
 # Python plugins for hyprland: 
 # Using pyprland for scratchpads 
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
 
   home.file.".config/hypr/pyprland.toml".text = ''
@@ -44,6 +43,6 @@
     "$mod ALT, I, exec, pypr toggle btop"
     "$mod ALT, U, exec, pypr toggle todo"
     "$mod ALT, O, exec, pypr toggle term"
-		#"$mod ALT, P, exec, pypr toggle volume"
+    #"$mod ALT, P, exec, pypr toggle volume"
   ];
 }

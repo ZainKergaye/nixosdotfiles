@@ -1,16 +1,16 @@
 # Imported into home-manager
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./alacritty.nix
     ./cava.nix
-	./peaclock.nix
-	./nixvim/nixvim.nix
-	./kitty.nix
+    ./peaclock.nix
+    ./nixvim/nixvim.nix
+    ./kitty.nix
   ];
 
-	home.packages = [
-		pkgs.firefox
-	];
+  home.packages = [
+    pkgs.firefox
+  ];
 
   programs = {
     direnv = {

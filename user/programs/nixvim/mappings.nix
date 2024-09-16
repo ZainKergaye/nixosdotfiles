@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   programs.nixvim = {
     keymaps = [
       {
@@ -263,7 +263,7 @@
           __unkeyed-1 = "<Leader>gD";
           desc = "Goto reference";
         }
-		
+
         {
           __unkeyed-1 = "<Leader>gd";
           desc = "Goto definition";

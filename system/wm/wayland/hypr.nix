@@ -1,22 +1,22 @@
 # Hyprland config imported into configuration
-{pkgs, ...}: {
+{ pkgs, ... }: {
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1"; 
+    NIXOS_OZONE_WL = "1";
   };
 
-	#systemd.user.services."aegis" = { 
-	#description = "Script to start Hyprland right after login";
-	#script = "Hyprland";
-	#wantedBy = [ "multi-user.target" ]; # starts after login
-	#};
-	# BUG: This stops hyprland from starting up
+  #systemd.user.services."aegis" = {
+  #description = "Script to start Hyprland right after login";
+  #script = "Hyprland";
+  #wantedBy = [ "multi-user.target" ]; # starts after login
+  #};
+  # BUG: This stops hyprland from starting up
 
   environment.systemPackages = with pkgs; [
     # Status bar
     waybar
     (
       waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
       })
     )
 
@@ -39,9 +39,9 @@
     xdg-desktop-portal-hyprland
     xwaylandvideobridge
     xwayland
-	pyprland
-	wayland-scanner
-	hyprwayland-scanner
+    pyprland
+    wayland-scanner
+    hyprwayland-scanner
 
     # Audio
     pwvucontrol
@@ -65,7 +65,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 
   services.libinput.enable = true; # touchpad

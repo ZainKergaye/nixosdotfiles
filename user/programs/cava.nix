@@ -1,6 +1,8 @@
-{config, ...}: let 
-palette = config.colorScheme.palette;
-in {
+{ config, ... }:
+let
+  palette = config.colorScheme.palette;
+in
+{
   programs.cava.enable = true;
 
   home.file.".config/cava/config" = {

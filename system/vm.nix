@@ -1,9 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # system management tool
   programs.dconf.enable = true;
 
   # User to be added to libvirtd group
-  users.users.aegis.extraGroups = ["libvirtd"];
+  users.users.aegis.extraGroups = [ "libvirtd" ];
 
   environment.systemPackages = with pkgs; [
     virt-manager
@@ -17,7 +17,7 @@
     glib
 
     # For solidworks:
-		#virtualboxKvm
+    #virtualboxKvm
   ];
 
   programs.virt-manager.enable = true;
@@ -30,7 +30,7 @@
         swtpm.enable = true;
         # Secure boot
         ovmf.enable = true;
-        ovmf.packages = [pkgs.OVMFFull.fd];
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
     spiceUSBRedirection.enable = true;
@@ -38,7 +38,7 @@
     virtualbox = {
       host = {
         enable = true;
-				#enableKvm = true;
+        #enableKvm = true;
       };
     };
   };

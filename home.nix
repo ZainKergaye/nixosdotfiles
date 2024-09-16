@@ -1,7 +1,6 @@
-{
-  pkgs,
-  nix-colors,
-  ...
+{ pkgs
+, nix-colors
+, ...
 }: {
   imports = [
     ./user/shell/sh.nix

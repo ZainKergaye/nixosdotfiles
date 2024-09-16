@@ -1,8 +1,8 @@
-{pkgs, ...}: 
-
-let 
-	user = "aegis";
-in {
+{ pkgs, ... }:
+let
+  user = "aegis";
+in
+{
   imports = [
     ./hardware-configuration.nix
     ./system/wm/wayland/hypr.nix
@@ -16,7 +16,7 @@ in {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["acpi_backlight=native"];
+  boot.kernelParams = [ "acpi_backlight=native" ];
 
   networking.hostName = "conduit"; # Define your hostname.
 
@@ -46,7 +46,7 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.brlaser];
+  services.printing.drivers = [ pkgs.brlaser ];
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -67,7 +67,7 @@ in {
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };

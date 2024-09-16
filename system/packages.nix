@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  users.users.aegis.extraGroups = ["wireshark" "video" "disk"]; # disk for rpi-imager
+{ pkgs, ... }: {
+  users.users.aegis.extraGroups = [ "wireshark" "video" "disk" ]; # disk for rpi-imager
 
   environment.systemPackages = with pkgs; [
     # Dev packages
@@ -9,8 +9,8 @@
     astyle
     onefetch
     bottles
-	python3 # For calculator
-	mars-mips # MIPS for CS3810
+    python3 # For calculator
+    mars-mips # MIPS for CS3810
 
     # General devtools
     git
