@@ -8,6 +8,7 @@ let
     homeupgrade = "home-manager switch --flake /home/${user}/.dotfiles/.";
     c = "python3 -Bqic 'from math import *'";
     peaclock = "peaclock --config-dir=/home/${user}/.config/peaclock/";
+    restart-waybar = "pkill waybar && hyprctl dispatch exec waybar";
   };
 in
 {

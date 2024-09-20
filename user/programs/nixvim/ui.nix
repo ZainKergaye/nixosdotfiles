@@ -1,10 +1,18 @@
-{ pkgs, ... }: {
+{ pkgs
+, lib
+, ...
+}: {
   programs.nixvim.plugins = {
-    lualine.enable = true;
-    lualine.settings.optionstheme = "horizon";
-    lualine.settings.options.disabledFiletypes.statusline = [
-      "NvimTree"
-    ];
+    lualine = {
+      enable = true;
+      settings = {
+        optionstheme = "horizon";
+        settings.options.disabledFiletypes.statusline = [
+          "NvimTree"
+          "nvim-tree"
+        ];
+      };
+    };
 
     which-key = {
       enable = true;
@@ -101,11 +109,36 @@
     notify.enable = true;
 
     nvim-colorizer.enable = true;
+
+    image.enable = true; # image support
+
+    illuminate = {
+      enable = true; # Used to illuminate same words
+      filetypesDenylist = [
+        "dirvish"
+        "fugitive"
+        "nvimtree"
+        "nvim-tree"
+        "NvimTree"
+      ];
+    };
   };
   programs.nixvim.extraPlugins = [
     {
       plugin = pkgs.vimPlugins.wrapping-nvim;
-      config = ''lua require("wrapping").setup()'';
     }
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "beacon";
+      src = pkgs.fetchFromGitHub {
+        owner = "DanilaMihailov";
+        repo = "beacon.nvim";
+        rev = "v2.0.0";
+        hash = "sha256-w5uhTVYRgkVCbJ5wrNTKs8bwSpH+4REAr9gaZrbknH8=";
+      };
+    })
   ];
+  programs.nixvim.extraConfigLua = ''
+    require("wrapping").setup()
+    require('beacon').setup()
+  '';
 }

@@ -1,5 +1,6 @@
 { pkgs, ... }: {
-  users.users.aegis.extraGroups = [ "wireshark" "video" "disk" ]; # disk for rpi-imager
+  users.users.aegis.extraGroups = [ "wireshark" "video" "disk" "dialout" ]; # disk for rpi-imager
+  # user group dialout for rw to serial ports
 
   environment.systemPackages = with pkgs; [
     # Dev packages
@@ -30,7 +31,7 @@
 
     # System tools
     brightnessctl
-    fprintd
+    #fprintd fails on current build
 
     # User packages
     ungoogled-chromium
