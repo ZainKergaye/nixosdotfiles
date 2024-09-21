@@ -231,6 +231,13 @@
         options.desc = "Find recents";
       }
 
+      {
+        key = "<Leader>tn";
+        action = "<cmd> Telescope notify <CR>";
+        mode = "n";
+        options.desc = "Recent notifications";
+      }
+
       ## LSP
 
       {

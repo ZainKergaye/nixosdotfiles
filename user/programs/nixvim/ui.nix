@@ -1,15 +1,14 @@
-{ pkgs
-, lib
-, ...
-}: {
+{ pkgs, ... }: {
   programs.nixvim.plugins = {
     lualine = {
       enable = true;
       settings = {
         optionstheme = "horizon";
         settings.options.disabledFiletypes.statusline = [
+          "nvimtree"
           "NvimTree"
           "nvim-tree"
+          "NvimTree_1"
         ];
       };
     };
@@ -106,7 +105,10 @@
 
     telescope.enable = true;
 
-    notify.enable = true;
+    notify = {
+      enable = true;
+      render = "minimal";
+    };
 
     nvim-colorizer.enable = true;
 
@@ -115,6 +117,8 @@
     illuminate = {
       enable = true; # Used to illuminate same words
       filetypesDenylist = [
+        "adoc"
+        "asciidoc"
         "dirvish"
         "fugitive"
         "nvimtree"
@@ -122,6 +126,8 @@
         "NvimTree"
       ];
     };
+
+    noice.enable = true; # popup cmd prompt
   };
   programs.nixvim.extraPlugins = [
     {
