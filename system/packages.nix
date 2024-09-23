@@ -31,7 +31,7 @@
 
     # System tools
     brightnessctl
-    #fprintd fails on current build
+    fprintd
 
     # User packages
     ungoogled-chromium

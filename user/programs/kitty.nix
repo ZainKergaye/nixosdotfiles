@@ -6,7 +6,7 @@
       name = "FiraCode Nerd Font";
       size = 16;
     };
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
     settings = {
       wayland_titlebar_color = "system";
       #background_opacity = 0.5;

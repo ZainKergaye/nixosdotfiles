@@ -11,6 +11,7 @@ in
     ./system/vm.nix
     ./system/gaming.nix
     ./system/keybinds.nix
+    ./system/biometrics.nix
   ];
 
   # Bootloader.

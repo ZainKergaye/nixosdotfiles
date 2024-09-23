@@ -238,6 +238,20 @@
         options.desc = "Recent notifications";
       }
 
+      {
+        key = "<Leader>te";
+        action = "<cmd> TodoQuickFix <CR>";
+        mode = "n";
+        options.desc = "TODO summary";
+      }
+
+      {
+        key = "<Leader>tc";
+        action = "<cmd> TodoTelescope <CR>";
+        mode = "n";
+        options.desc = "TODO telescope";
+      }
+
       ## LSP
 
       {
@@ -245,6 +259,13 @@
         action = "vim.lsp.buf.rename()";
         mode = "n";
         options.desc = "LSP Rename";
+      }
+
+      {
+        key = "<Leader>tw";
+        action = "<cmd> ToggleWrapMode <CR>";
+        mode = "n";
+        options.desc = "Toggle wrap mode";
       }
     ];
 

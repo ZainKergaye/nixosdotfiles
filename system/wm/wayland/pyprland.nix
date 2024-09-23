@@ -1,9 +1,6 @@
-# Python plugins for hyprland: 
-# Using pyprland for scratchpads 
-{ pkgs
-, ...
-}: {
-
+# Python plugins for hyprland:
+# Using pyprland for scratchpads
+{ pkgs, ... }: {
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
     plugins = [
@@ -18,9 +15,9 @@
     size = "75% 45%"
 
     [scratchpads.todo]
-    animation = "fromRight"
-    command = "${pkgs.kitty}/bin/kitty --class nvim nvim /home/aegis/Downloads/TODO.md"
-    class = "todo"
+    animation = "fromLeft"
+    command = "${pkgs.kitty}/bin/kitty --class nvim --hold nvim /home/aegis/Downloads/TODO.md"
+    class = "nvim"
     lazy = false
     size = "45% 75%"
 
@@ -30,19 +27,18 @@
     class = "kitty-dropterm"
     size = "75% 60%"
 
-    [scratchpads.volume]
+    [scratchpads.termtwo]
     animation = "fromLeft"
-    command = "${pkgs.pwvucontrol}/bin/pwvucontrol"
-    class = "org.pulseaudio.pwvucontrol"
+    command = "${pkgs.kitty}/bin/kitty --class term --hold neofetch"
+    class = "term"
     lazy = true
     size = "40% 90%"
-    unfocus = "hide"
   '';
 
   wayland.windowManager.hyprland.settings.bind = [
     "$mod ALT, I, exec, pypr toggle btop"
     "$mod ALT, U, exec, pypr toggle todo"
     "$mod ALT, O, exec, pypr toggle term"
-    #"$mod ALT, P, exec, pypr toggle volume"
+    "$mod ALT, P, exec, pypr toggle termtwo"
   ];
 }
