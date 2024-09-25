@@ -5,13 +5,13 @@
     }
 
     listener {
-      timeout = 600                            # 10min
+      timeout = 600     # 10min
       on-timeout = ${pkgs.swaylock}/bin/swaylock
-      on-resume = ${pkgs.libnotify}/bin/notify-send "Hi aegis 🍃" "Welcome Back  ʕっ•ᴥ•ʔっ"
+      on-resume = ${pkgs.dunst}/bin/dunstify "Hi aegis 🍃" "Welcome Back  ʕっ•ᴥ•ʔっ"
     }
 
     listener {
-      timeout = 1800                           # 30min
+      timeout = 1800        # 30min
       on-timeout = ${pkgs.hyprland}/bin/hyprctl dispatch dpms off
       on-resume = ${pkgs.hyprland}/bin/hyprctl dispatch dpms on
     }
