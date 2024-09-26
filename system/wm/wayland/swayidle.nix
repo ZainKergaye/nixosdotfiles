@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  # HELP: Does not currently work
   home.file.".config/hypr/hypridle.conf".text = ''
     general {
       ignore_dbus_inhibit = false             # whether to ignore dbus-sent idle-inhibit requests (used by e.g. firefox or steam)

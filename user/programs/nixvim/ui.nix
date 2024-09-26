@@ -4,12 +4,20 @@
       enable = true;
       settings = {
         optionstheme = "horizon";
-        settings.options.disabledFiletypes.statusline = [
-          "nvimtree"
-          "NvimTree"
-          "nvim-tree"
-          "NvimTree_1"
-        ];
+        settings.options.disabled_filetypes = {
+          statusline = [
+            "nvimtree"
+            "NvimTree"
+            "nvim-tree"
+            "NvimTree_1"
+          ];
+          winbar = [
+            "nvimtree"
+            "NvimTree"
+            "nvim-tree"
+            "NvimTree_1"
+          ];
+        };
       };
     };
 
@@ -86,6 +94,7 @@
         };
       };
       view.side = "right";
+      hijackCursor = true;
     };
 
     navic.enable = false; # Not setup
