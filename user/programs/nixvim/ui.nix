@@ -5,6 +5,7 @@
       settings = {
         optionstheme = "horizon";
         settings.options.disabled_filetypes = {
+          # BUG: Still not hiding for nvim tree
           statusline = [
             "nvimtree"
             "NvimTree"
@@ -143,6 +144,7 @@
       plugin = pkgs.vimPlugins.wrapping-nvim;
     }
     (pkgs.vimUtils.buildVimPlugin {
+      # TODO: Add to nixvim plugins
       name = "beacon";
       src = pkgs.fetchFromGitHub {
         owner = "DanilaMihailov";
