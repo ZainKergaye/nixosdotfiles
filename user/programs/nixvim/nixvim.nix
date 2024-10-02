@@ -5,6 +5,7 @@
     ./ui.nix
     #./dap.nix
     ./greeting.nix
+    ./window.nix
   ];
 
   programs.nixvim = {
