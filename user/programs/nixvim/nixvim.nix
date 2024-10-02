@@ -28,10 +28,6 @@
       vim.opt.mouse=""
     '';
 
-    extraPackages = [
-      pkgs.wl-clipboard
-    ];
-
     colorschemes.catppuccin = {
       enable = true;
       settings.flavour = "mocha";
