@@ -21,6 +21,16 @@
         };
       }
 
+      {
+        key = "<leader>tf";
+        action = "<cmd> FormatToggle <CR>";
+        mode = "n";
+        options = {
+          silent = false; # HELP: Not working yet 
+          desc = "Format Toggle";
+        };
+      }
+
       # Line numbers
       {
         key = "<leader>n";
