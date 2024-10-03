@@ -6,7 +6,7 @@
     ];
 
     bindl = [
-      # Laptop lid actions
+      # Laptop lid actions BUG: Doesn't work
       ", switch:24ffa00, exec, swaylock"
       ", switch:on:24ffa00, exec, swaylock"
     ];

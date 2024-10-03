@@ -20,8 +20,9 @@
       tabstop = 4;
       softtabstop = 4;
       shiftwidth = 4;
-      clipboard.wl-copy.enable = true;
     };
+
+    clipboard.providers.wl-copy.enable = true;
 
     # Disables the mouse from messing with cursor
     extraConfigLua = ''
