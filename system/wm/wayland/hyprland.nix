@@ -5,7 +5,7 @@
     ./dunst.nix
     ./waybar.nix
     ./rofi.nix
-    ./swayidle.nix
+    ./idle.nix
     ./swaylock.nix
     ./wlogout.nix
     ./pyprland.nix

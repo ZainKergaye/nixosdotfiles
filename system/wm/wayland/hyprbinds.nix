@@ -12,7 +12,7 @@
     ];
 
     binde = [
-      # binde repeats command while being help
+      # binde repeats command while being held
       ",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
       ",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
       ",XF86MonBrightnessUp, exec, brightnessctl s 80+"
@@ -36,6 +36,7 @@
         "$mod, F, fullscreen"
         "$mod, S, togglesplit"
         #"$mod, G, toggleopaque" DEP: Find replacement
+        "$mod, G, togglegroup"
         "$mod, T, pin"
 
         "$mod, SPACE, exec, rofi -show drun"
