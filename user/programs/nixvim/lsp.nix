@@ -13,6 +13,7 @@
           cssls.enable = true;
           html.enable = true;
           bashls.enable = true;
+          pylsp.enable = true;
         };
       };
 
