@@ -37,7 +37,6 @@
     ungoogled-chromium
     webcord
     neofetch
-    whatsapp-for-linux
     syncthing
     syncthingtray
     libreoffice

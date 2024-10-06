@@ -8,8 +8,9 @@
     ./kitty.nix
   ];
 
-  home.packages = [
-    pkgs.firefox
+  home.packages = with pkgs; [
+    firefox
+    zapzap
   ];
 
   programs = {
