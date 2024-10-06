@@ -9,6 +9,7 @@
     ./swaylock.nix
     ./wlogout.nix
     ./pyprland.nix
+    ./colors.nix
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -34,14 +35,13 @@
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
-        "col.active_border, rgba(33ccffee) rgba(00ff99ee) 45deg"
-        "col.active_border, rgba(33ccffee) rgba(00ff99ee) 45deg"
-        "col.inactive_border, rgba(595959aa)"
-        "col.shadow, rgba(1a1a1aee)"
 
-        "workspace_swipe, true" # Workspace gestures, 3 fingers on trackpad
         "natural_scroll, true"
       ];
+
+      gestures = {
+        workspace_swipe = true;
+      };
 
       exec-once = [
         "nm-applet"
@@ -63,24 +63,8 @@
 
         layout = "dwindle";
       };
-      decoration = {
-        rounding = 10;
 
-        active_opacity = 1.0;
-        inactive_opacity = 1.0;
-
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-
-          vibrancy = 0.1696;
-        };
-      };
+      misc.key_press_enables_dpms = true;
 
       animations = {
         enabled = true;
