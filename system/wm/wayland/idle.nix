@@ -3,7 +3,10 @@
 # 2. Locks the screen at 5 mins
 # 3. Sleeps the pc at 30 mins
 # 4. Hibernates the computer at 2 hours
-{ pkgs, ... }: {
+{ pkgs
+, config
+, ...
+}: {
   services.swayidle = {
     enable = true;
     package = pkgs.swayidle;
@@ -39,5 +42,7 @@
   };
   home.packages = with pkgs; [
     swayidle
+    sway-audio-idle-inhibit
   ];
+  wayland.windowManager.hyprland.settings.exec-once = [ "exec sway-audio-idle-inhibit" ];
 }
