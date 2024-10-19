@@ -1,5 +1,5 @@
 # Hyprland config for home-manager
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ./hyprbinds.nix
     ./dunst.nix
@@ -11,6 +11,17 @@
     ./pyprland.nix
     ./colors.nix
   ];
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "ant-theme";
+      package = pkgs.ant-theme;
+    };
+  };
+
+  home.sessionVariables.GTK_THEME = "adwaita-icon-theme";
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

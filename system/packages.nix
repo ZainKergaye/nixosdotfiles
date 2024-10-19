@@ -10,7 +10,7 @@
     astyle
     onefetch
     bottles
-    python3 # For calculator
+	python3 # For calculator
     mars-mips # MIPS for CS3810
 
     # General devtools
@@ -36,7 +36,6 @@
     # User packages
     ungoogled-chromium
     webcord
-    neofetch
     syncthing
     syncthingtray
     libreoffice

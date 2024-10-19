@@ -3,12 +3,13 @@ let
   user = "aegis";
   myAliases = {
     la = "ls -la";
-    update = "nix flake update /home/${user}/.dotfiles/.";
+    update = "nix flake update --flake /home/${user}/.dotfiles/.";
     upgrade = "sudo nixos-rebuild switch --flake /home/${user}/.dotfiles/.";
     homeupgrade = "home-manager switch --flake /home/${user}/.dotfiles/.";
     c = "python3 -Bqic 'from math import *'";
     peaclock = "peaclock --config-dir=/home/${user}/.config/peaclock/";
     restart-waybar = "pkill waybar && hyprctl dispatch exec waybar";
+    neofetch = "fastfetch";
   };
 in
 {

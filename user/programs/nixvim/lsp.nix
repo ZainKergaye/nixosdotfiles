@@ -4,8 +4,8 @@
       lsp = {
         enable = true;
         servers = {
-          nil-ls.enable = true; # LS for Nix
-          java-language-server = {
+          nil_ls.enable = true; # LS for Nix
+          java_language_server = {
             enable = true;
             cmd = [ "/home/aegis/.start-jdt-server" ];
             package = pkgs."jdt-language-server";
@@ -46,6 +46,7 @@
           { name = "cmp-dap"; }
         ];
       };
+
       # LSP's used: css html nix bash java lua asm?
       # Completion path buffer snippy luasnip cmp-dap
       lsp-format.enable = true;
@@ -61,6 +62,30 @@
         };
       };
     };
+
+    # Ability to toggle cmp
+    extraConfigLua = ''
+      local cmp_enabled = true
+        vim.api.nvim_create_user_command("ToggleAutoComplete", function()
+        	if cmp_enabled then
+        		require("cmp").setup.buffer({ enabled = false })
+       require("notify")("Disabled Autocomplete")
+        		cmp_enabled = false
+        	else
+        		require("cmp").setup.buffer({ enabled = true })
+       require("notify")("Enabled Autocomplete")
+        		cmp_enabled = true
+        	end
+        end, {})
+    '';
+    keymaps = [
+      {
+        key = "<Leader>ta";
+        action = "<cmd> ToggleAutoComplete <CR>";
+        mode = "n";
+        options.desc = "Toggle Autocomplete";
+      }
+    ];
   };
 
   home.file = {

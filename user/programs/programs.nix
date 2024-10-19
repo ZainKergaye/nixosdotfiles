@@ -6,11 +6,12 @@
     ./peaclock.nix
     ./nixvim/nixvim.nix
     ./kitty.nix
+    ./fastfetch.nix
   ];
 
   home.packages = with pkgs; [
     firefox
-    zapzap
+		#zapzap
   ];
 
   programs = {

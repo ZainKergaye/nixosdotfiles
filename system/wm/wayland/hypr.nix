@@ -25,7 +25,8 @@
     libnotify
 
     # Wallpaper
-    swww
+    swww # Backend
+    waypaper # GUI
 
     # App Launcher
     rofi-wayland
@@ -46,9 +47,10 @@
     # Audio
     pwvucontrol
 
-    # Cursor
+    # Theme
     glib
     adwaita-icon-theme
+    ant-theme
 
     # Locking / Sleeping
     hyprlock

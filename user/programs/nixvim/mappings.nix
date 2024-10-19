@@ -26,7 +26,7 @@
         action = "<cmd> FormatToggle <CR>";
         mode = "n";
         options = {
-          silent = false; # HELP: Not working yet 
+          silent = false; # HELP: Not working yet
           desc = "Format Toggle";
         };
       }
@@ -239,6 +239,13 @@
         action = "<cmd> Telescope oldfiles <CR>";
         mode = "n";
         options.desc = "Find recents";
+      }
+
+      {
+        key = "<Leader>fg";
+        action = "<cmd> Telescope live_grep <CR>";
+        mode = "n";
+        options.desc = "Telescope live grep";
       }
 
       {

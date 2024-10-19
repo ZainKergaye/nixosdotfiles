@@ -73,6 +73,7 @@ in
           border-radius: 8px;
           margin: 4px 4px;
           background-color: #${palette.base01};
+    color: #${palette.base05};
         }
 
         #battery {
@@ -81,6 +82,7 @@ in
           border-radius: 8px;
           margin: 4px 4px;
           background-color: #${palette.base01};
+    color: #${palette.base05};
         }
 
         #battery.warning {
@@ -100,12 +102,12 @@ in
 
      #battery.critical:not(.charging) {
         	background-color: #${palette.base08};
-     	color: #${palette.base01};
-     	animation-name: blink;
-     	animation-duration: 0.5s;
-     	animation-timing-function: linear;
-     	animation-iteration-count: infinite;
-     	animation-direction: alternate;
+        color: #${palette.base01};
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
      }
 
      #battery.plugged {
@@ -182,7 +184,7 @@ in
 
           "position": "top",
 
-          "height": 32,
+          "height": 33,
 
           "spacing": 2,
 
@@ -194,7 +196,7 @@ in
 
           "fixed-center": true,
 
-          "modules-left": ["custom/logo", "hyprland/workspaces", "custom/audio_idle_inhibitor", "hyprland/window"],
+          "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
 
           "modules-center": ["custom/sep", "clock#simpleclock", "custom/sep"],
 
@@ -253,7 +255,7 @@ in
             "format": " ",
             "tooltip": false,
             "on-click": "chromium-browser --new-window 'https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query=+'",
-            "on-click-middle": "kitty --hold neofetch",
+            "on-click-middle": "kitty --hold fastfetch",
       "on-click-right": "chromium-browser --new-window 'https://utah.instructure.com/'",
           },
 
@@ -320,5 +322,5 @@ in
     },
         }
 
-  ''; # TODO: Rice audio inhibitor
+  '';
 }

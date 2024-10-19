@@ -30,6 +30,7 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      smallPkgs = nixos-unstable-small.legacyPackages.${system};
       lib = nixpkgs.lib;
     in
     {
@@ -46,6 +47,7 @@
       homeConfigurations = {
         aegis = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+          # What is the diff between inherit and extraSpecialArgs inherit?
           extraSpecialArgs = { inherit nix-colors; };
           modules = [
             ./home.nix

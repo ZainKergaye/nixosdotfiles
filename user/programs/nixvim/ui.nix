@@ -41,7 +41,11 @@
       render = "minimal";
     };
 
-    nvim-colorizer.enable = true;
+    nvim-colorizer = {
+      enable = true;
+      userDefaultOptions.names = false;
+      fileTypes = [ "css" "scss" ];
+    };
 
     image.enable = true; # image support
 

@@ -1,7 +1,4 @@
-{ pkgs
-, nix-colors
-, ...
-}: {
+{ nix-colors, ... }: {
   imports = [
     ./user/shell/sh.nix
     ./user/programs/programs.nix
@@ -21,7 +18,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "24.05"; # Please read the comment before changing.
 
   programs = {
     btop = {
@@ -46,29 +43,12 @@
       userEmail = "zain4utah@gmail.com";
     };
   };
+
   colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/zain/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     EDITOR = "nvim";
   };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.vanilla-dmz;
-    name = "Vanilla-DMZ";
-  };
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
