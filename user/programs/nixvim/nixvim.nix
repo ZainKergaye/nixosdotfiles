@@ -6,6 +6,7 @@
     #./dap.nix
     ./greeting.nix
     ./window.nix
+    ./cmp.nix
   ];
 
   programs.nixvim = {
@@ -13,6 +14,12 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+
+    # Performance
+    performance = {
+      byteCompileLua.enable = true;
+      combinePlugins.enable = true;
+    };
 
     globals.mapleader = " ";
 

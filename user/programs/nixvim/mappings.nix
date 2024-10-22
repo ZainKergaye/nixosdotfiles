@@ -11,26 +11,6 @@
         };
       }
 
-      {
-        key = "<leader>fm";
-        action = "<cmd> Format <CR>";
-        mode = "n";
-        options = {
-          silent = true;
-          desc = "Format Files";
-        };
-      }
-
-      {
-        key = "<leader>tf";
-        action = "<cmd> FormatToggle <CR>";
-        mode = "n";
-        options = {
-          silent = false; # HELP: Not working yet
-          desc = "Format Toggle";
-        };
-      }
-
       # Line numbers
       {
         key = "<leader>n";
@@ -286,16 +266,6 @@
       }
     ];
 
-    plugins.cmp.settings.mapping = {
-      "<Tab>" = "cmp.mapping.select_next_item()";
-      "<S-Tab>" = "cmp.mapping.select_prev_item()";
-      "<C-j>" = "cmp.mapping.scroll_docs(4)";
-      "<C-k>" = "cmp.mapping.scroll_docs(-4)";
-      "<C-Space>" = "cmp.mapping.complete()";
-      "<C-Esc>" = "cmp.mapping.close()";
-      "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
-    };
-
     plugins.lsp.keymaps.lspBuf = {
       "K" = "hover";
       "<Leader>gD" = "references";
@@ -327,6 +297,15 @@
         {
           __unkeyed-1 = "<Leader>gs";
           desc = "Git stage options";
+        }
+
+        {
+          __unkeyed-1 = "<Leader>gc";
+          desc = "Comment lines";
+        }
+        {
+          __unkeyed-1 = "<Leader>gcc";
+          desc = "Comment line";
         }
       ];
     };

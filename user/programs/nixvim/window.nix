@@ -58,7 +58,14 @@
       renderer = {
         highlightGit = true;
         rootFolderLabel = false;
-        indentMarkers.enable = true;
+        indentMarkers = {
+          enable = true;
+          icons = {
+            bottom = "─";
+            edge = "│";
+            corner = "╰";
+          };
+        };
         icons = {
           glyphs = {
             default = "󰈚 ";
