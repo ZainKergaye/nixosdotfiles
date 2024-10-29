@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
+  # Not yet in my current config, didn't need it yet.
+
+  # For next semester: set this up and
+  # https://github.com/andythigpen/nvim-coverage
   programs.nixvim = {
     plugins.cmp-dap.enable = true;
     plugins.dap = {
@@ -43,7 +47,7 @@
         dap-ui = {
           enable = true;
           floating.mappings = {
-            close = ["<ESC>" "q"];
+            close = [ "<ESC>" "q" ];
           };
         };
         dap-virtual-text = {
@@ -63,7 +67,6 @@
         ];
       };
     };
-
 
     keymaps = [
       {
@@ -233,7 +236,7 @@
         };
       }
       {
-        mode = ["n" "v"];
+        mode = [ "n" "v" ];
         key = "<leader>de";
         action = "<cmd>lua require('dapui').eval()<cr>";
         options = {

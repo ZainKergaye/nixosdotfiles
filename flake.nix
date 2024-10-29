@@ -30,7 +30,7 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      smallPkgs = nixos-unstable-small.legacyPackages.${system};
+      unstable = nixos-unstable-small.legacyPackages.${system};
       lib = nixpkgs.lib;
     in
     {
@@ -48,7 +48,10 @@
         aegis = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           # What is the diff between inherit and extraSpecialArgs inherit?
-          extraSpecialArgs = { inherit nix-colors; };
+          extraSpecialArgs = {
+            inherit nix-colors;
+            inherit unstable;
+          };
           modules = [
             ./home.nix
             nixvim.homeManagerModules.nixvim

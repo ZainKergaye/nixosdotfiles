@@ -1,6 +1,7 @@
 { pkgs, ... }: {
-  users.users.aegis.extraGroups = [ "wireshark" "video" "disk" "dialout" ]; # disk for rpi-imager
+  users.users.aegis.extraGroups = [ "wireshark" "video" "disk" "dialout" "vboxusers" ]; # disk for rpi-imager
   # user group dialout for rw to serial ports
+  # vbox users for vbox to usb devices
 
   environment.systemPackages = with pkgs; [
     # Dev packages
@@ -10,7 +11,7 @@
     astyle
     onefetch
     bottles
-	python3 # For calculator
+    python3 # For calculator
     mars-mips # MIPS for CS3810
 
     # General devtools

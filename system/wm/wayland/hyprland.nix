@@ -10,17 +10,8 @@
     ./wlogout.nix
     ./pyprland.nix
     ./colors.nix
+    ./monitor_connect.nix
   ];
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "ant-theme";
-      package = pkgs.ant-theme;
-    };
-  };
-
-  home.sessionVariables.GTK_THEME = "adwaita-icon-theme";
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -48,6 +39,7 @@
         "HYPRCURSOR_SIZE,24"
 
         "natural_scroll, true"
+        "QT_QPA_PLATFORMTHEME,qt6ct" # for Qt apps
       ];
 
       gestures = {

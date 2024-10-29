@@ -237,8 +237,8 @@ in
           },
 
           "pulseaudio": {
-            "format": "{icon} {volume}%",
-            "format-muted": "  muted",
+            "format": "{icon}  {volume}%",
+            "format-muted": "  Muted",
             "format-icons": {
               "headphone": " ",
               "hands-free": "󰂑",

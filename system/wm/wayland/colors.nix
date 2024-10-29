@@ -1,5 +1,7 @@
 { lib
 , config
+, pkgs
+, unstable
 , ...
 }:
 let
@@ -63,4 +65,44 @@ in
       };
     };
   };
+
+  # GTK things for hyprland
+
+  # Hate setting this up, I'm throwing a bunch of things at this problem with no knowledge of what they do
+
+  home.packages = [
+    pkgs.capitaine-cursors
+    unstable.dracula-theme
+    pkgs.noto-fonts
+    unstable.papirus-maia-icon-theme
+    pkgs.gtk3
+    pkgs.gsettings-desktop-schemas
+  ];
+
+  gtk = {
+    enable = true;
+    font.name = "Noto Sans";
+    font.package = pkgs.noto-fonts;
+    theme.name = "Dracula";
+    theme.package = unstable.dracula-theme;
+    iconTheme.name = "Papirus-Dark-Maia"; # Candy and Tela also look good
+    iconTheme.package = unstable.papirus-maia-icon-theme;
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+      gtk-key-theme-name = "Emacs";
+      gtk-icon-theme-name = "Papirus-Dark-Maia";
+      gtk-cursor-theme-name = "capitaine-cursors";
+    };
+  };
+  wayland.windowManager.hyprland.settings.exec-once = [ "hyprctl setcursor capitaine-cursors 14" ];
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-key-theme = "Emacs";
+      cursor-theme = "Capitaine Cursors";
+    };
+  };
+  xdg.systemDirs.data = [
+    "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+    "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+  ];
 }

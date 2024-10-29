@@ -1,5 +1,8 @@
 # Hyprland config imported into configuration
-{ pkgs, ... }: {
+{ pkgs
+, lib
+, ...
+}: {
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -66,7 +69,12 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = with pkgs;
+      lib.mkForce [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
   };
 
   services.libinput.enable = true; # touchpad
