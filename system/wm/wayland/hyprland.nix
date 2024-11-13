@@ -26,12 +26,14 @@
       ];
 
       windowrulev2 = [
-        "float, size 530 400,class:(.blueman-manager-wrapped),title:(.blueman-manager-wrapped)"
+        "float, size 530 400,title:(Bluetooth Devices)"
         "float, size 700 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)"
-        "float, size 950 375,class:(chromium),title:(Save File)"
+        "float, size 550 700,title:(Save File)"
+        "float, size 550 700,title:(Open File)"
 
         "opacity 0.8 0.8, class:^(kitty)$"
         "opacity 0.8 0.8, class:^(rofi)$"
+        "opacity 0.8 0.8, class:^(vesktop)$"
       ];
 
       env = [

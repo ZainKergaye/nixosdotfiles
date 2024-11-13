@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  users.users.aegis.extraGroups = [ "wireshark" "video" "disk" "dialout" "vboxusers" ]; # disk for rpi-imager
+  users.users.aegis.extraGroups = [ "video" "disk" "dialout" "vboxusers" ]; # disk for rpi-imager
   # user group dialout for rw to serial ports
   # vbox users for vbox to usb devices
 
@@ -26,17 +26,12 @@
     loupe # Image viewer
     rpi-imager
 
-    # Networking ish things
-    nmap
-    wireshark
-
     # System tools
     brightnessctl
     fprintd
 
     # User packages
     ungoogled-chromium
-    webcord
     syncthing
     syncthingtray
     libreoffice

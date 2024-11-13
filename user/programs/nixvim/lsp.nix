@@ -54,7 +54,7 @@
 
       {
         key = "<leader>tf";
-        action = "<cmd> FormatToggleNotified <CR>";
+        action = "<cmd> ToggleFormatNotified <CR>";
         mode = "n";
         options.desc = "Format Toggle";
       }

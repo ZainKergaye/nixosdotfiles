@@ -11,8 +11,14 @@
 
   home.packages = with pkgs; [
     firefox
-		#zapzap
+    #zapzap
+    vesktop
   ];
+
+  # nixpkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [
+  #     "zoom"
+  #   ];
 
   programs = {
     direnv = {

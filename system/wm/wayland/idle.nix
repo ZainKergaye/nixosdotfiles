@@ -9,15 +9,8 @@
 , ...
 }:
 let
-  # Simple script to suspend / hibernate pc. This is just to
-  # debug my normal commands not working
-  systemctl-suspend-hibernate = lib.getExe (pkgs.writeShellScriptBin "systemctl-suspend-hibernate" ''
-    if ["$1" == 0 ]; then
-      systemctl hibernate
-    else
-      systemctl suspend
-    fi
-  '');
+  systemctl-suspend = lib.getExe (pkgs.writeShellScriptBin "systemctl-suspend" " systemctl suspend ");
+  systemctl-hibernate = lib.getExe (pkgs.writeShellScriptBin "systemctl-hibernate" " systemctl hibernate ");
 in
 {
   services.swayidle = {
@@ -42,13 +35,13 @@ in
         #                  WARN: Not tested yet
         # Sleep computer
         timeout = 60 * 30; # 30 mins
-        command = "${systemctl-suspend-hibernate}";
+        command = "${systemctl-suspend}";
         resumeCommand = "${pkgs.dunst}/bin/dunstify resumed";
       }
       {
         # Hibernate computer
         timeout = 60 * 120; # 2 Hours
-        command = "${systemctl-suspend-hibernate} 0"; # Runs the command but does not hibernate
+        command = "${systemctl-hibernate}";
         resumeCommand = "${pkgs.dunst}/bin/dunstify resumedHibernation";
       }
     ];

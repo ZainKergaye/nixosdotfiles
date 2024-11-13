@@ -27,6 +27,7 @@ in
       theme = "miloshadzic";
       plugins = [
         "sudo"
+		"colored-man-pages"
       ];
     };
     syntaxHighlighting.enable = true;

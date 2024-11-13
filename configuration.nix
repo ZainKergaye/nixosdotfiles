@@ -12,6 +12,7 @@ in
     ./system/gaming.nix
     ./system/keybinds.nix
     ./system/power-management.nix
+    ./system/pentesting.nix
   ];
 
   # Bootloader.
@@ -83,7 +84,12 @@ in
     '';
   };
 
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-sdk
+    ];
+  };
 
   system.stateVersion = "23.11";
 }

@@ -13,6 +13,8 @@ nix flake init --template github:the-nix-way/dev-templates#java
 
 Look at the-nix-way/dev-templates
 
+[Nixvim Config](/user/programs/nixvim)
+
 ## To implement
 
 [ ] Sleep at 15 mins

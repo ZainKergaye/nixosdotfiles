@@ -7,13 +7,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  #systemd.user.services."aegis" = {
-  #description = "Script to start Hyprland right after login";
-  #script = "Hyprland";
-  #wantedBy = [ "multi-user.target" ]; # starts after login
-  #};
-  # BUG: This stops hyprland from starting up
-
   environment.systemPackages = with pkgs; [
     # Status bar
     waybar
@@ -23,7 +16,7 @@
       })
     )
 
-    # Notification
+    # Notificatio
     dunst
     libnotify
 
