@@ -1,20 +1,27 @@
-{ pkgs, ... }: {
+{ pkgs
+, lib
+, ...
+}: {
   programs.nixvim = {
     plugins = {
       lsp = {
         enable = true;
-        servers = {
-          nil_ls.enable = true; # LS for Nix
-          java_language_server = {
-            enable = true;
-            cmd = [ "/home/aegis/.start-jdt-server" ];
-            package = pkgs."jdt-language-server";
+        servers =
+          let
+            start-jdt-server = lib.getExe (pkgs.writeShellScriptBin "start-jdt-server" "jdtls -data ./.jdt-data");
+          in
+          {
+            nil_ls.enable = true; # LS for Nix
+            java_language_server = {
+              enable = true;
+              cmd = [ "${start-jdt-server}" ];
+              package = pkgs.jdt-language-server;
+            };
+            cssls.enable = true;
+            html.enable = true;
+            bashls.enable = true;
+            pylsp.enable = true;
           };
-          cssls.enable = true;
-          html.enable = true;
-          bashls.enable = true;
-          pylsp.enable = true;
-        };
       };
 
       nvim-jdtls = {
@@ -59,10 +66,5 @@
         options.desc = "Format Toggle";
       }
     ];
-  };
-
-  home.file.".start-jdt-server" = {
-    text = "jdtls -data ./.jdt-data";
-    executable = true;
   };
 }

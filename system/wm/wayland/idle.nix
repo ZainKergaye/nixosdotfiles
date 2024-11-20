@@ -28,7 +28,7 @@ in
       {
         # Lock screen
         timeout = 60 * 5; # 5 mins
-        command = "${pkgs.swaylock}/bin/swaylock";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
         resumeCommand = "${pkgs.dunst}/bin/dunstify UNLOCKED";
       }
       {
@@ -43,6 +43,13 @@ in
         timeout = 60 * 120; # 2 Hours
         command = "${systemctl-hibernate}";
         resumeCommand = "${pkgs.dunst}/bin/dunstify resumedHibernation";
+      }
+    ];
+
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
       }
     ];
   };

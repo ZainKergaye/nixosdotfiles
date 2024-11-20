@@ -1,5 +1,8 @@
 # Imported into home-manager
-{ pkgs, ... }: {
+{ pkgs
+, zen-browser
+, ...
+}: {
   imports = [
     ./alacritty.nix
     ./cava.nix
@@ -13,6 +16,8 @@
     firefox
     #zapzap
     vesktop
+    prusa-slicer
+    zen-browser.packages."x86_64-linux".default
   ];
 
   # nixpkgs.config.allowUnfreePredicate = pkg:

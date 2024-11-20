@@ -7,7 +7,14 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; let
+    restart-swayidle = lib.getExe (pkgs.writeShellScriptBin "restart-swayidle" ''
+       	pkill swayidle
+         hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+      hyprctl --instance 0 'dispatch exec swaylock'
+    '');
+  in
+  [
     # Status bar
     waybar
     (

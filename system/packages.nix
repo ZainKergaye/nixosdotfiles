@@ -29,6 +29,7 @@
     # System tools
     brightnessctl
     fprintd
+    openvpn
 
     # User packages
     ungoogled-chromium

@@ -27,6 +27,7 @@
       tabstop = 4;
       softtabstop = 4;
       shiftwidth = 4;
+      showbreak = "󰘍 ";
     };
 
     clipboard.providers.wl-copy.enable = true;
@@ -66,6 +67,7 @@
             alt = [ "TESTING" "REMOVELATER" "REMOVE" ];
           };
         };
+        settings.highlight.multiline = false;
       };
 
       fugitive.enable = true;

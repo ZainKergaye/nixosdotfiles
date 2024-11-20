@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    zen-browser.url = "github:ch4og/zen-browser-flake";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,6 +26,7 @@
     , nixos-hardware
     , nix-colors
     , nixos-unstable-small
+    , zen-browser
     , ...
     }:
     let
@@ -51,6 +53,7 @@
           extraSpecialArgs = {
             inherit nix-colors;
             inherit unstable;
+            inherit zen-browser;
           };
           modules = [
             ./home.nix

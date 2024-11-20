@@ -17,6 +17,11 @@
       ",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
       ",XF86MonBrightnessUp, exec, brightnessctl s 80+"
       ",XF86MonBrightnessDown, exec, brightnessctl s 80-"
+
+      "$mod ALT, H, resizeactive, -10 0"
+      "$mod ALT, J, resizeactive, 0 10"
+      "$mod ALT, K, resizeactive, 0 -10"
+      "$mod ALT, L, resizeactive, 10 0"
     ];
 
     bind =

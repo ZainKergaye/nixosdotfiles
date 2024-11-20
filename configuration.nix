@@ -20,10 +20,19 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
-  networking.hostName = "conduit"; # Define your hostname.
+  networking = {
+    hostName = "conduit";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    networkmanager.enable = true;
+    networkmanager.dns = "none";
+    useDHCP = false;
+    dhcpcd.enable = false;
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "8.8.8.8"
+    ];
+  };
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
