@@ -1,7 +1,4 @@
-{ pkgs, ... }: {
-  # Not yet in my current config, didn't need it yet.
-
-  # For next semester: set this up and
+{ ... }: {
   # https://github.com/andythigpen/nvim-coverage
   programs.nixvim = {
     plugins.cmp-dap.enable = true;
@@ -26,19 +23,28 @@
         host = "127.0.0.1";
         port = 5006;
         id = "2";
-        executable = {
-          command = ''
-            config = function()
-                 require("java").setup {}
-                 require("lspconfig").jdtls.setup {
-                   on_attach = require("plugins.configs.lspconfig").on_attach,
-                   capabilities = require("plugins.configs.lspconfig").capabilities,
-                   filetypes = { "java" },
-                 }
-               end,
-          '';
-        };
+        executable.command = ''
+          config = function()
+               require("java").setup {}
+               require("lspconfig").jdtls.setup {
+                 on_attach = require("plugins.configs.lspconfig").on_attach,
+                 capabilities = require("plugins.configs.lspconfig").capabilities,
+                 filetypes = { "java" },
+               }
+             end,
+        '';
       };
+
+      configurations.java = [
+        {
+          type = "java";
+          request = "launch";
+          #request = "attach";
+          name = "Debug (Attach) - Remote";
+          hostName = "127.0.0.1";
+          port = 5005;
+        }
+      ];
 
       extensions = {
         dap-python = {
@@ -46,25 +52,18 @@
         };
         dap-ui = {
           enable = true;
-          floating.mappings = {
-            close = [ "<ESC>" "q" ];
+          mappings = {
+            expand = [ "<CR>" "<2-LeftMouse>" ];
+            open = "o";
+            remove = "d";
+            edit = "e";
+            repl = "r";
+            toggle = "t";
           };
         };
         dap-virtual-text = {
           enable = true;
         };
-      };
-      configurations = {
-        java = [
-          {
-            type = "java";
-            request = "launch";
-            #request = "attach";
-            name = "Debug (Attach) - Remote";
-            hostName = "127.0.0.1";
-            port = 5005;
-          }
-        ];
       };
     };
 

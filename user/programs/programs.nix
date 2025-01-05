@@ -1,6 +1,7 @@
 # Imported into home-manager
 { pkgs
 , zen-browser
+, lib
 , ...
 }: {
   imports = [
@@ -14,16 +15,19 @@
 
   home.packages = with pkgs; [
     firefox
-    #zapzap
+    zapzap
     vesktop
     prusa-slicer
     zen-browser.packages."x86_64-linux".default
+    bitwarden-desktop
+    osu-lazer-bin
   ];
 
-  # nixpkgs.config.allowUnfreePredicate = pkg:
-  #   builtins.elem (lib.getName pkg) [
-  #     "zoom"
-  #   ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "osu-lazer-bin"
+      "zoom-us"
+    ];
 
   programs = {
     direnv = {

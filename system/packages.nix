@@ -10,7 +10,6 @@
     vimPlugins.luasnip
     astyle
     onefetch
-    bottles
     python3 # For calculator
     mars-mips # MIPS for CS3810
 

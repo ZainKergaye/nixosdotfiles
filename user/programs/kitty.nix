@@ -1,7 +1,7 @@
 # Imported into home manager
 { ... }: {
   programs.kitty = {
-    enable = true;
+    enable = true; # TODO: Disable kitty click sound
     font = {
       name = "FiraCode Nerd Font";
       size = 16;
@@ -13,6 +13,7 @@
       sync_to_monitor = "yes";
       open_url_with = "chromium";
       disable_ligatures = "never";
+      enable_audio_bell = "no";
     };
   };
 }

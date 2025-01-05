@@ -4,7 +4,6 @@
 # 3. Sleeps the pc at 30 mins
 # 4. Hibernates the computer at 2 hours
 { pkgs
-, config
 , lib
 , ...
 }:
@@ -29,20 +28,14 @@ in
         # Lock screen
         timeout = 60 * 5; # 5 mins
         command = "${pkgs.swaylock-effects}/bin/swaylock";
-        resumeCommand = "${pkgs.dunst}/bin/dunstify UNLOCKED";
+        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
       }
       {
-        #                  WARN: Not tested yet
-        # Sleep computer
-        timeout = 60 * 30; # 30 mins
-        command = "${systemctl-suspend}";
-        resumeCommand = "${pkgs.dunst}/bin/dunstify resumed";
-      }
-      {
+        # BUG: Not working
         # Hibernate computer
         timeout = 60 * 120; # 2 Hours
-        command = "${systemctl-hibernate}";
-        resumeCommand = "${pkgs.dunst}/bin/dunstify resumedHibernation";
+        command = "systemctl suspend-then-hibernate";
+        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
       }
     ];
 
@@ -57,5 +50,5 @@ in
     swayidle
     sway-audio-idle-inhibit
   ];
-  wayland.windowManager.hyprland.settings.exec-once = [ "exec sway-audio-idle-inhibit" ];
+  wayland.windowManager.hyprland.settings.exec-once = [ "sway-audio-idle-inhibit" ];
 }

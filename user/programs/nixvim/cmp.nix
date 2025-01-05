@@ -18,7 +18,7 @@
           { name = "buffer"; }
 
           # Snippets
-          { name = "snippy"; }
+          #{ name = "snippy"; }
           { name = "luasnip"; }
 
           { name = "cmp-dap"; }
@@ -34,7 +34,7 @@
         };
       };
 
-      # LSP's used: css html nix bash java lua asm?
+      # LSP's used: css html nix bash java lua csharp
       # Completion path buffer snippy luasnip cmp-dap
       lsp-format.enable = true;
       none-ls = {
@@ -46,6 +46,7 @@
           prettier.enable = true;
           prettierd.enable = true;
           stylua.enable = true;
+          csharpier.enable = true;
         };
       };
     };
@@ -83,5 +84,6 @@
     prettierd
     nixfmt-classic
     stylua
+    csharpier
   ];
 }

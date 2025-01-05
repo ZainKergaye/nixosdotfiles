@@ -29,7 +29,7 @@
 
     [scratchpads.termtwo]
     animation = "fromLeft"
-    command = "${pkgs.kitty}/bin/kitty --class term --hold fastfetch"
+    command = "${pkgs.kitty}/bin/kitty --class term --hold python3 -Bqic 'from math import *'"
     class = "term"
     lazy = true
     size = "40% 90%"

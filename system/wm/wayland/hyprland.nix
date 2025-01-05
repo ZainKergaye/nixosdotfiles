@@ -22,7 +22,7 @@
         ", preferred, auto, 1"
         "desc:LG Display 0x0521, 1920x1080@60.02, 0x0, 1" # Built-in display
         "desc:Acer Technologies VG270 TEGAA003851S, 1920x1080@74.97, -1920x0, 1" # Room Display
-        "desc:Samsung Electric Company S34J55x H4LNB01778, 3440x1440@49.99, -760x-1620, 1" # Office display
+        "desc:Samsung Electric Company S34J55x H4LNB01778, 3440x1440@49.99, -760x-1440, 1" # Office display
       ];
 
       windowrulev2 = [
@@ -53,7 +53,7 @@
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # DEP I think
         "waybar"
         "blueman-applet"
-        "syncthingtray -wait"
+        "syncthingtray --wait"
         "swww-daemon"
         #"${pkgs.pypr}/bin/pypr"
         "pypr"
