@@ -3,7 +3,7 @@
   programs.dconf.enable = true;
 
   # User to be added to libvirtd group
-  users.users.aegis.extraGroups = [ "libvirtd" ];
+  users.users.aegis.extraGroups = [ "libvirtd" "vboxusers" ];
 
   environment.systemPackages = with pkgs; [
     virt-manager
