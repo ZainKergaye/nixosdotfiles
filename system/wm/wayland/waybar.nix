@@ -181,159 +181,161 @@ in
   '';
 
   home.file."${config.xdg.configHome}/waybar/config.jsonc".text = ''
-	
-{
-    "layer": "top",
-    "position": "top",
-    "height": 33,
-    "spacing": 2,
-    "exclusive": true,
-    "gtk-layer-shell": true,
-    "passthrough": false,
-    "fixed-center": true,
-    "modules-left": [
-        "custom/logo",
-        "hyprland/workspaces",
-        "hyprland/window"
-    ],
-    "modules-center": [
-        "custom/sep",
-        "clock#simpleclock",
-        "custom/sep"
-    ],
-    "modules-right": [
-        "pulseaudio",
-        "network",
-        "clock",
-        "group/batteries",
-        "tray",
-        "idle_inhibitor",
-        "custom/power"
-    ],
-    "tray": {
-        "show-passive-items": true,
-        "spacing": 10
-    },
-    "clock#simpleclock": {
-        "tooltip": false,
-        "format": "   {:%I:%M %p}",
-        "on-click": "${pkgs.kitty}/bin/kitty peaclock"
-    },
-    "clock": {
-        "format": "   {:L%a %d %b}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "cpu": {
-        "format": "  {usage}%",
-        "on-click": "btop",
-        "tooltip": true,
-        "interval": 1
-    },
-    "memory": {
-        "format": "  {used:0.2f}G"
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "  Muted",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "󰂑",
-            "headset": "󰂑",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": [
-                " ",
-                " ",
-                " "
-            ]
-        },
-        "on-click": "${pkgs.pwvucontrol}/bin/pwvucontrol"
-    },
-    "custom/logo": {
-        "format": " ",
-        "tooltip": false,
-        "on-click": "chromium-browser --new-window 'https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query=+'",
-        "on-click-middle": "kitty --hold fastfetch",
-        "on-click-right": "chromium-browser --new-window 'https://utah.instructure.com/'"
-    },
-    "custom/sep": {
-        "format": "|",
-        "tooltip": false
-    },
-    "custom/power": {
-        "tooltip": false,
-        "on-click": "wlogout -p layer-shell &",
-        "format": "⏻ "
-    },
-    "network": {
-        "format-wifi": "   {essid}",
-        "format-ethernet": " ",
-        "format-linked": "{ifname} (No IP)  ",
-        "format-disconnected": "󰌙 ",
-        "tooltip": true,
-        "tooltip-format": "{ifname} {ipaddr}/{cidr} Up: {bandwidthUpBits} Down: {bandwidthDownBits}"
-    },
-    "battery#one": {
-        "bat": "BAT0",
-        "interval": 60,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}%  {icon} ",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
+
+    {
+        "layer": "top",
+        "position": "top",
+        "height": 33,
+        "spacing": 2,
+        "exclusive": true,
+        "gtk-layer-shell": true,
+        "passthrough": false,
+        "fixed-center": true,
+        "modules-left": [
+            "custom/logo",
+            "hyprland/workspaces",
+            "hyprland/window"
         ],
-        "max-length": 25
-    },
-    "battery#two": {
-        "bat": "BAT1",
-        "interval": 60,
-        "states": {
-            "warning": 30,
-            "critical": 15
+        "modules-center": [
+            "custom/sep",
+            "clock#simpleclock",
+            "custom/sep"
+        ],
+        "modules-right": [
+            "pulseaudio",
+            "network",
+            "clock",
+            "group/batteries",
+            "tray",
+            "idle_inhibitor",
+            "custom/power"
+        ],
+        "tray": {
+            "show-passive-items": true,
+            "spacing": 10
         },
-        "format": "{capacity}%  {icon} ",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "max-length": 25
-    },
-    "group/batteries": {
-        "modules": [
-            "battery#one",
-            "battery#two"
-        ],
-        "orientation": "horizontal"
-    },
-    "custom/audio_idle_inhibitor": {
-        "format": "{icon}",
-        "exec": "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit --dry-print-both-waybar",
-        "exec-if": "which sway-audio-idle-inhibit",
-        "return-type": "json",
-        "format-icons": {
-            "output": " ",
-            "input": " ",
-            "output-input": "   ",
-            "none": ""
-        }
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "󰌶",
-            "deactivated": "󰌵"
+        "clock#simpleclock": {
+            "tooltip": false,
+            "format": "   {:%I:%M %p}",
+            "on-click": "${pkgs.kitty}/bin/kitty peaclock"
+        },
+        "clock": {
+            "format": "   {:L%a %d %b}",
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        },
+        "cpu": {
+            "format": "  {usage}%",
+            "on-click": "btop",
+            "tooltip": true,
+            "interval": 1
+        },
+        "memory": {
+            "format": "  {used:0.2f}G"
+        },
+        "pulseaudio": {
+            "format": "{icon}  {volume}%",
+            "format-muted": "  Muted",
+            "format-icons": {
+                "headphone": " ",
+                "hands-free": "󰂑",
+                "headset": "󰂑",
+                "phone": " ",
+                "portable": " ",
+                "car": " ",
+                "default": [
+                    " ",
+                    " ",
+                    " "
+                ]
+            },
+            "on-click": "${pkgs.pwvucontrol}/bin/pwvucontrol"
+        },
+        "custom/logo": {
+            "format": " ",
+            "tooltip": false,
+            "on-click": "chromium-browser --new-window 'https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query=+'",
+            "on-click-middle": "kitty --hold fastfetch",
+            "on-click-right": "chromium-browser --new-window 'https://utah.instructure.com/'"
+        },
+        "custom/sep": {
+            "format": "|",
+            "tooltip": false
+        },
+        "custom/power": {
+            "tooltip": false,
+            "on-click": "wlogout -p layer-shell &",
+            "format": "⏻ "
+        },
+        "network": {
+            "format-wifi": "   {essid}",
+            "format-ethernet": " ",
+            "format-linked": "{ifname} (No IP)  ",
+            "format-disconnected": "󰌙 ",
+            "tooltip": true,
+            "tooltip-format": "{ifname} {ipaddr}/{cidr} Up: {bandwidthUpBits} Down: {bandwidthDownBits}"
+        },
+        "battery#one": {
+            "bat": "BAT0",
+            "interval": 60,
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{capacity}%  {icon} ",
+            "format-icons": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "max-length": 25,
+    		"tooltip-format":	"BAT0 {timeTo}"
+        },
+        "battery#two": {
+            "bat": "BAT1",
+            "interval": 60,
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{capacity}%  {icon} ",
+            "format-icons": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "max-length": 25,
+    		"tooltip-format":	"BAT1 {timeTo}"
+        },
+        "group/batteries": {
+            "modules": [
+                "battery#one",
+                "battery#two"
+            ],
+            "orientation": "horizontal"
+        },
+        "custom/audio_idle_inhibitor": {
+            "format": "{icon}",
+            "exec": "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit --dry-print-both-waybar",
+            "exec-if": "which sway-audio-idle-inhibit",
+            "return-type": "json",
+            "format-icons": {
+                "output": " ",
+                "input": " ",
+                "output-input": "   ",
+                "none": ""
+            }
+        },
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "Idle inhibit on": "󰌶",
+                "Idle inhibit off": "󰌵"
+            }
         }
     }
-}
   '';
 }

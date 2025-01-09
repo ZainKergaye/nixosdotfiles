@@ -1,15 +1,12 @@
 # Imported into home-manager
 { pkgs
-, zen-browser
 , lib
 , ...
 }: {
   imports = [
-    ./alacritty.nix
     ./cava.nix
     ./peaclock.nix
     ./nixvim/nixvim.nix
-    ./kitty.nix
     ./fastfetch.nix
   ];
 
@@ -18,22 +15,15 @@
     zapzap
     vesktop
     prusa-slicer
-    zen-browser.packages."x86_64-linux".default
     bitwarden-desktop
     osu-lazer-bin
+    zoom-us
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "osu-lazer-bin"
       "zoom-us"
+      "zoom"
     ];
-
-  programs = {
-    direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
-  };
 }

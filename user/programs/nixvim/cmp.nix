@@ -85,5 +85,6 @@
     nixfmt-classic
     stylua
     csharpier
+    vimPlugins.luasnip
   ];
 }

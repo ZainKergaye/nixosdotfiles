@@ -22,11 +22,4 @@ Look at the-nix-way/dev-templates
 
 ## Bugs
 
-- [x] Floating window rules Hyprland
-- - [x] notepad next
-- - [ ] save file
-- - [ ] open file
-- [ ] Discord screen sharing
-- [ ] Nixvim
-- - [ ] <Leader> ra -> needs to rename current highlighted variable, doesn't work yet.
 - [ ] See if an opened window class can stay there? Like opening steam and moving to another window

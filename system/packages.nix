@@ -5,13 +5,9 @@
 
   environment.systemPackages = with pkgs; [
     # Dev packages
-    alejandra # File formatter
-    prettierd # File formatter
-    vimPlugins.luasnip
     astyle
     onefetch
     python3 # For calculator
-    mars-mips # MIPS for CS3810
 
     # General devtools
     git
@@ -27,8 +23,6 @@
 
     # System tools
     brightnessctl
-    fprintd
-    openvpn
 
     # User packages
     ungoogled-chromium
@@ -40,8 +34,5 @@
     notepad-next
     qbittorrent
     youtube-music
-    tetrio-desktop
-    nextcloud-client
-    ani-cli
   ];
 }

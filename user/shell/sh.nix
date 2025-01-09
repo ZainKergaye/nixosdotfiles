@@ -13,23 +13,31 @@ let
   };
 in
 {
-  programs.bash = {
-    enable = lib.mkDefault false; # Forces bash to be disabled unless some other file enables it
-    shellAliases = myAliases;
-  };
-
-  programs.zsh = {
-    enable = true;
-    shellAliases = myAliases;
-
-    oh-my-zsh = {
-      enable = true;
-      theme = "miloshadzic";
-      plugins = [
-        "sudo"
-		"colored-man-pages"
-      ];
+  programs = {
+    bash = {
+      enable = lib.mkDefault false; # Forces bash to be disabled unless some other file enables it
+      shellAliases = myAliases;
     };
-    syntaxHighlighting.enable = true;
+
+    zsh = {
+      enable = true;
+      shellAliases = myAliases;
+
+      oh-my-zsh = {
+        enable = true;
+        theme = "miloshadzic";
+        plugins = [
+          "sudo"
+          "colored-man-pages"
+        ];
+      };
+      syntaxHighlighting.enable = true;
+    };
+
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
   };
 }

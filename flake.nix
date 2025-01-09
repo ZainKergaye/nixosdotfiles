@@ -7,6 +7,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     zen-browser = {
+      # Not regularly updated
       url = "github:ch4og/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };

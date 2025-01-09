@@ -1,6 +1,6 @@
 { nix-colors, ... }: {
   imports = [
-    ./user/shell/sh.nix
+    ./user/shell
     ./user/programs/programs.nix
     ./system/wm/wayland/hyprland.nix
     nix-colors.homeManagerModules.default

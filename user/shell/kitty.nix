@@ -1,7 +1,7 @@
 # Imported into home manager
 { ... }: {
   programs.kitty = {
-    enable = true; # TODO: Disable kitty click sound
+    enable = true;
     font = {
       name = "FiraCode Nerd Font";
       size = 16;

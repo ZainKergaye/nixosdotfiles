@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs; [
     virt-manager
     virt-viewer
+    virtiofsd
     spice
     spice-gtk
     spice-protocol
