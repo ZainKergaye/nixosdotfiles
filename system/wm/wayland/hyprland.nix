@@ -2,15 +2,9 @@
 { pkgs, ... }: {
   imports = [
     ./hyprbinds.nix
-    ./dunst.nix
-    ./waybar.nix
-    ./rofi.nix
-    ./idle.nix
-    ./swaylock.nix
-    ./wlogout.nix
-    ./pyprland.nix
     ./colors.nix
     ./monitor_connect.nix
+    ./programs
   ];
 
   wayland.windowManager.hyprland = {

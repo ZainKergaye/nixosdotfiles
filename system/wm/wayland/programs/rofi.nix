@@ -1,8 +1,13 @@
-{ config, ... }:
+{ config
+, pkgs
+, ...
+}:
 let
   palette = config.colorScheme.palette;
 in
 {
+  home.packages = [ pkgs.rofi-wayland ];
+
   home.file.".config/rofi/config.rasi" = {
     text = ''
                /*****----- Configuration -----*****/

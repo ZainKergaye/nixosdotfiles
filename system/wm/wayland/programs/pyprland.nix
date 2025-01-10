@@ -1,6 +1,8 @@
 # Python plugins for hyprland:
 # Using pyprland for scratchpads
 { pkgs, ... }: {
+  home.packages = [ pkgs.pyprland ];
+
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
     plugins = [

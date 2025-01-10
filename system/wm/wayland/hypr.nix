@@ -23,16 +23,12 @@
       })
     )
 
-    # Notificatio
+    # Notifications
     dunst
     libnotify
 
     # Wallpaper
     swww # Backend
-    waypaper # GUI
-
-    # App Launcher
-    rofi-wayland
 
     # Network
     networkmanagerapplet
@@ -43,12 +39,8 @@
     xdg-desktop-portal-hyprland
     xwaylandvideobridge
     xwayland
-    pyprland
     wayland-scanner
     hyprwayland-scanner
-
-    # Audio
-    pwvucontrol
 
     # Theme
     glib
