@@ -5,14 +5,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ./system/wm/wayland/hypr.nix
-    ./system/fonts.nix
-    ./system/packages.nix
-    ./system/vm.nix
-    ./system/gaming.nix
-    ./system/keybinds.nix
-    ./system/power-management.nix
-    ./system/pentesting.nix
+    ./system
   ];
 
   # Bootloader.

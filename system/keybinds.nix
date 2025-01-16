@@ -9,8 +9,23 @@
 
     keyboards.default = {
       ids = [ "*" ];
-      settings.main = {
-        capslock = "overload(control, esc)";
+      settings = {
+        main = {
+          layer_indicator = "1";
+          chord_timeout = "100"; #ms
+
+          capslock = "overload(control, esc)";
+          "j + k + l" = "enter"; # Chording keys
+
+          rightalt = "toggle(rightalt)";
+        };
+
+        rightalt = {
+          h = "left";
+          j = "down";
+          k = "up";
+          l = "right";
+        };
       };
     };
   };
