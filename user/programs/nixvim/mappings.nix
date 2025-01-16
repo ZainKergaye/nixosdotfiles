@@ -63,15 +63,6 @@
         };
       }
       {
-        key = "<leader>x";
-        action = ":bd <CR>";
-        mode = "n";
-        options = {
-          silent = true;
-          desc = "Delete buffer";
-        };
-      }
-      {
         key = "<leader>tp";
         action = "<cmd> BufferLineTogglePin <CR>";
         mode = "n";
@@ -247,15 +238,6 @@
         action = "<cmd> TodoTelescope <CR>";
         mode = "n";
         options.desc = "TODO telescope";
-      }
-
-      ## LSP
-
-      {
-        key = "<Leader>rr";
-        action = "vim.lsp.buf.rename()";
-        mode = "n";
-        options.desc = "LSP Rename";
       }
 
       {

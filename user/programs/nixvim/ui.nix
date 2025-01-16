@@ -21,8 +21,6 @@
 
     navic.enable = false; # Not setup
 
-    transparent.enable = false; # Not working
-
     indent-blankline = {
       enable = true;
       settings = {
@@ -67,11 +65,10 @@
     web-devicons.enable = true;
     # Was forced to define this. Telescope, nvim-tree,
     # alpha, and bufferline use this already.
+
+    wrapping.enable = true;
   };
   programs.nixvim.extraPlugins = [
-    {
-      plugin = pkgs.vimPlugins.wrapping-nvim;
-    }
     (pkgs.vimUtils.buildVimPlugin {
       # TODO: Add to nixvim plugins
       name = "beacon";
@@ -84,7 +81,6 @@
     })
   ];
   programs.nixvim.extraConfigLua = ''
-    require("wrapping").setup()
     require('beacon').setup()
   '';
 }

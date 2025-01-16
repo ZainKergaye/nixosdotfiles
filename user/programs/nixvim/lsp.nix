@@ -29,6 +29,9 @@
         settings.java.gradle.enabled = true;
         data = "./.jdt-data";
       };
+
+      noice.settings.presets."inc_rename" = true;
+      inc-rename.enable = true; # Nice renaming UI
     };
 
     # Ability to toggle cmp
@@ -64,6 +67,13 @@
         action = "<cmd> ToggleFormatNotified <CR>";
         mode = "n";
         options.desc = "Format Toggle";
+      }
+
+      {
+        key = "<Leader>ra";
+        action = "<cmd> IncRename <CR>";
+        mode = "n";
+        options.desc = "LSP Rename";
       }
     ];
   };
