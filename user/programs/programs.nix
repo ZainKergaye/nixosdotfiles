@@ -1,6 +1,7 @@
 # Imported into home-manager
 { pkgs
 , lib
+, zen-browser
 , ...
 }: {
   imports = [
@@ -15,28 +16,25 @@
     vesktop
     prusa-slicer
     bitwarden-desktop
-    osu-lazer-bin
+    zen-browser.packages."x86_64-linux".default
 
-    (pkgs.zoom-us.overrideAttrs {
-      version = "6.2.11.5069";
-      src = pkgs.fetchurl {
-        url = "https://zoom.us/client/6.2.11.5069/zoom_x86_64.pkg.tar.xz";
-        hash = "sha256-k8T/lmfgAFxW1nwEyh61lagrlHP5geT2tA7e5j61+qw=";
-      };
-    })
+    osu-lazer-bin
 
     gimp
     siril
     rawtherapee
 
     quartus-prime-lite
+	kicad
   ];
+
+  # Quartus prime variables
+  home.sessionVariables.LM_LICENSE_FILE = "/home/aegis/.dotfiles/secrets/LR-214324_License.dat";
+  home.sessionVariables.NUM_PARALLEL_PROCESSORS = "8";
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "osu-lazer-bin"
-      "zoom-us"
-      "zoom"
       "quartus-prime-lite-unwrapped"
       "quartus-prime-lite"
     ];

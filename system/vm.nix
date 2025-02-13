@@ -43,5 +43,8 @@
       };
     };
   };
+
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ]; # Patch for kernel 6.12 breaking vbox
+
   services.spice-vdagentd.enable = true;
 }

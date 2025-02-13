@@ -6,10 +6,20 @@
   services.tlp = {
     enable = true;
     settings = {
+      # Valid options are:
+      # powersave
+      # performance
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      # Valid options are:
+      #	performance
+      # balance_performance
+      # default
+      # balance_power
+      # power
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
       # Determines limits of power consumption on high CPU load

@@ -48,5 +48,4 @@ in
       ring-clear-color = "#${palette.base0F}";
     };
   };
-  programs.hyprlock.enable = true;
 }

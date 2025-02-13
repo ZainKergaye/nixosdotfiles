@@ -1,33 +1,15 @@
-{ pkgs
-, lib
-, ...
-}: {
+{ ... }: {
   programs.nixvim = {
     plugins = {
       lsp = {
         enable = true;
-        servers =
-          let
-            start-jdt-server = lib.getExe (pkgs.writeShellScriptBin "start-jdt-server" "jdtls -data ./.jdt-data");
-          in
-          {
-            nil_ls.enable = true; # LS for Nix
-            java_language_server = {
-              enable = true;
-              cmd = [ "${start-jdt-server}" ];
-              package = pkgs.jdt-language-server;
-            };
-            cssls.enable = true;
-            html.enable = true;
-            bashls.enable = true;
-            pylsp.enable = true;
-          };
-      };
-
-      nvim-jdtls = {
-        enable = true;
-        settings.java.gradle.enabled = true;
-        data = "./.jdt-data";
+        servers = {
+          nil_ls.enable = true; # LS for Nix
+          cssls.enable = true;
+          html.enable = true;
+          bashls.enable = true;
+          pylsp.enable = true;
+        };
       };
 
       noice.settings.presets."inc_rename" = true;

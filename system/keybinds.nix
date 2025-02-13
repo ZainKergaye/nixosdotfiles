@@ -11,13 +11,13 @@
       ids = [ "*" ];
       settings = {
         main = {
-          layer_indicator = "1";
+          #layer_indicator = "1";
           chord_timeout = "100"; #ms
 
           capslock = "overload(control, esc)";
-          "j + k + l" = "enter"; # Chording keys
+          #"j + k + l" = "enter"; # Chording keys
 
-          rightalt = "toggle(rightalt)";
+          #rightalt = "toggle(rightalt)";
         };
 
         rightalt = {

@@ -3,10 +3,11 @@
     ./mappings.nix
     ./lsp.nix
     ./ui.nix
-    #./dap.nix
+    ./dap.nix
     ./greeting.nix
     ./window.nix
     ./cmp.nix
+    ./languages
   ];
 
   programs.nixvim = {

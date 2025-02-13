@@ -36,7 +36,7 @@
 
     notify = {
       enable = true;
-      render = "minimal";
+      settings.render = "minimal";
     };
 
     colorizer = {

@@ -1,69 +1,40 @@
 { ... }: {
   # https://github.com/andythigpen/nvim-coverage
   programs.nixvim = {
-    plugins.cmp-dap.enable = true;
-    plugins.dap = {
-      enable = true;
-      signs = {
-        dapBreakpoint = {
-          text = "●";
-          texthl = "DapBreakpoint";
-        };
-        dapBreakpointCondition = {
-          text = "●";
-          texthl = "DapBreakpointCondition";
-        };
-        dapLogPoint = {
-          text = "◆";
-          texthl = "DapLogPoint";
+    plugins = {
+      dap-virtual-text.enable = true;
+      cmp-dap.enable = true;
+      dap-python.enable = true;
+
+      dap-ui = {
+        enable = true;
+        settings.mappings = {
+          expand = [ "<CR>" "<2-LeftMouse>" ];
+          open = "o";
+          remove = "d";
+          edit = "e";
+          repl = "r";
+          toggle = "t";
         };
       };
-
-      adapters.servers.java = {
-        host = "127.0.0.1";
-        port = 5006;
-        id = "2";
-        executable.command = ''
-          config = function()
-               require("java").setup {}
-               require("lspconfig").jdtls.setup {
-                 on_attach = require("plugins.configs.lspconfig").on_attach,
-                 capabilities = require("plugins.configs.lspconfig").capabilities,
-                 filetypes = { "java" },
-               }
-             end,
-        '';
-      };
-
-      configurations.java = [
-        {
-          type = "java";
-          request = "launch";
-          #request = "attach";
-          name = "Debug (Attach) - Remote";
-          hostName = "127.0.0.1";
-          port = 5005;
-        }
-      ];
-
-      extensions = {
-        dap-python = {
-          enable = true;
-        };
-        dap-ui = {
-          enable = true;
-          mappings = {
-            expand = [ "<CR>" "<2-LeftMouse>" ];
-            open = "o";
-            remove = "d";
-            edit = "e";
-            repl = "r";
-            toggle = "t";
+      dap = {
+        enable = true;
+        signs = {
+          dapBreakpoint = {
+            text = "●";
+            texthl = "DapBreakpoint";
+          };
+          dapBreakpointCondition = {
+            text = "●";
+            texthl = "DapBreakpointCondition";
+          };
+          dapLogPoint = {
+            text = "◆";
+            texthl = "DapLogPoint";
           };
         };
-        dap-virtual-text = {
-          enable = true;
-        };
+
+        extensions = { };
       };
     };
 

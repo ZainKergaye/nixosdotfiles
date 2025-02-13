@@ -36,6 +36,7 @@
 
         "natural_scroll, true"
         "QT_QPA_PLATFORMTHEME,qt6ct" # for Qt apps
+        "force_default_wallpaper, 1" # Disables anime wallpaper
       ];
 
       gestures = {

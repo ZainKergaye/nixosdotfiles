@@ -6,6 +6,7 @@
       cmp-nvim-lsp-signature-help.enable = true;
       cmp = {
         enable = true;
+        autoEnableSources = true;
         settings.sources = [
           # LSP
           { name = "nvim_lsp"; }
@@ -46,7 +47,6 @@
           prettier.enable = true;
           prettierd.enable = true;
           stylua.enable = true;
-          csharpier.enable = true;
         };
       };
     };
@@ -84,7 +84,6 @@
     prettierd
     nixfmt-classic
     stylua
-    csharpier
     vimPlugins.luasnip
   ];
 }
