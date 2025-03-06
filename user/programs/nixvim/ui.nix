@@ -65,8 +65,6 @@
     web-devicons.enable = true;
     # Was forced to define this. Telescope, nvim-tree,
     # alpha, and bufferline use this already.
-
-    wrapping.enable = true;
   };
   programs.nixvim.extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {

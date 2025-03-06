@@ -239,13 +239,6 @@
         mode = "n";
         options.desc = "TODO telescope";
       }
-
-      {
-        key = "<Leader>tw";
-        action = "<cmd> ToggleWrapMode <CR>";
-        mode = "n";
-        options.desc = "Toggle wrap mode";
-      }
     ];
 
     plugins.lsp.keymaps.lspBuf = {

@@ -8,14 +8,12 @@
 , ...
 }:
 let
-  systemctl-suspend = lib.getExe (pkgs.writeShellScriptBin "systemctl-suspend" " systemctl suspend ");
-  systemctl-hibernate = lib.getExe (pkgs.writeShellScriptBin "systemctl-hibernate" " systemctl hibernate ");
   exec-swaylock-once = lib.getExe (pkgs.writeShellScriptBin "exec-swaylock-once" ''
-      if pgrep -x swaylock > /dev/null;
-        ${pkgs.dunst}/bin/dunstify -u low -a swayidle "Tried locking screen, already locked"
-	  else
-        ${pkgs.swaylock-effects}/bin/swaylock
-      fi
+       if (pgrep -x swaylock > /dev/null); then
+         ${pkgs.dunst}/bin/dunstify -u low -a swayidle "Tried locking screen, already locked"
+    else
+         ${pkgs.swaylock-effects}/bin/swaylock
+       fi
   '');
 in
 {
@@ -34,15 +32,7 @@ in
       {
         # Lock screen
         timeout = 60 * 5; # 5 mins
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
-				# command = "${exec-swaylock-once}";
-        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-      }
-      {
-        # BUG: Not working
-        # Hibernate computer
-        timeout = 60 * 120; # 2 Hours
-        command = "systemctl suspend-then-hibernate";
+        command = "${exec-swaylock-once}";
         resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
       }
     ];
@@ -50,7 +40,7 @@ in
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
+        command = "${exec-swaylock-once}";
       }
     ];
   };

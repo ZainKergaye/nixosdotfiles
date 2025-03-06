@@ -5,6 +5,7 @@
 }: {
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    QT_STYLE_OVERRIDE = "adwaita-dark";
   };
 
   environment.systemPackages = with pkgs; let
@@ -36,8 +37,6 @@
 
     # A/V helper
     wireplumber
-    xdg-desktop-portal-hyprland
-    xwaylandvideobridge
     xwayland
     wayland-scanner
     hyprwayland-scanner
@@ -45,6 +44,7 @@
     # Theme
     glib
     adwaita-icon-theme
+    adwaita-qt
     ant-theme
 
     # Locking / Sleeping
@@ -63,7 +63,6 @@
     enable = true;
     extraPortals = with pkgs;
       lib.mkForce [
-        xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
         xdg-desktop-portal-wlr
       ];

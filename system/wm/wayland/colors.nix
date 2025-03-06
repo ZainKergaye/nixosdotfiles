@@ -96,6 +96,7 @@ in
       gtk-cursor-theme-name = "capitaine-cursors";
     };
   };
+
   wayland.windowManager.hyprland.settings.exec-once = [ "hyprctl setcursor capitaine-cursors 14" ];
   dconf.settings = {
     "org/gnome/desktop/interface" = {
