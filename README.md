@@ -1,25 +1,38 @@
-# New NixOS config
+# NixOS config
 
-This is my new NixOS config for dev, and everything else. Using flakes and home-manager.
+This is my NixOS config for daily driving. This includes NixVim, a neovim distro based on the NIX.
 
 # Screenshots:
 
 ![Screenshot](./media/screenshot.png)
 
-## Dev environments
-
-To configure whatever environment, you can use this command:
-nix flake init --template github:the-nix-way/dev-templates#java
-
-Look at the-nix-way/dev-templates
+![Screenshot two](./media/screenshot_2.png)
 
 [Nixvim Config](/user/programs/nixvim)
 
-## To implement
+## Quick start
 
-[ ] Sleep at 15 mins
-[ ] Suspend at 1 hr
+1. Acquire or build a NixOS 24.05+ image:
+   ```sh
+   # Yoink nixos-unstable from upstream
+   $ wget -O nixos.iso https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso
+   ```
+2. Install on machine
 
-## Bugs
+3. Clone these dotfiles somewhere:
 
-- [ ] See if an opened window class can stay there? Like opening steam and moving to another window
+   ```sh
+   $ git clone --recursive https://github.com/zainkergaye/nixosdotfiles
+   ```
+
+4. Build the system:
+
+   ```sh
+   # Ensure flakes are enabled before too
+   $ sudo nixos-rebuild switch --flake .
+   ```
+
+5. Then reboot and you're good to go!
+
+> [!WARNING]
+> Don't forget to change the user and hostname, both are in many places in the config.
