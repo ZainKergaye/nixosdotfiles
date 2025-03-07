@@ -3,8 +3,8 @@
   imports = [
     ./hyprbinds.nix
     ./colors.nix
-    ./monitor_connect.nix
     ./programs
+    ./scripts
   ];
 
   wayland.windowManager.hyprland = {
