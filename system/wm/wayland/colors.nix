@@ -50,7 +50,7 @@ in
       };
 
       general = {
-        "col.active_border" = "rgb(${base07}) rgb(${base0B}) 45deg";
+        "col.active_border" = "rgb(${base07}) rgb(${base0E}) 45deg";
         # "col.active_border" = "rgb(${base07})";
         "col.inactive_border" = "rgb(${base04})";
       };
