@@ -83,12 +83,18 @@ in
 
   gtk = {
     enable = true;
-    font.name = "Noto Sans";
-    font.package = pkgs.noto-fonts;
-    theme.name = "Dracula";
-    theme.package = unstable.dracula-theme;
-    iconTheme.name = "Papirus-Dark-Maia"; # Candy and Tela also look good
-    iconTheme.package = unstable.papirus-maia-icon-theme;
+    font = {
+      name = "Noto Sans";
+      package = pkgs.noto-fonts;
+    };
+    theme = {
+      name = "Dracula";
+      package = unstable.dracula-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark-Maia"; # Candy and Tela also look good
+      package = unstable.papirus-maia-icon-theme;
+    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
       gtk-key-theme-name = "Emacs";

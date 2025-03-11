@@ -1,5 +1,5 @@
 # Hyprland config for home-manager
-{ pkgs, ... }: {
+{ ... }: {
   imports = [
     ./hyprbinds.nix
     ./colors.nix
@@ -21,7 +21,14 @@
 
       windowrulev2 = [
         "float, size 530 400,title:(Bluetooth Devices)"
-        "float, size 700 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)"
+        "float, size 400 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)"
+
+        "keepaspectratio, title:^(Picture-in-Picture)$" # PiP Proper scaling
+        "move 72% 7%,title:^(Picture-in-Picture)$"
+        "size 25%, title:^(Picture-in-Picture$"
+        "float, title:^(Picture-in-Picture)$"
+        "pin, title:^(Picture-in-Picture)$"
+
         "float, size 550 700,title:(Save File)"
         "float, size 550 700,title:(Open File)"
 
@@ -31,8 +38,8 @@
       ];
 
       env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_SIZE,14"
+        "HYPRCURSOR_SIZE,14"
 
         "natural_scroll, true"
         "QT_QPA_PLATFORMTHEME,qt6ct" # for Qt apps
