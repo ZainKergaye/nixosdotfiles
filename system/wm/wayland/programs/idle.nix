@@ -12,7 +12,7 @@ let
        if (pgrep -x swaylock > /dev/null); then
          ${pkgs.dunst}/bin/dunstify -u low -a swayidle "Tried locking screen, already locked"
     else
-         ${pkgs.swaylock-effects}/bin/swaylock
+         ${pkgs.hyprland}/bin/hyprctl dispatch exec ${pkgs.swaylock-effects}/bin/swaylock
        fi
   '');
 in
