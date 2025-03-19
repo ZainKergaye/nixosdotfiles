@@ -20,6 +20,7 @@
 
     # System tools
     brightnessctl
+    cachix
 
     # User packages
     ungoogled-chromium

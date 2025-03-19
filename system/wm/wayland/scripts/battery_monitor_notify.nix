@@ -10,7 +10,7 @@ let
 
      # Function to check battery percentage
      get_battery_percentage() {
-		 local capacity_file="/sys/class/power_supply/BAT1/capacity"
+		 local capacity_file="/sys/class/power_supply/BAT0/capacity"
 		
 			if [[ -f "$capacity_file" ]]; then
 				cat "$capacity_file"

@@ -202,8 +202,6 @@ in
               ],
               "modules-right": [
                   "pulseaudio",
-                  "network",
-                  "clock",
                   "group/batteries",
                   "tray",
                   "group/poweroptions"

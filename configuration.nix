@@ -84,6 +84,15 @@ in
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+    settings = {
+      substituters = [
+        "https://nixpkgs-wayland.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      ];
+    };
   };
 
   hardware.graphics = {
