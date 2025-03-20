@@ -1,6 +1,9 @@
 # Python plugins for hyprland:
 # Using pyprland for scratchpads
-{ pkgs, ... }: {
+{ config
+, pkgs
+, ...
+}: {
   home.packages = [ pkgs.pyprland ];
 
   home.file.".config/hypr/pyprland.toml".text = ''
@@ -18,7 +21,7 @@
 
     [scratchpads.todo]
     animation = "fromLeft"
-    command = "${pkgs.kitty}/bin/kitty --class nvim --hold nvim /home/aegis/Temp/TODO.md"
+    command = "${pkgs.kitty}/bin/kitty --class nvim --hold nvim /home/${config.variables.username}/Temp/TODO.md"
     class = "nvim"
     lazy = false
     size = "25% 75%"

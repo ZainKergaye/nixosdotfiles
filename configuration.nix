@@ -1,11 +1,11 @@
-{ pkgs, ... }:
-let
-  user = "aegis";
-in
-{
+{ config
+, pkgs
+, ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./system
+    ./variables.nix
   ];
 
   # Bootloader.
@@ -14,7 +14,7 @@ in
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
   networking = {
-    hostName = "conduit";
+    hostName = config.variables.hostname;
 
     networkmanager.enable = true;
     networkmanager.dns = "none";
@@ -68,9 +68,9 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${user} = {
+  users.users.${config.variables.username} = {
     isNormalUser = true;
-    description = "${user}";
+    description = "${config.variables.username}";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

@@ -1,9 +1,12 @@
-{ pkgs, ... }: {
+{ config
+, pkgs
+, ...
+}: {
   # system management tool
   programs.dconf.enable = true;
 
   # User to be added to libvirtd group
-  users.users.aegis.extraGroups = [ "libvirtd" "vboxusers" ];
+  users.users.${config.variables.username}.extraGroups = [ "libvirtd" "vboxusers" ];
 
   environment.systemPackages = with pkgs; [
     virt-manager

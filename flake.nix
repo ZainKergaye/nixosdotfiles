@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of zain";
+  description = "Hyprland system configuration";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";

@@ -1,5 +1,5 @@
 # Imported into home manager
-{ ... }: {
+{ config, ... }: {
   programs.kitty = {
     enable = true;
     font = {
@@ -9,9 +9,8 @@
     themeFile = "Catppuccin-Mocha";
     settings = {
       wayland_titlebar_color = "system";
-      #background_opacity = 0.5;
       sync_to_monitor = "yes";
-      open_url_with = "chromium";
+      open_url_with = config.variables.default_browser;
       disable_ligatures = "never";
       enable_audio_bell = "no";
     };

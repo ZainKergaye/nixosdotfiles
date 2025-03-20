@@ -2,6 +2,7 @@
 { pkgs
 , lib
 , zen-browser
+, config
 , ...
 }: {
   imports = [
@@ -51,10 +52,10 @@
     ianny
   ];
 
-  wayland.windowManager.hyprland.exec-once = [ "${pkgs.ianny}/bin/ianny" ];
+  wayland.windowManager.hyprland.settings.exec-once = [ "${pkgs.ianny}/bin/ianny" ];
 
   # Quartus prime variables
-  home.sessionVariables.LM_LICENSE_FILE = "/home/aegis/.dotfiles/secrets/LR-214324_License.dat";
+  home.sessionVariables.LM_LICENSE_FILE = "/home/${config.variables.username}/.dotfiles/secrets/LR-214324_License.dat";
   home.sessionVariables.NUM_PARALLEL_PROCESSORS = "4";
 
   nixpkgs.config.allowUnfreePredicate = pkg:

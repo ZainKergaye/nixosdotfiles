@@ -1,5 +1,8 @@
 # Gaming declaritive configuration
-{ pkgs, ... }: {
+{ config
+, pkgs
+, ...
+}: {
   hardware.graphics = {
     # Basic hardware drivers
     enable = true;
@@ -21,6 +24,6 @@
     # Proton needs to be declared imperitively.
     # This is just something to do with steam
     # Run the command 'protonup' after updating system NOTE: Run this every once in awhile
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/aegis/.steam/root/compatibilitytools.d";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${config.variables.username}/.steam/root/compatibilitytools.d";
   };
 }

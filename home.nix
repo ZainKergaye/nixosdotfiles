@@ -1,15 +1,19 @@
-{ nix-colors, ... }: {
+{ config
+, nix-colors
+, ...
+}: {
   imports = [
     ./user/shell
     ./user/programs/programs.nix
     ./system/wm/wayland/hyprland.nix
+    ./variables.nix
     nix-colors.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "aegis";
-  home.homeDirectory = "/home/aegis";
+  home.username = config.variables.username;
+  home.homeDirectory = "/home/${config.variables.username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -42,15 +46,15 @@
     git = {
       enable = true;
 
-      userName = "Zain Kergaye";
-      userEmail = "zain4utah@gmail.com";
+      userName = config.variables.pretty_name;
+      userEmail = config.variables.email;
     };
   };
 
   colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = config.variables.editor;
   };
 
   programs.home-manager.enable = true;

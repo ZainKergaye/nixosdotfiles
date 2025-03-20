@@ -1,13 +1,15 @@
-{ lib, ... }:
+{ config
+, lib
+, ...
+}:
 let
-  user = "aegis";
   myAliases = {
     la = "ls -la";
-    update = "nix flake update --flake /home/${user}/.dotfiles/.";
-    upgrade = "sudo nixos-rebuild switch --flake /home/${user}/.dotfiles/.";
-    homeupgrade = "home-manager switch --flake /home/${user}/.dotfiles/.";
+    update = "nix flake update --flake /home/${config.variables.username}/.dotfiles/.";
+    upgrade = "sudo nixos-rebuild switch --flake /home/${config.variables.username}/.dotfiles/.";
+    homeupgrade = "home-manager switch --flake /home/${config.variables.username}/.dotfiles/.";
     c = "python3 -Bqic 'from math import *'";
-    peaclock = "peaclock --config-dir=/home/${user}/.config/peaclock/";
+    peaclock = "peaclock --config-dir=/home/${config.variables.username}/.config/peaclock/";
     restart-waybar = "pkill waybar && hyprctl dispatch exec waybar";
     neofetch = "fastfetch";
   };
