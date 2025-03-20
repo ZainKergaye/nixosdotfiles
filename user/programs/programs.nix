@@ -46,7 +46,12 @@
     cbonsai
 
     rpi-imager
+
+    # Productivity focusing
+    ianny
   ];
+
+  wayland.windowManager.hyprland.exec-once = [ "${pkgs.ianny}/bin/ianny" ];
 
   # Quartus prime variables
   home.sessionVariables.LM_LICENSE_FILE = "/home/aegis/.dotfiles/secrets/LR-214324_License.dat";

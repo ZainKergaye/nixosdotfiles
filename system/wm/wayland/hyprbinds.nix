@@ -59,7 +59,7 @@
         "$mod CTRL SHIFT, P, movetoworkspace, special:hiddenone"
 
         ",Print, exec, hyprshot -m output -o /home/aegis/Pictures/Screenshots"
-        ",XF86Launch2, exec, hyprshot -m region -o /home/aegis/Pictures/Screenshots"
+        "CTRL, Print, exec, hyprshot -m region -o /home/aegis/Pictures/Screenshots"
 
         "$mod CTRL SHIFT, M, exit"
       ]

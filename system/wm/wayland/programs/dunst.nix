@@ -15,6 +15,7 @@ in
         transparancy = 10;
         frame_color = "#${palette.base04}";
         font = "Hack Nerd Font Mono 10";
+        idle_threshold = "10m";
       };
       urgency_normal = {
         background = "#${palette.base00}";

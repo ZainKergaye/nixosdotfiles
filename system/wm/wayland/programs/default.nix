@@ -14,5 +14,11 @@
 
     # Audio
     pwvucontrol
+
+    # System info viewer
+    hyprsysteminfo
+
+    # Screenshot drawing tool
+    swappy # TODO: Integrate into screenshots
   ];
 }

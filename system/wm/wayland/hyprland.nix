@@ -52,12 +52,10 @@
 
       exec-once = [
         "nm-applet"
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # DEP I think
         "waybar"
         "blueman-applet"
         "syncthingtray --wait"
         "swww-daemon"
-        #"${pkgs.pypr}/bin/pypr"
         "pypr"
       ];
 

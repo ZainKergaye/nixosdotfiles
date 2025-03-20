@@ -251,7 +251,7 @@ in
                   "tooltip": false,
                   "on-click": "chromium-browser --new-window 'https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query=+'",
                   "on-click-middle": "kitty --hold fastfetch",
-                  "on-click-right": "chromium-browser --new-window 'https://utah.instructure.com/'"
+                  "on-click-right": "${pkgs.hyprsysteminfo}/bin/hyprsysteminfo"
               },
               "custom/sep": {
                   "format": "|",
