@@ -12,19 +12,31 @@
       settings = {
         main = {
           #layer_indicator = "1";
-          chord_timeout = "100"; #ms
+          chord_timeout = "50"; #ms
 
-          capslock = "overload(control, esc)";
           #"j + k + l" = "enter"; # Chording keys
 
-          #rightalt = "toggle(rightalt)";
+          capslock = "overload(control, esc)";
+
+          s = "overload(shift, s)";
+          d = "overload(alt, d)";
+          f = "overload(meta, f)";
+
+          j = "overload(meta, j)";
+          k = "overload(alt, k)";
+          l = "overload(shift, l)";
+
+          rightalt = "toggle(rightalt)";
         };
 
         rightalt = {
-          h = "left";
-          j = "down";
-          k = "up";
-          l = "right";
+          s = "s";
+          d = "d";
+          f = "f";
+
+          j = "j";
+          k = "k";
+          l = "l";
         };
       };
     };
