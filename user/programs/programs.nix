@@ -27,6 +27,7 @@
     p3x-onenote
     syncthingtray
     ungoogled-chromium
+    hakuneko
 
     # games
     osu-lazer-bin

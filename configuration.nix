@@ -86,6 +86,7 @@
     '';
 
     settings = {
+      trusted-users = [ "${config.variables.username}" ];
       substituters = [
         "https://nixpkgs-wayland.cachix.org"
       ];

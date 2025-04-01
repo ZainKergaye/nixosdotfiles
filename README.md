@@ -1,6 +1,8 @@
 # NixOS config
 
-This is my NixOS config for daily driving. This includes NixVim, a neovim distro based on the NIX.
+This is my NixOS config for daily driving. This includes NixVim, a neovim distro based on NIX.
+
+I am using homemanager for userspace management. LOOK UP PROPER README FORMATTING AAA
 
 # Screenshots:
 

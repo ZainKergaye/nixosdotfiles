@@ -18,13 +18,13 @@
 
           capslock = "overload(control, esc)";
 
-          s = "overload(shift, s)";
-          d = "overload(alt, d)";
-          f = "overload(meta, f)";
+          s = "overloadi(s, overloadt2(shift, s, 200), 150)";
+          d = "overloadi(d, overloadt2(alt, d, 200), 150)";
+          f = "overloadi(f, overloadt2(meta, f, 200), 150)";
 
-          j = "overload(meta, j)";
-          k = "overload(alt, k)";
-          l = "overload(shift, l)";
+          j = "overloadi(j, overloadt2(meta, j, 200), 150)";
+          k = "overloadi(k, overloadt2(alt, k, 200), 150)";
+          l = "overloadi(l, overloadt2(shift, l, 200), 150)";
 
           rightalt = "toggle(rightalt)";
         };
