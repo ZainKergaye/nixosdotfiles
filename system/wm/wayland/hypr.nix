@@ -49,7 +49,7 @@
 
     # Locking / Sleeping
     hyprlock
-    swaylock
+    swaylock-effects
 
     # Screenshots
     hyprshot

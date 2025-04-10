@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,13 +21,21 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-06cb-009a-fingerprint-sensor = {
+      url = "github:viktor-grunwaldt/t480-fingerprint-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
   nixConfig = {
     extra-substituters = [
       "https://nixpkgs-wayland.cachix.org"
+      "https://nix-community.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 
@@ -38,6 +47,7 @@
     , nix-colors
     , nixos-unstable-small
     , zen-browser
+    , nixos-06cb-009a-fingerprint-sensor
     , ...
     }:
     let
@@ -53,6 +63,7 @@
           modules = [
             ./configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t480
+            nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
           ];
         };
       };
