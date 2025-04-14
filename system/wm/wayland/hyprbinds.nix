@@ -5,16 +5,8 @@
       "$mod, mouse:272, movewindow"
     ];
 
-    bindl = [
-      # Laptop lid actions BUG: Doesn't work
-      ", switch:24ffa00, exec, swaylock"
-      ", switch:on:24ffa00, exec, swaylock"
-    ];
-
     binde = [
       # binde repeats command while being held
-      ",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
-      ",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
       ",XF86MonBrightnessUp, exec, brightnessctl s 80+"
       ",XF86MonBrightnessDown, exec, brightnessctl s 80-"
 
@@ -30,8 +22,6 @@
         "$mod, J, movefocus, d"
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
-
-        "$mod CTRL, L, exec, swaylock"
 
         "$mod, W, exec, chromium"
         "$mod, Q, exec, kitty"

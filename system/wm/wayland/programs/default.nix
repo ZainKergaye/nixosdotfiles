@@ -7,6 +7,7 @@
     ./wlogout.nix
     ./pyprland.nix
     ./swaylock.nix
+    ./audio.nix
   ];
   home.packages = with pkgs; [
     # Wallpaper

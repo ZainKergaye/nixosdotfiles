@@ -6,13 +6,19 @@ let
   palette = config.colorScheme.palette;
 in
 {
+  wayland.windowManager.hyprland.settings = {
+    bindl = [
+      # Laptop lid actions
+      ", switch:24ffa00, exec, swaylock"
+      ", switch:on:24ffa00, exec, swaylock" # NOTE: Test if doing anything
+    ];
+    bind = [ "$mod CTRL, L, exec, swaylock" ];
+  };
+
   programs.swaylock = {
     enable = true;
-    package = pkgs.swaylock-effects;
+    package = pkgs.swaylock;
     settings = {
-      effect-blur = "5x5";
-      fade-in = 0.1;
-
       font = "JetBrainsMono Nerd Font Mono";
       font-size = 15;
 
@@ -24,7 +30,7 @@ in
 
       indicator-radius = 50;
 
-      indicator-idle-visible = true;
+      indicator-idle-visible = false;
 
       indicator-y-position = 540;
 
