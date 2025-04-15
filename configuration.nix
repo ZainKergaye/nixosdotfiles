@@ -8,9 +8,6 @@
     ./variables.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
   networking = {

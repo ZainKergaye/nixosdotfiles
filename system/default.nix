@@ -9,5 +9,6 @@
     ./power-management.nix
     ./pentesting.nix
     ./security.nix
+    ./boot.nix
   ];
 }
