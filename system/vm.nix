@@ -37,12 +37,19 @@
         ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
+
     spiceUSBRedirection.enable = true;
 
-    virtualbox = {
-      host = {
-        enable = true;
-        #enableKvm = true;
+    virtualbox.host = {
+      enable = true;
+      #enableKvm = true;
+    };
+
+    vmVariant = {
+      # following configuration is added only when building VM with build-vm
+      virtualisation = {
+        memorySize = 8192; # Use 8192MiB memory.
+        cores = 3;
       };
     };
   };

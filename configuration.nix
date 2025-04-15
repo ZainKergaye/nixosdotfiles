@@ -68,6 +68,7 @@
   users.users.${config.variables.username} = {
     isNormalUser = true;
     description = "${config.variables.username}";
+    initialHashedPassword = "${config.variables.initialHashedPassword}";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;

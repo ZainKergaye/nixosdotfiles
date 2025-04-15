@@ -13,6 +13,12 @@ with lib; {
       description = "hostname";
     };
 
+    initialHashedPassword = mkOption {
+      type = types.str;
+      default = "$y$j9T$lzgJEP2Hn9SNNts2xZqs11$CofLHlMHuKEfHVmRDrPNk0chYXIAWpWlRgBRzTEV6J4";
+      description = "Initial Hashed Password";
+    };
+
     email = mkOption {
       type = types.str;
       default = "zain4utah@gmail.com";
