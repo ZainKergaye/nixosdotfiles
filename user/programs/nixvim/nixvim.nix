@@ -19,7 +19,7 @@
     # Performance
     performance = {
       byteCompileLua.enable = true;
-      combinePlugins.enable = true;
+      #combinePlugins.enable = true; Image.nvim breaks with this enabled
     };
 
     globals.mapleader = " ";

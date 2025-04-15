@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   wayland.windowManager.hyprland.settings = {
+    # TODO: Make custom script that seamlessly allows 0vol = mute and turning up vol unmutes
     binde = [
       # binde repeats command while being held
       ",XF86AudioLowerVolume, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"
