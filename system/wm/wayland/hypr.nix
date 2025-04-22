@@ -8,6 +8,9 @@
     QT_STYLE_OVERRIDE = "adwaita-dark";
   };
 
+  # Part of ./programs/audio
+  # services.udev.extraRules = builtins.readFile "${pkgs.swayosd}/lib/udev/rules.d/99-swayosd.rules";
+
   environment.systemPackages = with pkgs; let
     restart-swayidle = lib.getExe (pkgs.writeShellScriptBin "restart-swayidle" ''
        	pkill swayidle

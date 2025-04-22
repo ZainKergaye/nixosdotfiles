@@ -12,14 +12,33 @@
       ",XF86AudioMicMute, exec, ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     ];
 
-    exec-once = [ "${pkgs.swayosd}" ];
+    # exec-once = [ "${pkgs.swayosd}/bin/swayosd-server" ];
   };
 
-  home.packages = [ pkgs.swayosd ];
+  # home.packages = [ pkgs.swayosd ];
 
-  services.swayosd = {
-    enable = true;
-    package = pkgs.swayosd;
-    #display = "DP-1";
-  };
+  # TODO: Later
+  # systemd.user.services.swayosd-libinput-backend = {
+  #   unitConfig = {
+  #     Description = "SwayOSD LibInput backend for listening to certain keys like CapsLock, ScrollLock, VolumeUp, etc...";
+  #     Documentation = [ "https://github.com/ErikReider/SwayOSD" ];
+  #     PartOf = [ "graphical.target" ];
+  #     After = [ "graphical.target" ];
+  #   };
+  #
+  #   serviceConfig = {
+  #     Type = "dbus";
+  #     BusName = "org.erikreider.swayosd";
+  #     ExecStart = "${pkgs.swayosd}/bin/swayosd-libinput-backend";
+  #     Restart = "on-failure";
+  #   };
+  #
+  #   wantedBy = [ "graphical.target" ];
+  # };
+  #
+  # # udev rule in ../hypr
+  # NOTE: Don't forget to enable
+
+  # Do everything manually here instead of it auto configured by nix.
+  # Get bootloader to still be able to select gens
 }

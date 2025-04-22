@@ -13,15 +13,18 @@
     settings = {
       "$mod" = "SUPER";
       monitor = [
-        ", preferred, auto, 1"
+        # name, resolution, position, scale
+        # https://wiki.hyprland.org/Configuring/Monitors/
+        ", preferred, auto, 1" # Default
         "desc:LG Display 0x0521, 1920x1080@60.02, 0x0, 1" # Built-in display
         "desc:Acer Technologies VG270 TEGAA003851S, 1920x1080@74.97, -1920x0, 1" # Room Display
         "desc:Samsung Electric Company S34J55x H4LNB01778, 3440x1440@49.99, -760x-1440, 1" # Office display
+        "desc:Dell Inc. DELL U3415W PXF7986G10HL, preferred, auto-up, 1" # Campus library display
       ];
 
       windowrulev2 = [
         "float, size 530 400,title:(Bluetooth Devices)"
-        "float, size 400 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)"
+        "float, size 400 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)" # DEBUG: Too big
 
         "keepaspectratio, title:^(Picture-in-Picture)$" # PiP Proper scaling
         "move 72% 7%,title:^(Picture-in-Picture)$"
@@ -33,7 +36,7 @@
         "float, size 550 700,title:(Open File)"
 
         "opacity 0.8 0.8, class:^(kitty)$"
-        "opacity 0.8 0.8, class:^(rofi)$"
+        "opacity 0.8 0.8, class:^(rofi)$" # DEBUG: Does not work
         "opacity 0.8 0.8, class:^(vesktop)$"
       ];
 
