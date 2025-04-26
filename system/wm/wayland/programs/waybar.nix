@@ -201,7 +201,6 @@ in
                   "custom/sep"
               ],
               "modules-right": [
-                  "pulseaudio",
                   "group/batteries",
                   "tray",
                   "group/poweroptions"

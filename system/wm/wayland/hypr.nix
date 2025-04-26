@@ -8,17 +8,24 @@
     QT_STYLE_OVERRIDE = "adwaita-dark";
   };
 
-  # Part of ./programs/audio
-  # services.udev.extraRules = builtins.readFile "${pkgs.swayosd}/lib/udev/rules.d/99-swayosd.rules";
+  services.udev.packages = [ pkgs.swayosd ];
 
-  environment.systemPackages = with pkgs; let
-    restart-swayidle = lib.getExe (pkgs.writeShellScriptBin "restart-swayidle" ''
-       	pkill swayidle
-         hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-      hyprctl --instance 0 'dispatch exec swaylock'
-    '');
-  in
-  [
+  systemd.services.swayosd-libinput-backend = {
+    description = "SwayOSD LibInput backend for listening to certain keys like CapsLock, ScrollLock, VolumeUp, etc.";
+    documentation = [ "https://github.com/ErikReider/SwayOSD" ];
+    wantedBy = [ "graphical.target" ];
+    partOf = [ "graphical.target" ];
+    after = [ "graphical.target" ];
+
+    serviceConfig = {
+      Type = "dbus";
+      BusName = "org.erikreider.swayosd";
+      ExecStart = "${pkgs.swayosd}/bin/swayosd-libinput-backend";
+      Restart = "on-failure";
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
     # Status bar
     waybar
     (
@@ -43,6 +50,7 @@
     xwayland
     wayland-scanner
     hyprwayland-scanner
+    swayosd
 
     # Theme
     glib
