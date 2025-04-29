@@ -37,18 +37,6 @@
     };
 
     alacritty.enable = true;
-
-    gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
-    };
-
-    git = {
-      enable = true;
-
-      userName = config.variables.pretty_name;
-      userEmail = config.variables.email;
-    };
   };
 
   colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;

@@ -10,6 +10,7 @@
     ./peaclock.nix
     ./nixvim/nixvim.nix
     ./fastfetch.nix
+    ./git.nix
   ];
 
   home.packages = with pkgs; [
