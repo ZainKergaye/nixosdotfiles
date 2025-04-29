@@ -5,7 +5,7 @@
   imports = [
     ./user/shell
     ./user/programs/programs.nix
-    ./system/wm/wayland/hyprland.nix
+    ./system/wayland/hyprland.nix
     ./variables.nix
     nix-colors.homeManagerModules.default
   ];

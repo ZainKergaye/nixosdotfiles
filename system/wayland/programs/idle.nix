@@ -1,8 +1,6 @@
 # Imported into home-manager, this is swayidle that does 4 things:
 # 1. Turns off the screen at 4.5 mins
 # 2. Locks the screen at 5 mins
-# 3. Sleeps the pc at 30 mins
-# 4. Hibernates the computer at 2 hours
 { pkgs
 , lib
 , ...

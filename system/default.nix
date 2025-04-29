@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./wm/wayland/hypr.nix
+    ./wayland/hypr.nix
     ./fonts.nix
     ./packages.nix
     ./vm.nix
