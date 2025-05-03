@@ -32,6 +32,7 @@
 
     # games
     osu-lazer-bin
+    atlauncher
 
     # Astrophotography
     gimp

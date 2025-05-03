@@ -5,7 +5,7 @@
   wayland.windowManager.hyprland.settings =
     let
       swayosd = lib.getExe' pkgs.swayosd "swayosd-client";
-      focused-monitor = ''--monitor "$(${pkgs.hyprland}/bin/hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')"'';
+      focused-monitor = ''--monitor "$(${lib.getExe' pkgs.hyprland "hyprctl"} monitors -j | ${lib.getExe' pkgs.jq "jq"} -r '.[] | select(.focused == true).name')"'';
     in
     {
       exec-once = [ "${lib.getExe' pkgs.swayosd "swayosd-server"}" ];
