@@ -13,6 +13,7 @@ let
          ${pkgs.hyprland}/bin/hyprctl dispatch exec ${pkgs.swaylock-effects}/bin/swaylock
        fi
   '');
+  hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
 in
 {
   services.swayidle = {
@@ -24,14 +25,20 @@ in
       {
         # Sleep screen
         timeout = 30 * 9; # 4.5 mins
-        command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+        command = "${hyprctl} dispatch dpms off";
+        resumeCommand = "${hyprctl} dispatch dpms on";
       }
       {
         # Lock screen
         timeout = 60 * 5; # 5 mins
         command = "${exec-swaylock-once}";
-        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+        resumeCommand = "${hyprctl} dispatch dpms on";
+      }
+      {
+        # Hibernate
+        timeout = 60 * 60 * 10; # 10 hours
+        command = "systemctl hybrid-sleep";
+        resumeCommand = "${hyprctl} dispatch dpms on";
       }
     ];
 
