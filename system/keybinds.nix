@@ -2,7 +2,12 @@
 { pkgs, ... }: {
   environment.systemPackages = [
     pkgs.keyd
+    pkgs.via
   ];
+
+  services.udev.packages = [ pkgs.via ];
+
+  hardware.keyboard.qmk.enable = true;
 
   services.keyd = {
     enable = true;
@@ -41,17 +46,4 @@
       };
     };
   };
-  # Second layer for keyboard
-  # RShift to rotate forward layers
-  # Ralt to rotate back layers
-  # uiojklnm,. = 1234567890
-
-  # or
-  # Second layer
-  # jkl toggle
-  # sdf toggle back
-  #fj = {}
-  #gh = ()
-  #dk = []
-  #u = ;
 }
