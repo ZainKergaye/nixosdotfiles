@@ -15,6 +15,7 @@ in
     bind = [ "$mod CTRL, L, exec, swaylock" ];
   };
 
+  # TODO: I want my display to turn back off after inactivity for 2mins
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock;

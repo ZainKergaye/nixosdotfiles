@@ -4,7 +4,13 @@
     checkReversePath = false;
   };
 
-  services.udev.enable = true;
+  services.udev = {
+    enable = true;
+    extraRules = ''
+      SUBSYSTEM=="tty", GROUP="dialout". MODE="0660"
+         SUBSYSTEMS=="usb", ATTRS{idProduct}=="7523", ATTRS{idVendor}=="1a86", SYMLINK+="arduino"
+    '';
+  };
 
   services."06cb-009a-fingerprint-sensor" = {
     enable = true;
