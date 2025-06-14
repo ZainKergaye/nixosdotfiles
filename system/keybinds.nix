@@ -1,11 +1,14 @@
 # Keybinding config imported into configuration.nix
 { pkgs, ... }: {
-  environment.systemPackages = [
-    pkgs.keyd
-    pkgs.via
+  environment.systemPackages = with pkgs; [
+    keyd
+    via
   ];
 
-  services.udev.packages = [ pkgs.via ];
+  services.udev.packages = with pkgs; [
+    via
+    qmk-udev-rules
+  ];
 
   hardware.keyboard.qmk.enable = true;
 
@@ -16,11 +19,6 @@
       ids = [ "*" ];
       settings = {
         main = {
-          #layer_indicator = "1";
-          chord_timeout = "50"; #ms
-
-          "j + k + l" = "return"; # Chording keys
-
           capslock = "overload(control, esc)";
 
           a = "overloadi(a, overloadt2(shift, a, 200), 150)";
