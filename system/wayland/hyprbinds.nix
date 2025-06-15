@@ -31,8 +31,6 @@
         "$mod, G, togglegroup"
         "$mod, T, pin"
 
-        "$mod, SPACE, exec, rofi -show drun"
-
         "$mod CTRL, I, togglespecialworkspace, magic"
         "$mod CTRL SHIFT, I, movetoworkspace, special:magic"
 

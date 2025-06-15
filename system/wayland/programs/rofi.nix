@@ -6,9 +6,23 @@ let
   palette = config.colorScheme.palette;
 in
 {
-  home.packages = [ pkgs.rofi-wayland ];
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland;
+    plugins = [ pkgs.rofi-emoji ];
+    theme = "${config.xdg.configHome}/rofi/configone.rasi";
+    modes = [
+      "drun"
+      "emoji"
+    ];
+  };
 
-  home.file.".config/rofi/config.rasi" = {
+  wayland.windowManager.hyprland.settings.bind = [
+    "$mod, E, exec, rofi -mode emoji -show emoji"
+    "$mod, SPACE, exec, rofi -show drun"
+  ];
+
+  home.file.".config/rofi/configone.rasi" = {
     text = ''
                /*****----- Configuration -----*****/
         configuration {
