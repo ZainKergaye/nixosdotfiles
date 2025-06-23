@@ -6,10 +6,6 @@
 
   services.udev = {
     enable = true;
-    extraRules = ''
-      SUBSYSTEM=="tty", GROUP="dialout". MODE="0660"
-         SUBSYSTEMS=="usb", ATTRS{idProduct}=="7523", ATTRS{idVendor}=="1a86", SYMLINK+="arduino"
-    '';
   };
 
   services."06cb-009a-fingerprint-sensor" = {
@@ -24,6 +20,6 @@
     package = pkgs.fprintd-tod;
   };
 
-  security.pam.services.swaylock = { }; # TODO: Not working still
-  security.pam.services.swaylock.fprintAuth = true;
+  #security.pam.services.swaylock = { }; # TODO: Not working still
+  #  security.pam.services.swaylock.fprintAuth = true;
 }
