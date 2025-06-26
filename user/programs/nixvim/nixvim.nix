@@ -33,11 +33,6 @@
 
     clipboard.providers.wl-copy.enable = true;
 
-    # Disables the mouse from messing with cursor
-    extraConfigLua = ''
-      vim.opt.mouse=""
-    '';
-
     colorschemes.catppuccin = {
       enable = true;
       settings.flavour = "mocha";
@@ -50,7 +45,11 @@
           "HELP" = {
             icon = "󰮥 ";
             color = "warning";
-            alt = [ "FUCK" "AAAA" "REEE" ];
+            alt = [
+              "FUCK"
+              "AAAA"
+              "REEE"
+            ];
           };
           "LABEL" = {
             icon = "󰌕 ";
@@ -60,12 +59,19 @@
           "DEPRICATED" = {
             icon = "󰁨 ";
             color = "warning";
-            alt = [ "DEP" "UNEEDED" ];
+            alt = [
+              "DEP"
+              "UNEEDED"
+            ];
           };
           "DEBUG" = {
             icon = " ";
             color = "#FF5747";
-            alt = [ "TESTING" "REMOVELATER" "REMOVE" ];
+            alt = [
+              "TESTING"
+              "REMOVELATER"
+              "REMOVE"
+            ];
           };
         };
         settings.highlight.multiline = false;

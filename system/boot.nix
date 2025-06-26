@@ -28,4 +28,6 @@
       };
     };
   };
+
+  services.acpid.enable = true;
 }
