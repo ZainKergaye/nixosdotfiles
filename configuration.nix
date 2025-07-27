@@ -69,7 +69,10 @@
     isNormalUser = true;
     description = "${config.variables.username}";
     initialHashedPassword = "${config.variables.initialHashedPassword}";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
@@ -96,9 +99,9 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-      intel-media-sdk
-    ];
+    #   extraPackages = with pkgs; [
+    #     intel-media-sdk
+    #   ];
   };
 
   system.stateVersion = "23.11";
