@@ -6,8 +6,8 @@
     ./waybar.nix
     ./wlogout.nix
     ./pyprland.nix
-    ./swaylock.nix
     ./swayosd.nix
+    ./hyprlock.nix
   ];
   home.packages = with pkgs; [
     # Wallpaper
@@ -20,12 +20,12 @@
     hyprsysteminfo
 
     # Screenshot drawing tool
-    swappy # TODO: Integrate into screenshots
+    swappy
 
     hyprpolkitagent # GUI auth
   ];
 
-  wayland.windowManager.hyprland. settings. exec-once = [
+  wayland.windowManager.hyprland.settings.exec-once = [
     "systemctl --user enable --now hyprpoltikagent.service"
   ];
 }

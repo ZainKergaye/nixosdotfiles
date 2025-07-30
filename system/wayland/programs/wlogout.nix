@@ -23,7 +23,7 @@ in
       }
       {
         label = "lock";
-        action = "${pkgs.swaylock-effects}/bin/swaylock";
+        action = "${pkgs.hyprlock}/bin/hyprlock";
         text = "Lock";
         keybind = "l";
       }

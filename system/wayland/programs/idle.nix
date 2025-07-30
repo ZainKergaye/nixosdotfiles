@@ -6,13 +6,15 @@
 , ...
 }:
 let
-  exec-swaylock-once = lib.getExe (pkgs.writeShellScriptBin "exec-swaylock-once" ''
-       if (pgrep -x swaylock > /dev/null); then
-         ${pkgs.dunst}/bin/dunstify -u low -a swayidle "Tried locking screen, already locked"
-    else
-         ${pkgs.hyprland}/bin/hyprctl dispatch exec ${pkgs.swaylock-effects}/bin/swaylock
-       fi
-  '');
+  exec-hyprlock-once = lib.getExe (
+    pkgs.writeShellScriptBin "exec-hyprlock-once" ''
+         if (pgrep -x hyprlock > /dev/null); then
+           ${pkgs.dunst}/bin/dunstify -u low -a swayidle "Tried locking screen, already locked"
+      else
+           ${pkgs.hyprland}/bin/hyprctl dispatch exec ${pkgs.hyprlock}/bin/hyprlock
+         fi
+    ''
+  );
   hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
 in
 {
@@ -31,12 +33,12 @@ in
       {
         # Lock screen
         timeout = 60 * 5; # 5 mins
-        command = "${exec-swaylock-once}";
+        command = "${exec-hyprlock-once}";
         resumeCommand = "${hyprctl} dispatch dpms on";
       }
       {
         # Hibernate
-        timeout = 60 * 60 * 10; # 10 hours
+        timeout = 60 * 60 * 5; # 5 hours
         command = "systemctl hybrid-sleep";
         resumeCommand = "${hyprctl} dispatch dpms on";
       }
@@ -45,7 +47,7 @@ in
     events = [
       {
         event = "before-sleep";
-        command = "${exec-swaylock-once}";
+        command = "${exec-hyprlock-once}";
       }
     ];
   };

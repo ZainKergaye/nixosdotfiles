@@ -20,6 +20,6 @@
     package = pkgs.fprintd-tod;
   };
 
-  #security.pam.services.swaylock = { }; # TODO: Not working still
-  #  security.pam.services.swaylock.fprintAuth = true;
+  security.pam.services.hyprlock = { };
+  security.pam.services.hyprlock.fprintAuth = true;
 }

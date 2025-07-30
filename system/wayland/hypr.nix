@@ -28,11 +28,9 @@
   environment.systemPackages = with pkgs; [
     # Status bar
     waybar
-    (
-      waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      })
-    )
+    (waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    }))
 
     # Notifications
     dunst
@@ -60,7 +58,6 @@
 
     # Locking / Sleeping
     hyprlock
-    swaylock-effects
 
     # Screenshots
     hyprshot
