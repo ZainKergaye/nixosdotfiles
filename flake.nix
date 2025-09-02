@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -50,6 +51,7 @@
     , nixos-unstable-small
     , zen-browser
     , nixos-06cb-009a-fingerprint-sensor
+    , nixvim-custom
     , ...
     }:
     let
@@ -78,6 +80,7 @@
             inherit nix-colors;
             inherit unstable;
             inherit zen-browser;
+            inherit nixvim-custom;
           };
           modules = [
             ./home.nix

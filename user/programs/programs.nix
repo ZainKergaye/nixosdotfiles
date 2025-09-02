@@ -1,14 +1,16 @@
 # Imported into home-manager
-{ pkgs
-, lib
-, zen-browser
-, config
-, ...
-}: {
+{
+  pkgs,
+  lib,
+  zen-browser,
+  nixvim-custom,
+  config,
+  ...
+}:
+{
   imports = [
     ./cava.nix
     ./peaclock.nix
-    ./nixvim/nixvim.nix
     ./fastfetch.nix
     ./git.nix
   ];
@@ -29,6 +31,7 @@
     syncthingtray
     ungoogled-chromium
     hakuneko
+    quartus-prime-lite
 
     # games
     osu-lazer-bin
@@ -44,6 +47,7 @@
     kicad
 
     # cli tools
+    nixvim-custom.packages."x86_64-linux".default
     onefetch
     cmatrix
     cbonsai
@@ -51,8 +55,11 @@
     rpi-imager
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "osu-lazer-bin"
+      "quartus-prime-lite"
+      "quartus-prime-lite-unwrapped"
     ];
 }
