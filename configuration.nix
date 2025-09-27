@@ -18,6 +18,7 @@
     useDHCP = false;
     dhcpcd.enable = false;
     nameservers = [
+      "10.0.0.229" # NOTE: I'm not sure how this should work on other networks too
       "1.1.1.1"
       "1.0.0.1"
       "8.8.8.8"
