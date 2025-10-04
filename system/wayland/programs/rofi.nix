@@ -8,7 +8,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     plugins = [ pkgs.rofi-emoji ];
     theme = "${config.xdg.configHome}/rofi/configone.rasi";
     modes = [
