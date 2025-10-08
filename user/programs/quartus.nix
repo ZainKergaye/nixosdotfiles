@@ -1,6 +1,5 @@
 { config
 , pkgs
-, lib
 , ...
 }:
 let
@@ -11,27 +10,29 @@ let
     hash = "sha256-XQguSj0NbT5p3yxRnB/XYptw143c3eaVXv2lZixKVq0=";
   };
 
-  quartus-dark = pkgs.stdenv.mkDerivation {
-    pname = "quartus-prime-lite-dark";
-    version = pkgs.quartus-prime-lite.version;
+  desktopItemDark = pkgs.makeDesktopItem {
+    name = "quartus-prime-lite-dark";
+    exec = "quartus -stylesheet=${quartusDarkStylesheet}/quartus_stylesheet_dark.qss";
+    icon = "quartus";
+    desktopName = "Quartus Dark";
+    genericName = "Quartus Prime dark";
+    categories = [ "Development" ];
+  };
 
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    buildInputs = [ pkgs.quartus-prime-lite ];
+  quartus-dark-desktop-item = pkgs.stdenv.mkDerivation {
+    name = "quartus-dark-desktop-item";
 
-    dontUnpack = true;
-    installPhase = ''
-      mkdir -p $out/bin
-      makeWrapper ${pkgs.quartus-prime-lite}/quartus/bin/quartus \
-        $out/bin/quartus \
-        --add-flags "-stylesheet=${quartusDarkStylesheet}/quartus_stylesheet_dark.qss"
+    buildCommand = ''
+      mkdir -p $out/share/applications
+      ln -s ${desktopItemDark}/share/applications/* $out/share/applications
     '';
-    meta = pkgs.quartus-prime-lite.meta;
   };
 in
 {
   # This is quartus with the dark stylesheet provided by sandervanthul
   home.packages = [
-    quartus-dark
+    pkgs.quartus-prime-lite
+    quartus-dark-desktop-item
   ];
 
   home.sessionVariables = {
