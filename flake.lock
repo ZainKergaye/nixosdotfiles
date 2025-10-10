@@ -133,7 +133,7 @@
       "inputs": {
         "flake-compat": "flake-compat",
         "gitignore": "gitignore",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1758108966,
@@ -291,21 +291,20 @@
     },
     "nixos-06cb-009a-fingerprint-sensor": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1752265282,
-        "narHash": "sha256-eipl7Niq9Xurtr+W75LJNdl9A3z3+RmXBWx1n8/l5G4=",
-        "owner": "viktor-grunwaldt",
-        "repo": "t480-fingerprint-nixos",
-        "rev": "1ef501415c23782b9f8de050d3b45d1d480da8bd",
+        "lastModified": 1754945827,
+        "narHash": "sha256-89z87Si1iIq/C1MX3EaAtsXrQD5AelO3MGGbQWnTD1A=",
+        "owner": "iedame",
+        "repo": "nixos-06cb-009a-fingerprint-sensor",
+        "rev": "ab574369cac3d8e72b0c96840ed014f98d8ceb7f",
         "type": "github"
       },
       "original": {
-        "owner": "viktor-grunwaldt",
-        "repo": "t480-fingerprint-nixos",
+        "owner": "iedame",
+        "ref": "25.11",
+        "repo": "nixos-06cb-009a-fingerprint-sensor",
         "type": "github"
       }
     },
@@ -343,16 +342,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1759381078,
-        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "lastModified": 1759735786,
+        "narHash": "sha256-a0+h02lyP2KwSNrZz4wLJTu9ikujNsTWIC874Bv7IJ0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "rev": "20c4598c84a671783f741e02bf05cbfaf4907cff",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
-        "ref": "nixos-unstable",
+        "ref": "nixos-25.05",
         "type": "indirect"
       }
     },
@@ -388,6 +387,21 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1759381078,
+        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-unstable",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1758029226,
         "narHash": "sha256-TjqVmbpoCqWywY9xIZLTf6ANFvDCXdctCjoYuYPYdMI=",
         "owner": "NixOS",
@@ -402,7 +416,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1759070547,
         "narHash": "sha256-JVZl8NaVRYb0+381nl7LvPE+A774/dRpif01FKLrYFQ=",
@@ -418,7 +432,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1758763312,
         "narHash": "sha256-puBMviZhYlqOdUUgEmMVJpXqC/ToEqSvkyZ30qQ09xM=",
@@ -461,15 +475,15 @@
       "inputs": {
         "flake-parts": "flake-parts_2",
         "git-hooks": "git-hooks",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1759198034,
-        "narHash": "sha256-UzemE8jsZxxFBZoTbDOpfwVfC4LilAyPFMRaIQaFMfI=",
+        "lastModified": 1760052271,
+        "narHash": "sha256-1XBU+KjTcy9K1yfbfsIAk8MLDsnxqdWnbkaWMQcC+zc=",
         "owner": "ZainKergaye",
         "repo": "nixvim_dotfiles",
-        "rev": "b185548df2caab534503e09e5fe8e6b69355d67b",
+        "rev": "990e71439fbb85dfe800ae923f963285b8cf5b86",
         "type": "github"
       },
       "original": {
@@ -481,7 +495,7 @@
     "nixvim_2": {
       "inputs": {
         "flake-parts": "flake-parts_3",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "nuschtosSearch": "nuschtosSearch_2",
         "systems": "systems_4"
       },
@@ -553,7 +567,7 @@
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable-small": "nixos-unstable-small",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "nixvim-custom": "nixvim-custom",
         "zen-browser": "zen-browser"

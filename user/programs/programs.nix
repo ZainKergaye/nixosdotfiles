@@ -40,7 +40,7 @@
     rawtherapee
 
     #skewl
-    asciidoctor-with-extensions
+    #asciidoctor-with-extensions
     kicad
 
     # cli tools

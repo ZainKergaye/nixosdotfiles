@@ -7,6 +7,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
+    nixos-06cb-009a-fingerprint-sensor.url = "github:iedame/nixos-06cb-009a-fingerprint-sensor?ref=25.11";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -20,11 +21,6 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:viktor-grunwaldt/t480-fingerprint-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

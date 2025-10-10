@@ -6,7 +6,10 @@
   programs.dconf.enable = true;
 
   # User to be added to libvirtd group
-  users.users.${config.variables.username}.extraGroups = [ "libvirtd" "vboxusers" ];
+  users.users.${config.variables.username}.extraGroups = [
+    "libvirtd"
+    "vboxusers"
+  ];
 
   environment.systemPackages = with pkgs; [
     virt-manager
@@ -30,11 +33,8 @@
     libvirtd = {
       enable = true;
       qemu = {
-        # TMP for windows
+        # TPM for windows
         swtpm.enable = true;
-        # Secure boot
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
 
