@@ -1,8 +1,10 @@
-{ pkgs
-, config
-, lib
-, ...
-}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   wayland.windowManager.hyprland.settings =
     let
       hyprlock-bin = lib.getExe' pkgs.hyprlock "hyprlock";

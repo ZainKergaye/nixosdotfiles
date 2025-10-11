@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   services.getty = {
     helpLine = lib.mkForce "";
     greetingLine = lib.mkForce "";

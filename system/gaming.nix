@@ -1,8 +1,10 @@
 # Gaming declaritive configuration
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   hardware.graphics = {
     # Basic hardware drivers
     enable = true;

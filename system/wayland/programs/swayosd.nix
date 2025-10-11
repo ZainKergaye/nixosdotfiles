@@ -1,7 +1,9 @@
-{ pkgs
-, lib
-, ...
-}: {
+{
+  pkgs,
+  lib,
+  ...
+}:
+{
   wayland.windowManager.hyprland.settings =
     let
       swayosd = lib.getExe' pkgs.swayosd "swayosd-client";

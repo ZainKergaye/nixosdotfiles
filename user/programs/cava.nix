@@ -1,18 +1,16 @@
-{ config
-, unstable
-, ...
+{
+  config,
+  unstable,
+  ...
 }:
 let
   palette = config.colorScheme.palette;
-  pkgs =
-    import
-      (builtins.fetchGit {
-        name = "oldcava";
-        url = "https://github.com/NixOS/nixpkgs/";
-        ref = "refs/heads/nixpkgs-unstable";
-        rev = "0c19708cf035f50d28eb4b2b8e7a79d4dc52f6bb";
-      })
-      { };
+  pkgs = import (builtins.fetchGit {
+    name = "oldcava";
+    url = "https://github.com/NixOS/nixpkgs/";
+    ref = "refs/heads/nixpkgs-unstable";
+    rev = "0c19708cf035f50d28eb4b2b8e7a79d4dc52f6bb";
+  }) { };
 
   old-cava = pkgs.cava;
 in

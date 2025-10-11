@@ -1,5 +1,6 @@
 # Keybinding config imported into configuration.nix
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     keyd
     via

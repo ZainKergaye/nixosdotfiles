@@ -1,7 +1,9 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   # system management tool
   programs.dconf.enable = true;
 

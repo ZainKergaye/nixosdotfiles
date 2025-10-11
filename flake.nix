@@ -39,16 +39,17 @@
   };
 
   outputs =
-    { nixpkgs
-    , home-manager
-    , nixvim
-    , nixos-hardware
-    , nix-colors
-    , nixos-unstable-small
-    , zen-browser
-    , nixos-06cb-009a-fingerprint-sensor
-    , nixvim-custom
-    , ...
+    {
+      nixpkgs,
+      home-manager,
+      nixvim,
+      nixos-hardware,
+      nix-colors,
+      nixos-unstable-small,
+      zen-browser,
+      nixos-06cb-009a-fingerprint-sensor,
+      nixvim-custom,
+      ...
     }:
     let
       system = "x86_64-linux";
@@ -57,6 +58,8 @@
       lib = nixpkgs.lib;
     in
     {
+      formatter.${system} = pkgs.nixfmt-tree;
+
       nixosConfigurations = {
         conduit = lib.nixosSystem {
           inherit system;

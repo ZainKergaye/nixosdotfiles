@@ -1,7 +1,9 @@
-{ config
-, nix-colors
-, ...
-}: {
+{
+  config,
+  nix-colors,
+  ...
+}:
+{
   imports = [
     ./user/shell
     ./user/programs/programs.nix

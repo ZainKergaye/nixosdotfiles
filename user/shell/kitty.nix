@@ -1,5 +1,6 @@
 # Imported into home manager
-{ config, ... }: {
+{ config, ... }:
+{
   programs.kitty = {
     enable = true;
     font = {

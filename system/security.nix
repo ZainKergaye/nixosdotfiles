@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   networking.firewall = {
     enable = true;
     checkReversePath = false;

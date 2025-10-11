@@ -1,9 +1,10 @@
 # Imported into home-manager, this is swayidle that does 4 things:
 # 1. Turns off the screen at 4.5 mins
 # 2. Locks the screen at 5 mins
-{ pkgs
-, lib
-, ...
+{
+  pkgs,
+  lib,
+  ...
 }:
 let
   exec-hyprlock-once = lib.getExe (

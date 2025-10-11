@@ -1,6 +1,7 @@
-{ pkgs
-, config
-, ...
+{
+  pkgs,
+  config,
+  ...
 }:
 let
   palette = config.colorScheme.palette;

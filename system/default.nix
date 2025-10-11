@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./wayland/hypr.nix
     ./fonts.nix

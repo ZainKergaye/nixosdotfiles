@@ -1,5 +1,6 @@
 # Hyprland config for home-manager
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./hyprbinds.nix
     ./colors.nix

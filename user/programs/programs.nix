@@ -1,10 +1,12 @@
 # Imported into home-manager
-{ pkgs
-, lib
-, zen-browser
-, nixvim-custom
-, ...
-}: {
+{
+  pkgs,
+  lib,
+  zen-browser,
+  nixvim-custom,
+  ...
+}:
+{
   imports = [
     ./cava.nix
     ./peaclock.nix
@@ -52,7 +54,8 @@
     rpi-imager
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "osu-lazer-bin"
       "quartus-prime-lite"

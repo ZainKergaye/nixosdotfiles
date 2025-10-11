@@ -1,8 +1,9 @@
-{ lib
-, config
-, pkgs
-, unstable
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  unstable,
+  ...
 }:
 let
   palette = config.colorScheme.palette;

@@ -1,5 +1,6 @@
 { lib, ... }:
-with lib; {
+with lib;
+{
   options.variables = {
     username = mkOption {
       type = types.str;

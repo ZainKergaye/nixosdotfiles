@@ -1,8 +1,14 @@
-{ config
-, pkgs
-, ...
-}: {
-  users.users.${config.variables.username}.extraGroups = [ "video" "disk" "dialout" ]; # disk for rpi-imager
+{
+  config,
+  pkgs,
+  ...
+}:
+{
+  users.users.${config.variables.username}.extraGroups = [
+    "video"
+    "disk"
+    "dialout"
+  ]; # disk for rpi-imager
   # user group dialout for rw to serial ports
   # vbox users for vbox to usb devices
 
