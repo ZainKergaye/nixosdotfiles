@@ -27,11 +27,11 @@
         "float, size 530 400,title:(Bluetooth Devices)"
         "float, size 400 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)" # DEBUG: Too big
 
-        "keepaspectratio, title:^(Picture-in-Picture)$" # PiP Proper scaling
-        "move 72% 7%,title:^(Picture-in-Picture)$"
-        "size 25%, title:^(Picture-in-Picture$"
-        "float, title:^(Picture-in-Picture)$"
-        "pin, title:^(Picture-in-Picture)$"
+        # "keepaspectratio, title:^(Picture-in-Picture)$" # PiP Proper scaling
+        # "move 72% 7%,title:^(Picture-in-Picture)$"
+        # "size 25%, title:^(Picture-in-Picture$"
+        # "float, title:^(Picture-in-Picture)$"
+        # "pin, title:^(Picture-in-Picture)$"
 
         "float, size 550 700,title:(Save File)"
         "float, size 550 700,title:(Open File)"
@@ -50,9 +50,9 @@
         "force_default_wallpaper, 1" # Disables anime wallpaper
       ];
 
-      gestures = {
-        workspace_swipe = true;
-      };
+      gesture = [
+        "3, horizontal, workspace"
+      ];
 
       exec-once = [
         "nm-applet"
