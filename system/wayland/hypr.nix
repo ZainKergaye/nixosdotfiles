@@ -1,10 +1,14 @@
 # Hyprland config imported into configuration
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }:
 {
+  imports = [
+
+    ./waydroid.nix
+  ];
+
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     QT_STYLE_OVERRIDE = "adwaita-dark";
