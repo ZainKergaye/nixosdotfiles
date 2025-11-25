@@ -1,8 +1,7 @@
 # Gaming declaritive configuration
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }:
 {
   hardware.graphics = {
@@ -17,7 +16,7 @@
 
   environment.systemPackages = with pkgs; [
     mangohud # System specs overlay
-    protonup # Linux gaming compatability later
+    protonup-ng # Linux gaming compatability later
   ];
 
   programs.gamemode.enable = true; # Game optimizer

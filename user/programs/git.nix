@@ -9,10 +9,10 @@
     git = {
       enable = true;
 
-      userName = config.variables.pretty_name;
-      userEmail = config.variables.email;
+      settings = {
+        user.name = config.variables.pretty_name;
+        user.email = config.variables.email;
 
-      extraConfig = {
         core.whitespace = "error"; # Throw error on whitespace
 
         advice = {
