@@ -25,7 +25,6 @@
 
       windowrulev2 = [
         "float, size 530 400,title:(Bluetooth Devices)"
-        "float, size 400 345,class:(com.saivert.pwvucontrol),title:(Pipewire Volume Control)" # DEBUG: Too big
 
         # "keepaspectratio, title:^(Picture-in-Picture)$" # PiP Proper scaling
         # "move 72% 7%,title:^(Picture-in-Picture)$"
@@ -37,7 +36,6 @@
         "float, size 550 700,title:(Open File)"
 
         "opacity 0.8 0.8, class:^(kitty)$"
-        "opacity 0.8 0.8, class:^(rofi)$" # DEBUG: Does not work
         "opacity 0.8 0.8, class:^(vesktop)$"
       ];
 

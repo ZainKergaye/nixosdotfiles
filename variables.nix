@@ -22,7 +22,7 @@ with lib;
 
     email = mkOption {
       type = types.str;
-      default = "zain4utah@gmail.com";
+      default = "zain@zkergaye.me";
       description = "User email";
     };
 
