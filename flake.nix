@@ -8,11 +8,6 @@
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
 
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +40,6 @@
       nixos-hardware,
       nix-colors,
       nixos-unstable-small,
-      zen-browser,
       nixvim-custom,
       ...
     }:
@@ -75,7 +69,6 @@
           extraSpecialArgs = {
             inherit nix-colors;
             inherit unstable;
-            inherit zen-browser;
             inherit nixvim-custom;
           };
           modules = [

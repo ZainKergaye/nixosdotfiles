@@ -18,7 +18,6 @@
   home.packages = with pkgs; [
     vesktop
     prusa-slicer
-    zen-browser.packages."x86_64-linux".default
     qbittorrent
     pear-desktop
     libreoffice
@@ -36,8 +35,6 @@
     nixvim-custom.packages."x86_64-linux".default
     onefetch
     cbonsai
-
-    rpi-imager
   ];
 
   nixpkgs.config.allowUnfreePredicate =
