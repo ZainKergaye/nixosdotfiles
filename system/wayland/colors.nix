@@ -75,11 +75,11 @@ in
 
   home.packages = [
     pkgs.capitaine-cursors
-    unstable.dracula-theme
-    pkgs.noto-fonts
-    unstable.papirus-maia-icon-theme
-    pkgs.gtk3
-    pkgs.gsettings-desktop-schemas
+    # unstable.dracula-theme
+    # pkgs.noto-fonts
+    # unstable.papirus-maia-icon-theme
+    # pkgs.gtk3
+    # pkgs.gsettings-desktop-schemas
   ];
 
   gtk = {
@@ -87,14 +87,6 @@ in
     font = {
       name = "Noto Sans";
       package = pkgs.noto-fonts;
-    };
-    theme = {
-      name = "Dracula";
-      package = unstable.dracula-theme;
-    };
-    iconTheme = {
-      name = "Papirus-Dark-Maia"; # Candy and Tela also look good
-      package = unstable.papirus-maia-icon-theme;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;

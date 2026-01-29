@@ -13,7 +13,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
