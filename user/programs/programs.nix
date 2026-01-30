@@ -17,7 +17,7 @@
 
   home.packages = with pkgs; [
     vesktop
-    prusa-slicer
+    #prusa-slicer
     qbittorrent
     pear-desktop
     libreoffice
@@ -33,6 +33,7 @@
 
     # cli tools
     nixvim-custom.packages."x86_64-linux".default
+    vim
     onefetch
     cbonsai
   ];

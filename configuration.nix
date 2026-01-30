@@ -12,6 +12,8 @@
 
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
+  boot.initrd.luks.devices."luks-33a6f82a-a624-44a0-ad91-3161c113fcbe".device = "/dev/disk/by-uuid/33a6f82a-a624-44a0-ad91-3161c113fcbe";
+
   networking = {
     hostName = config.variables.hostname;
 
@@ -31,24 +33,6 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    settings = {
-      General = {
-        # Shows battery charge of connected devices on supported
-        # Bluetooth adapters. Defaults to 'false'.
-        Experimental = true;
-        # When enabled other devices can connect faster to us, however
-        # the tradeoff is increased power consumption. Defaults to
-        # 'false'.
-        FastConnectable = true;
-        ControllerMode = "bredr"; # HELP: Bluetooth does not work
-      };
-      Policy = {
-        # Enable all controllers when they are found. This includes
-        # adapters present on start as well as adapters that are plugged
-        # in later on. Defaults to 'true'.
-        AutoEnable = true;
-      };
-    };
   };
 
   time.timeZone = "America/Denver";
@@ -129,3 +113,4 @@
 
   system.stateVersion = "23.11";
 }
+

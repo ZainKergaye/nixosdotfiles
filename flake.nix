@@ -53,7 +53,7 @@
       formatter.${system} = pkgs.nixfmt-tree;
 
       nixosConfigurations = {
-        conduit = lib.nixosSystem {
+        nixos = lib.nixosSystem {
           inherit system;
           modules = [
             ./configuration.nix
@@ -63,7 +63,7 @@
       };
 
       homeConfigurations = {
-        aegis = home-manager.lib.homeManagerConfiguration {
+        khabib = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           # What is the diff between inherit and extraSpecialArgs inherit?
           extraSpecialArgs = {

@@ -4,13 +4,13 @@ with lib;
   options.variables = {
     username = mkOption {
       type = types.str;
-      default = "aegis"; # Flake.nix is the only other instance of this
+      default = "khabib"; # Flake.nix is the only other instance of this
       description = "username";
     };
 
     hostname = mkOption {
       type = types.str;
-      default = "conduit";
+      default = "nixos";
       description = "hostname";
     };
 
