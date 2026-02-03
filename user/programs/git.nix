@@ -13,6 +13,11 @@
         user.name = config.variables.pretty_name;
         user.email = config.variables.email;
 
+        signing = {
+          key = config.variables.sshPublicKey;
+          signByDefault = true;
+        };
+
         core.whitespace = "error"; # Throw error on whitespace
 
         advice = {

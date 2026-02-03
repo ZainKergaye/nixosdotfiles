@@ -20,6 +20,12 @@ with lib;
       description = "Initial Hashed Password";
     };
 
+    sshPublicKey = mkOption {
+      type = types.str;
+      default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFTpmbNmbxtzoisG4RuEefCGGvxll13mqYsZQqd1z6e2 khabib@nixos";
+      description = "SSH Public Key";
+    };
+
     email = mkOption {
       type = types.str;
       default = "zain@zkergaye.me";
