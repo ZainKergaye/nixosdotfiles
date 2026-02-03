@@ -12,7 +12,7 @@
 
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
-  boot.initrd.luks.devices."luks-33a6f82a-a624-44a0-ad91-3161c113fcbe".device = "/dev/disk/by-uuid/33a6f82a-a624-44a0-ad91-3161c113fcbe";
+  boot.initrd.luks.devices."luks-d0bdd1b9-cd14-4a2a-a07a-f895caf003b2".device = "/dev/disk/by-uuid/d0bdd1b9-cd14-4a2a-a07a-f895caf003b2";
 
   networking = {
     hostName = config.variables.hostname;

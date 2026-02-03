@@ -1,7 +1,8 @@
 # Hyprland config imported into configuration
-{ pkgs
-, lib
-, ...
+{
+  pkgs,
+  lib,
+  ...
 }:
 {
   imports = [
@@ -33,7 +34,7 @@
 
   environment.systemPackages = with pkgs; [
     # Status bar
-    #waybar
+    waybar
 
     # Notifications
     dunst
