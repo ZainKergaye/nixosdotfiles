@@ -6,8 +6,6 @@
 }:
 {
   imports = [
-
-    ./waydroid.nix
   ];
 
   environment.sessionVariables = {
@@ -81,8 +79,15 @@
       ];
   };
 
-  services.libinput.enable = true; # touchpad
-  services.libinput.touchpad.naturalScrolling = true;
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      accelPointsMotion = [ 2.5 ];
+      accelProfile = "custom";
+
+    };
+  };
 
   programs.hyprland = {
     enable = true;

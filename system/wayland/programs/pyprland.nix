@@ -6,6 +6,8 @@
   ...
 }:
 {
+  wayland.windowManager.hyprland.settings.exec-once = [ "${pkgs.pyprland}/bin/pypr" ];
+
   home.packages = [ pkgs.pyprland ];
 
   home.file.".config/hypr/pyprland.toml".text = ''

@@ -75,11 +75,11 @@ in
 
   home.packages = [
     pkgs.capitaine-cursors
-    # unstable.dracula-theme
-    # pkgs.noto-fonts
-    # unstable.papirus-maia-icon-theme
-    # pkgs.gtk3
-    # pkgs.gsettings-desktop-schemas
+    unstable.dracula-theme
+    pkgs.noto-fonts
+    unstable.papirus-maia-icon-theme
+    pkgs.gtk3
+    pkgs.gsettings-desktop-schemas
   ];
 
   gtk = {

@@ -26,14 +26,8 @@
       windowrulev2 = [
         "float, size 530 400,title:(Bluetooth Devices)"
 
-        # "keepaspectratio, title:^(Picture-in-Picture)$" # PiP Proper scaling
-        # "move 72% 7%,title:^(Picture-in-Picture)$"
-        # "size 25%, title:^(Picture-in-Picture$"
-        # "float, title:^(Picture-in-Picture)$"
-        # "pin, title:^(Picture-in-Picture)$"
-
-        "float, size 550 700,title:(Save File)"
-        "float, size 550 700,title:(Open File)"
+        "float, size 700 550,title:(Save File)"
+        "float, size 700 550,title:(Open File)"
 
         "opacity 0.8 0.8, class:^(kitty)$"
         "opacity 0.8 0.8, class:^(vesktop)$"
@@ -58,7 +52,6 @@
         "blueman-applet"
         "syncthingtray --wait"
         "swww-daemon"
-        "pypr"
       ];
 
       general = {
