@@ -23,14 +23,18 @@
         "desc:Dell Inc. DELL U3415W PXF7986G10HL, preferred, auto-up, 1" # Campus library display
       ];
 
-      windowrulev2 = [
-        "float, size 530 400,title:(Bluetooth Devices)"
+			windowrule = [
+        # "float, size 530 400,title:(Bluetooth Devices)"
+        #
+        # "float, size 700 550,title:(Save File)"
+        # "float, size 700 550,title:(Open File)"
+        #
+        # "opacity 0.8 0.8, class:^(vesktop)$"
+				"match:initial_title ^(kitty), opacity 0.8 0.8"
 
-        "float, size 700 550,title:(Save File)"
-        "float, size 700 550,title:(Open File)"
-
-        "opacity 0.8 0.8, class:^(kitty)$"
-        "opacity 0.8 0.8, class:^(vesktop)$"
+				"match:tag opacity_1, opacity 1 1"
+				"match:tag opacity_0.8, opacity 0.8 0.8"
+				"match:tag opacity_0.6, opacity 0.6 0.6"
       ];
 
       env = [

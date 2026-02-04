@@ -27,6 +27,9 @@
 
     # For solidworks:
     #virtualboxKvm
+
+		# For Matlab: 
+		distrobox 
   ];
 
   programs.virt-manager.enable = true;
@@ -39,6 +42,11 @@
         swtpm.enable = true;
       };
     };
+
+		podman = {
+			enable = true;
+			dockerCompat = true;
+		};
 
     spiceUSBRedirection.enable = true;
 

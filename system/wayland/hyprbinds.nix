@@ -27,9 +27,11 @@
       "$mod, V, togglefloating"
       "$mod, F, fullscreen"
       "$mod, S, togglesplit"
-      #"$mod, G, toggleopaque" DEP: Find replacement
-      "$mod, G, togglegroup"
       "$mod, T, pin"
+
+			"$mod CTRL, 1, tagwindow, opacity_1"
+			"$mod CTRL, 2, tagwindow, opacity_0.8"
+			"$mod CTRL, 3, tagwindow, opacity_0.6"
 
       "$mod CTRL, I, togglespecialworkspace, magic"
       "$mod CTRL SHIFT, I, movetoworkspace, special:magic"
