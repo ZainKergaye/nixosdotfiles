@@ -12,46 +12,46 @@
 
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
-  boot.initrd.luks.devices."luks-d0bdd1b9-cd14-4a2a-a07a-f895caf003b2".device = "/dev/disk/by-uuid/d0bdd1b9-cd14-4a2a-a07a-f895caf003b2";
+  boot.initrd.luks.devices."luks-d0bdd1b9-cd14-4a2a-a07a-f895caf003b2".device =
+    "/dev/disk/by-uuid/d0bdd1b9-cd14-4a2a-a07a-f895caf003b2";
 
   networking = {
     hostName = config.variables.hostname;
 
     networkmanager.enable = true;
-    networkmanager.dns = "none";
+    #networkmanager.dns = "none";
     useDHCP = false;
     dhcpcd.enable = false;
-    nameservers = [
-      "10.0.0.229" # NOTE: I'm not sure how this should work on other networks too
-      "1.1.1.1"
-      "1.0.0.1"
-      "8.8.8.8"
-    ];
+    # nameservers = [
+    #   "10.0.0.229" # NOTE: I'm not sure how this should work on other networks too
+    #   "1.1.1.1"
+    #   "1.0.0.1"
+    #   "8.8.8.8"
+    # ];
   };
 
   services.blueman.enable = true;
-	hardware.bluetooth = {
-  enable = true;
-  powerOnBoot = true;
-  settings = {
-    General = {
-      # Shows battery charge of connected devices on supported
-      # Bluetooth adapters. Defaults to 'false'.
-      Experimental = true;
-      # When enabled other devices can connect faster to us, however
-      # the tradeoff is increased power consumption. Defaults to
-      # 'false'.
-      FastConnectable = true;
-    };
-    Policy = {
-      # Enable all controllers when they are found. This includes
-      # adapters present on start as well as adapters that are plugged
-      # in later on. Defaults to 'true'.
-      AutoEnable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        # Shows battery charge of connected devices on supported
+        # Bluetooth adapters. Defaults to 'false'.
+        Experimental = true;
+        # When enabled other devices can connect faster to us, however
+        # the tradeoff is increased power consumption. Defaults to
+        # 'false'.
+        FastConnectable = true;
+      };
+      Policy = {
+        # Enable all controllers when they are found. This includes
+        # adapters present on start as well as adapters that are plugged
+        # in later on. Defaults to 'true'.
+        AutoEnable = true;
+      };
     };
   };
-};
-
 
   time.timeZone = "America/Denver";
 
@@ -131,4 +131,3 @@
 
   system.stateVersion = "23.11";
 }
-

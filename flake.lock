@@ -377,11 +377,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1769831939,
-        "narHash": "sha256-cWW6YRrxwaO5z1pwo2/PBh08JPYPjJuipfIahlB1rrc=",
+        "lastModified": 1770179254,
+        "narHash": "sha256-GI/eSs7mnH+AAmIJWCLWlecR53DbYuHp1szz60eGLT4=",
         "owner": "ZainKergaye",
         "repo": "nixvim_dotfiles",
-        "rev": "afa74d53b2b782a8cf90f322d573ad78f6ebce91",
+        "rev": "674156bedae221809b99b0b355c0a20245ee9232",
         "type": "github"
       },
       "original": {
