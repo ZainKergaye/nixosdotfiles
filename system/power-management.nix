@@ -2,8 +2,17 @@
 # More info here:
 # https://linrunner.de/tlp/index.html
 # Running the command `tlp-stat -p` gives more system stats
-{ ... }:
+{ pkgs, ... }:
 {
+  imports = [
+    ./suspend.nix
+  ];
+  services.batteryNotifier = {
+    enable = true;
+    device = "BAT0";
+    notifyCapacity = "20";
+    suspendCapacity = "10";
+  };
   services.tlp = {
     enable = true;
     settings = {

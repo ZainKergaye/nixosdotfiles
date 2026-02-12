@@ -17,7 +17,7 @@
 
   home.packages = with pkgs; [
     vesktop
-    #prusa-slicer
+    prusa-slicer
     qbittorrent
     pear-desktop
     libreoffice
@@ -29,7 +29,7 @@
     atlauncher
 
     #skewl
-    # kicad
+    kicad
 
     # cli tools
     nixvim-custom.packages."x86_64-linux".default
