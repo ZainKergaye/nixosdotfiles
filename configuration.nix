@@ -12,8 +12,7 @@
 
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
-  boot.initrd.luks.devices."luks-d0bdd1b9-cd14-4a2a-a07a-f895caf003b2".device =
-    "/dev/disk/by-uuid/d0bdd1b9-cd14-4a2a-a07a-f895caf003b2";
+  boot.initrd.luks.devices."luks-f7091812-8d81-4033-9d22-e03831f6c70e".device = "/dev/disk/by-uuid/f7091812-8d81-4033-9d22-e03831f6c70e";
 
   networking = {
     hostName = config.variables.hostname;
@@ -129,5 +128,5 @@
     #   ];
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "25.11";
 }

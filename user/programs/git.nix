@@ -1,11 +1,7 @@
 { config, ... }:
 {
   programs = {
-    gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
-    };
-
+		# TODO: Figure out sops nix or some secret manager
     git = {
       enable = true;
 
