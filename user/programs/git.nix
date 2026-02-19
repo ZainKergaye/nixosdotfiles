@@ -1,7 +1,7 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   programs = {
-		# TODO: Figure out sops nix or some secret manager
+    # TODO: Figure out sops nix or some secret manager
     git = {
       enable = true;
 
@@ -11,10 +11,14 @@
 
         signing = {
           key = config.variables.sshPublicKey;
+          format = "opengpg";
           signByDefault = true;
         };
 
         core.whitespace = "error"; # Throw error on whitespace
+
+        commit.gpgSign = true;
+        tag.gpgSign = true;
 
         advice = {
           # All advice messages disabled

@@ -22,7 +22,7 @@ with lib;
 
     sshPublicKey = mkOption {
       type = types.str;
-      default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFTpmbNmbxtzoisG4RuEefCGGvxll13mqYsZQqd1z6e2 khabib@nixos";
+      default = " ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPLheOhnlJTCn1sIj7emj2sdrZjHffO5/2WlEzwOp5lm khabib@nixos ";
       description = "SSH Public Key";
     };
 
