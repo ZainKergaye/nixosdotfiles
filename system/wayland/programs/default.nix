@@ -9,6 +9,7 @@
     ./pyprland.nix
     ./swayosd.nix
     ./hyprlock.nix
+    ./wayscriber.nix
   ];
   home.packages = with pkgs; [
     # Wallpaper
