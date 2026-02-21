@@ -79,15 +79,7 @@
       ];
   };
 
-  services.libinput = {
-    enable = true;
-    touchpad = {
-      naturalScrolling = true;
-      accelPointsMotion = [ 2.5 ];
-      accelProfile = "custom";
-
-    };
-  };
+  services.libinput.enable = true;
 
   programs.hyprland = {
     enable = true;

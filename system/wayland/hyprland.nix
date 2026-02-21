@@ -23,18 +23,18 @@
         "desc:Dell Inc. DELL U3415W PXF7986G10HL, preferred, auto-up, 1" # Campus library display
       ];
 
-			windowrule = [
+      windowrule = [
         # "float, size 530 400,title:(Bluetooth Devices)"
         #
         # "float, size 700 550,title:(Save File)"
         # "float, size 700 550,title:(Open File)"
         #
         # "opacity 0.8 0.8, class:^(vesktop)$"
-				"match:initial_title ^(kitty), opacity 0.8 0.8"
+        "match:initial_title ^(kitty), opacity 0.8 0.8"
 
-				"match:tag opacity_1, opacity 1 1"
-				"match:tag opacity_0.8, opacity 0.8 0.8"
-				"match:tag opacity_0.6, opacity 0.6 0.6"
+        "match:tag op100, opacity 1 1"
+        "match:tag op80, opacity 0.8 0.8"
+        "match:tag op60, opacity 0.6 0.6"
       ];
 
       env = [
@@ -49,6 +49,17 @@
       gesture = [
         "3, horizontal, workspace"
       ];
+
+      input = {
+        accel_profile = "custom 0.2144477506 0.000 0.307 0.615 1.077 1.539 2.002 2.505 3.208 3.910 4.613 5.315 6.018 6.720 7.423 8.125 8.828 9.530 10.233 10.935 12.387";
+
+        touchpad = {
+          natural_scroll = true;
+          tap-to-click = true;
+          clickfinger_behavior = true;
+          scroll_factor = 0.3;
+        };
+      };
 
       exec-once = [
         "nm-applet"

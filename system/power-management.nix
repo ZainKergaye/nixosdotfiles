@@ -10,8 +10,8 @@
   services.batteryNotifier = {
     enable = true;
     device = "BAT0";
-    notifyCapacity = "20";
-    suspendCapacity = "10";
+    notifyCapacity = "60";
+    suspendCapacity = "40";
   };
   services.tlp = {
     enable = true;

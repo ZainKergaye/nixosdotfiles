@@ -35,6 +35,7 @@
     nixvim-custom.packages."x86_64-linux".default
     onefetch
     cbonsai
+    yazi
   ];
 
   nixpkgs.config.allowUnfreePredicate =

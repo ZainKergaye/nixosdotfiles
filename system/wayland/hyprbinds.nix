@@ -29,9 +29,9 @@
       "$mod, S, togglesplit"
       "$mod, T, pin"
 
-			"$mod CTRL, 1, tagwindow, opacity_1"
-			"$mod CTRL, 2, tagwindow, opacity_0.8"
-			"$mod CTRL, 3, tagwindow, opacity_0.6"
+      "$mod CTRL, 1, tagwindow, opacity_1"
+      "$mod CTRL, 2, tagwindow, opacity_0.8"
+      "$mod CTRL, 3, tagwindow, opacity_0.6"
 
       "$mod CTRL, I, togglespecialworkspace, magic"
       "$mod CTRL SHIFT, I, movetoworkspace, special:magic"
