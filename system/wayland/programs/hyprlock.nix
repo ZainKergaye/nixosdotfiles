@@ -24,30 +24,28 @@
     settings =
       let
         palette = config.colorScheme.palette;
-        font = "IBM Plex Mono";
+        font = "jetBrainsMono Nerd Font Propo";
       in
       {
         general = {
           grace = 60;
-          hide_cursor = true;
-        };
-
-        auth = {
-          fingerprint.enabled = true;
+          hide_cursor = false;
+          ignore_empty_input = true;
         };
 
         background = [
           {
-            color = "rgb(${palette.base00})";
-            blur_passes = 0;
+            path = "screenshot";
+            blur_passes = 1;
+            blur_size = 5;
           }
         ];
 
         input-field = [
           {
             monitor = "";
-            size = "300, 60";
-            outline_thickness = 4;
+            size = "300, 50";
+            outline_thickness = 2;
             dots_size = 0.2;
             dots_spacing = 0.2;
             dots_center = true;
@@ -55,13 +53,12 @@
             inner_color = "rgb(${palette.base04})";
             font_color = "rgb(${palette.base03})";
             fade_on_empty = false;
-            placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+            placeholder_text = ''<span foreground="##cad3f5"> </span>'';
             hide_input = false;
             check_color = "rgb(${palette.base01})";
             fail_color = "rgb(${palette.base08})";
-            fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
-            capslock_color = "rgb(${palette.base0A})";
-            position = "0, -47";
+            fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
+            position = "0, -260";
             halign = "center";
             valign = "center";
           }
@@ -72,10 +69,10 @@
             monitor = "";
             text = "$TIME12";
             color = "rgb(${palette.base03}";
-            font_size = 90;
+            font_size = 120;
             font_family = font;
-            position = "-30, 0";
-            halign = "right";
+            position = "0, -200";
+            halign = "center";
             valign = "top";
           }
           {
@@ -85,11 +82,12 @@
             color = "rgb(${palette.base03}";
             font_size = 25;
             font_family = font;
-            position = "-30, -150";
-            halign = "right";
+            position = "0, -200";
+            halign = "center";
             valign = "top";
           }
         ];
+
       };
   };
 }
