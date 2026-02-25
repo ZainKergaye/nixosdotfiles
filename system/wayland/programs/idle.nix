@@ -17,6 +17,7 @@ let
     ''
   );
   hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
+  # TODO: Make sleep screen take screenshot of current page and pass into hyprlock
 in
 {
   services.swayidle = {
