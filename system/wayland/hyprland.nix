@@ -21,6 +21,7 @@
         "desc:Acer Technologies VG270 TEGAA003851S, 1920x1080@74.97, -1920x0, 1" # Room Display
         "desc:Samsung Electric Company S34J55x H4LNB01778, 3440x1440@49.99, -760x-1440, 1" # Office display
         "desc:Dell Inc. DELL U3415W PXF7986G10HL, preferred, auto-up, 1" # Campus library display
+        "desc:Ancor Communications Inc VS278 J9LMQS077400, preferred, auto-up, 1" # Eng display
       ];
 
       windowrule = [

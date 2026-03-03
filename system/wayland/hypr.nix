@@ -13,6 +13,22 @@
     QT_STYLE_OVERRIDE = "adwaita-dark";
   };
 
+  qt = {
+    enable = true;
+    style = "adwaita-dark";
+  };
+
+  environment.etc = {
+    "xdg/qt5ct/qt5ct.conf".text = ''
+      [Appearance]
+      style=adwaita-dark
+    '';
+    "xdg/qt6ct/qt6ct.conf".text = ''
+      [Appearance]
+      style=adwaita-dark
+    '';
+  };
+
   services.udev.packages = [ pkgs.swayosd ];
 
   systemd.services.swayosd-libinput-backend = {
