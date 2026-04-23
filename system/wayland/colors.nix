@@ -88,6 +88,7 @@ in
       name = "Noto Sans";
       package = pkgs.noto-fonts;
     };
+    gtk4.theme = config.gtk.theme;
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
       gtk-key-theme-name = "Emacs";

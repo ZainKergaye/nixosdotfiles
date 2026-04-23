@@ -23,7 +23,7 @@ in
   services.swayidle = {
     enable = true;
     package = pkgs.swayidle;
-    systemdTarget = "hyprland-session.target";
+    systemdTargets = [ "hyprland-session.target" ];
 
     timeouts = [
       {

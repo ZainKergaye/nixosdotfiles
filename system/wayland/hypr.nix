@@ -55,7 +55,7 @@
     libnotify
 
     # Wallpaper
-    swww # Backend
+    awww # Backend
 
     # Network
     networkmanagerapplet

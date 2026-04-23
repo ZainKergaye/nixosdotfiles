@@ -12,6 +12,8 @@
     checkReversePath = false;
   };
 
+  services.usbmuxd.enable = true;
+
   services.udev = {
     enable = true;
     #packages = [ pkgs.openocd ];
