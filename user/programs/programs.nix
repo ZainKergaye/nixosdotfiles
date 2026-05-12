@@ -24,6 +24,7 @@
     inkscape
     p3x-onenote
     ungoogled-chromium
+    zoom-us
 
     # games
     atlauncher
@@ -44,5 +45,6 @@
       "quartus-prime-lite"
       "quartus-prime-lite-dark" # Look at quartus.nix
       "quartus-prime-lite-unwrapped"
+      "zoom"
     ];
 }
