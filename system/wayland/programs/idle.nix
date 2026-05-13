@@ -76,6 +76,10 @@ in
         event = "before-sleep";
         command = "${exec-hyprlock-once}";
       }
+      {
+        event = "unlock";
+        command = "${toggle-dim} --reset";
+      }
     ];
   };
   home.packages = with pkgs; [

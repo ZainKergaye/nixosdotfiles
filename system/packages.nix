@@ -29,6 +29,9 @@
     # System tools
     brightnessctl
     cachix
+    gp-saml-gui
+    screen
+    file
 
     # User packages
     ungoogled-chromium
