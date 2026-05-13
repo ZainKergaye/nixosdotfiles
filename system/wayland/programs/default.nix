@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
+    ./anyrun.nix
     ./idle.nix
-    ./rofi.nix
     ./dunst.nix
     ./waybar.nix
     ./wlogout.nix

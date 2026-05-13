@@ -27,7 +27,7 @@
     zoom-us
 
     # games
-    atlauncher
+    hmcl
 
     #skewl
     kicad

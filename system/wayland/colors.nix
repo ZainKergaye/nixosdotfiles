@@ -80,15 +80,20 @@ in
     unstable.papirus-maia-icon-theme
     pkgs.gtk3
     pkgs.gsettings-desktop-schemas
+    pkgs.kdePackages.breeze-gtk
   ];
 
   gtk = {
     enable = true;
     font = {
-      name = "Noto Sans";
-      package = pkgs.noto-fonts;
+      name = "cantarell";
+      package = pkgs.cantarell-fonts;
     };
-    gtk4.theme = config.gtk.theme;
+    theme = {
+      name = "Breeze-Dark";
+      package = pkgs.kdePackages.breeze-gtk;
+    };
+    #gtk4.theme = config.gtk.theme;
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
       gtk-key-theme-name = "Emacs";
@@ -100,8 +105,11 @@ in
   wayland.windowManager.hyprland.settings.exec-once = [ "hyprctl setcursor capitaine-cursors 14" ];
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      gtk-theme = "Breeze-Dark";
+      color-scheme = "prefer-dark";
       gtk-key-theme = "Emacs";
       cursor-theme = "Capitaine Cursors";
+      monospace-font-name = "B612 Mono 10";
     };
   };
   xdg.systemDirs.data = [

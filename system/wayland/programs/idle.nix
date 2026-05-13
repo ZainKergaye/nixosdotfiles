@@ -27,15 +27,18 @@ let
         if [[ -f "$STATE_FILE" ]]; then
           VALUE=$(cat "$STATE_FILE")
           ${brightnessctl} set "$VALUE"
+          rm -f "$STATE_FILE"
         else
           ${pkgs.libnotify}/bin/notify-send --urgency=critical --hint=int:transient:1 "Error" "state file not found"
           exit 1
         fi
       else
-        # Save current brightness to file
-        CURRENT=$(${brightnessctl} g)
+        # Save current brightness to file if not already saved
+        if [[ ! -f "$STATE_FILE" ]]; then
+          CURRENT=$(${brightnessctl} g)
+          echo "$CURRENT" > "$STATE_FILE"
+        fi
         ${brightnessctl} set "${"$"}{1:-10%}"
-        echo "$CURRENT" > "$STATE_FILE"
       fi
     ''
   );
@@ -52,13 +55,13 @@ in
         # Sleep screen
         timeout = 30 * 9; # 4.5 mins
         command = "${toggle-dim}";
-        resumeCommand = "${toggle-dim} reset";
+        resumeCommand = "${toggle-dim} --reset";
       }
       {
         # Lock screen
         timeout = 60 * 7; # 7 mins
         command = "${exec-hyprlock-once}";
-        resumeCommand = "${hyprctl} dispatch dpms on; ${toggle-dim} reset";
+        resumeCommand = "${hyprctl} dispatch dpms on; ${toggle-dim} --reset";
       }
       {
         # Hibernate

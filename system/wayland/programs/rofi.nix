@@ -20,7 +20,7 @@ in
 
   wayland.windowManager.hyprland.settings.bind = [
     "$mod, E, exec, rofi -mode emoji -show emoji"
-    "$mod, SPACE, exec, rofi -show drun"
+    #"$mod, SPACE, exec, rofi -show drun"
   ];
 
   home.file.".config/rofi/configone.rasi" = {
