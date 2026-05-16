@@ -36,4 +36,8 @@
     # User packages
     ungoogled-chromium
   ];
+
+  programs.kdeconnect = {
+    enable = true;
+  };
 }
