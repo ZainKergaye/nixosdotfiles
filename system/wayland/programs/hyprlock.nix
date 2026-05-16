@@ -27,8 +27,16 @@
         font = "jetBrainsMono Nerd Font Propo";
       in
       {
+        auth = {
+          "fingerprint:enabled" = true;
+          "fingerprint:ready_message" = "Scan fingerprint";
+        };
+
+        animations = [
+          "fade, 1, 3, linear"
+        ];
+
         general = {
-          grace = 60;
           hide_cursor = false;
           ignore_empty_input = true;
         };
@@ -68,7 +76,7 @@
             # Time
             monitor = "";
             text = "$TIME12";
-            color = "rgb(${palette.base03}";
+            color = "rgb(${palette.base06})";
             font_size = 120;
             font_family = font;
             position = "0, -200";
@@ -79,7 +87,7 @@
             # Date
             monitor = "";
             text = ''cmd[update:43200000] date +"%A, %d %B %Y"'';
-            color = "rgb(${palette.base03}";
+            color = "rgb(${palette.base06})";
             font_size = 25;
             font_family = font;
             position = "0, -200";

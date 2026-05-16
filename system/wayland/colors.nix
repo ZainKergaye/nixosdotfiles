@@ -32,14 +32,7 @@ in
         rounding = 10;
 
         active_opacity = 1.0;
-        inactive_opacity = 1.0;
-
-        #DEBUG: DNE
-
-        #drop_shadow = true;
-        #shadow_range = 4;
-        #shadow_render_power = 3;
-        #"col.shadow" = "rgba(1a1a1aee)";
+        inactive_opacity = 0.9;
 
         blur = {
           enabled = true;
@@ -51,7 +44,7 @@ in
       };
 
       general = {
-        "col.active_border" = "rgb(${base07}) rgb(${base0E}) 45deg";
+        "col.active_border" = "rgb(${base0B}) rgb(${base0E}) 60deg";
         # "col.active_border" = "rgb(${base07})";
         "col.inactive_border" = "rgb(${base04})";
       };
@@ -75,9 +68,9 @@ in
 
   home.packages = [
     pkgs.capitaine-cursors
-    unstable.dracula-theme
-    pkgs.noto-fonts
-    unstable.papirus-maia-icon-theme
+    # unstable.dracula-theme
+    # pkgs.noto-fonts
+    # unstable.papirus-maia-icon-theme
     pkgs.gtk3
     pkgs.gsettings-desktop-schemas
     pkgs.kdePackages.breeze-gtk
@@ -85,31 +78,37 @@ in
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
     font = {
       name = "cantarell";
       package = pkgs.cantarell-fonts;
+    };
+    iconTheme = {
+      name = "MoreWaita";
+      package = pkgs.morewaita-icon-theme;
     };
     theme = {
       name = "Breeze-Dark";
       package = pkgs.kdePackages.breeze-gtk;
     };
     #gtk4.theme = config.gtk.theme;
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      gtk-key-theme-name = "Emacs";
-      gtk-icon-theme-name = "Papirus-Dark-Maia";
-      gtk-cursor-theme-name = "capitaine-cursors";
-    };
+    # gtk3.extraConfig = {
+    #   gtk-application-prefer-dark-theme = true;
+    #   gtk-key-theme-name = "Emacs";
+    #   gtk-icon-theme-name = "Papirus-Dark-Maia";
+    #   gtk-cursor-theme-name = "capitaine-cursors";
+    # };
   };
 
   wayland.windowManager.hyprland.settings.exec-once = [ "hyprctl setcursor capitaine-cursors 14" ];
+  dconf.enable = true;
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       gtk-theme = "Breeze-Dark";
       color-scheme = "prefer-dark";
-      gtk-key-theme = "Emacs";
+      # gtk-key-theme = "Emacs";
       cursor-theme = "Capitaine Cursors";
-      monospace-font-name = "B612 Mono 10";
+      # monospace-font-name = "B612 Mono 10";
     };
   };
   xdg.systemDirs.data = [

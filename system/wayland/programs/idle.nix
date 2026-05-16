@@ -12,7 +12,7 @@ let
          if (pgrep -x hyprlock > /dev/null); then
            ${pkgs.dunst}/bin/dunstify -u low -a swayidle "Tried locking screen, already locked"
       else
-           ${pkgs.hyprland}/bin/hyprctl dispatch exec ${pkgs.hyprlock}/bin/hyprlock
+           ${pkgs.hyprland}/bin/hyprctl dispatch exec ${pkgs.hyprlock}/bin/hyprlock --grace 30
            ${pkgs.hyprland}/bin/hyprctl dispatch dpms off
          fi
     ''

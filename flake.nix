@@ -7,6 +7,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
+    fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -41,6 +42,7 @@
       nix-colors,
       nixos-unstable-small,
       nixvim-custom,
+      fingerprint-sensor,
       ...
     }:
     let
@@ -58,6 +60,7 @@
           modules = [
             ./configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t480
+            fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
           ];
         };
       };
