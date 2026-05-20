@@ -37,6 +37,9 @@
         "match:tag op100, opacity 1 1"
         "match:tag op80, opacity 0.8 0.8"
         "match:tag op60, opacity 0.6 0.6"
+        "match:title ^Open File$, float on, center on "
+        "match:title ^Save File$, float on, center on "
+        # "center, title:^Open File$"
       ];
 
       env = [
@@ -86,11 +89,19 @@
       animations = {
         enabled = true;
         animation = [
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 8, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          "windowsIn, 1, 7, winIn, slide"
+          "windowsOut, 1, 3, smoothOut, slide"
+          "windowsMove, 1, 7, winIn, slide"
+          "workspacesIn, 1, 8, winIn, slide"
+          "workspacesOut, 1, 8, winOut, slide"
+          "layersIn, 1, 10, winIn, slide"
+          "layersOut, 1, 3, layerOut, popin 50%"
+        ];
+        bezier = [
+          "winIn, 0.1, 1.0, 0.1, 1.0"
+          "winOut, 0.1, 1.0, 0.1, 1.0"
+          "smoothOut, 0.5, 0, 0.99, 0.99"
+          "layerOut,0.23,1,0.32,1"
         ];
       };
 

@@ -25,6 +25,7 @@
     p3x-onenote
     ungoogled-chromium
     zoom-us
+		freecad
 
     # games
     hmcl
