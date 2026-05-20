@@ -1,5 +1,5 @@
 # Hyprland config for home-manager
-{ ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./hyprbinds.nix
@@ -10,6 +10,9 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+		configType = "hyprlang";
+
     xwayland.enable = true;
     settings = {
       "$mod" = "SUPER";
@@ -89,7 +92,7 @@
       animations = {
         enabled = true;
         animation = [
-          "windowsIn, 1, 7, winIn, slide"
+          "windowsIn, 1, 7, winIn, slide, popin"
           "windowsOut, 1, 3, smoothOut, slide"
           "windowsMove, 1, 7, winIn, slide"
           "workspacesIn, 1, 8, winIn, slide"

@@ -26,7 +26,7 @@
       "$mod, C, killactive"
       "$mod, V, togglefloating"
       "$mod, F, fullscreen"
-      "$mod, S, togglesplit"
+      #"$mod, S, togglesplit"
       "$mod, T, pin"
 
       "$mod CTRL, 1, tagwindow, op100"

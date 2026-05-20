@@ -8,6 +8,7 @@
     nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
     fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -44,7 +45,7 @@
       nixvim-custom,
       fingerprint-sensor,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -57,6 +58,7 @@
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             ./configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t480
@@ -73,6 +75,7 @@
             inherit nix-colors;
             inherit unstable;
             inherit nixvim-custom;
+            inherit inputs;
           };
           modules = [
             ./home.nix

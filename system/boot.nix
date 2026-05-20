@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   services.getty = {
     helpLine = lib.mkForce "";
@@ -9,7 +9,16 @@
     # Plymouth
     consoleLogLevel = 0;
     initrd.verbose = false;
-    plymouth.enable = true;
+    plymouth = {
+      enable = true;
+      theme = "hexagon_alt";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "hexagon_alt" ];
+        })
+      ];
+    };
+
     kernelParams = [
       "quiet"
       "splash"
@@ -21,11 +30,12 @@
 
     # Boot Loader
     loader = {
-      timeout = 0;
+      timeout = 2;
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = true;
         configurationLimit = 10;
+        editor = true;
       };
     };
   };
