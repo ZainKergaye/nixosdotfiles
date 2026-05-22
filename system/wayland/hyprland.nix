@@ -11,7 +11,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-		configType = "hyprlang";
+    configType = "hyprlang";
 
     xwayland.enable = true;
     settings = {
@@ -25,7 +25,7 @@
         "desc:Samsung Electric Company S34J55x H4LNB01778, 3440x1440@74.98, -760x-1440, 1" # Office display
         "desc:Dell Inc. DELL U3415W PXF7986G10HL, preferred, auto-up, 1" # Campus library display
         "desc:Ancor Communications Inc VS278 J9LMQS077400, preferred, auto-up, 1" # Eng display
-        "desc:Sharp Corporation SHARP HDMI, preferred, auto-up, 1, mirror, eDP-1"
+        "desc:Sharp Corporation SHARP HDMI, preferred, auto-up, 1, mirror, eDP-1" # Eng conference room mirror
       ];
 
       windowrule = [
@@ -42,6 +42,17 @@
         "match:tag op60, opacity 0.6 0.6"
         "match:title ^Open File$, float on, center on "
         "match:title ^Save File$, float on, center on "
+
+        # Zoom-us
+        "match:title ^annotate_toolbar$, float on, pin on"
+        "match:title ^Annotation - Zoom$, float on, pin on, no_blur on, opaque on"
+        "match:title ^as_toolbar$, float on, pin on"
+        "match:title ^zoom_linux_float_video_window$, float on, pin on"
+        "match:title ^Select what to share$, center on, float on, size \"100 100\""
+
+        "match:title ^Bluetooth Devices$, center on, float on"
+        "match:class ^nm-connection-editor$, float on, center on"
+
         # "center, title:^Open File$"
       ];
 
@@ -73,7 +84,6 @@
         "nm-applet"
         "waybar"
         "blueman-applet"
-        "syncthingtray --wait"
         "awww-daemon"
       ];
 
