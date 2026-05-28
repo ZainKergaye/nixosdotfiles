@@ -1,15 +1,28 @@
 { pkgs, lib, ... }:
+let
+  anyrun-bin = lib.getExe' pkgs.anyrun "anyrun";
+in
 {
-  wayland.windowManager.hyprland.settings =
-    let
-      anyrun-bin = lib.getExe' pkgs.anyrun "anyrun";
-    in
-    {
-      exec-once = [ "${anyrun-bin} daemon" ];
-      bind = [
-        "$mod, SPACE, exec, ${anyrun-bin}"
-      ];
+  systemd.user.services.anyrun = {
+    Unit = {
+      Description = "Anyrun";
+      After = "graphical-session.target";
+      Wants = "graphical-session.target";
     };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${anyrun-bin} daemon";
+      Restart = "always";
+    };
+  };
+
+  wayland.windowManager.hyprland.settings.bind = [
+    "$mod, SPACE, exec, ${anyrun-bin}"
+  ];
+
   programs.anyrun = {
     enable = true;
     config = {

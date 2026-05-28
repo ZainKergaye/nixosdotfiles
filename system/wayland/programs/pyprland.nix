@@ -1,16 +1,29 @@
 # Python plugins for hyprland:
 # Using pyprland for scratchpads
 {
-  config,
+  lib,
   pkgs,
   ...
 }:
 {
-  wayland.windowManager.hyprland.settings.exec-once = [ "${pkgs.pyprland}/bin/pypr" ];
-
+  systemd.user.services.pyprland = {
+    Unit = {
+      Description = "Pyprland daemon";
+      After = "graphical-session.target";
+      Wants = "graphical-session.target";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${lib.getExe' pkgs.pyprland "pypr"}";
+      Restart = "always";
+    };
+  };
   home.packages = [ pkgs.pyprland ];
 
-  home.file.".config/hypr/pyprland.toml".text = ''
+  home.file.".config/pypr/config.toml".text = ''
     [pyprland]
     plugins = [
       "scratchpads",

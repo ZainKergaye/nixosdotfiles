@@ -82,7 +82,6 @@
 
       exec-once = [
         "nm-applet"
-        "waybar"
         "blueman-applet"
         "awww-daemon"
       ];

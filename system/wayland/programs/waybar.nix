@@ -1,12 +1,29 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 let
   palette = config.colorScheme.palette;
 in
 {
+  systemd.user.services.waybar = {
+    Unit = {
+      Description = "Waybar";
+      After = "graphical-session.target";
+      Wants = "graphical-session.target";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${lib.getExe' pkgs.waybar "waybar"}";
+      Restart = "always";
+    };
+  };
+
   programs.waybar.enable = true;
 
   home.file."${config.xdg.configHome}/waybar/style.css".text = ''

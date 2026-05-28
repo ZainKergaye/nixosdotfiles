@@ -86,5 +86,20 @@ in
     swayidle
     sway-audio-idle-inhibit
   ];
-  wayland.windowManager.hyprland.settings.exec-once = [ "sway-audio-idle-inhibit" ];
+
+  systemd.user.services.sway-audio-idle-inhibit = {
+    Unit = {
+      Description = "sway-audio-idle-inhibit";
+      After = "graphical-session.target";
+      Wants = "graphical-session.target";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${lib.getExe' pkgs.sway-audio-idle-inhibit "sway-audio-idle-inhibit"}";
+      Restart = "always";
+    };
+  };
 }

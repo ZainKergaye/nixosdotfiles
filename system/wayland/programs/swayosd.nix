@@ -4,13 +4,28 @@
   ...
 }:
 {
+  systemd.user.services.swayosd-server = {
+    Unit = {
+      Description = "swayosd-server";
+      After = "graphical-session.target";
+      Wants = "graphical-session.target";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${lib.getExe' pkgs.swayosd "swayosd-server"}";
+      Restart = "always";
+    };
+  };
+
   wayland.windowManager.hyprland.settings =
     let
       swayosd = lib.getExe' pkgs.swayosd "swayosd-client";
       focused-monitor = ''--monitor "$(${lib.getExe' pkgs.hyprland "hyprctl"} monitors -j | ${lib.getExe' pkgs.jq "jq"} -r '.[] | select(.focused == true).name')"'';
     in
     {
-      exec-once = [ "${lib.getExe' pkgs.swayosd "swayosd-server"}" ];
 
       binde = [
         # binde repeats command while being held
