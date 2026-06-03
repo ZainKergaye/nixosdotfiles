@@ -15,6 +15,9 @@
     ];
 
     bind = [
+      ", mouse:275, workspace, m-1"
+      ", mouse:276, workspace, m+1"
+
       "$mod, H, movefocus, l"
       "$mod, J, movefocus, d"
       "$mod, K, movefocus, u"

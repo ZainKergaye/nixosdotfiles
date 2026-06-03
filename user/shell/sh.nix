@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -16,7 +17,19 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    comma
+    zoxide
+  ];
   programs = {
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     bash = {
       enable = lib.mkDefault false; # Forces bash to be disabled unless some other file enables it
       shellAliases = myAliases;
