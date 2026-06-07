@@ -10,6 +10,11 @@
     fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
     hyprland.url = "github:hyprwm/Hyprland";
 
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +49,7 @@
       nixos-unstable-small,
       nixvim-custom,
       fingerprint-sensor,
+      zen-browser,
       ...
     }@inputs:
     let
@@ -76,6 +82,7 @@
             inherit unstable;
             inherit nixvim-custom;
             inherit inputs;
+            inherit zen-browser;
           };
           modules = [
             ./home.nix

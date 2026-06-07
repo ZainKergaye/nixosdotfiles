@@ -12,7 +12,8 @@
 
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
-  boot.initrd.luks.devices."luks-f7091812-8d81-4033-9d22-e03831f6c70e".device = "/dev/disk/by-uuid/f7091812-8d81-4033-9d22-e03831f6c70e";
+  boot.initrd.luks.devices."luks-f7091812-8d81-4033-9d22-e03831f6c70e".device =
+    "/dev/disk/by-uuid/f7091812-8d81-4033-9d22-e03831f6c70e";
 
   networking = {
     hostName = config.variables.hostname;
@@ -109,6 +110,13 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 10d";
+    };
+
+    optimise.automatic = true;
 
     settings = {
       trusted-users = [ "${config.variables.username}" ];
