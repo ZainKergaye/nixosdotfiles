@@ -71,16 +71,11 @@ in
       }
     ];
 
-    events = [
-      {
-        event = "before-sleep";
-        command = "${exec-hyprlock-once}";
-      }
-      {
-        event = "unlock";
-        command = "${toggle-dim} --reset";
-      }
-    ];
+    events = {
+      before-sleep = exec-hyprlock-once;
+      unlock = "${toggle-dim} --reset";
+    };
+
   };
   home.packages = with pkgs; [
     swayidle
