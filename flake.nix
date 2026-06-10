@@ -36,34 +36,44 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       home-manager,
-      nixos-hardware,
-      nix-colors,
-      nixvim-custom,
-      fingerprint-sensor,
-      zen-browser,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
+      mkHost =
+        hostName: extraModules:
+        lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs lib; };
+          modules = [
+            ./hosts/${hostName}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+							home-manager.extraSpecialArgs = { inherit inputs; };
+              networking.hostName = hostName;
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+							home-manager.users.khabib = import ./home.nix;
+            }
+          ]
+          ++ extraModules;
+        };
     in
     {
-      nixosConfigurations = {
-        nixos = lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./configuration.nix
-            nixos-hardware.nixosModules.lenovo-thinkpad-t480
-            fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
-          ];
-        };
-      };
+      nixosConfigurations.thinkpad = mkHost "thinkpad" [
+        #./modules/hyprland
+        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+        inputs.fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
+      ];
+      # Add any other host here when needed
 
       homeConfigurations.khabib = home-manager.lib.homeManagerConfiguration {
+        # standalone home-manager config for non nixos hosts
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; };
         modules = [
