@@ -1,6 +1,5 @@
 {
   config,
-  unstable,
   ...
 }:
 let

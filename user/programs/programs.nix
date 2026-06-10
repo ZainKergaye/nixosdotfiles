@@ -2,8 +2,7 @@
 {
   pkgs,
   lib,
-  zen-browser,
-  nixvim-custom,
+  inputs,
   ...
 }:
 {
@@ -35,7 +34,7 @@
     kicad
 
     # cli tools
-    nixvim-custom.packages."x86_64-linux".default
+    inputs.nixvim-custom.packages."x86_64-linux".default
     onefetch
     cbonsai
     yazi

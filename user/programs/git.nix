@@ -14,6 +14,7 @@
           format = "opengpg";
           signByDefault = true;
         };
+				#pull = "rebase";
 
         core.whitespace = "error"; # Throw error on whitespace
 

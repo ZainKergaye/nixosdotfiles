@@ -1,6 +1,6 @@
 {
   config,
-  nix-colors,
+  inputs,
   ...
 }:
 {
@@ -9,7 +9,7 @@
     ./user/programs/programs.nix
     ./system/wayland/hyprland.nix
     ./variables.nix
-    nix-colors.homeManagerModules.default
+    inputs.nix-colors.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -41,7 +41,7 @@
     alacritty.enable = true;
   };
 
-  colorScheme = nix-colors.colorSchemes.catppuccin-macchiato;
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
 
   home.sessionVariables = {
     EDITOR = config.variables.editor;

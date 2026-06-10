@@ -5,7 +5,6 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-colors.url = "github:misterio77/nix-colors";
-    nixos-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
     fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -20,10 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   nixConfig = {
@@ -43,10 +38,8 @@
     {
       nixpkgs,
       home-manager,
-      nixvim,
       nixos-hardware,
       nix-colors,
-      nixos-unstable-small,
       nixvim-custom,
       fingerprint-sensor,
       zen-browser,
@@ -55,12 +48,9 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      unstable = nixos-unstable-small.legacyPackages.${system};
       lib = nixpkgs.lib;
     in
     {
-      formatter.${system} = pkgs.nixfmt-tree;
-
       nixosConfigurations = {
         nixos = lib.nixosSystem {
           inherit system;
@@ -73,22 +63,12 @@
         };
       };
 
-      homeConfigurations = {
-        khabib = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          # What is the diff between inherit and extraSpecialArgs inherit?
-          extraSpecialArgs = {
-            inherit nix-colors;
-            inherit unstable;
-            inherit nixvim-custom;
-            inherit inputs;
-            inherit zen-browser;
-          };
-          modules = [
-            ./home.nix
-            nixvim.homeModules.nixvim
-          ];
-        };
+      homeConfigurations.khabib = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ./home.nix
+        ];
       };
     };
 }
