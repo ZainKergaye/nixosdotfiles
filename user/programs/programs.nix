@@ -12,7 +12,7 @@
     ./fastfetch.nix
     ./git.nix
     ./zen-browser.nix
-    #./quartus.nix
+    ./quartus.nix
   ];
 
   home.packages = with pkgs; [

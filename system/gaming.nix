@@ -1,7 +1,8 @@
 # Gaming declaritive configuration
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }:
 {
   hardware.graphics = {
@@ -10,8 +11,17 @@
     enable32Bit = true;
   };
 
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
+
   # This starts the game in an optimized compositor
 
   environment.systemPackages = with pkgs; [

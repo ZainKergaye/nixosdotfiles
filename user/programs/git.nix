@@ -10,11 +10,11 @@
         user.email = config.variables.email;
 
         signing = {
-          key = config.variables.sshPublicKey;
+          #key = config.variables.sshPublicKey;
           format = "opengpg";
           signByDefault = true;
         };
-				#pull = "rebase";
+        #pull = "rebase";
 
         core.whitespace = "error"; # Throw error on whitespace
 

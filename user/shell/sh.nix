@@ -9,17 +9,28 @@ let
     la = "ls -la";
     update = "nix flake update --flake /home/${config.variables.username}/.dotfiles/.";
     upgrade = "sudo nixos-rebuild switch --flake /home/${config.variables.username}/.dotfiles/.#thinkpad";
-    homeupgrade = "home-manager switch --flake /home/${config.variables.username}/.dotfiles/.#${config.variables.username}";
     c = "python3 -Bqic 'from math import *'";
     peaclock = "peaclock --config-dir=/home/${config.variables.username}/.config/peaclock/";
     restart-waybar = "pkill waybar && hyprctl dispatch exec waybar";
     neofetch = "fastfetch";
+    t = "${lib.getExe' pkgs.trashy "trash"}";
+    rm = lib.getExe (
+      pkgs.writeShellScriptBin "rm-confirmation" ''
+        read -r -p "Really run rm? Type 'yes' to continue: " ans
+        if [[ "$ans" != "yes" ]]; then
+          echo "Aborted."
+          exit 1
+        fi
+        exec ${lib.getExe' pkgs.coreutils "rm"} "$@"
+      ''
+    );
   };
 in
 {
   home.packages = with pkgs; [
     comma
     zoxide
+    trashy
   ];
   programs = {
     nix-index = {
