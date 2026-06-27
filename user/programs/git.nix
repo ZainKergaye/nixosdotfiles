@@ -18,6 +18,8 @@
 
         core.whitespace = "error"; # Throw error on whitespace
 
+        push.autoSetupRemote = true;
+
         commit.gpgSign = true;
         tag.gpgSign = true;
 

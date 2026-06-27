@@ -24,6 +24,7 @@ let
         exec ${lib.getExe' pkgs.coreutils "rm"} "$@"
       ''
     );
+    g = lib.getExe' pkgs.git "git";
   };
 in
 {
