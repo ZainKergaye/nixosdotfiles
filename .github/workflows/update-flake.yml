@@ -1,0 +1,172 @@
+name: Update Flake Inputs
+# Credits to https://github.com/olafkfreund/nixos_config
+on:
+  schedule:
+    - cron: '0 2 * * 0'  # Every sunday at 2 AM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-flake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.FLAKE_UPDATE_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            nixosdotfiles
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            max-jobs = 1
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v7
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: nix-community
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: Configure GitHub token for git
+        run: |
+          git config --global url."https://${{ steps.app-token.outputs.token }}@github.com/".insteadOf "https://github.com/"
+          git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $(printf '%s:%s' '${{ steps.app-token.outputs.token }}' 'x-oauth-basic' | base64)"
+
+      - name: Update flake inputs
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        id: update
+        run: |
+          echo "Updating flake inputs..."
+          cp flake.lock flake.lock.old
+          
+          # Retry logic with exponential backoff
+          MAX_RETRIES=5
+          RETRY_DELAY=10
+          attempt=1
+          
+          while [ $attempt -le $MAX_RETRIES ]; do
+            echo "Attempt $attempt of $MAX_RETRIES..."
+            if nix flake update; then
+              break
+            fi
+            if [ $attempt -lt $MAX_RETRIES ]; then
+              echo "Rate limited or failed. Waiting ${RETRY_DELAY}s before retry..."
+              sleep $RETRY_DELAY
+              RETRY_DELAY=$((RETRY_DELAY * 2))
+            fi
+            attempt=$((attempt + 1))
+          done
+          
+          if [ $attempt -gt $MAX_RETRIES ]; then
+            echo "ERROR: Failed after $MAX_RETRIES attempts"
+            exit 1
+          fi
+          
+          if diff -q flake.lock flake.lock.old > /dev/null; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No updates available"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Updates found"
+            echo "Changes:"
+            diff flake.lock.old flake.lock || true
+          fi
+
+
+      - name: Build test configurations
+        if: steps.update.outputs.changed == 'true'
+        run: |
+          echo "Testing updated configurations..."
+          # Test build each host to ensure updates don't break anything
+          for host in thinkpad; do # Add more hosts when needed
+            echo "Testing $host..."
+            nix build .#nixosConfigurations.$host.config.system.build.toplevel \
+              --show-trace --no-link || {
+                echo "ERROR: Build failed for $host"
+                exit 1
+              }
+          done
+          echo "PASS: All configurations build successfully with updates"
+      - name: Generate update summary
+        if: steps.update.outputs.changed == 'true'
+        id: summary
+        run: |
+          echo "Generating update summary..."
+          # Extract updated inputs from flake.lock diff
+          summary=$(nix flake metadata --json | jq -r '
+            .locks.nodes |
+            to_entries[] |
+            select(.value.locked.type != null) |
+            "- **\(.key)**: \(.value.locked.rev // .value.locked.narHash // "updated")[0:7]"
+          ' | head -20)
+          # Save to output
+          echo "summary<<EOF" >> $GITHUB_OUTPUT
+          echo "$summary" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Create Pull Request
+        if: steps.update.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          commit-message: 'chore(deps): update flake inputs - daily automatic update'
+          title: 'chore(deps): daily flake input updates'
+          body: |
+            ## Automated Daily Flake Update
+            This PR updates all flake inputs to their latest versions.
+            ### Updated Inputs
+            ${{ steps.summary.outputs.summary }}
+            ### Testing Status
+            All host configurations have been built and tested successfully:
+            - Thinkpad (Intel)
+            ### Review Checklist
+            - [ ] Check flake.lock changes
+            - [ ] Review any breaking changes in changelogs
+            - [ ] Test on at least one host before merging
+            - [ ] Verify all services still work after update
+            ### Deployment
+            After merge, deploy with:
+            ```bash
+            git fetch origin 
+            git rebase
+            update
+            ```
+            Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          branch: chore/flake-update-daily
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+          assignees: olafkfreund
+          draft: false
+
+      - name: Auto-merge if CI passes
+        if: steps.update.outputs.changed == 'true'
+        run: |
+          echo "INFO: Pull request created successfully"
+          echo "INFO: Review and merge after CI checks pass"
+          echo "INFO: The PR is assigned to you for review"
+      - name: Report no updates
+        if: steps.update.outputs.changed == 'false'
+        run: |
+          echo "INFO: No flake updates available today"
+          echo "INFO: All inputs are already at latest versions"
+
