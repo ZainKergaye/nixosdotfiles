@@ -54,24 +54,19 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v7
 
       # -------------------------------------------------
-      # 4️⃣ Make the token visible to every Nix command
-      # -------------------------------------------------
-      - name: Configure Nix to use the GitHub token
-        run: |
-          mkdir -p $HOME/.config/nix
-          # The token is sent as an *access‑token* for github.com.
-          # Nix will add the header “Authorization: Bearer <token>”.
-          cat <<EOF >> $HOME/.config/nix/nix.conf
-          access-tokens = github.com=${{ steps.app-token.outputs.token }}
-          EOF
-
-      # -------------------------------------------------
       # 5️⃣ Run DeterminateSystems/update‑flake‑lock with retries
       # -------------------------------------------------
       - name: Update flake.lock (with exponential back‑off)
         id: ds-update
         run: |
           set -euo pipefail
+
+          mkdir -p $HOME/.config/nix
+          # The token is sent as an *access‑token* for github.com.
+          # Nix will add the header “Authorization: Bearer <token>”.
+          cat <<EOF >> $HOME/.config/nix/nix.conf
+          access-tokens = github.com=${{ steps.app-token.outputs.token }}
+          EOF
 
           MAX_RETRIES=5
           DELAY=10
