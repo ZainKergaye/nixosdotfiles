@@ -6,7 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-colors.url = "github:misterio77/nix-colors";
     nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
-    fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
+    fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=3678b193efa1e06aab86058aecee18ddaa8878d2";
     hyprland.url = "github:hyprwm/Hyprland";
 
     zen-browser = {
@@ -54,11 +54,11 @@
             ./hosts/${hostName}/configuration.nix
             home-manager.nixosModules.home-manager
             {
-							home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit inputs; };
               networking.hostName = hostName;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-							home-manager.users.khabib = import ./home.nix;
+              home-manager.users.khabib = import ./home.nix;
             }
           ]
           ++ extraModules;
