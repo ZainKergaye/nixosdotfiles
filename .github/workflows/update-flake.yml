@@ -75,7 +75,7 @@ jobs:
           MAX_RETRIES=5
           DELAY=10
           for ((i=1; i<=MAX_RETRIES; i++)); do
-            if nix flake update; then
+            if nix flake update nixpkgs nixvim-custom; then
               break
             fi
             if (( i < MAX_RETRIES )); then
