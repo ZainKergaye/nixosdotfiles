@@ -54,10 +54,10 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v7
 
       # -------------------------------------------------
-      # 5️⃣ Run DeterminateSystems/update‑flake‑lock with retries
+      # 4️⃣  Run the flake‑lock update (no PR generated here)
       # -------------------------------------------------
-      - name: Update flake.lock (with exponential back‑off)
-        id: ds-update
+      - name: Update flake.lock
+        id: flake-update
         run: |
           set -euo pipefail
 
@@ -68,41 +68,28 @@ jobs:
           access-tokens = github.com=${{ steps.app-token.outputs.token }}
           EOF
 
+          echo "Running nix flake update…"
+          cp flake.lock flake.lock.before
+
+          # retry with exponential back‑off (same logic you had)
           MAX_RETRIES=5
           DELAY=10
-
           for ((i=1; i<=MAX_RETRIES; i++)); do
-            echo "🔄  Attempt $i of $MAX_RETRIES…"
-            # The action is just a thin wrapper around `nix flake update`.
-            # Running it via `nix run` lets us wrap it in a retry loop.
-            nix run github:DeterminateSystems/update-flake-lock@main \
-              -- \
-              --pr-create false \             # we create the PR ourselves later
-              --pr-title "chore(deps): daily flake input updates" \
-              --pr-labels "dependencies\nautomated" \
-              --commit-message "${GIT_COMMIT_MESSAGE}"
-            status=$?
-            if [ $status -eq 0 ]; then
-              echo "update-success=true" >> $GITHUB_OUTPUT
+            if nix flake update; then
               break
             fi
-            echo "⚠️  Update failed (status $status); waiting ${DELAY}s before retry…"
-            sleep $DELAY
-            DELAY=$((DELAY * 2))
+            if (( i < MAX_RETRIES )); then
+              echo "Rate‑limit / failure – waiting ${DELAY}s…"
+              sleep $DELAY
+              DELAY=$((DELAY*2))
+            else
+              echo "❌  Update failed after $MAX_RETRIES attempts"
+              exit 1
+            fi
           done
 
-          if [ $status -ne 0 ]; then
-            echo "update-success=false" >> $GITHUB_OUTPUT
-            exit $status
-          fi
-
-      # -------------------------------------------------
-      # 6️⃣ Did the lock file actually change?
-      # -------------------------------------------------
-      - name: Detect lock‑file change
-        id: changed
-        run: |
-          if git diff --quiet HEAD^ HEAD -- flake.lock; then
+          # Detect whether anything changed
+          if diff -q flake.lock flake.lock.before > /dev/null; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -112,7 +99,7 @@ jobs:
       # 7️⃣ (Optional) Build & test the new configuration
       # -------------------------------------------------
       - name: Build test configurations
-        if: steps.changed.outputs.changed == 'true'
+        if: steps.flake-update.outputs.changed == 'true'
         run: |
           echo "🔧  Building test hosts…"
           for host in thinkpad; do
@@ -128,7 +115,7 @@ jobs:
       # 8️⃣ Generate a nice markdown summary (table)
       # -------------------------------------------------
       - name: Create update summary table
-        if: steps.changed.outputs.changed == 'true'
+        if: steps.flake-update.outputs.changed == 'true'
         id: summary
         run: |
           set -euo pipefail
@@ -159,7 +146,7 @@ jobs:
       # 9️⃣ Create the Pull Request (custom body)
       # -------------------------------------------------
       - name: Create Pull Request
-        if: steps.changed.outputs.changed == 'true'
+        if: steps.flake-update.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ steps.app-token.outputs.token }}
@@ -195,7 +182,7 @@ jobs:
       # 10️⃣ Auto‑merge (optional – let CI decide)
       # -------------------------------------------------
       - name: Auto‑merge if CI passes
-        if: steps.changed.outputs.changed == 'true'
+        if: steps.flake-update.outputs.changed == 'true'
         run: |
           echo "✅ PR created – it will be merged automatically once required checks pass."
 
