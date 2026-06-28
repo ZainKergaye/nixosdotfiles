@@ -58,6 +58,9 @@ jobs:
       # -------------------------------------------------
       - name: Update flake.lock
         id: flake-update
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
 
