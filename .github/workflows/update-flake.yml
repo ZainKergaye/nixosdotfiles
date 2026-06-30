@@ -51,7 +51,7 @@ jobs:
             max-jobs = 1
 
       - name: Setup Magic Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v7
+        uses: DeterminateSystems/magic-nix-cache-action@main
 
       # -------------------------------------------------
       # 4️⃣  Run the flake‑lock update (no PR generated here)
