@@ -38,6 +38,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
 
       # -------------------------------------------------
       # 3️⃣ Install Nix + magic‑nix‑cache
@@ -137,9 +138,23 @@ jobs:
             select(.value.locked.type != null) |
             {
               name: .key,
-              old: (.value.locked.prev.rev // .value.locked.prev.narHash // "—") | .[0:7],
-              new: (.value.locked.rev // .value.locked.narHash // "—") | .[0:7],
-              url: .value.locked.url // "—"
+              old: (
+                    if .value.locked.prev.rev != null then .value.locked.prev.rev
+                    elif .value.locked.prev.narHash != null then .value.locked.prev.narHash
+                    else "—"
+                    end
+                  ) | .[0:7],
+              new: (
+                    if .value.locked.rev != null then .value.locked.rev
+                    elif .value.locked.narHash != null then .value.locked.narHash
+                    else "—"
+                    end
+                  ) | .[0:7],
+              url: (
+                    if .value.locked.url != null then .value.locked.url
+                    else "—"
+                    end
+                  )
             } |
             "\(.name) | \(.old) | \(.new) | \(.url)"
           ' meta.json >> summary.md
@@ -147,6 +162,16 @@ jobs:
           echo "summary<<EOF" >> $GITHUB_OUTPUT
           cat summary.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
+          
+      # -------------------------------------------------
+      #   Stage only the flake files we want to commit
+      # -------------------------------------------------
+      - name: Stage only flake.nix and flake.lock
+        if: steps.flake-update.outputs.changed == 'true'
+        run: |
+          git reset           # clear the index
+          git add flake.lock
+          git status -s       # shows exactly what will be committed
 
       # -------------------------------------------------
       # 9️⃣ Create the Pull Request (custom body)
@@ -181,7 +206,7 @@ jobs:
           labels: |
             dependencies
             automated
-          assignees: olafkfreund
+          assignees: zainkergaye
           draft: false
 
       # -------------------------------------------------
