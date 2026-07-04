@@ -137,9 +137,23 @@ jobs:
             select(.value.locked.type != null) |
             {
               name: .key,
-              old: ( .value.locked.prev.rev // .value.locked.prev.narHash // "—" ) | .[0:7],
-              new: ( .value.locked.rev // .value.locked.narHash // "—" ) | .[0:7],
-              url: ( if .value.locked.url == null then "—" else .value.locked.url end )
+              old: (
+                    if .value.locked.prev.rev != null then .value.locked.prev.rev
+                    elif .value.locked.prev.narHash != null then .value.locked.prev.narHash
+                    else "—"
+                    end
+                  ) | .[0:7],
+              new: (
+                    if .value.locked.rev != null then .value.locked.rev
+                    elif .value.locked.narHash != null then .value.locked.narHash
+                    else "—"
+                    end
+                  ) | .[0:7],
+              url: (
+                    if .value.locked.url != null then .value.locked.url
+                    else "—"
+                    end
+                  )
             } |
             "\(.name) | \(.old) | \(.new) | \(.url)"
           ' meta.json >> summary.md
