@@ -162,16 +162,6 @@ jobs:
           echo "summary<<EOF" >> $GITHUB_OUTPUT
           cat summary.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          
-      # -------------------------------------------------
-      #   Stage only the flake files we want to commit
-      # -------------------------------------------------
-      - name: Stage only flake.nix and flake.lock
-        if: steps.flake-update.outputs.changed == 'true'
-        run: |
-          git reset           # clear the index
-          git add flake.lock
-          git status -s       # shows exactly what will be committed
 
       # -------------------------------------------------
       # 9️⃣ Create the Pull Request (custom body)
@@ -180,6 +170,7 @@ jobs:
         if: steps.flake-update.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
+          add-paths: flake.lock
           token: ${{ steps.app-token.outputs.token }}
           commit-message: ${{ env.GIT_COMMIT_MESSAGE }}
           title: "chore(deps): daily flake input updates"
@@ -207,6 +198,7 @@ jobs:
             dependencies
             automated
           assignees: zainkergaye
+          reviewers: zainkergaye
           draft: false
 
       # -------------------------------------------------
