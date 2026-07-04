@@ -38,6 +38,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
 
       # -------------------------------------------------
       # 3️⃣ Install Nix + magic‑nix‑cache
@@ -195,7 +196,7 @@ jobs:
           labels: |
             dependencies
             automated
-          assignees: olafkfreund
+          assignees: zainkergaye
           draft: false
 
       # -------------------------------------------------
