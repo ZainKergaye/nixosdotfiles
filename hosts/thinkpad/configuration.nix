@@ -7,7 +7,6 @@
   imports = [
     ./hardware-configuration.nix
     ../../system
-    ../../variables.nix
   ];
 
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this

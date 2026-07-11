@@ -52,6 +52,7 @@
           specialArgs = { inherit inputs lib; };
           modules = [
             ./hosts/${hostName}/configuration.nix
+            ./variables.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = { inherit inputs; };
@@ -70,6 +71,8 @@
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
         inputs.fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
       ];
+
+      nixosConfigurations.asus = mkHost "asus" [ ];
       # Add any other host here when needed
 
       homeConfigurations.khabib = home-manager.lib.homeManagerConfiguration {
