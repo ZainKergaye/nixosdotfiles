@@ -10,7 +10,7 @@
     ./swayosd.nix
     ./hyprlock.nix
     ./wayscriber.nix
-    ./waycorner.nix
+    #./waycorner.nix
   ];
   home.packages = with pkgs; [
     # Wallpaper

@@ -19,6 +19,7 @@
     #networkmanager.dns = "none";
     useDHCP = false;
     dhcpcd.enable = false;
+    wg-quick.interfaces.wg0.configFile = "/home/khabib/.dotfiles/secrets/thinkpad.conf";
     # nameservers = [
     #   "10.0.0.229" # NOTE: I'm not sure how this should work on other networks too
     #   "1.1.1.1"

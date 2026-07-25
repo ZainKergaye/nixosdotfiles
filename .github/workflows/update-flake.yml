@@ -1,7 +1,8 @@
 name: Update Flake Inputs
 
 on:
-  schedule: [{ cron: '0 2 * * 0' }]   # every Sunday 02:00 UTC
+  schedule:
+    - cron: '0 2 * * 0,3'   # 02:00 UTC on Sundays (0) and Wednesdays (3)
   workflow_dispatch:                  # manual trigger
 
 permissions:
