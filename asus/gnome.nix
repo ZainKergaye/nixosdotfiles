@@ -2,11 +2,11 @@
 {
   environment.systemPackages = [ pkgs.gnomeExtensions.appindicator ];
 
-  services.xserver = {
-    enable = true;
+  services = {
+    desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
     displayManager.gdm.autoSuspend = false;
-    desktopManager.gnome.enable = true;
+    xserver.enable = true;
   };
 
   qt = {
