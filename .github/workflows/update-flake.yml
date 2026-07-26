@@ -1,7 +1,7 @@
 name: Update Flake Inputs
 
 on:
-  schedule:
+  schedule: 
     - cron: '0 2 * * 0,3'   # 02:00 UTC on Sundays (0) and Wednesdays (3)
   workflow_dispatch:                  # manual trigger
 
@@ -186,7 +186,7 @@ jobs:
             ${{ steps.summary.outputs.summary }}
 
             ### ✅ Testing status
-            All host configurations (`thinkpad`…) build successfully.
+            All host configurations (`thinkpad`, `asus`, …) build successfully.
 
             ### 📋 Review checklist
             - [ ] Verify the changes in `flake.lock`
