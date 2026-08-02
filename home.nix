@@ -8,6 +8,7 @@
   imports = [
     ./user/shell
     ./user/programs/programs.nix
+		./homeManagerModules
     ./system/wayland/hyprland.nix
     ./variables.nix
     inputs.nix-colors.homeManagerModules.default

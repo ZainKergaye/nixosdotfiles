@@ -10,7 +10,6 @@
     ./cava.nix
     ./peaclock.nix
     ./fastfetch.nix
-    ./git.nix
     ./zen-browser.nix
 		#./quartus.nix
   ];
