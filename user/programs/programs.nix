@@ -7,11 +7,8 @@
 }:
 {
   imports = [
-    ./cava.nix
-    ./peaclock.nix
-    ./fastfetch.nix
     ./zen-browser.nix
-		#./quartus.nix
+    #./quartus.nix
   ];
 
   home.packages = with pkgs; [
@@ -31,12 +28,6 @@
 
     #skewl
     kicad
-
-    # cli tools
-    inputs.nixvim-custom.packages."x86_64-linux".default
-    onefetch
-    cbonsai
-    yazi
   ];
 
   nixpkgs.config.allowUnfreePredicate =
