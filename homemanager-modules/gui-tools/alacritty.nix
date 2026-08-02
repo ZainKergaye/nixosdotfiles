@@ -1,5 +1,5 @@
-{ config, ... }:
-{
+{ config, lib, ... }:
+lib.mkIf (!config.variables.is_headless) {
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
     colors = with config.colorScheme.palette; {

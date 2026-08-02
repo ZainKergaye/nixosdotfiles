@@ -3,6 +3,7 @@
   imports = [
     ./git.nix
     ./tmux.nix
+    ./shell.nix
   ];
 
   config.tmux-conf.enable = lib.mkIf config.variables.is_headless true;
