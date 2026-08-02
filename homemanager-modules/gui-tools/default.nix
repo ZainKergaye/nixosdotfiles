@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     ./alacritty.nix
@@ -7,24 +12,26 @@
     # both are disabled if headless variable is set
   ];
 
-  home.packages = with pkgs; [
-    vesktop
-    prusa-slicer
-    qbittorrent
-    pear-desktop
-    libreoffice
-    inkscape
-    p3x-onenote
-    ungoogled-chromium
-    zoom-us
-    freecad
+  home.packages =
+    with pkgs;
+    lib.mkIf (!config.variables.is_headless) [
+      vesktop
+      prusa-slicer
+      qbittorrent
+      pear-desktop
+      libreoffice
+      inkscape
+      p3x-onenote
+      ungoogled-chromium
+      zoom-us
+      freecad
 
-    # games
-    hmcl
+      # games
+      hmcl
 
-    #skewl
-    kicad
-  ];
+      #skewl
+      kicad
+    ];
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
