@@ -1,7 +1,12 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   programs = {
-    # TODO: Figure out sops nix or some secret manager
+    zsh.shellAliases.g = lib.getExe' pkgs.git "git";
     git = {
       enable = true;
 
@@ -10,11 +15,9 @@
         user.email = config.variables.email;
 
         signing = {
-          #key = config.variables.sshPublicKey;
           format = "opengpg";
           signByDefault = true;
         };
-        #pull = "rebase";
 
         core.whitespace = "error"; # Throw error on whitespace
 
