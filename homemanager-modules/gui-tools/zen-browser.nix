@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   lib,
+  config,
   ...
 }:
 let
@@ -32,7 +33,7 @@ let
   ];
 
 in
-{
+lib.mkIf (!config.variables.is_headless) {
   home.packages = [
     (pkgs.wrapFirefox
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped

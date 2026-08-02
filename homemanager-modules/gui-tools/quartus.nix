@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -29,7 +30,7 @@ let
     '';
   };
 in
-{
+lib.mkIf (!config.variables.is_headless) {
   # This is quartus with the dark stylesheet provided by sandervanthul
   home.packages = [
     pkgs.quartus-prime-lite
@@ -41,7 +42,7 @@ in
     NUM_PARALLEL_PROCESSORS = "4";
   };
 
-  # NOTE: For those using this in their own configuration, look at programs.nix
+  # NOTE: For those using this in their own configuration, look at default.nix
   # in the same dir, you need to allow the unfree package if not already allowed
   # in your system
 }

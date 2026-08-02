@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ./user/programs/programs.nix
     ./homemanager-modules
     ./system/wayland/hyprland.nix
     ./variables.nix
