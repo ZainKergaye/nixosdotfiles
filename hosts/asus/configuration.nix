@@ -9,6 +9,8 @@
   ...
 }:
 {
+	variables.is_headless = true;
+
   # You can import other NixOS modules here
   imports = [
     ../../asus

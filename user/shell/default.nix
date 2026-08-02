@@ -4,6 +4,5 @@
     ./sh.nix
     ./alacritty.nix
     ./kitty.nix
-    ./tmux.nix
   ];
 }

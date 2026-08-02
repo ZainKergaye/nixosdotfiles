@@ -9,6 +9,8 @@
     ../../system
   ];
 
+	variables.is_headless = false;
+
   boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
 
   boot.initrd.luks.devices."luks-f7091812-8d81-4033-9d22-e03831f6c70e".device =
