@@ -73,7 +73,6 @@
     glib
     adwaita-icon-theme
     adwaita-qt
-    ant-theme
 
     # Locking / Sleeping
     hyprlock

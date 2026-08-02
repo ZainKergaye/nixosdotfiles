@@ -7,7 +7,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixvim-custom.url = "github:ZainKergaye/nixvim_dotfiles";
     fingerprint-sensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=3678b193efa1e06aab86058aecee18ddaa8878d2";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.55.4"; # NOTE: Remove in later release after lua config works
 
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -15,7 +15,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?ref=6d25edfbd109bd6c0bb950a2fb6c37141795e3f1"; # NOTE: Remove later
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
