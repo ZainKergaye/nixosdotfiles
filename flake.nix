@@ -62,6 +62,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.khabib = import ./home.nix;
+              variables.is_headless = inputs.nixosConfigurations.networking.hostname.variables.is_headless;
             }
           ]
           ++ extraModules;

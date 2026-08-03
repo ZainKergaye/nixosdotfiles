@@ -8,12 +8,6 @@ with lib;
       description = "username";
     };
 
-    hostname = mkOption {
-      type = types.str;
-      default = "nixos";
-      description = "hostname";
-    };
-
     initialHashedPassword = mkOption {
       type = types.str;
       default = "$y$j9T$lzgJEP2Hn9SNNts2xZqs11$CofLHlMHuKEfHVmRDrPNk0chYXIAWpWlRgBRzTEV6J4";
