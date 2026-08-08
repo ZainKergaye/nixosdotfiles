@@ -44,10 +44,5 @@ with lib;
       description = "Main browser";
     };
 
-    is_headless = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Machine headless or not. Enables specific configuration settings within config";
-    };
   };
 }

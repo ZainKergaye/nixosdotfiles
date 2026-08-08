@@ -1,6 +1,11 @@
 # Imported into home manager
-{ config, lib, ... }:
-lib.mkIf (!config.variables.is_headless) {
+{
+  config,
+  lib,
+  headless,
+  ...
+}:
+lib.mkIf (!headless) {
   programs.kitty = {
     enable = true;
     font = {

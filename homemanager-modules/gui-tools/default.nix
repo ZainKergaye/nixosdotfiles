@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  headless,
   ...
 }:
 {
@@ -14,7 +15,7 @@
 
   home.packages =
     with pkgs;
-    lib.mkIf (!config.variables.is_headless) [
+    lib.mkIf (!headless) [
       vesktop
       prusa-slicer
       qbittorrent

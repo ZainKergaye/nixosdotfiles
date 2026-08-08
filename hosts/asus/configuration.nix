@@ -2,14 +2,12 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
-  outputs,
   lib,
   pkgs,
   config,
   ...
 }:
 {
-	variables.is_headless = true;
 
   # You can import other NixOS modules here
   imports = [

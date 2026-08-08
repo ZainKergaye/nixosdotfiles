@@ -48,34 +48,40 @@
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
       mkHost =
-        hostName: extraModules:
+        hostName: headless: extraModules:
         lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs lib; };
+          specialArgs = {
+            inherit
+              inputs
+              lib
+              headless
+              hostName
+              ;
+          };
           modules = [
             ./hosts/${hostName}/configuration.nix
             ./variables.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit inputs headless hostName; };
               networking.hostName = hostName;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.khabib = import ./home.nix;
-              variables.is_headless = inputs.nixosConfigurations.networking.hostname.variables.is_headless;
             }
           ]
           ++ extraModules;
         };
     in
     {
-      nixosConfigurations.thinkpad = mkHost "thinkpad" [
+      nixosConfigurations.thinkpad = mkHost "thinkpad" false [
         #./modules/hyprland
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
         inputs.fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
       ];
 
-      nixosConfigurations.asus = mkHost "asus" [ ];
+      nixosConfigurations.asus = mkHost "asus" true [ ];
       # Add any other host here when needed
 
       homeConfigurations.khabib = home-manager.lib.homeManagerConfiguration {

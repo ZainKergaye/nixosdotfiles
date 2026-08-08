@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  headless,
   ...
 }:
 let
@@ -30,7 +31,7 @@ let
     '';
   };
 in
-lib.mkIf (!config.variables.is_headless) {
+lib.mkIf (!headless) {
   # This is quartus with the dark stylesheet provided by sandervanthul
   home.packages = [
     pkgs.quartus-prime-lite
