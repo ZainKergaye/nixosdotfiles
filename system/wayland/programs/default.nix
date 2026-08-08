@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./anyrun.nix
@@ -14,7 +14,7 @@
   ];
   home.packages = with pkgs; [
     # Wallpaper
-    waypaper # GUI
+    waypaper-engine
 
     # Audio
     pwvucontrol
@@ -31,4 +31,20 @@
   wayland.windowManager.hyprland.settings.exec-once = [
     "systemctl --user enable --now hyprpoltikagent.service"
   ];
+
+  systemd.user.services.waypaper-daemon = {
+    Unit = {
+      Description = "Waypaper daemon";
+      After = "graphical-session.target";
+      Wants = "graphical-session.target";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${lib.getExe' pkgs.waypaper-engine "waypaper-daemon"}";
+      Restart = "always";
+    };
+  };
 }
