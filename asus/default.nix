@@ -10,5 +10,6 @@
     ./vm.nix
     ./gaming.nix
     ./security.nix
+    ./immich.nix
   ];
 }
