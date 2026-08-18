@@ -1,11 +1,16 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.immich = {
     enable = true;
     host = "0.0.0.0";
     port = 2283;
-    mediaLocation = "/srv/immich-originals";
+    mediaLocation = "/srv/immich";
     openFirewall = true;
     settings.newVersionCheck.enabled = false;
 
@@ -22,6 +27,23 @@
     };
   };
 
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_18;
+
+    extensions = ps: [ ps.postgis ];
+    identMap = ''
+      # ArbitraryMapName systemUser DBUser
+         superuser_map      root      postgres
+         superuser_map      postgres  postgres
+         superuser_map      immich    postgres
+         # Let other names login as themselves
+         superuser_map      /^(.*)$   \1
+    '';
+  };
+
+  systemd.targets.postgresql.unitConfig.RequiresMountsFor = [ "/srv/postgresql" ];
+
   services.redis.servers.immich.logLevel = "warning";
 
   hardware.graphics.enable = true;
@@ -33,12 +55,82 @@
 
   services.borgbackup.jobs."Immich" = {
     paths = config.services.immich.mediaLocation;
-    repo = "/srv/borg";
+    repo = "/srv/docker-backups/immich-borg/";
     startAt = "Sat 04:00";
     compression = "zstd";
     encryption.mode = "none";
     prune.keep = {
-      last = 2;
+      last = 4;
+    };
+  };
+
+  systemd.tmpfiles.settings.immich = {
+    "/srv/immich".d = {
+      user = "immich";
+      group = "immich";
+      mode = "0700";
+    };
+    "/srv/immich/thumbs".d = {
+      user = "immich";
+      group = "immich";
+      mode = "0700";
+    };
+    "/srv/immich/upload".d = {
+      user = "immich";
+      group = "immich";
+      mode = "0700";
+    };
+    "/srv/immich/encoded-video".d = {
+      user = "immich";
+      group = "immich";
+      mode = "0700";
+    };
+    "/srv/immich/profile".d = {
+      user = "immich";
+      group = "immich";
+      mode = "0700";
+    };
+    "/srv/immich/backups".d = {
+      user = "immich";
+      group = "immich";
+      mode = "0700";
+    };
+    "/srv/immich/library".d = {
+      user = "immich";
+      group = "immich";
+      mode = "0700";
+    };
+
+    # Create marker files
+    "/srv/immich/thumbs/.immich".f = {
+      user = "immich";
+      group = "immich";
+      mode = "0644";
+    };
+    "/srv/immich/upload/.immich".f = {
+      user = "immich";
+      group = "immich";
+      mode = "0644";
+    };
+    "/srv/immich/encoded-video/.immich".f = {
+      user = "immich";
+      group = "immich";
+      mode = "0644";
+    };
+    "/srv/immich/profile/.immich".f = {
+      user = "immich";
+      group = "immich";
+      mode = "0644";
+    };
+    "/srv/immich/backups/.immich".f = {
+      user = "immich";
+      group = "immich";
+      mode = "0644";
+    };
+    "/srv/immich/library/.immich".f = {
+      user = "immich";
+      group = "immich";
+      mode = "0644";
     };
   };
 

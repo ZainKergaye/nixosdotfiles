@@ -11,5 +11,6 @@
     ./gaming.nix
     ./security.nix
     ./immich.nix
+    ./nfs.nix
   ];
 }
