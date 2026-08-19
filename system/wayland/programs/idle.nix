@@ -25,9 +25,9 @@ let
       if [[ "$1" == "reset" || "$1" == "--reset" ]]; then
         # Restore saved brightness if file exists
         if [[ -f "$STATE_FILE" ]]; then
-          VALUE=$(cat "$STATE_FILE")
+          VALUE=$(${pkgs.coreutils}/bin/cat "$STATE_FILE")
           ${brightnessctl} set "$VALUE"
-          rm -f "$STATE_FILE"
+          ${pkgs.coreutils}/bin/rm -f "$STATE_FILE"
         else
           ${pkgs.libnotify}/bin/notify-send --urgency=critical --hint=int:transient:1 "Error" "state file not found"
           exit 1
@@ -36,7 +36,7 @@ let
         # Save current brightness to file if not already saved
         if [[ ! -f "$STATE_FILE" ]]; then
           CURRENT=$(${brightnessctl} g)
-          echo "$CURRENT" > "$STATE_FILE"
+          ${pkgs.coreutils}/bin/echo "$CURRENT" > "$STATE_FILE"
         fi
         ${brightnessctl} set "${"$"}{1:-10%}"
       fi
