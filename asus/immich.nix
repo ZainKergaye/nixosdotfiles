@@ -132,6 +132,11 @@
       group = "immich";
       mode = "0644";
     };
+    "/var/empty/.gunicorn".f = {
+      user = "immich";
+      group = "immich";
+      mode = "0644";
+    };
   };
 
 }
