@@ -45,6 +45,7 @@
           s = "status";
           a = "add";
           c = "commit";
+          p = "push";
         };
       };
     };
