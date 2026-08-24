@@ -25,20 +25,46 @@
     enable = true;
     #packages = [ pkgs.openocd ];
     extraRules = ''
-            			# Intel FPGA Download Cable
-            			# SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
-            			# SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666"
-            			# SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"
+			# Apple
+			SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", MODE="0666"
+			SUBSYSTEM=="usb", \
+				ATTRS{idVendor}=="2e8a", \
+				ATTRS{idProduct}=="0003", \
+				MODE="660", \
+				GROUP="plugdev"
+			SUBSYSTEM=="usb", \
+					ATTRS{idVendor}=="2e8a", \
+					ATTRS{idProduct}=="0009", \
+					MODE="660", \
+					GROUP="plugdev"
+			SUBSYSTEM=="usb", \
+					ATTRS{idVendor}=="2e8a", \
+					ATTRS{idProduct}=="000a", \
+					MODE="660", \
+					GROUP="plugdev"
+			SUBSYSTEM=="usb", \
+					ATTRS{idVendor}=="2e8a", \
+					ATTRS{idProduct}=="000f", \
+					MODE="660", \
+					GROUP="plugdev"
 
-            			# Intel FPGA Download Cable II
-            			# SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0666"
-
-      						# STM32 discovery board
-            			SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE:="0666", SYMLINK+="stlinkv2_%n"
-
-      						# Apple
-      						SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", MODE="0666"
-
+			# Rules for seat access
+			SUBSYSTEM=="usb", \
+					ATTRS{idVendor}=="2e8a", \
+					ATTRS{idProduct}=="0003", \
+					TAG+="uaccess"
+			SUBSYSTEM=="usb", \
+					ATTRS{idVendor}=="2e8a", \
+					ATTRS{idProduct}=="0009", \
+					TAG+="uaccess"
+			SUBSYSTEM=="usb", \
+					ATTRS{idVendor}=="2e8a", \
+					ATTRS{idProduct}=="000a", \
+					TAG+="uaccess"
+			SUBSYSTEM=="usb", \
+					ATTRS{idVendor}=="2e8a", \
+					ATTRS{idProduct}=="000f", \
+					TAG+="uaccess"
     '';
   };
 

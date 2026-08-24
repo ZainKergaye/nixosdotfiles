@@ -89,7 +89,6 @@
 
   programs.zsh = {
     enable = true;
-    loginShellInit = "tmux attach";
   };
 
   # This setups a SSH server. Very important if you're setting up a headless system.
