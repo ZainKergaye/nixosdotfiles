@@ -7,7 +7,6 @@
 
   config = lib.mkIf config.tmux-conf.enable {
     programs.tmux.enable = true;
-    programs.zsh.loginShellInit = "tmux attach";
     home.file.".tmux.conf".text = ''
       			# ~/.tmux.conf
 
