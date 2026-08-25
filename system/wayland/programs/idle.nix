@@ -7,16 +7,7 @@
   ...
 }:
 let
-  exec-hyprlock-once = lib.getExe (
-    pkgs.writeShellScriptBin "exec-hyprlock-once" ''
-         if (pgrep -x hyprlock > /dev/null); then
-           ${pkgs.dunst}/bin/dunstify -u low -a swayidle "Tried locking screen, already locked"
-      else
-           ${pkgs.hyprland}/bin/hyprctl dispatch exec ${pkgs.hyprlock}/bin/hyprlock
-           ${pkgs.hyprland}/bin/hyprctl dispatch dpms off
-         fi
-    ''
-  );
+  hyprlock-bin = lib.getExe' pkgs.hyprlock "hyprlock";
   brightnessctl = lib.getExe' pkgs.brightnessctl "brightnessctl";
   toggle-dim = lib.getExe (
     pkgs.writeShellScriptBin "toggle-dim" ''
@@ -60,7 +51,7 @@ in
       {
         # Lock screen
         timeout = 60 * 7; # 7 mins
-        command = "${exec-hyprlock-once}";
+        command = "${hyprlock-bin}";
         resumeCommand = "${hyprctl} dispatch dpms on; ${toggle-dim} --reset";
       }
       {
@@ -72,7 +63,7 @@ in
     ];
 
     events = {
-      before-sleep = exec-hyprlock-once;
+      before-sleep = hyprlock-bin;
       unlock = "${toggle-dim} --reset";
     };
 
