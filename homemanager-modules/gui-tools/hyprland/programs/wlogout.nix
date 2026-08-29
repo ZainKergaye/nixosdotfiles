@@ -1,12 +1,14 @@
 {
   config,
   pkgs,
+	lib,
   ...
 }:
 let
   palette = config.colorScheme.palette;
 in
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
   programs.wlogout = {
     enable = true;
     layout = [
@@ -120,4 +122,5 @@ in
     recursive = false;
     source = ../../../media/icons;
   };
+	};
 }

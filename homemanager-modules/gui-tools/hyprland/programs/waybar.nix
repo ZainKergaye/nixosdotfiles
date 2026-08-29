@@ -8,6 +8,8 @@ let
   palette = config.colorScheme.palette;
 in
 {
+
+  config = lib.mkIf config.hyprland-hm-config.enable {
   systemd.user.services.waybar = {
     Unit = {
       Description = "Waybar";
@@ -381,4 +383,5 @@ in
                   },
               }
   '';
+	};
 }

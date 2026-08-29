@@ -7,7 +7,6 @@
 {
   imports = [
     ./homemanager-modules
-    ./system/wayland/hyprland.nix
     ./variables.nix
     inputs.nix-colors.homeManagerModules.default
   ];

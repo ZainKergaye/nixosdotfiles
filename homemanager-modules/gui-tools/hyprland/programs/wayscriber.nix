@@ -1,5 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
 
   home.packages = [ pkgs.wayscriber ];
 
@@ -12,4 +13,5 @@
     Install.WantedBy = [ "default.target" ];
     Service.ExecStart = "${lib.getExe' pkgs.wayscriber "wayscriber"} --daemon";
   };
+	};
 }

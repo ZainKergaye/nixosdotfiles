@@ -1,0 +1,110 @@
+# Hyprland config imported into configuration
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}:
+{
+  options.hyprland-config = {
+    enable = lib.options.mkEnableOption "Enable Hyprland config";
+  };
+
+  config = lib.mkIf config.hyprland-config.enable {
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      QT_STYLE_OVERRIDE = "adwaita-dark";
+    };
+
+    qt = {
+      enable = true;
+      style = "adwaita-dark";
+    };
+
+    environment.etc = {
+      "xdg/qt5ct/qt5ct.conf".text = ''
+        [Appearance]
+        style=adwaita-dark
+      '';
+      "xdg/qt6ct/qt6ct.conf".text = ''
+        [Appearance]
+        style=adwaita-dark
+      '';
+    };
+
+    services.udev.packages = [ pkgs.swayosd ];
+
+    systemd.services.swayosd-libinput-backend = {
+      description = "SwayOSD LibInput backend for listening to certain keys like CapsLock, ScrollLock, VolumeUp, etc.";
+      documentation = [ "https://github.com/ErikReider/SwayOSD" ];
+      wantedBy = [ "graphical.target" ];
+      partOf = [ "graphical.target" ];
+      after = [ "graphical.target" ];
+
+      serviceConfig = {
+        Type = "dbus";
+        BusName = "org.erikreider.swayosd";
+        ExecStart = "${pkgs.swayosd}/bin/swayosd-libinput-backend";
+        Restart = "on-failure";
+      };
+    };
+
+    environment.systemPackages = with pkgs; [
+      # Status bar
+      waybar
+
+      # Notifications
+      dunst
+      libnotify
+
+      # Wallpaper
+      awww # Backend
+
+      # Network
+      networkmanagerapplet
+      networkmanager_dmenu
+
+      # A/V helper
+      wireplumber
+      xwayland
+      wayland-scanner
+      hyprwayland-scanner
+      swayosd
+
+      # Theme
+      glib
+      adwaita-icon-theme
+      adwaita-qt
+
+      # Locking / Sleeping
+      hyprlock
+
+      # Screenshots
+      hyprshot
+      grim
+      slurp
+
+      xwayland
+    ];
+
+    xdg.portal = {
+      enable = true;
+      extraPortals =
+        with pkgs;
+        lib.mkForce [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-wlr
+          xdg-desktop-portal-gnome
+        ];
+    };
+
+    services.libinput.enable = true;
+
+    programs.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      xwayland.enable = true;
+    };
+  };
+}

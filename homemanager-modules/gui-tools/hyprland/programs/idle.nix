@@ -4,6 +4,7 @@
 {
   pkgs,
   lib,
+	config,
   ...
 }:
 let
@@ -36,6 +37,7 @@ let
   hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
 in
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
   services.swayidle = {
     enable = true;
     package = pkgs.swayidle;
@@ -88,4 +90,5 @@ in
       Restart = "always";
     };
   };
+	};
 }

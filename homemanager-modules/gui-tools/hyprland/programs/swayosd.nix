@@ -1,9 +1,11 @@
 {
   pkgs,
   lib,
+	config,
   ...
 }:
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
   systemd.user.services.swayosd-server = {
     Unit = {
       Description = "swayosd-server";
@@ -41,6 +43,7 @@
         ",XF86AudioMicMute, exec, ${swayosd} ${focused-monitor} --input-volume mute-toggle"
       ];
     };
+	};
 
   # udev and systemd config in ../hypr
 }

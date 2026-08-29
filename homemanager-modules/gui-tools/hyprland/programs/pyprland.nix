@@ -3,9 +3,11 @@
 {
   lib,
   pkgs,
+	config,
   ...
 }:
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
   systemd.user.services.pyprland = {
     Unit = {
       Description = "Pyprland daemon";
@@ -48,4 +50,5 @@
     "$mod ALT, I, exec, pypr toggle btop"
     "$mod ALT, O, exec, pypr toggle term"
   ];
+	};
 }

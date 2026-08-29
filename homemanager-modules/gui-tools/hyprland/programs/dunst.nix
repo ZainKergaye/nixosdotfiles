@@ -1,8 +1,9 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   palette = config.colorScheme.palette;
 in
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
   services.dunst = {
     enable = true;
     settings = {
@@ -60,4 +61,5 @@ in
       };
     };
   };
+	};
 }

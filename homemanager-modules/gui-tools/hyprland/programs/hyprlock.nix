@@ -5,6 +5,7 @@
   ...
 }:
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
   wayland.windowManager.hyprland.settings =
     let
       hyprlock-bin = lib.getExe' pkgs.hyprlock "hyprlock";
@@ -98,4 +99,5 @@
 
       };
   };
+	};
 }
