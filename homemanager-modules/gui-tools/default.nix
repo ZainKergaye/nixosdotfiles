@@ -12,6 +12,7 @@
     ./zen-browser.nix
     ./quartus.nix
     # both are disabled if headless variable is set
+    ./hyprland
   ];
 
   home.packages =

@@ -6,6 +6,7 @@
   ...
 }:
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
 
   home.packages = [
     pkgs.waycorner
@@ -79,4 +80,5 @@
     		# description = "U2515H 9X2VY6A80A8L"
   '';
 
+	};
 }

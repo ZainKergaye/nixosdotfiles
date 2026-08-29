@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
   imports = [
     ./anyrun.nix
@@ -12,6 +12,8 @@
     ./wayscriber.nix
     #./waycorner.nix
   ];
+
+  config = lib.mkIf config.hyprland-hm-config.enable {
   home.packages = with pkgs; [
     # Wallpaper
     waypaper-engine
@@ -47,4 +49,5 @@
       Restart = "always";
     };
   };
+	};
 }

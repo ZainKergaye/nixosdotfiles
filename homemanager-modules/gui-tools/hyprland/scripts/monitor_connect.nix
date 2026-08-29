@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+	config,
   ...
 }:
 let
@@ -22,5 +23,7 @@ let
   );
 in
 {
+  config = lib.mkIf config.hyprland-hm-config.enable {
   wayland.windowManager.hyprland.settings.exec-once = [ "${handle_monitor_connect}" ];
+	};
 }
