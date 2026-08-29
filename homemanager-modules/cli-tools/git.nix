@@ -19,6 +19,12 @@
           signByDefault = true;
         };
 
+        credential."https://git.duranaero.com" = {
+          username = "zain.kergaye";
+          helper = "cache";
+
+        };
+
         commit.gpgSign = true;
         tag.gpgSign = true;
         core.whitespace = "error"; # Throw error on whitespace
@@ -45,7 +51,9 @@
           s = "status";
           a = "add";
           c = "commit";
-          p = "push";
+          ph = "push";
+          pl = "pull";
+          f = "fetch";
         };
       };
     };
