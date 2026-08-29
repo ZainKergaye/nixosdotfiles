@@ -10,6 +10,6 @@
     ./hyprland
   ];
 
-  config.hyprland-config.enable = lib.mkIf headless true;
+  config.hyprland-config.enable = lib.mkIf (!headless) true;
 
 }

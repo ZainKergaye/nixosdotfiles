@@ -12,6 +12,10 @@
   };
 
   config = lib.mkIf config.hyprland-config.enable {
+    environment.pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
       QT_STYLE_OVERRIDE = "adwaita-dark";

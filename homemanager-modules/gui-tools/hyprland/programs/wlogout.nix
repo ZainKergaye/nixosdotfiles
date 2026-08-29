@@ -120,7 +120,7 @@ in
 
   xdg.configFile."wlogout/icons" = {
     recursive = false;
-    source = ../../../media/icons;
+    source = ../../../../media/icons;
   };
 	};
 }
