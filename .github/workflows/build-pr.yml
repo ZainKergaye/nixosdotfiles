@@ -9,7 +9,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
     steps:
       # -------------------------------------------------
       # 1️⃣ Generate a short‑lived GitHub‑App token
