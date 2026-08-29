@@ -39,7 +39,7 @@ lib.mkIf (!headless) {
   ];
 
   home.sessionVariables = {
-    LM_LICENSE_FILE = "/home/${config.variables.username}/.secrets/license.dat";
+    LM_LICENSE_FILE = "/home/${config.variables.username}/.dotfiles/.secrets/license.dat";
     NUM_PARALLEL_PROCESSORS = "4";
   };
 

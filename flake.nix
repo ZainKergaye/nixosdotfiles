@@ -62,6 +62,7 @@
           modules = [
             ./hosts/${hostName}/configuration.nix
             ./variables.nix
+            ./nixos-modules
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = { inherit inputs headless hostName; };
