@@ -15,7 +15,7 @@
     ./hyprland
   ];
 
-  config.hyprland-hm-config.enable = lib.mkIf (!headless) true;
+  hyprland-hm-config.enable = lib.mkIf (!headless) true;
 
   home.packages =
     with pkgs;
