@@ -1,0 +1,69 @@
+name: Build
+
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+    steps:
+      # -------------------------------------------------
+      # 1️⃣ Generate a short‑lived GitHub‑App token
+      # -------------------------------------------------
+      - name: Generate GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.FLAKE_UPDATE_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            nixosdotfiles
+
+      # -------------------------------------------------
+      # 2️⃣ Checkout repository (uses the token)
+      # -------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
+
+      # -------------------------------------------------
+      # 3️⃣ Install Nix + magic‑nix‑cache
+      # -------------------------------------------------
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            max-jobs = 1
+
+      - name: Setup Cachix 
+        uses: cachix/cachix-action@v17
+        with:
+          name: zain-system-cache
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      # -------------------------------------------------
+      # Build & test the new configuration
+      # -------------------------------------------------
+      - name: Build test configurations
+        run: |
+          echo "🔧  Building test hosts…"
+          for host in thinkpad asus; do
+            nix build .#nixosConfigurations.$host.config.system.build.toplevel \
+              --show-trace --no-link || {
+                echo "❌  Build failed for $host"
+                exit 1
+              }
+          done
+          echo "✅  All builds succeeded"
+
+
