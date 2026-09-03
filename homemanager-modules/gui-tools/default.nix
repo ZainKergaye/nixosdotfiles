@@ -31,6 +31,7 @@
       zoom-us
       freecad
       bambu-studio
+      mission-planner
 
       # games
       hmcl
