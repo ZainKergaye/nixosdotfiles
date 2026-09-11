@@ -17,6 +17,9 @@
       myPkg;
   };
 
+  users.users.khabib = {
+    extraGroups = [ "render" ];
+  };
   # Add in weylus toggle button in waybar thing
 
 }
