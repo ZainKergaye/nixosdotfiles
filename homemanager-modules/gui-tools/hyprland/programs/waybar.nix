@@ -10,13 +10,26 @@ let
 in
 {
   config = lib.mkIf config.hyprland-hm-config.enable {
+		systemd.user.services.waybar = {
+			Unit = {
+				Description = "Waybar";
+				After = "graphical-session.target";
+				Wants = "graphical-session.target";
+			};
+			Install = {
+				WantedBy = [ "graphical-session.target" ];
+			};
+			Service = {
+				Type = "simple";
+				ExecStart = "${lib.getExe' pkgs.waybar "waybar"}";
+				Restart = "always";
+			};
+		};
+
     programs.waybar = {
       enable = true;
 
-      systemd = {
-        enable = true;
-        targets = [ "graphical-session.target" ];
-      };
+      systemd.enable = false;
 
       style = ''
         * {

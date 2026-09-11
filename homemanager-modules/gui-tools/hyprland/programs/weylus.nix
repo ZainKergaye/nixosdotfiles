@@ -8,8 +8,8 @@
 
 let
   monitorName = "weylus-ipad";
-  monitorMode = "1920x1440@30";
-	monitorZoom = "1.5";
+  monitorMode = "2000x1500@30";
+	monitorZoom = "1.25";
 
   weylusToggle = pkgs.writeShellApplication {
     name = "weylus-toggle";
