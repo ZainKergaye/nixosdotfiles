@@ -17,4 +17,6 @@
       myPkg;
   };
 
+  # Add in weylus toggle button in waybar thing
+
 }
