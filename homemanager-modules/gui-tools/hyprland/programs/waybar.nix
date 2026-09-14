@@ -91,6 +91,7 @@ in
         #tray,
         #memory,
         #idle_inhibitor,
+				#privacy,
         #window {
           min-height: 0;
           padding: 2px 10px;
@@ -196,9 +197,25 @@ in
           border-radius: 8px;
         }
 
-        #idle_inhibitor {
+        #idle_inhibitor.activated {
           color: #${palette.base0A};
         }
+
+        #idle_inhibitor.deactivated {
+          color: #${palette.base02};
+        }
+
+				#privacy-item.screenshare {
+          color: #${palette.base0F};
+				}
+
+				#privacy-item.audio-in {
+          color: #${palette.base0A};
+				}
+
+				#privacy-item.location {
+          color: #${palette.base0D};
+				}
       '';
 
       settings.mainBar = {
@@ -221,6 +238,7 @@ in
         "modules-center" = [
           "custom/sep"
           "clock#simpleclock"
+					"privacy"
           "custom/sep"
         ];
 
@@ -235,8 +253,37 @@ in
           spacing = 10;
         };
 
+				privacy = {
+					icon-spacing =  4;
+					icon-size =  0;
+					transition-duration = 250;
+					ignore-monitor = true;
+					modules =  [
+						{
+							type = "screenshare";
+							#icon-name = "screen-privacy3";
+							tooltip =  true;
+							tooltip-icon-size = 0;
+						}
+						{
+							type = "audio-in";
+							#icon-name = "dot";
+							tooltip =  true;
+							tooltip-icon-size = 0;
+						}
+						{
+							type = "location";
+							#icon-name = "map-marker-small";
+							tooltip =  true;
+							tooltip-icon-size = 0;
+						}
+					];
+
+				};
+
         "clock#simpleclock" = {
-          tooltip = false;
+          tooltip = true;
+					"tooltip-format" = "Click to open peaclock";
           format = "   {:%I:%M %p}";
           "on-click" = "${lib.getExe pkgs.kitty} ${lib.getExe pkgs.peaclock}";
         };
@@ -376,11 +423,11 @@ in
         idle_inhibitor = {
           format = "{icon}";
           "format-icons" = {
-            activated = "󰌶";
-            deactivated = "󰌵";
+            activated = "󰌵";
+            deactivated = "󰌶";
           };
-          "tooltip-format-activated" = "Idle inhibit on";
-          "tooltip-format-deactivated" = "Idle inhibit off";
+          "tooltip-format-activated" = "Idle inhibit: on\nClick to stop";
+          "tooltip-format-deactivated" = "Idle inhibit: off\nClick to start";
         };
 
         "group/poweroptions" = {
