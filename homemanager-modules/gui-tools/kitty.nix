@@ -16,7 +16,6 @@ lib.mkIf (!headless) {
     settings = {
       wayland_titlebar_color = "system";
       sync_to_monitor = "yes";
-      open_url_with = config.variables.default_browser;
       disable_ligatures = "never";
       enable_audio_bell = "no";
     };

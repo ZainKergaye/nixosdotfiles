@@ -38,11 +38,5 @@ with lib;
       description = "Main editor";
     };
 
-    default_browser = mkOption {
-      type = types.str;
-      default = "zen-browser";
-      description = "Main browser";
-    };
-
   };
 }
