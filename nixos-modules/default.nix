@@ -1,6 +1,7 @@
 {
   headless,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -11,5 +12,9 @@
   ];
 
   config.hyprland-config.enable = lib.mkIf (!headless) true;
+
+  config.environment.systemPackages = with pkgs; [
+    usbutils
+  ];
 
 }
