@@ -6,13 +6,25 @@
   ...
 }:
 let
+  upgrade = lib.getExe (
+    pkgs.writeShellScriptBin "upgrade" ''
+            branch=`(cd ${config.xdg.configHome}/.dotfiles; git log -1 --pretty=%B 2>/dev/null)`
+            export NIXOS_LABEL_VERSION="$branch"
+      			sudo nixos-rebuild switch --flake /home/${config.variables.username}/.dotfiles/.#${hostName}
+    ''
+  );
   myAliases = {
     la = "ls -la";
     update = "nix flake update --flake /home/${config.variables.username}/.dotfiles/.";
-    upgrade = "sudo nixos-rebuild switch --flake /home/${config.variables.username}/.dotfiles/.#${hostName}";
+    upgrade = lib.getExe (
+      pkgs.writeShellScriptBin "upgrade" ''
+				branch=`(cd ${config.xdg.configHome}/../.dotfiles; git log -1 --pretty=%B 2>/dev/null)`
+				export NIXOS_LABEL_VERSION="$branch"
+				sudo nixos-rebuild switch --flake /home/${config.variables.username}/.dotfiles/.#${hostName}
+      ''
+    );
     c = "python3 -Bqic 'from math import *'";
     peaclock = "peaclock --config-dir=/home/${config.variables.username}/.config/peaclock/";
-    restart-waybar = "pkill waybar && hyprctl dispatch exec waybar";
     neofetch = "fastfetch";
     t = "${lib.getExe' pkgs.trashy "trash"}";
     rm = lib.getExe (
