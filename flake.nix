@@ -97,5 +97,21 @@
           ./home.nix
         ];
       };
+
+      packages.${system} = {
+        thinkpad-vm = self.nixosConfigurations.thinkpad.config.system.build.vm;
+        asus-vm = self.nixosConfigurations.asus.config.system.build.vm;
+      };
+
+      apps.${system} = {
+        thinkpad-vm = {
+          type = "app";
+          program = "${self.packages.${system}.thinkpad-vm}/bin/run-nixos-vm";
+        };
+        asus-vm = {
+          type = "app";
+          program = "${self.packages.${system}.asus-vm}/bin/run-nixos-vm";
+        };
+      };
     };
 }
