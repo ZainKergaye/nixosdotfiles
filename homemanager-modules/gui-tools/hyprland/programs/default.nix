@@ -36,7 +36,7 @@
       hyprpolkitagent # GUI auth
     ];
 
-    wayland.windowManager.hyprland.settings.exec-once = [
+    wayland.windowManager.hyprland.settings.exec_once = [
       "systemctl --user enable --now hyprpoltikagent.service"
     ];
 

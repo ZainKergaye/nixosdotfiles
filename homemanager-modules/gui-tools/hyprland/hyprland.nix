@@ -25,7 +25,6 @@
 
       xwayland.enable = true;
       settings = {
-        "$mod" = "SUPER";
         monitor = [
           # name, resolution, position, scale
           # https://wiki.hyprland.org/Configuring/Monitors/
@@ -90,7 +89,7 @@
           };
         };
 
-        exec-once = [
+        exec_once = [
           "nm-applet"
           "blueman-applet"
           "awww-daemon"

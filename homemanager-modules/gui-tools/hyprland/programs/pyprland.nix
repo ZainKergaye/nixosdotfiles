@@ -47,8 +47,8 @@
   '';
 
   wayland.windowManager.hyprland.settings.bind = [
-    "$mod ALT, I, exec, pypr toggle btop"
-    "$mod ALT, O, exec, pypr toggle term"
+    "SUPER ALT, I, exec, pypr toggle btop"
+    "SUPER ALT, O, exec, pypr toggle term"
   ];
 	};
 }
