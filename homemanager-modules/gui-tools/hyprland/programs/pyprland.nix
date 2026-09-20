@@ -60,7 +60,7 @@
         [
           "match:class ^(pyprland-btop)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0"
 
-          "match:class ^(pyprland-dropterm)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0"
+          "match:class ^(pyprland-dropterm)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0, dim_around on"
         ];
     };
 

@@ -63,6 +63,8 @@
           "match:title ^Bluetooth Devices$, center on, float on"
           "match:class ^nm-connection-editor$, float on, center on"
 
+          "match:class ^org.gnupg.pinentry-qt$, dim_around on, stay_focused on"
+
           # "center, title:^Open File$"
         ];
 
