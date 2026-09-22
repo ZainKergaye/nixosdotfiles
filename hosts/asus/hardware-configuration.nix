@@ -7,8 +7,7 @@
   pkgs,
   modulesPath,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -21,7 +20,7 @@
     "sd_mod"
     "sr_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = [
     "kvm-intel"
     "wl"
@@ -54,7 +53,7 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/3e8c047c-81cb-47d6-8a97-276f78bc0d6f"; }
+    {device = "/dev/disk/by-uuid/3e8c047c-81cb-47d6-8a97-276f78bc0d6f";}
   ];
 
   networking.useDHCP = lib.mkDefault true;

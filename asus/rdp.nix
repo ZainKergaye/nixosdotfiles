@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.xrdp.enable = true;
 
   # Use the GNOME Wayland session
@@ -10,7 +9,7 @@
 
   # Ensure the service starts automatically at boot so the settings panel appears
   systemd.services.gnome-remote-desktop = {
-    wantedBy = [ "graphical.target" ];
+    wantedBy = ["graphical.target"];
   };
 
   # Open the default RDP port (3389)

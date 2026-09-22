@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-{
-
+}: {
   imports = [
     ./nix-pkgmgr
     ./hyprland
@@ -16,5 +14,4 @@
   config.environment.systemPackages = with pkgs; [
     usbutils
   ];
-
 }

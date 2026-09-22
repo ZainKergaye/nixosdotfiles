@@ -4,27 +4,26 @@
   pkgs,
   ...
 }:
-
 let
   palette = config.colorScheme.palette;
 in
 {
   config = lib.mkIf config.hyprland-hm-config.enable {
-		systemd.user.services.waybar = {
-			Unit = {
-				Description = "Waybar";
-				After = "graphical-session.target";
-				Wants = "graphical-session.target";
-			};
-			Install = {
-				WantedBy = [ "graphical-session.target" ];
-			};
-			Service = {
-				Type = "simple";
-				ExecStart = "${lib.getExe' pkgs.waybar "waybar"}";
-				Restart = "always";
-			};
-		};
+    systemd.user.services.waybar = {
+      Unit = {
+        Description = "Waybar";
+        After = "graphical-session.target";
+        Wants = "graphical-session.target";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${lib.getExe' pkgs.waybar "waybar"}";
+        Restart = "always";
+      };
+    };
 
     programs.waybar = {
       enable = true;
@@ -33,52 +32,52 @@ in
 
       style = ''
         * {
-          min-height: 0;
-          font-family: IBM Plex Mono;
-          font-size: 16px;
-          font-weight: 500;
+        min-height: 0;
+        font-family: IBM Plex Mono;
+        font-size: 16px;
+        font-weight: 500;
         }
 
         window#waybar {
-          transition-property: background-color;
-          transition-duration: 0.5s;
-          background-color: rgba(24, 24, 37, 0.6);
+        transition-property: background-color;
+        transition-duration: 0.5s;
+        background-color: rgba(24, 24, 37, 0.6);
         }
 
         window#waybar.hidden {
-          opacity: 0.5;
+        opacity: 0.5;
         }
 
         #workspaces {
-          background-color: transparent;
+        background-color: transparent;
         }
 
         #workspaces button {
-          all: initial;
-          min-width: 0;
-          box-shadow: inset 0 -3px transparent;
-          padding: 2px 10px;
-          min-height: 0;
-          margin: 4px 4px;
-          border-radius: 8px;
-          background-color: #181825;
-          color: #${palette.base0D};
+        all: initial;
+        min-width: 0;
+        box-shadow: inset 0 -3px transparent;
+        padding: 2px 10px;
+        min-height: 0;
+        margin: 4px 4px;
+        border-radius: 8px;
+        background-color: #181825;
+        color: #${palette.base0D};
         }
 
         #workspaces button:hover {
-          box-shadow: inherit;
-          text-shadow: inherit;
-          color: #1e1e2e;
-          background-color: #${palette.base0D};
+        box-shadow: inherit;
+        text-shadow: inherit;
+        color: #1e1e2e;
+        background-color: #${palette.base0D};
         }
 
         #workspaces button.active {
-          color: #1e1e2e;
-          background-color: #${palette.base05};
+        color: #1e1e2e;
+        background-color: #${palette.base05};
         }
 
         #workspaces button.urgent {
-          background-color: #${palette.base08};
+        background-color: #${palette.base08};
         }
 
         #network,
@@ -91,131 +90,131 @@ in
         #tray,
         #memory,
         #idle_inhibitor,
-				#privacy,
+        #privacy,
         #window {
-          min-height: 0;
-          padding: 2px 10px;
-          border-radius: 8px;
-          margin: 4px 4px;
-          background-color: #${palette.base01};
-          color: #${palette.base05};
+        min-height: 0;
+        padding: 2px 10px;
+        border-radius: 8px;
+        margin: 4px 4px;
+        background-color: #${palette.base01};
+        color: #${palette.base05};
         }
 
         #battery {
-          min-height: 0;
-          padding: 2px 10px;
-          border-radius: 8px;
-          margin: 4px 4px;
-          background-color: #${palette.base01};
-          color: #${palette.base05};
+        min-height: 0;
+        padding: 2px 10px;
+        border-radius: 8px;
+        margin: 4px 4px;
+        background-color: #${palette.base01};
+        color: #${palette.base05};
         }
 
         #battery.warning {
-          background-color: #${palette.base0A};
-          color: #${palette.base01};
+        background-color: #${palette.base0A};
+        color: #${palette.base01};
         }
 
         #battery.critical {
-          background-color: #${palette.base08};
-          color: #${palette.base01};
+        background-color: #${palette.base08};
+        color: #${palette.base01};
         }
 
         #battery.charging {
-          background-color: #${palette.base0B};
-          color: #${palette.base01};
+        background-color: #${palette.base0B};
+        color: #${palette.base01};
         }
 
         #battery.critical:not(.charging) {
-          background-color: #${palette.base08};
-          color: #${palette.base01};
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
+        background-color: #${palette.base08};
+        color: #${palette.base01};
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
         }
 
         #battery.plugged {
-          background-color: #${palette.base00};
+        background-color: #${palette.base00};
         }
 
         #custom-sep {
-          padding: 0;
-          color: #${palette.base04};
+        padding: 0;
+        color: #${palette.base04};
         }
 
         window#waybar.empty #window {
-          background-color: transparent;
+        background-color: transparent;
         }
 
         #cpu {
-          color: #94e2d5;
+        color: #94e2d5;
         }
 
         #memory {
-          color: #cba6f7;
+        color: #cba6f7;
         }
 
         #clock {
-          color: #${palette.base07};
+        color: #${palette.base07};
         }
 
         #clock.simpleclock {
-          color: #${palette.base09};
+        color: #${palette.base09};
         }
 
         #window {
-          color: #${palette.base0B};
+        color: #${palette.base0B};
         }
 
         #pulseaudio {
-          color: #${palette.base05};
+        color: #${palette.base05};
         }
 
         #pulseaudio.muted {
-          color: #${palette.base09};
+        color: #${palette.base09};
         }
 
         #custom-logo {
-          color: #89b4fa;
+        color: #89b4fa;
         }
 
         #custom-power {
-          color: #${palette.base08};
-          padding-right: 5px;
-          font-size: 14px;
+        color: #${palette.base08};
+        padding-right: 5px;
+        font-size: 14px;
         }
 
         @keyframes blink {
-          to {
-            background-color: #${palette.base08};
-            color: #181825;
-          }
+        to {
+        background-color: #${palette.base08};
+        color: #181825;
+        }
         }
 
         tooltip {
-          border-radius: 8px;
+        border-radius: 8px;
         }
 
         #idle_inhibitor.activated {
-          color: #${palette.base0A};
+        color: #${palette.base0A};
         }
 
         #idle_inhibitor.deactivated {
-          color: #${palette.base02};
+        color: #${palette.base02};
         }
 
-				#privacy-item.screenshare {
-          color: #${palette.base0F};
-				}
+        #privacy-item.screenshare {
+        color: #${palette.base0F};
+        }
 
-				#privacy-item.audio-in {
-          color: #${palette.base0A};
-				}
+        #privacy-item.audio-in {
+        color: #${palette.base0A};
+        }
 
-				#privacy-item.location {
-          color: #${palette.base0D};
-				}
+        #privacy-item.location {
+        color: #${palette.base0D};
+        }
       '';
 
       settings.mainBar = {
@@ -238,7 +237,7 @@ in
         "modules-center" = [
           "custom/sep"
           "clock#simpleclock"
-					"privacy"
+          "privacy"
           "custom/sep"
         ];
 
@@ -253,37 +252,36 @@ in
           spacing = 10;
         };
 
-				privacy = {
-					icon-spacing =  4;
-					icon-size =  0;
-					transition-duration = 250;
-					ignore-monitor = true;
-					modules =  [
-						{
-							type = "screenshare";
-							#icon-name = "screen-privacy3";
-							tooltip =  true;
-							tooltip-icon-size = 0;
-						}
-						{
-							type = "audio-in";
-							#icon-name = "dot";
-							tooltip =  true;
-							tooltip-icon-size = 0;
-						}
-						{
-							type = "location";
-							#icon-name = "map-marker-small";
-							tooltip =  true;
-							tooltip-icon-size = 0;
-						}
-					];
-
-				};
+        privacy = {
+          icon-spacing = 4;
+          icon-size = 0;
+          transition-duration = 250;
+          ignore-monitor = true;
+          modules = [
+            {
+              type = "screenshare";
+              #icon-name = "screen-privacy3";
+              tooltip = true;
+              tooltip-icon-size = 0;
+            }
+            {
+              type = "audio-in";
+              #icon-name = "dot";
+              tooltip = true;
+              tooltip-icon-size = 0;
+            }
+            {
+              type = "location";
+              #icon-name = "map-marker-small";
+              tooltip = true;
+              tooltip-icon-size = 0;
+            }
+          ];
+        };
 
         "clock#simpleclock" = {
           tooltip = true;
-					"tooltip-format" = "Click to open peaclock";
+          "tooltip-format" = "Click to open peaclock";
           format = "   {:%I:%M %p}";
           "on-click" = "${lib.getExe pkgs.kitty} ${lib.getExe pkgs.peaclock}";
         };

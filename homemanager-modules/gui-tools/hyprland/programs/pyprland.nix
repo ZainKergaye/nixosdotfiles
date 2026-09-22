@@ -5,8 +5,7 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   config = lib.mkIf config.hyprland-hm-config.enable {
     systemd.user.services.pyprland = {
       Unit = {
@@ -15,7 +14,7 @@
         Wants = "graphical-session.target";
       };
       Install = {
-        WantedBy = [ "graphical-session.target" ];
+        WantedBy = ["graphical-session.target"];
       };
       Service = {
         Type = "simple";
@@ -23,7 +22,7 @@
         Restart = "always";
       };
     };
-    home.packages = [ pkgs.pyprland ];
+    home.packages = [pkgs.pyprland];
 
     home.file.".config/pypr/config.toml".text = ''
       [pyprland]
@@ -51,18 +50,15 @@
         "$mod ALT, I, exec, pypr toggle btop"
         "$mod ALT, O, exec, pypr toggle term"
       ];
-      windowrule =
-        let
-          palette = config.colorScheme.palette;
-          base08 = palette.base08; # Red
-          base09 = palette.base09; # Orange
-        in
-        [
-          "match:class ^(pyprland-btop)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0"
+      windowrule = let
+        palette = config.colorScheme.palette;
+        base08 = palette.base08; # Red
+        base09 = palette.base09; # Orange
+      in [
+        "match:class ^(pyprland-btop)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0"
 
-          "match:class ^(pyprland-dropterm)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0, dim_around on"
-        ];
+        "match:class ^(pyprland-dropterm)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0, dim_around on"
+      ];
     };
-
   };
 }

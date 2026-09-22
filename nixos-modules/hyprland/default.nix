@@ -5,8 +5,7 @@
   inputs,
   config,
   ...
-}:
-{
+}: {
   options.hyprland-config = {
     enable = lib.options.mkEnableOption "Enable Hyprland config";
   };
@@ -37,14 +36,14 @@
       '';
     };
 
-    services.udev.packages = [ pkgs.swayosd ];
+    services.udev.packages = [pkgs.swayosd];
 
     systemd.services.swayosd-libinput-backend = {
       description = "SwayOSD LibInput backend for listening to certain keys like CapsLock, ScrollLock, VolumeUp, etc.";
-      documentation = [ "https://github.com/ErikReider/SwayOSD" ];
-      wantedBy = [ "graphical.target" ];
-      partOf = [ "graphical.target" ];
-      after = [ "graphical.target" ];
+      documentation = ["https://github.com/ErikReider/SwayOSD"];
+      wantedBy = ["graphical.target"];
+      partOf = ["graphical.target"];
+      after = ["graphical.target"];
 
       serviceConfig = {
         Type = "dbus";
@@ -94,8 +93,7 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals =
-        with pkgs;
+      extraPortals = with pkgs;
         lib.mkForce [
           xdg-desktop-portal-gtk
           xdg-desktop-portal-wlr

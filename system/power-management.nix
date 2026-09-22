@@ -2,8 +2,7 @@
 # More info here:
 # https://linrunner.de/tlp/index.html
 # Running the command `tlp-stat -p` gives more system stats
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./suspend.nix
   ];

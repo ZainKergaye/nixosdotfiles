@@ -1,6 +1,5 @@
-{ lib, ... }:
-with lib;
-{
+{lib, ...}:
+with lib; {
   options.variables = {
     username = mkOption {
       type = types.str;
@@ -37,6 +36,5 @@ with lib;
       default = "nvim";
       description = "Main editor";
     };
-
   };
 }

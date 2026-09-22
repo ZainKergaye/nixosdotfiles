@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-
 # NOTE: Anyone looking through wanting to implement this code: Use systemd slices to your
 # advantage. All services (except postgres) are under the system-immich slice. You can
 # query all services in this file with `systemctl status system-immich.slice`.
-
 {
   services.immich = {
     enable = true;
@@ -35,7 +33,7 @@
     enable = true;
     package = pkgs.postgresql_18;
 
-    extensions = ps: [ ps.postgis ];
+    extensions = ps: [ps.postgis];
     identMap = ''
       # ArbitraryMapName systemUser DBUser
          superuser_map      root      postgres
@@ -46,7 +44,7 @@
     '';
   };
 
-  systemd.targets.postgresql.unitConfig.RequiresMountsFor = [ "/srv/postgresql" ];
+  systemd.targets.postgresql.unitConfig.RequiresMountsFor = ["/srv/postgresql"];
 
   services.redis.servers.immich.logLevel = "warning";
 
@@ -70,15 +68,13 @@
   };
   # systemd.services.borgbackup-job-Immich.serviceConfig.Slice = "system-immich.slice";
 
-  systemd.services =
-    let
-      slice = config.systemd.services.immich-server.serviceConfig.Slice;
-    in
-    {
-      # Used to keep all services easily tracked without going through the docs all the time.
-      borgbackup-job-Immich.serviceConfig.Slice = slice;
-      borgbackup-repo-Immich.serviceConfig.Slice = slice;
-    };
+  systemd.services = let
+    slice = config.systemd.services.immich-server.serviceConfig.Slice;
+  in {
+    # Used to keep all services easily tracked without going through the docs all the time.
+    borgbackup-job-Immich.serviceConfig.Slice = slice;
+    borgbackup-repo-Immich.serviceConfig.Slice = slice;
+  };
 
   # Used to solve dumb permission issues
   systemd.tmpfiles.settings.immich = {
@@ -155,5 +151,4 @@
       mode = "0644";
     };
   };
-
 }

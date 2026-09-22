@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   users.users.chonk.extraGroups = [
     "libvirtd"
     "vboxusers"
@@ -8,5 +7,5 @@
 
   virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
-  environment.systemPackages = [ pkgs.docker-compose ];
+  environment.systemPackages = [pkgs.docker-compose];
 }
