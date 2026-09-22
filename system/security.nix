@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
@@ -25,46 +24,46 @@
     enable = true;
     #packages = [ pkgs.openocd ];
     extraRules = ''
-			# Apple
-			SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", MODE="0666"
-			SUBSYSTEM=="usb", \
-				ATTRS{idVendor}=="2e8a", \
-				ATTRS{idProduct}=="0003", \
-				MODE="660", \
-				GROUP="plugdev"
-			SUBSYSTEM=="usb", \
-					ATTRS{idVendor}=="2e8a", \
-					ATTRS{idProduct}=="0009", \
-					MODE="660", \
-					GROUP="plugdev"
-			SUBSYSTEM=="usb", \
-					ATTRS{idVendor}=="2e8a", \
-					ATTRS{idProduct}=="000a", \
-					MODE="660", \
-					GROUP="plugdev"
-			SUBSYSTEM=="usb", \
-					ATTRS{idVendor}=="2e8a", \
-					ATTRS{idProduct}=="000f", \
-					MODE="660", \
-					GROUP="plugdev"
+      # Apple
+      SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", MODE="0666"
+      SUBSYSTEM=="usb", \
+      	ATTRS{idVendor}=="2e8a", \
+      	ATTRS{idProduct}=="0003", \
+      	MODE="660", \
+      	GROUP="plugdev"
+      SUBSYSTEM=="usb", \
+      		ATTRS{idVendor}=="2e8a", \
+      		ATTRS{idProduct}=="0009", \
+      		MODE="660", \
+      		GROUP="plugdev"
+      SUBSYSTEM=="usb", \
+      		ATTRS{idVendor}=="2e8a", \
+      		ATTRS{idProduct}=="000a", \
+      		MODE="660", \
+      		GROUP="plugdev"
+      SUBSYSTEM=="usb", \
+      		ATTRS{idVendor}=="2e8a", \
+      		ATTRS{idProduct}=="000f", \
+      		MODE="660", \
+      		GROUP="plugdev"
 
-			# Rules for seat access
-			SUBSYSTEM=="usb", \
-					ATTRS{idVendor}=="2e8a", \
-					ATTRS{idProduct}=="0003", \
-					TAG+="uaccess"
-			SUBSYSTEM=="usb", \
-					ATTRS{idVendor}=="2e8a", \
-					ATTRS{idProduct}=="0009", \
-					TAG+="uaccess"
-			SUBSYSTEM=="usb", \
-					ATTRS{idVendor}=="2e8a", \
-					ATTRS{idProduct}=="000a", \
-					TAG+="uaccess"
-			SUBSYSTEM=="usb", \
-					ATTRS{idVendor}=="2e8a", \
-					ATTRS{idProduct}=="000f", \
-					TAG+="uaccess"
+      # Rules for seat access
+      SUBSYSTEM=="usb", \
+      		ATTRS{idVendor}=="2e8a", \
+      		ATTRS{idProduct}=="0003", \
+      		TAG+="uaccess"
+      SUBSYSTEM=="usb", \
+      		ATTRS{idVendor}=="2e8a", \
+      		ATTRS{idProduct}=="0009", \
+      		TAG+="uaccess"
+      SUBSYSTEM=="usb", \
+      		ATTRS{idVendor}=="2e8a", \
+      		ATTRS{idProduct}=="000a", \
+      		TAG+="uaccess"
+      SUBSYSTEM=="usb", \
+      		ATTRS{idVendor}=="2e8a", \
+      		ATTRS{idProduct}=="000f", \
+      		TAG+="uaccess"
     '';
   };
 
@@ -78,5 +77,5 @@
     enable = true;
     package = pkgs.fprintd-tod;
   };
-  security.pam.services.hyprlock = { };
+  security.pam.services.hyprlock = {};
 }

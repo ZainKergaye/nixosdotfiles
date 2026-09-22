@@ -3,31 +3,26 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   config = lib.mkIf config.hyprland-hm-config.enable {
-  wayland.windowManager.hyprland.settings =
-    let
+    wayland.windowManager.hyprland.settings = let
       hyprlock-bin = lib.getExe' pkgs.hyprlock "hyprlock";
-    in
-    {
+    in {
       bindl = [
         # Laptop lid actions
         ", switch:24ffa00, exec, ${hyprlock-bin}"
         ", switch:on:24ffa00, exec, ${hyprlock-bin}"
       ];
-      bind = [ "$mod CTRL, L, exec, ${hyprlock-bin}" ];
+      bind = ["$mod CTRL, L, exec, ${hyprlock-bin}"];
     };
 
-  programs.hyprlock = {
-    enable = true;
-    package = pkgs.hyprlock;
-    settings =
-      let
+    programs.hyprlock = {
+      enable = true;
+      package = pkgs.hyprlock;
+      settings = let
         palette = config.colorScheme.palette;
         font = "jetBrainsMono Nerd Font Propo";
-      in
-      {
+      in {
         auth = {
           "fingerprint:enabled" = true;
           "fingerprint:ready_message" = "Scan fingerprint";
@@ -96,8 +91,7 @@
             valign = "top";
           }
         ];
-
       };
+    };
   };
-	};
 }

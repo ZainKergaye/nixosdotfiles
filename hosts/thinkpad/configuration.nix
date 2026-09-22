@@ -2,17 +2,15 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
     ../../system
   ];
 
-  boot.kernelParams = [ "acpi_backlight=native" ]; # DEP: Fix this
+  boot.kernelParams = ["acpi_backlight=native"]; # DEP: Fix this
 
-  boot.initrd.luks.devices."luks-f7091812-8d81-4033-9d22-e03831f6c70e".device =
-    "/dev/disk/by-uuid/f7091812-8d81-4033-9d22-e03831f6c70e";
+  boot.initrd.luks.devices."luks-f7091812-8d81-4033-9d22-e03831f6c70e".device = "/dev/disk/by-uuid/f7091812-8d81-4033-9d22-e03831f6c70e";
 
   networking = {
     networkmanager.enable = true;
@@ -70,7 +68,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brlaser ];
+  services.printing.drivers = [pkgs.brlaser];
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -114,7 +112,7 @@
     optimise.automatic = true;
 
     settings = {
-      trusted-users = [ "${config.variables.username}" ];
+      trusted-users = ["${config.variables.username}"];
       substituters = [
         "https://nixpkgs-wayland.cachix.org"
       ];

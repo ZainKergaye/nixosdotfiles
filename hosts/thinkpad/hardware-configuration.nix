@@ -7,8 +7,7 @@
   pkgs,
   modulesPath,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -20,9 +19,9 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
   boot.kernel.sysctl."fs.inotify.max_user_instances" = 1024;
 
@@ -31,8 +30,7 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-fa232d2d-fb5d-4cf7-8df7-9dc264a48a9c".device =
-    "/dev/disk/by-uuid/fa232d2d-fb5d-4cf7-8df7-9dc264a48a9c";
+  boot.initrd.luks.devices."luks-fa232d2d-fb5d-4cf7-8df7-9dc264a48a9c".device = "/dev/disk/by-uuid/fa232d2d-fb5d-4cf7-8df7-9dc264a48a9c";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/A642-CB42";
@@ -43,7 +41,7 @@
     ];
   };
 
-  swapDevices = [ { device = "/dev/mapper/luks-f7091812-8d81-4033-9d22-e03831f6c70e"; } ];
+  swapDevices = [{device = "/dev/mapper/luks-f7091812-8d81-4033-9d22-e03831f6c70e";}];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

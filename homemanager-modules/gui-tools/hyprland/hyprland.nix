@@ -5,8 +5,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   imports = [
     ./hyprbinds.nix
     ./colors.nix
@@ -17,7 +16,6 @@
   options.hyprland-hm-config.enable = lib.options.mkEnableOption "Enable Hyprland homamanager config";
 
   config = lib.mkIf config.hyprland-hm-config.enable {
-
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

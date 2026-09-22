@@ -3,8 +3,7 @@
   inputs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./homemanager-modules
     ./variables.nix

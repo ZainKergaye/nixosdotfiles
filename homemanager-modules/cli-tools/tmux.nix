@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options.tmux-conf = {
     enable = lib.options.mkEnableOption "Enable personal tmux config.";
     # Configured in the ./default.nix in same dir tree
@@ -8,126 +11,126 @@
   config = lib.mkIf config.tmux-conf.enable {
     programs.tmux.enable = true;
     home.file.".tmux.conf".text = ''
-      			# ~/.tmux.conf
+      # ~/.tmux.conf
 
-      			# ============================================
-      			# ESSENTIAL SETTINGS
-      			# ============================================
+      # ============================================
+      # ESSENTIAL SETTINGS
+      # ============================================
 
-      			# Fix Vim ESC delay (tmux 3.5+ already defaults to 10ms)
-      			set -sg escape-time 0
+      # Fix Vim ESC delay (tmux 3.5+ already defaults to 10ms)
+      set -sg escape-time 0
 
-      			# Increase scrollback buffer
-      			set -g history-limit 50000
+      # Increase scrollback buffer
+      set -g history-limit 50000
 
-      			# Start windows and panes at 1, not 0
-      			set -g base-index 1
-      			setw -g pane-base-index 1
+      # Start windows and panes at 1, not 0
+      set -g base-index 1
+      setw -g pane-base-index 1
 
-      			# Enable mouse support
-      			set -g mouse on
+      # Enable mouse support
+      set -g mouse on
 
-      			# Enable focus events for vim autoread
-      			set -g focus-events on
+      # Enable focus events for vim autoread
+      set -g focus-events on
 
-      			# Set terminal with proper colors
-      			set -g default-terminal "tmux-256color"
-      			set -as terminal-features ",xterm-256color:RGB"
+      # Set terminal with proper colors
+      set -g default-terminal "tmux-256color"
+      set -as terminal-features ",xterm-256color:RGB"
 
-      			# Aggressive resize for multi-client
-      			setw -g aggressive-resize on
+      # Aggressive resize for multi-client
+      setw -g aggressive-resize on
 
-      			# ============================================
-      			# KEY BINDINGS
-      			# ============================================
+      # ============================================
+      # KEY BINDINGS
+      # ============================================
 
-      			# Change prefix to Ctrl+a (more ergonomic)
-      			unbind C-b
-      			set -g prefix C-a
-      			bind C-a send-prefix
+      # Change prefix to Ctrl+a (more ergonomic)
+      unbind C-b
+      set -g prefix C-a
+      bind C-a send-prefix
 
-      			# Reload config
-      			bind r source-file ~/.tmux.conf \; display "Config reloaded!"
+      # Reload config
+      bind r source-file ~/.tmux.conf \; display "Config reloaded!"
 
-      			# Better pane splitting (and keep current path)
-      			bind | split-window -h -c "#{pane_current_path}"
-      			bind - split-window -v -c "#{pane_current_path}"
-      			bind c new-window -c "#{pane_current_path}"
+      # Better pane splitting (and keep current path)
+      bind | split-window -h -c "#{pane_current_path}"
+      bind - split-window -v -c "#{pane_current_path}"
+      bind c new-window -c "#{pane_current_path}"
 
-      			# Vim-style pane navigation
-      			bind h select-pane -L
-      			bind j select-pane -D
-      			bind k select-pane -U
-      			bind l select-pane -R
+      # Vim-style pane navigation
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
 
-      			# Vim-style pane resizing
-      			bind -r H resize-pane -L 5
-      			bind -r J resize-pane -D 5
-      			bind -r K resize-pane -U 5
-      			bind -r L resize-pane -R 5
+      # Vim-style pane resizing
+      bind -r H resize-pane -L 5
+      bind -r J resize-pane -D 5
+      bind -r K resize-pane -U 5
+      bind -r L resize-pane -R 5
 
-      			# ============================================
-      			# APPEARANCE
-      			# ============================================
+      # ============================================
+      # APPEARANCE
+      # ============================================
 
-      			# Status bar position
-      			set -g status-position top
+      # Status bar position
+      set -g status-position top
 
-      			# Status bar colors
-      			set -g status-style 'bg=#13161d fg=#8b949e'
-      			set -g status-left-length 20
-      			set -g status-right-length 50
+      # Status bar colors
+      set -g status-style 'bg=#13161d fg=#8b949e'
+      set -g status-left-length 20
+      set -g status-right-length 50
 
-      			# Status bar content
-      			set -g status-left '#[fg=#00e68a,bold] #S #[fg=#30363d]│ '
-      			set -g status-right '#[fg=#30363d]│#[fg=#8b949e] %H:%M #[fg=#30363d]│#[fg=#8b949e] %d-%b-%y '
+      # Status bar content
+      set -g status-left '#[fg=#00e68a,bold] #S #[fg=#30363d]│ '
+      set -g status-right '#[fg=#30363d]│#[fg=#8b949e] %H:%M #[fg=#30363d]│#[fg=#8b949e] %d-%b-%y '
 
-      			# Window status
-      			setw -g window-status-format ' #I:#W '
-      			setw -g window-status-current-format '#[fg=#00e68a,bold] #I:#W '
+      # Window status
+      setw -g window-status-format ' #I:#W '
+      setw -g window-status-current-format '#[fg=#00e68a,bold] #I:#W '
 
-      			# Pane border colors
-      			set -g pane-border-style 'fg=#30363d'
-      			set -g pane-active-border-style 'fg=#00e68a'
+      # Pane border colors
+      set -g pane-border-style 'fg=#30363d'
+      set -g pane-active-border-style 'fg=#00e68a'
 
-      			# Pane scrollbars — show scrollback position (tmux 3.6+)
-      			set -g pane-scrollbars on
-      			set -g pane-scrollbars-position right
+      # Pane scrollbars — show scrollback position (tmux 3.6+)
+      set -g pane-scrollbars on
+      set -g pane-scrollbars-position right
 
-      			# Message styling
-      			set -g message-style 'bg=#00e68a fg=#000000 bold'
+      # Message styling
+      set -g message-style 'bg=#00e68a fg=#000000 bold'
 
-      			# ============================================
-      			# COPY MODE
-      			# ============================================
+      # ============================================
+      # COPY MODE
+      # ============================================
 
-      			# Use vi keys
-      			setw -g mode-keys vi
+      # Use vi keys
+      setw -g mode-keys vi
 
-      			# Vi-style copy bindings
-      			bind -T copy-mode-vi v send -X begin-selection
-      			bind -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"  # macOS
-      			# bind -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -selection clipboard -i"  # Linux
+      # Vi-style copy bindings
+      bind -T copy-mode-vi v send -X begin-selection
+      bind -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"  # macOS
+      # bind -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -selection clipboard -i"  # Linux
 
-      			# ============================================
-      			# PLUGINS (via TPM)
-      			# ============================================
+      # ============================================
+      # PLUGINS (via TPM)
+      # ============================================
 
-      			# Install TPM first:
-      			# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+      # Install TPM first:
+      # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-      			set -g @plugin 'tmux-plugins/tpm'
-      			set -g @plugin 'tmux-plugins/tmux-sensible'
-      			set -g @plugin 'tmux-plugins/tmux-resurrect'
-      			set -g @plugin 'tmux-plugins/tmux-continuum'
+      set -g @plugin 'tmux-plugins/tpm'
+      set -g @plugin 'tmux-plugins/tmux-sensible'
+      set -g @plugin 'tmux-plugins/tmux-resurrect'
+      set -g @plugin 'tmux-plugins/tmux-continuum'
 
-      			# Plugin settings
-      			set -g @resurrect-strategy-vim 'session'
-      			set -g @continuum-restore 'on'
+      # Plugin settings
+      set -g @resurrect-strategy-vim 'session'
+      set -g @continuum-restore 'on'
 
-      			# Initialize TPM (keep at bottom)
-      			run '~/.tmux/plugins/tpm/tpm'
+      # Initialize TPM (keep at bottom)
+      run '~/.tmux/plugins/tpm/tpm'
 
-      		'';
+    '';
   };
 }

@@ -4,8 +4,7 @@
   pkgs,
   hostName,
   ...
-}:
-let
+}: let
   dotfilesDir = "/home/${config.variables.username}/.dotfiles";
   myAliases = {
     la = "ls -la";
@@ -37,8 +36,7 @@ let
       ''
     );
   };
-in
-{
+in {
   home.packages = with pkgs; [
     comma
     zoxide

@@ -5,8 +5,7 @@
   lib,
   headless,
   ...
-}:
-{
+}: {
   imports = [
     ./git.nix
     ./tmux.nix
@@ -25,5 +24,4 @@
     cbonsai
     yazi
   ];
-
 }

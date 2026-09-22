@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  environment.systemPackages = [ pkgs.gnomeExtensions.appindicator ];
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.gnomeExtensions.appindicator];
 
   services = {
     desktopManager.gnome.enable = true;
@@ -15,5 +14,5 @@
     style = "adwaita-dark";
   };
 
-  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
+  services.udev.packages = with pkgs; [gnome-settings-daemon];
 }

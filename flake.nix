@@ -18,7 +18,6 @@
       url = "github:nix-community/home-manager?ref=6d25edfbd109bd6c0bb950a2fb6c37141795e3f1"; # NOTE: Remove later
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   nixConfig = {

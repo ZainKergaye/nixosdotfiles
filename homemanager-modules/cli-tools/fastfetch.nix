@@ -2,9 +2,8 @@
   pkgs,
   config,
   ...
-}:
-{
-  home.packages = with pkgs; [ fastfetch ];
+}: {
+  home.packages = with pkgs; [fastfetch];
   programs.fastfetch.enable = true;
 
   # Taken from https://github.com/JorgeAlMoLa/fastfetch-boxes-theme
