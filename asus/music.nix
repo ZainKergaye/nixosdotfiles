@@ -4,19 +4,18 @@ let
   musicRoot = "/srv/music";
   libraryDir = "${musicRoot}/library";
   downloadDir = "${musicRoot}/downloads";
-  stateDir = "${musicRoot}/.state";
 in
 {
-  # Navidrome serves the library, Lidarr manages it, and SABnzbd is the
-  # provider-neutral download client. Keep all three on one filesystem so
-  # Lidarr can use atomic moves when it imports completed downloads.
+  # Navidrome serves the library, Lidarr manages it, and qBittorrent is the
+  # download client. Keep the downloads and library on one filesystem so
+  # Lidarr can hardlink imports while qBittorrent continues seeding.
   users.groups.music = { };
   users.users = {
     khabib.extraGroups = [ "music" ];
     chonk.extraGroups = [ "music" ];
     navidrome.extraGroups = [ "music" ];
     lidarr.extraGroups = [ "music" ];
-    sabnzbd.extraGroups = [ "music" ];
+    qbittorrent.extraGroups = [ "music" ];
   };
 
   services.navidrome = {
@@ -27,26 +26,18 @@ in
       Address = "0.0.0.0";
       Port = 4533;
       MusicFolder = libraryDir;
-      DataFolder = "${stateDir}/navidrome";
-      CacheFolder = "${stateDir}/navidrome/cache";
       ScanSchedule = "@every 5m";
       EnableInsightsCollector = false;
       EnableSharing = false;
       EnableDownloads = true;
       AutoImportPlaylists = true;
       LyricsPriority = ".ttml,.elrc,.lrc,.srt,.txt,embedded";
-      Backup = {
-        Path = "${stateDir}/navidrome/backups";
-        Schedule = "0 3 * * *";
-        Count = 7;
-      };
     };
   };
 
   services.lidarr = {
     enable = true;
     openFirewall = true;
-    dataDir = "${stateDir}/lidarr";
     settings = {
       server = {
         port = 8686;
@@ -56,11 +47,19 @@ in
     };
   };
 
-  services.sabnzbd = {
+  services.qbittorrent = {
     enable = true;
     openFirewall = true;
-    configFile = "${stateDir}/sabnzbd/sabnzbd.ini";
+    webuiPort = 8080;
+    torrentingPort = 6881;
+    # Accept the upstream notice non-interactively. Runtime settings remain
+    # writable through the Web UI instead of being replaced on every restart.
+    extraArgs = [ "--confirm-legal-notice" ];
   };
+
+  # The qBittorrent module opens its configured ports over TCP. Peer discovery
+  # also uses UDP on the torrenting port.
+  networking.firewall.allowedUDPPorts = [ 6881 ];
 
   # Useful for importing, tagging, inspecting, and repairing music before it
   # enters Navidrome. Acquisition still needs to respect the source's licence.
@@ -83,49 +82,52 @@ in
       mode = "2775";
     };
     "${downloadDir}".d = {
-      user = "sabnzbd";
+      user = "qbittorrent";
       group = "music";
       mode = "2775";
     };
     "${downloadDir}/incomplete".d = {
-      user = "sabnzbd";
+      user = "qbittorrent";
       group = "music";
       mode = "2775";
     };
     "${downloadDir}/complete".d = {
-      user = "sabnzbd";
+      user = "qbittorrent";
       group = "music";
       mode = "2775";
-    };
-    "${stateDir}".d = {
-      user = "root";
-      group = "music";
-      mode = "0750";
-    };
-    "${stateDir}/sabnzbd".d = {
-      user = "sabnzbd";
-      group = "sabnzbd";
-      mode = "0700";
     };
   };
 
   systemd.services = {
     navidrome.unitConfig.RequiresMountsFor = [ musicRoot ];
     lidarr.unitConfig.RequiresMountsFor = [ musicRoot ];
-    sabnzbd.unitConfig.RequiresMountsFor = [ musicRoot ];
+    qbittorrent.unitConfig.RequiresMountsFor = [ musicRoot ];
     borgbackup-job-Music.unitConfig.RequiresMountsFor = [ "/srv/docker-backups" ];
   };
 
   services.borgbackup.jobs."Music" = {
-    paths = musicRoot;
+    paths = [
+      musicRoot
+      "/var/lib/lidarr"
+      "/var/lib/navidrome"
+      "/var/lib/qBittorrent"
+    ];
     exclude = [
       "${downloadDir}/incomplete"
-      "${stateDir}/navidrome/cache"
+      "/var/lib/navidrome/cache"
     ];
     repo = "/srv/docker-backups/music-borg/";
     startAt = "Sun 04:00";
     compression = "zstd";
     encryption.mode = "none";
+    # Quiesce SQLite databases for a consistent snapshot. postHook runs even
+    # when Borg fails, so the services are brought back either way.
+    preHook = ''
+      systemctl stop navidrome.service lidarr.service qbittorrent.service
+    '';
+    postHook = ''
+      systemctl start navidrome.service lidarr.service qbittorrent.service
+    '';
     prune.keep = {
       weekly = 4;
       monthly = 6;
