@@ -26,7 +26,7 @@ in
     };
 
     wayland.windowManager.hyprland.settings.bind = [
-      "$mod, SPACE, exec, ${anyrun-bin}"
+      "SUPER, SPACE, exec, ${anyrun-bin}"
     ];
 
     programs.anyrun = {

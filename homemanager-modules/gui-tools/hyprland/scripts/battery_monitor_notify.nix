@@ -46,6 +46,6 @@ let
 in
 {
   config = lib.mkIf config.hyprland-hm-config.enable {
-    wayland.windowManager.hyprland.settings.exec-once = [ "${battery_monitor_notify}" ];
+    wayland.windowManager.hyprland.settings.exec_once = [ "${battery_monitor_notify}" ];
   };
 }

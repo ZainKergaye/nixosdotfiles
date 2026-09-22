@@ -101,7 +101,7 @@ in
       # };
     };
 
-    wayland.windowManager.hyprland.settings.exec-once = [ "hyprctl setcursor capitaine-cursors 14" ];
+    wayland.windowManager.hyprland.settings.exec_once = [ "hyprctl setcursor capitaine-cursors 14" ];
     dconf.enable = true;
     dconf.settings = {
       "org/gnome/desktop/interface" = {

@@ -16,7 +16,7 @@
         ", switch:24ffa00, exec, ${hyprlock-bin}"
         ", switch:on:24ffa00, exec, ${hyprlock-bin}"
       ];
-      bind = [ "$mod CTRL, L, exec, ${hyprlock-bin}" ];
+      bind = [ "SUPER CTRL, L, exec, ${hyprlock-bin}" ];
     };
 
   programs.hyprlock = {

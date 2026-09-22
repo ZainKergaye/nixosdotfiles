@@ -5,7 +5,7 @@
   home.packages = [ pkgs.wayscriber ];
 
   wayland.windowManager.hyprland.settings.bind = [
-    "$mod, P, exec, pkill -SIGUSR1 wayscriber"
+    "SUPER, P, exec, pkill -SIGUSR1 wayscriber"
   ];
 
   systemd.user.services.wayscriber = {

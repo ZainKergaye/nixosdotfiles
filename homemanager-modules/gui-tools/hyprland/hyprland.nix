@@ -21,11 +21,10 @@
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      configType = "hyprlang";
+      configType = "lua";
 
       xwayland.enable = true;
       settings = {
-        "$mod" = "SUPER";
         monitor = [
           # name, resolution, position, scale
           # https://wiki.hyprland.org/Configuring/Monitors/
@@ -92,7 +91,7 @@
           };
         };
 
-        exec-once = [
+        exec_once = [
           "nm-applet"
           "blueman-applet"
           "awww-daemon"
