@@ -6,13 +6,24 @@
   ...
 }:
 let
+  dotfilesDir = "/home/${config.variables.username}/.dotfiles";
   myAliases = {
     la = "ls -la";
     update = "nix flake update --flake /home/${config.variables.username}/.dotfiles/.";
-    upgrade = "sudo nixos-rebuild switch --flake /home/${config.variables.username}/.dotfiles/.#${hostName}";
+    upgrade = lib.getExe (
+      pkgs.writeShellScriptBin "upgrade" ''
+        NIXOS_LABEL_VERSION="$(
+          ${lib.getExe pkgs.git} -C ${dotfilesDir} log -1 --pretty=%s \
+            | ${lib.getExe' pkgs.coreutils "tr"} -cs 'A-Za-z0-9:_.-' '-' \
+            | ${lib.getExe pkgs.gnused} 's/^-*//; s/-*$//' \
+            | ${lib.getExe' pkgs.coreutils "cut"} -c1-50
+        )"
+        export NIXOS_LABEL_VERSION
+        sudo --preserve-env=NIXOS_LABEL_VERSION nixos-rebuild switch --impure --flake ${dotfilesDir}/.#${hostName}
+      ''
+    );
     c = "python3 -Bqic 'from math import *'";
     peaclock = "peaclock --config-dir=/home/${config.variables.username}/.config/peaclock/";
-    restart-waybar = "pkill waybar && hyprctl dispatch exec waybar";
     neofetch = "fastfetch";
     t = "${lib.getExe' pkgs.trashy "trash"}";
     rm = lib.getExe (
