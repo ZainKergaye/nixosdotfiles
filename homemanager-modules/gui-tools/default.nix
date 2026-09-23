@@ -10,7 +10,7 @@
     ./alacritty.nix
     ./kitty.nix
     ./zen-browser.nix
-    ./quartus.nix
+    #./quartus.nix
     # both are disabled if headless variable is set
     ./hyprland
   ];
