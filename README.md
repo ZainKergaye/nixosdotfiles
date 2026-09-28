@@ -9,3 +9,10 @@ Zsh, and so many more programs.
 ![Screenshot](./media/screenshot.png)
 
 ![Screenshot two](./media/screenshot_2.png)
+
+## Run configs in a VM
+
+To test before switching your real system:
+
+- `nix run .#thinkpad-vm`
+- `nix run .#asus-vm`
