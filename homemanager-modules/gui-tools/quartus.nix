@@ -4,8 +4,7 @@
   lib,
   headless,
   ...
-}:
-let
+}: let
   quartusDarkStylesheet = pkgs.fetchFromGitHub {
     owner = "sandervanthul";
     repo = "quartus-stylesheet-dark";
@@ -19,7 +18,7 @@ let
     icon = "quartus";
     desktopName = "Quartus Dark";
     genericName = "Quartus Prime dark";
-    categories = [ "Development" ];
+    categories = ["Development"];
   };
 
   quartus-dark-desktop-item = pkgs.stdenv.mkDerivation {
@@ -31,19 +30,19 @@ let
     '';
   };
 in
-lib.mkIf (!headless) {
-  # This is quartus with the dark stylesheet provided by sandervanthul
-  home.packages = [
-    pkgs.quartus-prime-lite
-    quartus-dark-desktop-item
-  ];
+  lib.mkIf (!headless) {
+    # This is quartus with the dark stylesheet provided by sandervanthul
+    home.packages = [
+      pkgs.quartus-prime-lite
+      quartus-dark-desktop-item
+    ];
 
-  home.sessionVariables = {
-    LM_LICENSE_FILE = "/home/${config.variables.username}/.dotfiles/.secrets/license.dat";
-    NUM_PARALLEL_PROCESSORS = "4";
-  };
+    home.sessionVariables = {
+      LM_LICENSE_FILE = "/home/${config.variables.username}/.dotfiles/.secrets/license.dat";
+      NUM_PARALLEL_PROCESSORS = "4";
+    };
 
-  # NOTE: For those using this in their own configuration, look at default.nix
-  # in the same dir, you need to allow the unfree package if not already allowed
-  # in your system
-}
+    # NOTE: For those using this in their own configuration, look at default.nix
+    # in the same dir, you need to allow the unfree package if not already allowed
+    # in your system
+  }

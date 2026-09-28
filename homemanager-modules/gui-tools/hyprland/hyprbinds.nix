@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   config = lib.mkIf config.hyprland-hm-config.enable {
     wayland.windowManager.hyprland.settings = {
       bindm = [
@@ -15,9 +18,10 @@
         "SUPER ALT, L, resizeactive, 10 0"
       ];
 
-      bind = [
-        ", mouse:275, workspace, m-1"
-        ", mouse:276, workspace, m+1"
+      bind =
+        [
+          ", mouse:275, workspace, m-1"
+          ", mouse:276, workspace, m+1"
 
         "SUPER, H, movefocus, l"
         "SUPER, J, movefocus, d"
@@ -49,8 +53,8 @@
         "SUPER CTRL, P, togglespecialworkspace, hiddenone"
         "SUPER CTRL SHIFT, P, movetoworkspace, special:hiddenone"
 
-        ",Print, exec, hyprshot -m output -o /home/${config.variables.username}/Pictures/Screenshots"
-        "CTRL, Print, exec, hyprshot -m region -o /home/${config.variables.username}/Pictures/Screenshots"
+          ",Print, exec, hyprshot -m output -o /home/${config.variables.username}/Pictures/Screenshots"
+          "CTRL, Print, exec, hyprshot -m region -o /home/${config.variables.username}/Pictures/Screenshots"
 
         "SUPER CTRL SHIFT, M, exit"
       ]

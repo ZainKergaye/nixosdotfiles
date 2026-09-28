@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   programs = {
     zsh.shellAliases.g = lib.getExe' pkgs.git "git";
     git = {
@@ -22,7 +21,6 @@
         credential."https://git.duranaero.com" = {
           username = "zain.kergaye";
           helper = "cache";
-
         };
 
         commit.gpgSign = true;

@@ -3,8 +3,7 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   palette = config.colorScheme.palette;
   base00 = palette.base00; # Background
   base01 = palette.base01; # Lighter background
@@ -22,8 +21,7 @@ let
   base0D = palette.base0D; # Blue
   base0E = palette.base0E; # Purple
   base0F = palette.base0F; # Dark red
-in
-{
+in {
   config = lib.mkIf config.hyprland-hm-config.enable {
     wayland.windowManager.hyprland = {
       enable = lib.mkDefault false;

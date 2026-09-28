@@ -1,7 +1,5 @@
-{ lib, ... }: {
-
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
+{lib, ...}: {
+  nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "quartus-prime-lite"
       "quartus-prime-lite-dark" # Look at quartus.nix

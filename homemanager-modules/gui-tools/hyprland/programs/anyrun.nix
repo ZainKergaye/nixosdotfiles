@@ -3,11 +3,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   anyrun-bin = lib.getExe' pkgs.anyrun "anyrun";
-in
-{
+in {
   config = lib.mkIf config.hyprland-hm-config.enable {
     systemd.user.services.anyrun = {
       Unit = {
@@ -16,7 +14,7 @@ in
         Wants = "graphical-session.target";
       };
       Install = {
-        WantedBy = [ "graphical-session.target" ];
+        WantedBy = ["graphical-session.target"];
       };
       Service = {
         Type = "simple";
@@ -58,7 +56,7 @@ in
       extraConfigFiles."websearch.ron".text = ''
         Config(
           prefix: ":? ",
-          engines: [DuckDuckGo] 
+          engines: [DuckDuckGo]
         )
       '';
       extraConfigFiles."nix-run.ron".text = ''

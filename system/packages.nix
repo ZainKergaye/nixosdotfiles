@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   users.users.${config.variables.username}.extraGroups = [
     "video"
     "dialout"

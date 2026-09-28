@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   # system management tool
   programs.dconf.enable = true;
 
@@ -28,8 +27,8 @@
     # For solidworks:
     #virtualboxKvm
 
-		# For Matlab: 
-		distrobox 
+    # For Matlab:
+    distrobox
   ];
 
   programs.virt-manager.enable = true;
@@ -43,10 +42,10 @@
       };
     };
 
-		podman = {
-			enable = true;
-			dockerCompat = true;
-		};
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
 
     spiceUSBRedirection.enable = true;
 
@@ -64,7 +63,7 @@
     };
   };
 
-  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ]; # Patch for kernel 6.12 breaking vbox
+  boot.kernelParams = ["kvm.enable_virt_at_load=0"]; # Patch for kernel 6.12 breaking vbox
 
   services.spice-vdagentd.enable = true;
 }

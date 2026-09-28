@@ -1,6 +1,5 @@
 # Keybinding config imported into configuration.nix
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     keyd
     via
@@ -17,7 +16,7 @@
     enable = true;
 
     keyboards.default = {
-      ids = [ "*" ];
+      ids = ["*"];
       settings = {
         main = {
           capslock = "overload(control, esc)";

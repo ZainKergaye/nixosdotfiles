@@ -6,9 +6,7 @@
   pkgs,
   config,
   ...
-}:
-{
-
+}: {
   # You can import other NixOS modules here
   imports = [
     ../../asus
@@ -28,32 +26,30 @@
     };
   };
 
-  nix =
-    let
-      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-    in
-    {
-      settings = {
-        # Enable flakes and new 'nix' command
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
-        trusted-users = [ "@wheel" ];
-        accept-flake-config = true;
-        # Opinionated: disable global registry
-        flake-registry = "";
-        # Workaround for https://github.com/NixOS/nix/issues/9574
-        nix-path = config.nix.nixPath;
-      };
-      # Opinionated: disable channels
-      #channel.enable = false;
-
-      # Opinionated: make flake registry and nix path match flake inputs
-      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-      package = pkgs.nixVersions.latest;
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
+    settings = {
+      # Enable flakes and new 'nix' command
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = ["@wheel"];
+      accept-flake-config = true;
+      # Opinionated: disable global registry
+      flake-registry = "";
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
     };
+    # Opinionated: disable channels
+    #channel.enable = false;
+
+    # Opinionated: make flake registry and nix path match flake inputs
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    package = pkgs.nixVersions.latest;
+  };
 
   users.users = {
     khabib = {
@@ -111,14 +107,14 @@
   system.stateVersion = "23.05";
 
   # Prometheus
-  networking.firewall.allowedTCPPorts = [ 9001 ];
+  networking.firewall.allowedTCPPorts = [9001];
   services.prometheus = {
     enable = true;
     port = 9001;
 
     exporters.node = {
       enable = true;
-      enabledCollectors = [ "systemd" ];
+      enabledCollectors = ["systemd"];
       port = 9002;
     };
 
@@ -126,10 +122,9 @@
       {
         job_name = "chonk";
         static_configs = [
-          { targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ]; }
+          {targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];}
         ];
       }
     ];
-
   };
 }
