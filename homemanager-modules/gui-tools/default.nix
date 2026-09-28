@@ -4,8 +4,7 @@
   config,
   headless,
   ...
-}:
-{
+}: {
   imports = [
     ./alacritty.nix
     ./kitty.nix
@@ -17,8 +16,7 @@
 
   hyprland-hm-config.enable = lib.mkIf (!headless) true;
 
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     lib.mkIf (!headless) [
       vesktop
       prusa-slicer
@@ -44,25 +42,23 @@
     mime.enable = true;
     mimeApps = {
       enable = true;
-      defaultApplications =
-        let
-          zen = "zen.desktop";
-          image = "org.gnome.Loupe.desktop";
-        in
-        {
-          "x-scheme-handler/http" = zen;
-          "x-scheme-handler/https" = zen;
-          "x-scheme-handler/about" = zen;
-          "x-scheme-handler/unknown" = zen;
-          "text/html" = zen;
-          "images/png" = image;
-          "images/jpg" = image;
-          "images/webp" = image;
-          "images/svg+xml" = image;
-          "images/jpeg" = image;
-          "application/pdf" = "org.gnome.Evince.desktop";
-          "x-scheme-handler/discord" = "vesktop.desktop";
-        };
+      defaultApplications = let
+        zen = "zen.desktop";
+        image = "org.gnome.Loupe.desktop";
+      in {
+        "x-scheme-handler/http" = zen;
+        "x-scheme-handler/https" = zen;
+        "x-scheme-handler/about" = zen;
+        "x-scheme-handler/unknown" = zen;
+        "text/html" = zen;
+        "images/png" = image;
+        "images/jpg" = image;
+        "images/webp" = image;
+        "images/svg+xml" = image;
+        "images/jpeg" = image;
+        "application/pdf" = "org.gnome.Evince.desktop";
+        "x-scheme-handler/discord" = "vesktop.desktop";
+      };
     };
   };
 }

@@ -4,10 +4,9 @@
 {
   pkgs,
   lib,
-	config,
+  config,
   ...
-}:
-let
+}: let
   hyprlock-bin = lib.getExe' pkgs.hyprlock "hyprlock";
   brightnessctl = lib.getExe' pkgs.brightnessctl "brightnessctl";
   toggle-dim = lib.getExe (
@@ -35,60 +34,58 @@ let
     ''
   );
   hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
-in
-{
+in {
   config = lib.mkIf config.hyprland-hm-config.enable {
-  services.swayidle = {
-    enable = true;
-    package = pkgs.swayidle;
-    systemdTargets = [ "hyprland-session.target" ];
+    services.swayidle = {
+      enable = true;
+      package = pkgs.swayidle;
+      systemdTargets = ["hyprland-session.target"];
 
-    timeouts = [
-      {
-        # Sleep screen
-        timeout = 30 * 9; # 4.5 mins
-        command = "${toggle-dim}";
-        resumeCommand = "${toggle-dim} --reset";
-      }
-      {
-        # Lock screen
-        timeout = 60 * 7; # 7 mins
-        command = "${hyprlock-bin}";
-        resumeCommand = "${hyprctl} dispatch dpms on; ${toggle-dim} --reset";
-      }
-      {
-        # Hibernate
-        timeout = 60 * 60 * 5; # 5 hours
-        command = "systemctl hybrid-sleep";
-        resumeCommand = "${hyprctl} dispatch dpms on";
-      }
+      timeouts = [
+        {
+          # Sleep screen
+          timeout = 30 * 9; # 4.5 mins
+          command = "${toggle-dim}";
+          resumeCommand = "${toggle-dim} --reset";
+        }
+        {
+          # Lock screen
+          timeout = 60 * 7; # 7 mins
+          command = "${hyprlock-bin}";
+          resumeCommand = "${hyprctl} dispatch dpms on; ${toggle-dim} --reset";
+        }
+        {
+          # Hibernate
+          timeout = 60 * 60 * 5; # 5 hours
+          command = "systemctl hybrid-sleep";
+          resumeCommand = "${hyprctl} dispatch dpms on";
+        }
+      ];
+
+      events = {
+        before-sleep = hyprlock-bin;
+        unlock = "${toggle-dim} --reset";
+      };
+    };
+    home.packages = with pkgs; [
+      swayidle
+      sway-audio-idle-inhibit
     ];
 
-    events = {
-      before-sleep = hyprlock-bin;
-      unlock = "${toggle-dim} --reset";
-    };
-
-  };
-  home.packages = with pkgs; [
-    swayidle
-    sway-audio-idle-inhibit
-  ];
-
-  systemd.user.services.sway-audio-idle-inhibit = {
-    Unit = {
-      Description = "sway-audio-idle-inhibit";
-      After = "graphical-session.target";
-      Wants = "graphical-session.target";
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Service = {
-      Type = "simple";
-      ExecStart = "${lib.getExe' pkgs.sway-audio-idle-inhibit "sway-audio-idle-inhibit"}";
-      Restart = "always";
+    systemd.user.services.sway-audio-idle-inhibit = {
+      Unit = {
+        Description = "sway-audio-idle-inhibit";
+        After = "graphical-session.target";
+        Wants = "graphical-session.target";
+      };
+      Install = {
+        WantedBy = ["graphical-session.target"];
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${lib.getExe' pkgs.sway-audio-idle-inhibit "sway-audio-idle-inhibit"}";
+        Restart = "always";
+      };
     };
   };
-	};
 }

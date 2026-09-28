@@ -18,6 +18,10 @@ let
   };
 in
 {
+  lib,
+  config,
+  ...
+}: {
   options.tmux-conf = {
     enable = lib.options.mkEnableOption "Enable personal tmux config.";
     # Configured in the ./default.nix in same dir tree

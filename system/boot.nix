@@ -1,5 +1,8 @@
-{ lib, pkgs, ... }:
 {
+  lib,
+  pkgs,
+  ...
+}: {
   services.getty = {
     helpLine = lib.mkForce "";
     greetingLine = lib.mkForce "";
@@ -14,7 +17,7 @@
       theme = "hexagon_alt";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
-          selected_themes = [ "hexagon_alt" ];
+          selected_themes = ["hexagon_alt"];
         })
       ];
     };

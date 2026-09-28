@@ -3,8 +3,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   hardware.graphics = {
     # Basic hardware drivers
     enable = true;

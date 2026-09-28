@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   imports = [
     ./anyrun.nix
     ./idle.nix
@@ -47,7 +46,7 @@
         Wants = "graphical-session.target";
       };
       Install = {
-        WantedBy = [ "graphical-session.target" ];
+        WantedBy = ["graphical-session.target"];
       };
       Service = {
         Type = "simple";

@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
@@ -7,7 +10,7 @@
   };
 
   # Blacklist the nouveau kernel module
-  boot.blacklistedKernelModules = [ "nouveau" ];
+  boot.blacklistedKernelModules = ["nouveau"];
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [
@@ -17,13 +20,12 @@
 
   services.xserver = {
     config = ''
-			Section "Device"
-				Identifier "NVIDIA"
-				Driver "nvidia"
-				BusID "PCI:1:0:0"
-			EndSection
-		'';
-
+      Section "Device"
+      	Identifier "NVIDIA"
+      	Driver "nvidia"
+      	BusID "PCI:1:0:0"
+      EndSection
+    '';
   };
 
   hardware.nvidia = {
@@ -78,5 +80,4 @@
     nvidia-container-toolkit
     nvtopPackages.full
   ];
-
 }

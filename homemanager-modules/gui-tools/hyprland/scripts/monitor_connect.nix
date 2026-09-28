@@ -1,10 +1,9 @@
 {
   pkgs,
   lib,
-	config,
+  config,
   ...
-}:
-let
+}: let
   # Moves workspace 1-5 to monitor 1 when connecting to it
   handle_monitor_connect = lib.getExe (
     pkgs.writeShellScriptBin "handle_monitor_connect" ''
@@ -21,9 +20,8 @@ let
       ${pkgs.socat}/bin/socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | while read -r line; do handle "$line"; done
     ''
   );
-in
-{
+in {
   config = lib.mkIf config.hyprland-hm-config.enable {
-  wayland.windowManager.hyprland.settings.exec-once = [ "${handle_monitor_connect}" ];
-	};
+    wayland.windowManager.hyprland.settings.exec-once = ["${handle_monitor_connect}"];
+  };
 }

@@ -4,12 +4,10 @@
   pkgs,
   system,
   ...
-}:
-
-let
+}: let
   monitorName = "weylus-ipad";
   monitorMode = "2000x1500@30";
-	monitorZoom = "1.25";
+  monitorZoom = "1.25";
 
   weylusToggle = pkgs.writeShellApplication {
     name = "weylus-toggle";
@@ -66,17 +64,17 @@ let
           if systemctl --user --quiet is-active weylus-ipad.service \
             || monitor_exists; then
             jq -cn '{
-						  text: "",
-							alt: "activated",
-							tooltip: "Weylus iPad display: on\nClick to stop",
-							class: "activated"
+        text: "",
+      	alt: "activated",
+      	tooltip: "Weylus iPad display: on\nClick to stop",
+      	class: "activated"
             }'
           else
             jq -cn '{
-						  text: "",
-							alt: "deactivated",
-							tooltip: "Weylus iPad display: off\nClick to start",
-							class: "deactivated"
+        text: "",
+      	alt: "deactivated",
+      	tooltip: "Weylus iPad display: off\nClick to start",
+      	class: "deactivated"
             }'
           fi
           ;;
@@ -109,15 +107,13 @@ let
     url = "https://github.com/ZainKergaye/nixpkgs/";
     ref = "refs/heads/weylus-bump";
     rev = "5825be3485ad3ec65c4dfb8f53a522e7710e71a8";
-  }) { inherit system; };
+  }) {inherit system;};
 
   weylus-bumped = w-pkgs.weylus;
 
   palette = config.colorScheme.palette;
-in
-{
+in {
   config = lib.mkIf config.hyprland-hm-config.enable {
-
     wayland.windowManager.hyprland.settings.monitor = [
       "${monitorName}, ${monitorMode}, auto-left, ${monitorZoom}"
     ];
@@ -129,8 +125,8 @@ in
     systemd.user.services.weylus-ipad = {
       Unit = {
         Description = "Weylus for the iPad virtual monitor";
-        PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session.target" ];
+        PartOf = ["graphical-session.target"];
+        After = ["graphical-session.target"];
       };
 
       Service = {
@@ -140,7 +136,7 @@ in
     };
 
     programs.waybar.settings.mainBar = {
-      "group/poweroptions".modules = lib.mkAfter [ "custom/weylus" ];
+      "group/poweroptions".modules = lib.mkAfter ["custom/weylus"];
 
       "custom/weylus" = {
         exec = "${lib.getExe weylusToggle} status";
@@ -159,21 +155,21 @@ in
     # 0B = green
     # 0F = Dark red
     programs.waybar.style = lib.mkAfter ''
-			#custom-weylus.activated {
-        color: #${palette.base0B};
-      }
+      #custom-weylus.activated {
+           color: #${palette.base0B};
+         }
 
-			#custom-weylus.deactivated {
-        color: #${palette.base0F};
+      #custom-weylus.deactivated {
+           color: #${palette.base0F};
+         }
+      #custom-weylus {
+      	min-height: 0;
+      	padding: 2px 10px;
+      	border-radius: 8px;
+      	margin: 4px 4px;
+      	background-color: #${palette.base01};
+      	color: #${palette.base05};
       }
-			#custom-weylus {
-				min-height: 0;
-				padding: 2px 10px;
-				border-radius: 8px;
-				margin: 4px 4px;
-				background-color: #${palette.base01};
-				color: #${palette.base05};
-			}
     '';
   };
 }
