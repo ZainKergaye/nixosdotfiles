@@ -24,6 +24,7 @@ in
   };
 
   config = lib.mkIf config.tmux-conf.enable {
+    programs.zsh.loginExtra = "${pkgs.tmux}/bin/tmux attach";
     programs.tmux = {
       enable = true;
 
