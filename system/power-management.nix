@@ -2,7 +2,7 @@
 # More info here:
 # https://linrunner.de/tlp/index.html
 # Running the command `tlp-stat -p` gives more system stats
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./suspend.nix
   ];
@@ -37,11 +37,11 @@
       CPU_MIN_PERF_ON_BAT = 0;
       CPU_MAX_PERF_ON_BAT = 70;
 
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
+      START_CHARGE_THRESH_BAT0 = 90;
+      STOP_CHARGE_THRESH_BAT0 = 100;
 
-      START_CHARGE_THRESH_BAT1 = 75;
-      STOP_CHARGE_THRESH_BAT1 = 90;
+      START_CHARGE_THRESH_BAT1 = 90;
+      STOP_CHARGE_THRESH_BAT1 = 100;
     };
   };
 }
