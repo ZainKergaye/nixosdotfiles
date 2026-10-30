@@ -11,7 +11,7 @@
   boot = {
     # Plymouth
     consoleLogLevel = 0;
-    initrd.verbose = false;
+    # initrd.verbose = false;
     plymouth = {
       enable = true;
       theme = "hexagon_alt";

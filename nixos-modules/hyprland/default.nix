@@ -108,5 +108,10 @@
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       xwayland.enable = true;
     };
+
+    # Recent Hyprland builds wrap `bin/Hyprland` in a shell script to provide
+    # runtime PATH entries.  The NixOS capability wrapper must target an ELF
+    # executable, so point it at the real binary instead.
+    security.wrappers.Hyprland.source = lib.mkForce "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/bin/.Hyprland-wrapped";
   };
 }
