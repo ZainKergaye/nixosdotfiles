@@ -107,10 +107,10 @@
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # Keep the portal built by the Hyprland flake in sync with its compositor.
-      # New nixpkgs portals take `hyprlang`, while the NixOS module's automatic
-      # override still passes the incompatible `hyprland` argument.
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # The unstable portal is already added to `xdg.portal.extraPortals` above.
+      # Disable the module's legacy `hyprland` argument override: current XDPH
+      # takes `hyprlang` instead.
+      portalPackage = null;
       xwayland.enable = true;
     };
   };

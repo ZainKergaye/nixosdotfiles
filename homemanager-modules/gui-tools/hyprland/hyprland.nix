@@ -25,8 +25,10 @@
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # NixOS provides the portal from the matching Hyprland input.  Avoid Home
+      # Manager's legacy `hyprland` argument override, which unstable XDPH no
+      # longer accepts.
+      portalPackage = null;
       configType = "lua";
       xwayland.enable = true;
       settings = {
