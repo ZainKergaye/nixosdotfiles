@@ -5,7 +5,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.hyprland-hm-config.enable {
     systemd.user.services.pyprland = {
       Unit = {
@@ -14,7 +15,7 @@
         Wants = "graphical-session.target";
       };
       Install = {
-        WantedBy = ["graphical-session.target"];
+        WantedBy = [ "graphical-session.target" ];
       };
       Service = {
         Type = "simple";
@@ -22,7 +23,7 @@
         Restart = "always";
       };
     };
-    home.packages = [pkgs.pyprland];
+    home.packages = [ pkgs.pyprland ];
 
     home.file.".config/pypr/config.toml".text = ''
       [pyprland]
@@ -46,19 +47,31 @@
     '';
 
     wayland.windowManager.hyprland.settings = {
-      bind = [
-        "$mod ALT, I, exec, pypr toggle btop"
-        "$mod ALT, O, exec, pypr toggle term"
-      ];
-      windowrule = let
-        palette = config.colorScheme.palette;
-        base08 = palette.base08; # Red
-        base09 = palette.base09; # Orange
-      in [
-        "match:class ^(pyprland-btop)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0"
-
-        "match:class ^(pyprland-dropterm)$, border_color rgb(${base08}) rgb(${base09}) 30deg, border_size 0, dim_around on"
-      ];
+      bind =
+        let
+          inherit (import ../lua.nix { inherit lib; }) modBind exec;
+        in
+        [
+          (modBind "ALT + I" (exec "pypr toggle btop"))
+          (modBind "ALT + O" (exec "pypr toggle term"))
+        ];
+      window_rule =
+        let
+          palette = config.colorScheme.palette;
+        in
+        [
+          {
+            match.class = "^(pyprland-btop)$";
+            border_color = "rgb(${palette.base08}) rgb(${palette.base09}) 30deg";
+            border_size = 0;
+          }
+          {
+            match.class = "^(pyprland-dropterm)$";
+            border_color = "rgb(${palette.base08}) rgb(${palette.base09}) 30deg";
+            border_size = 0;
+            dim_around = true;
+          }
+        ];
     };
   };
 }

@@ -1,81 +1,76 @@
+{ lib, config, ... }:
+let
+  inherit (import ./lua.nix { inherit lib; })
+    inline
+    bind
+    modBind
+    modBindRepeat
+    ;
+  screenshotDir = "/home/${config.variables.username}/Pictures/Screenshots";
+  workspaceBinds = builtins.concatLists (
+    builtins.genList (
+      x:
+      let
+        workspace = x + 1;
+        key = builtins.toString (workspace - ((workspace / 10) * 10));
+      in
+      [
+        (modBind key ''hl.dsp.focus({ workspace = "${toString workspace}" })'')
+        (modBind "SHIFT + ${key}" ''hl.dsp.window.move({ workspace = "${toString workspace}" })'')
+      ]
+    ) 10
+  );
+
+in
 {
-  lib,
-  config,
-  ...
-}: {
   config = lib.mkIf config.hyprland-hm-config.enable {
-    wayland.windowManager.hyprland.settings = {
-      bindm = [
-        "$mod, mouse:273, resizewindow"
-        "$mod, mouse:272, movewindow"
-      ];
+    wayland.windowManager.hyprland.settings.bind = [
+      {
+        _args = [
+          "SUPER + mouse:273"
+          (inline "hl.dsp.window.resize()")
+          { drag = true; }
+        ];
+      }
+      {
+        _args = [
+          "SUPER + mouse:272"
+          (inline "hl.dsp.window.drag()")
+          { drag = true; }
+        ];
+      }
+      (bind "mouse:275" ''hl.dsp.focus({ workspace = "m-1" })'')
+      (bind "mouse:276" ''hl.dsp.focus({ workspace = "m+1" })'')
+      (modBindRepeat "ALT + H" "hl.dsp.window.resize({ x = -10, y = 0, relative = true })")
+      (modBindRepeat "ALT + J" "hl.dsp.window.resize({ x = 0, y = 10, relative = true })")
+      (modBindRepeat "ALT + K" "hl.dsp.window.resize({ x = 0, y = -10, relative = true })")
+      (modBindRepeat "ALT + L" "hl.dsp.window.resize({ x = 10, y = 0, relative = true })")
+      (modBind "H" ''hl.dsp.focus({ direction = "left" })'')
+      (modBind "J" ''hl.dsp.focus({ direction = "down" })'')
+      (modBind "K" ''hl.dsp.focus({ direction = "up" })'')
+      (modBind "L" ''hl.dsp.focus({ direction = "right" })'')
+      (modBind "W" ''hl.dsp.exec_cmd("chromium")'')
+      (modBind "Q" ''hl.dsp.exec_cmd("kitty")'')
+      (modBind "C" "hl.dsp.window.close()")
+      (modBind "V" "hl.dsp.window.float()")
+      (modBind "F" "hl.dsp.window.fullscreen()")
+      (modBind "T" "hl.dsp.window.pin()")
+      (modBind "CTRL + 1" ''hl.dsp.window.tag({ tag = "op100" })'')
+      (modBind "CTRL + 2" ''hl.dsp.window.tag({ tag = "op80" })'')
+      (modBind "CTRL + 3" ''hl.dsp.window.tag({ tag = "op60" })'')
+      (modBind "CTRL + I" ''hl.dsp.workspace.toggle_special("magic")'')
+      (modBind "CTRL + SHIFT + I" ''hl.dsp.window.move({ workspace = "special:magic" })'')
+      (modBind "CTRL + O" ''hl.dsp.workspace.toggle_special("hidden")'')
+      (modBind "CTRL + SHIFT + O" ''hl.dsp.window.move({ workspace = "special:hidden" })'')
+      (modBind "CTRL + U" ''hl.dsp.workspace.toggle_special("magicone")'')
+      (modBind "CTRL + SHIFT + U" ''hl.dsp.window.move({ workspace = "special:magicone" })'')
+      (modBind "CTRL + P" ''hl.dsp.workspace.toggle_special("hiddenone")'')
+      (modBind "CTRL + SHIFT + P" ''hl.dsp.window.move({ workspace = "special:hiddenone" })'')
+      (bind "Print" ''hl.dsp.exec_cmd("hyprshot -m output -o ${screenshotDir}")'')
+      (bind "CTRL + Print" ''hl.dsp.exec_cmd("hyprshot -m region -o ${screenshotDir}")'')
+      (modBind "CTRL + SHIFT + M" "hl.dsp.exit()")
 
-      binde = [
-        # binde repeats command while being held
-        "$mod ALT, H, resizeactive, -10 0"
-        "$mod ALT, J, resizeactive, 0 10"
-        "$mod ALT, K, resizeactive, 0 -10"
-        "$mod ALT, L, resizeactive, 10 0"
-      ];
-
-      bind =
-        [
-          ", mouse:275, workspace, m-1"
-          ", mouse:276, workspace, m+1"
-
-          "$mod, H, movefocus, l"
-          "$mod, J, movefocus, d"
-          "$mod, K, movefocus, u"
-          "$mod, L, movefocus, r"
-
-          "$mod, W, exec, chromium"
-          "$mod, Q, exec, kitty"
-
-          "$mod, C, killactive"
-          "$mod, V, togglefloating"
-          "$mod, F, fullscreen"
-          #"$mod, S, togglesplit"
-          "$mod, T, pin"
-
-          "$mod CTRL, 1, tagwindow, op100"
-          "$mod CTRL, 2, tagwindow, op80"
-          "$mod CTRL, 3, tagwindow, op60"
-
-          "$mod CTRL, I, togglespecialworkspace, magic"
-          "$mod CTRL SHIFT, I, movetoworkspace, special:magic"
-
-          "$mod CTRL, O, togglespecialworkspace, hidden"
-          "$mod CTRL SHIFT, O, movetoworkspace, special:hidden"
-
-          "$mod CTRL, U, togglespecialworkspace, magicone"
-          "$mod CTRL SHIFT, U, movetoworkspace, special:magicone"
-
-          "$mod CTRL, P, togglespecialworkspace, hiddenone"
-          "$mod CTRL SHIFT, P, movetoworkspace, special:hiddenone"
-
-          ",Print, exec, hyprshot -m output -o /home/${config.variables.username}/Pictures/Screenshots"
-          "CTRL, Print, exec, hyprshot -m region -o /home/${config.variables.username}/Pictures/Screenshots"
-
-          "$mod CTRL SHIFT, M, exit"
-        ]
-        ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-          builtins.concatLists (
-            builtins.genList (
-              x: let
-                ws = let
-                  c = (x + 1) / 10;
-                in
-                  builtins.toString (x + 1 - (c * 10));
-              in [
-                "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              ]
-            )
-            10
-          )
-        );
-    };
+    ]
+    ++ workspaceBinds;
   };
 }

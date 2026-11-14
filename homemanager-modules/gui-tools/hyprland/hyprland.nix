@@ -1,134 +1,351 @@
-# Hyprland config for home-manager
+# Hyprland settings remain Nix data; Home Manager generates hyprland.lua.
 {
   inputs,
   pkgs,
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./hyprbinds.nix
     ./colors.nix
     ./programs
     ./scripts
   ];
-
-  options.hyprland-hm-config.enable = lib.options.mkEnableOption "Enable Hyprland homamanager config";
-
+  options.hyprland-hm-config = {
+    enable = lib.mkEnableOption "Hyprland Home Manager configuration";
+    startupCommands = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "Commands run once when Hyprland starts, rather than on config reload.";
+    };
+  };
   config = lib.mkIf config.hyprland-hm-config.enable {
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      configType = "hyprlang";
-
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      configType = "lua";
       xwayland.enable = true;
       settings = {
-        "$mod" = "SUPER";
-        monitor = [
-          # name, resolution, position, scale
-          # https://wiki.hyprland.org/Configuring/Monitors/
-          ", preferred, auto, 1" # Default
-          "desc:LG Display 0x0521, 1920x1080@60.02, 0x0, 1" # Built-in display
-          "desc:Acer Technologies VG270 TEGAA003851S, 1920x1080@74.97, -1920x0, 1" # Room Display
-          "desc:Samsung Electric Company S34J55x H4LNB01778, 3440x1440@74.98, -760x-1440, 1" # Office display
-          "desc:Dell Inc. DELL U3415W PXF7986G10HL, preferred, auto-up, 1" # Campus library display
-          "desc:Ancor Communications Inc VS278 J9LMQS077400, preferred, auto-up, 1" # Eng display
-          "desc:Sharp Corporation SHARP HDMI, preferred, auto-up, 1, mirror, eDP-1" # Eng conference room mirror
-        ];
-
-        windowrule = [
-          # "float, size 530 400,title:(Bluetooth Devices)"
-          #
-          # "float, size 700 550,title:(Save File)"
-          # "float, size 700 550,title:(Open File)"
-          #
-          # "opacity 0.8 0.8, class:^(vesktop)$"
-          "match:initial_title ^(kitty), opacity 0.8 0.8"
-
-          "match:tag op100, opacity 1 1"
-          "match:tag op80, opacity 0.8 0.8"
-          "match:tag op60, opacity 0.6 0.6"
-          "match:title ^Open File$, float on, center on "
-          "match:title ^Save File$, float on, center on "
-
-          # Zoom-us
-          "match:title ^annotate_toolbar$, float on, pin on"
-          "match:title ^Annotation - Zoom$, float on, pin on, no_blur on, opaque on"
-          "match:title ^as_toolbar$, float on, pin on"
-          "match:title ^zoom_linux_float_video_window$, float on, pin on"
-          "match:title ^Select what to share$, center on, float on, size \"100 100\""
-
-          "match:title ^Bluetooth Devices$, center on, float on"
-          "match:class ^nm-connection-editor$, float on, center on"
-
-          "match:class ^org.gnupg.pinentry-qt$, dim_around on, stay_focused on"
-
-          # "center, title:^Open File$"
-        ];
-
-        env = [
-          "XCURSOR_SIZE,14"
-          "HYPRCURSOR_SIZE,14"
-
-          "natural_scroll, true"
-          "QT_QPA_PLATFORMTHEME,qt6ct" # for Qt apps
-          "force_default_wallpaper, 1" # Disables anime wallpaper
-        ];
-
-        gesture = [
-          "3, horizontal, workspace"
-        ];
-
-        input = {
-          accel_profile = "custom 0.2144477506 0.000 0.307 0.615 1.077 1.539 2.002 2.505 3.208 3.910 4.613 5.315 6.018 6.720 7.423 8.125 8.828 9.530 10.233 10.935 12.387";
-
-          touchpad = {
-            natural_scroll = true;
-            tap-to-click = true;
-            clickfinger_behavior = true;
-            scroll_factor = 0.3;
+        mod._var = "SUPER";
+        config = {
+          general = {
+            gaps_in = 5;
+            gaps_out = 10;
+            border_size = 2;
+            resize_on_border = true;
+            layout = "dwindle";
           };
+          input = {
+            accel_profile = "custom 0.2144477506 0.000 0.307 0.615 1.077 1.539 2.002 2.505 3.208 3.910 4.613 5.315 6.018 6.720 7.423 8.125 8.828 9.530 10.233 10.935 12.387";
+            touchpad = {
+              natural_scroll = true;
+              tap_to_click = true;
+              clickfinger_behavior = true;
+              scroll_factor = 0.3;
+            };
+          };
+          misc.key_press_enables_dpms = true;
+          dwindle.preserve_split = true;
+          animations.enabled = true;
         };
-
-        exec-once = [
-          "nm-applet"
-          "blueman-applet"
-          "awww-daemon"
+        env = [
+          {
+            _args = [
+              "XCURSOR_SIZE"
+              "14"
+            ];
+          }
+          {
+            _args = [
+              "HYPRCURSOR_SIZE"
+              "14"
+            ];
+          }
+          {
+            _args = [
+              "natural_scroll"
+              "true"
+            ];
+          }
+          {
+            _args = [
+              "QT_QPA_PLATFORMTHEME"
+              "qt6ct"
+            ];
+          }
+          {
+            _args = [
+              "force_default_wallpaper"
+              "1"
+            ];
+          }
+        ];
+        gesture = {
+          fingers = 3;
+          direction = "horizontal";
+          action = "workspace";
+        };
+        monitor = [
+          {
+            output = "";
+            mode = "preferred";
+            position = "auto";
+            scale = 1;
+          }
+          {
+            output = "desc:LG Display 0x0521";
+            mode = "1920x1080@60.02";
+            position = "0x0";
+            scale = 1;
+          }
+          {
+            output = "desc:Acer Technologies VG270 TEGAA003851S";
+            mode = "1920x1080@74.97";
+            position = "-1920x0";
+            scale = 1;
+          }
+          {
+            output = "desc:Samsung Electric Company S34J55x H4LNB01778";
+            mode = "3440x1440@74.98";
+            position = "-760x-1440";
+            scale = 1;
+          }
+          {
+            output = "desc:Dell Inc. DELL U3415W PXF7986G10HL";
+            mode = "preferred";
+            position = "auto-up";
+            scale = 1;
+          }
+          {
+            output = "desc:Ancor Communications Inc VS278 J9LMQS077400";
+            mode = "preferred";
+            position = "auto-up";
+            scale = 1;
+          }
+          {
+            output = "desc:Sharp Corporation SHARP HDMI";
+            mode = "preferred";
+            position = "auto-up";
+            scale = 1;
+            mirror = "eDP-1";
+          }
+        ];
+        curve = [
+          {
+            _args = [
+              "winIn"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.1
+                    1.0
+                  ]
+                  [
+                    0.1
+                    1.0
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "winOut"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.1
+                    1.0
+                  ]
+                  [
+                    0.1
+                    1.0
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "smoothOut"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.5
+                    0
+                  ]
+                  [
+                    0.99
+                    0.99
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "layerOut"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.23
+                    1
+                  ]
+                  [
+                    0.32
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
         ];
 
-        general = {
-          gaps_in = 5;
-          gaps_out = 10;
-          border_size = 2;
+        animation = [
+          {
+            leaf = "windowsIn";
+            enabled = true;
+            speed = 7;
+            bezier = "winIn";
+            style = "slide popin";
+          }
+          {
+            leaf = "windowsOut";
+            enabled = true;
+            speed = 3;
+            bezier = "smoothOut";
+            style = "slide";
+          }
+          {
+            leaf = "windowsMove";
+            enabled = true;
+            speed = 7;
+            bezier = "winIn";
+            style = "slide";
+          }
+          {
+            leaf = "workspacesIn";
+            enabled = true;
+            speed = 8;
+            bezier = "winIn";
+            style = "slide";
+          }
+          {
+            leaf = "workspacesOut";
+            enabled = true;
+            speed = 8;
+            bezier = "winOut";
+            style = "slide";
+          }
+          {
+            leaf = "layersIn";
+            enabled = true;
+            speed = 10;
+            bezier = "winIn";
+            style = "slide";
+          }
+          {
+            leaf = "layersOut";
+            enabled = true;
+            speed = 3;
+            bezier = "layerOut";
+            style = "popin 50%";
+          }
+        ];
 
-          resize_on_border = true;
-
-          layout = "dwindle";
-        };
-
-        misc.key_press_enables_dpms = true;
-
-        animations = {
-          enabled = true;
-          animation = [
-            "windowsIn, 1, 7, winIn, slide, popin"
-            "windowsOut, 1, 3, smoothOut, slide"
-            "windowsMove, 1, 7, winIn, slide"
-            "workspacesIn, 1, 8, winIn, slide"
-            "workspacesOut, 1, 8, winOut, slide"
-            "layersIn, 1, 10, winIn, slide"
-            "layersOut, 1, 3, layerOut, popin 50%"
-          ];
-          bezier = [
-            "winIn, 0.1, 1.0, 0.1, 1.0"
-            "winOut, 0.1, 1.0, 0.1, 1.0"
-            "smoothOut, 0.5, 0, 0.99, 0.99"
-            "layerOut,0.23,1,0.32,1"
-          ];
-        };
-
-        dwindle.preserve_split = true;
+        window_rule = [
+          {
+            match.initial_title = "^(kitty)";
+            opacity = "0.8 0.8";
+          }
+          {
+            match.tag = "op100";
+            opacity = "1 1";
+          }
+          {
+            match.tag = "op80";
+            opacity = "0.8 0.8";
+          }
+          {
+            match.tag = "op60";
+            opacity = "0.6 0.6";
+          }
+          {
+            match.title = "^Open File$";
+            float = true;
+            center = true;
+          }
+          {
+            match.title = "^Save File$";
+            float = true;
+            center = true;
+          }
+          {
+            match.title = "^annotate_toolbar$";
+            float = true;
+            pin = true;
+          }
+          {
+            match.title = "^Annotation - Zoom$";
+            float = true;
+            pin = true;
+            no_blur = true;
+            opaque = true;
+          }
+          {
+            match.title = "^as_toolbar$";
+            float = true;
+            pin = true;
+          }
+          {
+            match.title = "^zoom_linux_float_video_window$";
+            float = true;
+            pin = true;
+          }
+          {
+            match.title = "^Select what to share$";
+            center = true;
+            float = true;
+            size = "100 100";
+          }
+          {
+            match.title = "^Bluetooth Devices$";
+            center = true;
+            float = true;
+          }
+          {
+            match.class = "^nm-connection-editor$";
+            float = true;
+            center = true;
+          }
+          {
+            match.class = "^org.gnupg.pinentry-qt$";
+            dim_around = true;
+            stay_focused = true;
+          }
+        ];
       };
+      extraConfig = ''
+        hl.on("hyprland.start", function()
+        ${
+          lib.concatMapStrings (
+            command: "  hl.exec_cmd(${builtins.toJSON command})\n"
+          ) config.hyprland-hm-config.startupCommands
+        }end)
+      '';
     };
+    hyprland-hm-config.startupCommands = [
+      "nm-applet"
+      "blueman-applet"
+      "awww-daemon"
+    ];
   };
 }
