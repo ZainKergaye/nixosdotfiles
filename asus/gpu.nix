@@ -65,6 +65,10 @@
   # Needed for legacy_470 driver
   nixpkgs.config.nvidia.acceptLicense = true;
 
+  # nvidia-settings 470 still requires GTK2. Keep the legacy GPU's settings tool
+  # usable while nixpkgs deprecates GTK2 ahead of 27.05; remove with legacy470.
+  nixpkgs.config.problems.handlers."gtk+".broken = "warn";
+
   environment.sessionVariables = {
     NVD_BACKEND = "direct";
     LIBVA_DRIVER_NAME = "nvidia";
