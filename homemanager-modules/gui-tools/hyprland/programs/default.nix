@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./anyrun.nix
     ./idle.nix
@@ -35,9 +36,7 @@
       hyprpolkitagent # GUI auth
     ];
 
-    wayland.windowManager.hyprland.settings.exec-once = [
-      "systemctl --user enable --now hyprpoltikagent.service"
-    ];
+    hyprland-hm-config.startupCommands = [ "systemctl --user enable --now hyprpoltikagent.service" ];
 
     systemd.user.services.waypaper-daemon = {
       Unit = {
@@ -46,7 +45,7 @@
         Wants = "graphical-session.target";
       };
       Install = {
-        WantedBy = ["graphical-session.target"];
+        WantedBy = [ "graphical-session.target" ];
       };
       Service = {
         Type = "simple";

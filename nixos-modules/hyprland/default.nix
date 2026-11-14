@@ -98,6 +98,7 @@
           xdg-desktop-portal-gtk
           xdg-desktop-portal-wlr
           xdg-desktop-portal-gnome
+          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
         ];
     };
 
@@ -106,6 +107,10 @@
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # Keep the portal built by the Hyprland flake in sync with its compositor.
+      # New nixpkgs portals take `hyprlang`, while the NixOS module's automatic
+      # override still passes the incompatible `hyprland` argument.
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
 

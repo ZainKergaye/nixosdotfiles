@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   anyrun-bin = lib.getExe' pkgs.anyrun "anyrun";
-in {
+in
+{
   config = lib.mkIf config.hyprland-hm-config.enable {
     systemd.user.services.anyrun = {
       Unit = {
@@ -14,7 +16,7 @@ in {
         Wants = "graphical-session.target";
       };
       Install = {
-        WantedBy = ["graphical-session.target"];
+        WantedBy = [ "graphical-session.target" ];
       };
       Service = {
         Type = "simple";
@@ -23,9 +25,11 @@ in {
       };
     };
 
-    wayland.windowManager.hyprland.settings.bind = [
-      "$mod, SPACE, exec, ${anyrun-bin}"
-    ];
+    wayland.windowManager.hyprland.settings.bind =
+      let
+        inherit (import ../lua.nix { inherit lib; }) modBind exec;
+      in
+      [ (modBind "SPACE" (exec anyrun-bin)) ];
 
     programs.anyrun = {
       enable = true;

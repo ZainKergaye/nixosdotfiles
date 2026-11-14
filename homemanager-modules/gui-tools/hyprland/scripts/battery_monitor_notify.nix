@@ -6,7 +6,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   battery_monitor_notify = lib.getExe (
     pkgs.writeShellScriptBin "battery_monitor_notify" ''
 
@@ -42,8 +43,9 @@
         done
     ''
   );
-in {
+in
+{
   config = lib.mkIf config.hyprland-hm-config.enable {
-    wayland.windowManager.hyprland.settings.exec-once = ["${battery_monitor_notify}"];
+    hyprland-hm-config.startupCommands = [ battery_monitor_notify ];
   };
 }

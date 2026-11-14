@@ -4,7 +4,8 @@
   pkgs,
   system,
   ...
-}: let
+}:
+let
   monitorName = "weylus-ipad";
   monitorMode = "2000x1500@30";
   monitorZoom = "1.25";
@@ -107,15 +108,21 @@
     url = "https://github.com/ZainKergaye/nixpkgs/";
     ref = "refs/heads/weylus-bump";
     rev = "5825be3485ad3ec65c4dfb8f53a522e7710e71a8";
-  }) {inherit system;};
+  }) { inherit system; };
 
   weylus-bumped = w-pkgs.weylus;
 
   palette = config.colorScheme.palette;
-in {
+in
+{
   config = lib.mkIf config.hyprland-hm-config.enable {
     wayland.windowManager.hyprland.settings.monitor = [
-      "${monitorName}, ${monitorMode}, auto-left, ${monitorZoom}"
+      {
+        output = monitorName;
+        mode = monitorMode;
+        position = "auto-left";
+        scale = builtins.fromJSON monitorZoom;
+      }
     ];
     home.packages = [
       weylus-bumped
@@ -125,8 +132,8 @@ in {
     systemd.user.services.weylus-ipad = {
       Unit = {
         Description = "Weylus for the iPad virtual monitor";
-        PartOf = ["graphical-session.target"];
-        After = ["graphical-session.target"];
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
       };
 
       Service = {
@@ -136,7 +143,7 @@ in {
     };
 
     programs.waybar.settings.mainBar = {
-      "group/poweroptions".modules = lib.mkAfter ["custom/weylus"];
+      "group/poweroptions".modules = lib.mkAfter [ "custom/weylus" ];
 
       "custom/weylus" = {
         exec = "${lib.getExe weylusToggle} status";
