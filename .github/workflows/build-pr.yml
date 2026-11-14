@@ -1,43 +1,31 @@
 name: Build
 
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pull-requests: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # -------------------------------------------------
-      # 1️⃣ Generate a short‑lived GitHub‑App token
-      # -------------------------------------------------
-      - name: Generate GitHub App Token
-        id: app-token
-        uses: actions/create-github-app-token@v3
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          client-id: ${{ vars.APP_CLIENT_ID }}
-          private-key: ${{ secrets.FLAKE_UPDATE_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: |
-            nixosdotfiles
-
-      # -------------------------------------------------
-      # 2️⃣ Checkout repository (uses the token)
-      # -------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          token: ${{ steps.app-token.outputs.token }}
           persist-credentials: false
+
+      - name: Test lock-file summary
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py'
 
       # -------------------------------------------------
       # 3️⃣ Install Nix + magic‑nix‑cache
       # -------------------------------------------------
       - name: Install Nix
-        uses: cachix/install-nix-action@v27
+        uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
@@ -58,11 +46,9 @@ jobs:
           echo "🔧  Building test hosts…"
           for host in thinkpad asus; do
             nix build .#nixosConfigurations.$host.config.system.build.toplevel \
-              --show-trace --no-link || {
+              --show-trace --no-link --no-update-lock-file || {
                 echo "❌  Build failed for $host"
                 exit 1
               }
           done
           echo "✅  All builds succeeded"
-
-
