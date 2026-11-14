@@ -1,212 +1,183 @@
 name: Update Flake Inputs
 
 on:
-  schedule: 
-    - cron: '0 2 * * 0,3'   # 02:00 UTC on Sundays (0) and Wednesdays (3)
-  workflow_dispatch:                  # manual trigger
+  schedule:
+    - cron: '0 2 * * 0,3'
+  workflow_dispatch:
 
+# The GitHub App token below, rather than GITHUB_TOKEN, performs all writes.
 permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
-  issues: write
+  contents: read
+
+# A fixed PR branch must not be updated by overlapping scheduled/manual runs.
+concurrency:
+  group: update-flake-inputs
+  cancel-in-progress: false
 
 jobs:
   update-flake:
     runs-on: ubuntu-latest
     env:
-      # Change this value (or override it when you manually dispatch) to set the commit message.
-      GIT_COMMIT_MESSAGE: "chore(deps): update flake inputs – automated"
+      GIT_COMMIT_MESSAGE: 'chore(deps): update flake inputs – automated'
+
     steps:
-      # -------------------------------------------------
-      # 1️⃣ Generate a short‑lived GitHub‑App token
-      # -------------------------------------------------
-      - name: Generate GitHub App Token
+      - name: Generate GitHub App token
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
+          # Omitting owner/repositories scopes the token to this repository.
+          # `app-id` remains supported by v3 and matches this repository's secret.
           app-id: ${{ secrets.APP_ID }}
-          client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.FLAKE_UPDATE_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: |
-            nixosdotfiles
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
 
-      # -------------------------------------------------
-      # 2️⃣ Checkout repository (uses the token)
-      # -------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
           token: ${{ steps.app-token.outputs.token }}
           persist-credentials: false
 
-      # -------------------------------------------------
-      # 3️⃣ Install Nix + magic‑nix‑cache
-      # -------------------------------------------------
+      - name: Test lock-file summary
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py'
+
       - name: Install Nix
-        uses: cachix/install-nix-action@v27
+        uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
             accept-flake-config = true
             max-jobs = 1
 
-      - name: Setup Cachix 
+      - name: Setup Cachix
         uses: cachix/cachix-action@v17
         with:
           name: zain-system-cache
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      # -------------------------------------------------
-      # 4️⃣  Run the flake‑lock update (no PR generated here)
-      # -------------------------------------------------
       - name: Update flake.lock
         id: flake-update
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NIX_GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
 
-          mkdir -p $HOME/.config/nix
-          # The token is sent as an *access‑token* for github.com.
-          # Nix will add the header “Authorization: Bearer <token>”.
-          cat <<EOF >> $HOME/.config/nix/nix.conf
-          access-tokens = github.com=${{ steps.app-token.outputs.token }}
-          EOF
+          before_lock="$RUNNER_TEMP/flake.lock.before"
+          cp flake.lock "$before_lock"
 
-          echo "Running nix flake update…"
-          cp flake.lock flake.lock.before
-
-          # retry with exponential back‑off (same logic you had)
-          MAX_RETRIES=5
-          DELAY=10
-          for ((i=1; i<=MAX_RETRIES; i++)); do
-            if nix flake update; then
+          # Keep the token out of nix.conf and retry transient fetch failures.
+          max_retries=5
+          delay=10
+          for attempt in $(seq 1 "$max_retries"); do
+            if nix --access-tokens "github.com=$NIX_GITHUB_TOKEN" flake update; then
               break
             fi
-            if (( i < MAX_RETRIES )); then
-              echo "Rate‑limit / failure – waiting ${DELAY}s…"
-              sleep $DELAY
-              DELAY=$((DELAY*2))
-            else
-              echo "❌  Update failed after $MAX_RETRIES attempts"
+
+            if [ "$attempt" -eq "$max_retries" ]; then
+              echo "flake update failed after $max_retries attempts" >&2
               exit 1
             fi
+
+            echo "flake update failed (attempt $attempt/$max_retries); retrying in ${delay}s" >&2
+            sleep "$delay"
+            delay=$((delay * 2))
           done
 
-          # Detect whether anything changed
-          if diff -q flake.lock flake.lock.before > /dev/null; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+          if cmp --silent "$before_lock" flake.lock; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'No flake.lock changes detected.' >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+            echo "before-lock=$before_lock" >> "$GITHUB_OUTPUT"
           fi
 
-      # -------------------------------------------------
-      # 7️⃣ (Optional) Build & test the new configuration
-      # -------------------------------------------------
+      # App installation tokens expire after one hour. Start the build with a
+      # fresh token so private GitHub flake inputs can still be fetched.
+      - name: Generate token for build
+        id: build-token
+        if: steps.flake-update.outputs.changed == 'true'
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.FLAKE_UPDATE_PRIVATE_KEY }}
+          permission-contents: read
+
       - name: Build test configurations
         if: steps.flake-update.outputs.changed == 'true'
-        run: |
-          echo "🔧  Building test hosts…"
-          for host in thinkpad asus; do
-            nix build .#nixosConfigurations.$host.config.system.build.toplevel \
-              --show-trace --no-link || {
-                echo "❌  Build failed for $host"
-                exit 1
-              }
-          done
-          echo "✅  All builds succeeded"
-
-      # -------------------------------------------------
-      # 8️⃣ Generate a nice markdown summary (table)
-      # -------------------------------------------------
-      - name: Create update summary table
-        if: steps.flake-update.outputs.changed == 'true'
-        id: summary
+        env:
+          NIX_GITHUB_TOKEN: ${{ steps.build-token.outputs.token }}
         run: |
           set -euo pipefail
-          nix flake metadata --json > meta.json
-          {
-            printf "| Input | Old rev | New rev | Source |\n"
-            printf "|-------|----------|----------|--------|\n"
-          } > summary.md
+          for host in thinkpad asus; do
+            nix --access-tokens "github.com=$NIX_GITHUB_TOKEN" build \
+              ".#nixosConfigurations.$host.config.system.build.toplevel" \
+              --show-trace --no-link --no-update-lock-file
+          done
 
-          jq -r '
-            .locks.nodes |
-            to_entries[] |
-            select(.value.locked.type != null) |
-            {
-              name: .key,
-              old: (
-                    if .value.locked.prev.rev != null then .value.locked.prev.rev
-                    elif .value.locked.prev.narHash != null then .value.locked.prev.narHash
-                    else "—"
-                    end
-                  ) | .[0:7],
-              new: (
-                    if .value.locked.rev != null then .value.locked.rev
-                    elif .value.locked.narHash != null then .value.locked.narHash
-                    else "—"
-                    end
-                  ) | .[0:7],
-              url: (
-                    if .value.locked.url != null then .value.locked.url
-                    else "—"
-                    end
-                  )
-            } |
-            "\(.name) | \(.old) | \(.new) | \(.url)"
-          ' meta.json >> summary.md
-
-          echo "summary<<EOF" >> $GITHUB_OUTPUT
-          cat summary.md >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      # -------------------------------------------------
-      # 9️⃣ Create the Pull Request (custom body)
-      # -------------------------------------------------
-      - name: Create Pull Request
+      - name: Create update summary
+        id: summary
         if: steps.flake-update.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
+        env:
+          BEFORE_LOCK: ${{ steps.flake-update.outputs.before-lock }}
+        run: |
+          set -euo pipefail
+          summary_path="$RUNNER_TEMP/flake-update-summary.md"
+
+          python3 .github/scripts/flake-update-summary.py \
+            "$BEFORE_LOCK" flake.lock > "$RUNNER_TEMP/flake-update-rows.md"
+
+          {
+            printf '%s\n\n' '## Automated flake input update'
+            printf '%s\n' 'This pull request updates flake.lock using nix flake update.'
+            printf '%s\n\n' '### Updated lock nodes'
+            cat "$RUNNER_TEMP/flake-update-rows.md"
+            printf '%s\n\n' '### Validation'
+            printf '%s\n' 'Both thinkpad and asus NixOS configurations built successfully in this run.'
+          } > "$summary_path"
+
+          cat "$summary_path" >> "$GITHUB_STEP_SUMMARY"
+          echo "path=$summary_path" >> "$GITHUB_OUTPUT"
+
+      # Do not reuse the token minted before a potentially long build.
+      - name: Generate token for pull request
+        id: pull-request-token
+        if: steps.flake-update.outputs.changed == 'true'
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.FLAKE_UPDATE_PRIVATE_KEY }}
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+
+      - name: Create or update pull request
+        id: create-pull-request
+        if: steps.flake-update.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8
         with:
           add-paths: flake.lock
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ steps.pull-request-token.outputs.token }}
           commit-message: ${{ env.GIT_COMMIT_MESSAGE }}
-          title: "chore(deps): daily flake input updates"
+          title: 'chore(deps): update flake inputs'
           branch: chore/flake-update-daily
           delete-branch: true
-          body: |
-            ## 🔄 Automated Flake Input Update
-
-            This PR updates the inputs defined in `flake.lock` to their newest revisions.
-
-            ### 📦 Updated inputs
-            ${{ steps.summary.outputs.summary }}
-
-            ### ✅ Testing status
-            All host configurations (`thinkpad`, `asus`, …) build successfully.
-
-            ### 📋 Review checklist
-            - [ ] Verify the changes in `flake.lock`
-            - [ ] Check changelogs for possible breaking changes
-            - [ ] Run any additional integration tests you need
-            - [ ] Approve & merge
-
-            <sub>Generated by the **Update Flake Inputs** workflow.</sub>
+          body-path: ${{ steps.summary.outputs.path }}
           labels: |
             dependencies
             automated
           assignees: zainkergaye
           reviewers: zainkergaye
-          draft: false
 
-      # -------------------------------------------------
-      # 10️⃣ Auto‑merge (optional – let CI decide)
-      # -------------------------------------------------
-      - name: Auto‑merge if CI passes
+      - name: Report pull request
         if: steps.flake-update.outputs.changed == 'true'
+        env:
+          PR_OPERATION: ${{ steps.create-pull-request.outputs.pull-request-operation }}
+          PR_URL: ${{ steps.create-pull-request.outputs.pull-request-url }}
         run: |
-          echo "✅ PR created – it will be merged automatically once required checks pass."
-
+          set -euo pipefail
+          if [ -n "$PR_URL" ]; then
+            printf 'Pull request %s: %s\n' "$PR_OPERATION" "$PR_URL" >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf 'Pull request operation: %s\n' "$PR_OPERATION" >> "$GITHUB_STEP_SUMMARY"
+          fi
